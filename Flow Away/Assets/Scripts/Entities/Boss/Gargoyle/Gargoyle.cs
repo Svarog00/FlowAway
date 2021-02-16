@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gargoyle : Enemy
+public class Gargoyle : Boss
 {
     [Header("Gargoyle")]
+
+   // public Observer observer;
 
     public Transform attackPoint;
 
@@ -12,23 +14,25 @@ public class Gargoyle : Enemy
 
     public LayerMask playerLayer;
 
-    public GameObject shotPrefab;
-    public Transform firePoint;
+   // public GameObject shotPrefab;
+   // public Transform firePoint;
+
 
     private string currentState;
+    
 
     private void OnEnable()
     {
-        base.hp = 300;
+        base.healthPoints = 300;
         currentState = "Idle";
     }
 
-    protected override void Attack()
+    private void Attack()
     {
         
     }
 
-    public override void Hurt(int damage)
+    private void Flying()
     {
 
     }
@@ -37,10 +41,11 @@ public class Gargoyle : Enemy
     {
         if (currentState == newState) return;
 
-        animator.Play(newState);
+        //animator.Play(newState);
 
         currentState = newState;
     }
+
 
     void OnDrawGizmosSelected()
     {
