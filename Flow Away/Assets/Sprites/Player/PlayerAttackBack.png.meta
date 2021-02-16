@@ -1,0 +1,248 @@
+fileFormatVersion: 2
+guid: f90f9c80ba0230045956bec8d4df2a97
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4554578375369415351
+    second: PlayerAttackBack_0
+  - first:
+      213: 3604951499824809964
+    second: PlayerAttackBack_1
+  - first:
+      213: 224867556048760866
+    second: PlayerAttackBack_2
+  - first:
+      213: 2997848754538334559
+    second: PlayerAttackBack_3
+  - first:
+      213: 6971523260597987196
+    second: PlayerAttackBack_4
+  - first:
+      213: 9160068350421812543
+    second: PlayerAttackBack_5
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PlayerAttackBack_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 16
+        width: 18
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5032335, y: 0.5634665}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bad195b6ec153f30800000000000000
+      internalID: 4554578375369415351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAttackBack_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 16
+        width: 18
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5000019, y: 0.5753937}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7c19b0a4c570230800000000000000
+      internalID: 3604951499824809964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAttackBack_2
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 16
+        width: 49
+        height: 40
+      alignment: 9
+      pivot: {x: 0.36997333, y: 0.48580608}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 220fbcfc9d3ee1300800000000000000
+      internalID: 224867556048760866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAttackBack_3
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 16
+        width: 42
+        height: 40
+      alignment: 9
+      pivot: {x: 0.2614539, y: 0.49102536}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f59ca981f8f7a9920800000000000000
+      internalID: 2997848754538334559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAttackBack_4
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 16
+        width: 37
+        height: 41
+      alignment: 9
+      pivot: {x: 0.27074206, y: 0.47321728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c77e0530873dfb060800000000000000
+      internalID: 6971523260597987196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerAttackBack_5
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 16
+        width: 35
+        height: 32
+      alignment: 9
+      pivot: {x: 0.28413567, y: 0.60886693}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f35c031f1a91f1f70800000000000000
+      internalID: 9160068350421812543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

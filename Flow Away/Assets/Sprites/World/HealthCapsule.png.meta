@@ -1,0 +1,473 @@
+fileFormatVersion: 2
+guid: 4bfca588bb626cb4793cbddfac18b3be
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7744896859673033024
+    second: HealthCapsule_0
+  - first:
+      213: -6565717358596471182
+    second: HealthCapsule_1
+  - first:
+      213: -6082835505982496603
+    second: HealthCapsule_2
+  - first:
+      213: 219974260042016094
+    second: HealthCapsule_3
+  - first:
+      213: 6003398482727505611
+    second: HealthCapsule_4
+  - first:
+      213: 4019189553327601265
+    second: HealthCapsule_5
+  - first:
+      213: -8065956064665291842
+    second: HealthCapsule_6
+  - first:
+      213: -3064100185042612548
+    second: HealthCapsule_7
+  - first:
+      213: 5602300605009287477
+    second: HealthCapsule_8
+  - first:
+      213: 5836935099826334230
+    second: HealthCapsule_9
+  - first:
+      213: -2532185215272713243
+    second: HealthCapsule_10
+  - first:
+      213: 7163222693044446306
+    second: HealthCapsule_11
+  - first:
+      213: 7106123717707089186
+    second: HealthCapsule_12
+  - first:
+      213: -521228013349312048
+    second: HealthCapsule_13
+  - first:
+      213: -2510956221873445058
+    second: HealthCapsule_14
+  - first:
+      213: -8993438177269325426
+    second: HealthCapsule_15
+  - first:
+      213: 2163487473416501572
+    second: HealthCapsule_16
+  - first:
+      213: -656972134470353673
+    second: HealthCapsule_17
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HealthCapsule_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 1
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c686212759948490800000000000000
+      internalID: -7744896859673033024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 1
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 276cd3959d2e1e4a0800000000000000
+      internalID: -6565717358596471182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_2
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 1
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a0a7c6e55d659ba0800000000000000
+      internalID: -6082835505982496603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_3
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 1
+        width: 8
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e55a88d8c618d0300800000000000000
+      internalID: 219974260042016094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_4
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 1
+        width: 8
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bce8718dc1b505350800000000000000
+      internalID: 6003398482727505611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_5
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 1
+        width: 8
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1767d0baa9707c730800000000000000
+      internalID: 4019189553327601265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_6
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 1
+        width: 8
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb3b7b7c1b7ff0090800000000000000
+      internalID: -8065956064665291842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_7
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 1
+        width: 8
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbe8352bd112a75d0800000000000000
+      internalID: -3064100185042612548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_8
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 1
+        width: 8
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 539d88ec7be5fbd40800000000000000
+      internalID: 5602300605009287477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_9
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 1
+        width: 8
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61a68224c85f00150800000000000000
+      internalID: 5836935099826334230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_10
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 1
+        width: 10
+        height: 14
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e38c2a76fedbdcd0800000000000000
+      internalID: -2532185215272713243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_11
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 1
+        width: 10
+        height: 14
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2646ee14611e86360800000000000000
+      internalID: 7163222693044446306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_12
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1
+        width: 10
+        height: 14
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 225c8e31fd50e9260800000000000000
+      internalID: 7106123717707089186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_13
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 1
+        width: 10
+        height: 14
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d9e45922e934c8f0800000000000000
+      internalID: -521228013349312048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthCapsule_14
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 1
+        width: 10
+        height: 14
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e372dacae9a472dd0800000000000000
+      internalID: -2510956221873445058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

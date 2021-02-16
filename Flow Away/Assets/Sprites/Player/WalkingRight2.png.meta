@@ -1,0 +1,368 @@
+fileFormatVersion: 2
+guid: cf7beb4d4dcc32e4c8028fc8d11e9acf
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7819649708218404127
+    second: WalkingRight2_0
+  - first:
+      213: -9091879155558404256
+    second: WalkingRight2_1
+  - first:
+      213: -7621434402919591002
+    second: WalkingRight2_2
+  - first:
+      213: -31367202046660356
+    second: WalkingRight2_3
+  - first:
+      213: -6038322021173990387
+    second: WalkingRight2_4
+  - first:
+      213: -2364067461586526772
+    second: WalkingRight2_5
+  - first:
+      213: 4359065839618480727
+    second: WalkingRight2_6
+  - first:
+      213: 8846777752206768618
+    second: WalkingRight2_7
+  - first:
+      213: 682278780625687275
+    second: WalkingRight2_8
+  - first:
+      213: -544200944837599388
+    second: WalkingRight2_9
+  - first:
+      213: 2749598803776120494
+    second: WalkingRight2_10
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WalkingRight2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 14
+        width: 16
+        height: 33
+      alignment: 9
+      pivot: {x: 0.4597166, y: 0.4972099}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1d4856baf9f48c60800000000000000
+      internalID: 7819649708218404127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingRight2_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 14
+        width: 23
+        height: 33
+      alignment: 9
+      pivot: {x: 0.58406997, y: 0.4832589}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06fa920341823d180800000000000000
+      internalID: -9091879155558404256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingRight2_2
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 14
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6419514, y: 0.514387}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a359076ac93b3690800000000000000
+      internalID: -7621434402919591002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingRight2_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 14
+        width: 26
+        height: 31
+      alignment: 9
+      pivot: {x: 0.6310325, y: 0.5326723}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf0396822bf809ff0800000000000000
+      internalID: -31367202046660356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingRight2_4
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 14
+        width: 18
+        height: 33
+      alignment: 9
+      pivot: {x: 0.57673097, y: 0.4972099}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0c61883d12933ca0800000000000000
+      internalID: -6038322021173990387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingRight2_5
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 14
+        width: 15
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccd53174b25213fd0800000000000000
+      internalID: -2364067461586526772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingRight2_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 14
+        width: 14
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5328849, y: 0.5000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75adffa29438e7c30800000000000000
+      internalID: 4359065839618480727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingRight2_7
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 14
+        width: 23
+        height: 33
+      alignment: 9
+      pivot: {x: 0.58807373, y: 0.48046875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae9fc1f4e7116ca70800000000000000
+      internalID: 8846777752206768618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingRight2_8
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 14
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6457882, y: 0.514387}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be21bf4afe0f77900800000000000000
+      internalID: 682278780625687275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingRight2_9
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 14
+        width: 24
+        height: 31
+      alignment: 9
+      pivot: {x: 0.68798953, y: 0.5326723}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46fd58cbf1c9278f0800000000000000
+      internalID: -544200944837599388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingRight2_10
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 14
+        width: 16
+        height: 33
+      alignment: 9
+      pivot: {x: 0.65538025, y: 0.5000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea62ae54b89882620800000000000000
+      internalID: 2749598803776120494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
