@@ -89,3 +89,13 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: WeaponReloaded
+    clip: {fileID: 8300000, guid: 3769fda3ce82aee4ea1fd38316b5a6ad, type: 3}
+    volume: 0.4
+    pitch: 1
+    source: {fileID: 0}
+  - name: GhoulDead
+    clip: {fileID: 8300000, guid: f90a8c840d019164e9cf8f2b77b95aa9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

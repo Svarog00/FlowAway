@@ -66,7 +66,7 @@ public class WeaponScript : MonoBehaviour
             _shootCooldown -= Time.deltaTime;
             if (_shootCooldown <= 0) 
             {
-                //playSound
+                FindObjectOfType<AudioManager>().Play("WeaponReloaded");
                 gameObject.SetActive(false);
                 yield break;
             }

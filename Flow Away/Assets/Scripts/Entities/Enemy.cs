@@ -55,6 +55,8 @@ public class Enemy : MonoBehaviour, IHealth
         center = GetComponent<Transform>();
         _canAttack = false;
         randomSpot = Random.Range(0, patrolSpots.Length);
+        Invisibility playerInsibility = FindObjectOfType<Invisibility>();
+        playerInsibility.OnInsibilityEnable += PlayerInsibility_OnInsibilityEnable;
     }
 
     // Update is called once per frame
@@ -64,39 +66,8 @@ public class Enemy : MonoBehaviour, IHealth
         //Дойдя до точки запускается таймер отдиха. Когда таймер кончается - выбирается новая рандомная точка
         if (currentState == EnemyStates.Patroling)
         {
-            if(patrolSpots.Length > 0)
-            {
-                _currentSpeed = maxSpeed; 
-                transform.position = Vector2.MoveTowards(transform.position, patrolSpots[randomSpot].position, _currentSpeed * Time.deltaTime); 
-                if(Vector2.Distance(transform.position, patrolSpots[randomSpot].position) <= 0.2f) 
-                {
-                    _currentSpeed = 0;
-                    if (curWaitTime <= 0f) 
-                    {
-                        curWaitTime = waitTime;
-                        randomSpot = Random.Range(0, patrolSpots.Length);
-                        _currentSpeed = maxSpeed;
-                    }
-                    else curWaitTime -= Time.deltaTime;
-                }
-            }
-
-            Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(center.position, agressionDistance, layerMask); //find the player in circle
-            foreach (Collider2D enemy in detectedEnemies)
-            {
-                if (enemy.tag == "Player" && !playerDetected) //если произошел агр, то заполняем ссылки на игрока
-                {
-                    if(Player == null)
-                    {
-                        Player = enemy.gameObject;
-                        playerHP = Player.GetComponent<Player_Health>();
-                        playerPosition = Player.GetComponent<Rigidbody2D>();
-                    }
-                    currentState = EnemyStates.Chasing;
-                    playerDetected = true;
-                    break;
-                }
-            }
+            Patrol();
+            ScanArea();
         }
 
         if (playerDetected)
@@ -126,18 +97,69 @@ public class Enemy : MonoBehaviour, IHealth
         animator.SetFloat("Speed", _currentSpeed); //В зависимости от скорости активировать анимации
     }
 
-    protected virtual void FixedUpdate()
+    private void PlayerInsibility_OnInsibilityEnable(object sender, Invisibility.OnInvisibilityEnableEventArgs e)
     {
-        enemyPosition.MovePosition(enemyPosition.position - direction * _currentSpeed * Time.deltaTime); //movement
+        if (e.isActive)
+        {
+            currentState = EnemyStates.Patroling;
+            playerDetected = false;
+        }
     }
 
-    void EstimateDistance()
+    private void EstimateDistance()
     {
         _headingToPlayer = enemyPosition.position - playerPosition.position; //направленный вектор к игроку / a vector to the player
         _distanceToPlayer = _headingToPlayer.magnitude; //длина вектора / lenght of the vector
         direction = _headingToPlayer / _distanceToPlayer; //direction to player
     }
 
+    private void ScanArea()
+    {
+        Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(center.position, agressionDistance, layerMask); //find the player in circle
+        foreach (Collider2D enemy in detectedEnemies)
+        {
+            if (enemy.tag == "Player" && !playerDetected) //если произошел агр, то заполняем ссылки на игрока
+            {
+                if (Player == null)
+                {
+                    Player = enemy.gameObject;
+                    playerHP = Player.GetComponent<Player_Health>();
+                    playerPosition = Player.GetComponent<Rigidbody2D>();
+                }
+                currentState = EnemyStates.Chasing;
+                playerDetected = true;
+                break;
+            }
+        }
+    }
+
+    private void Patrol()
+    {
+        if (patrolSpots.Length > 0)
+        {
+            _currentSpeed = maxSpeed;
+            transform.position = Vector2.MoveTowards(transform.position, patrolSpots[randomSpot].position, _currentSpeed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, patrolSpots[randomSpot].position) <= 0.2f)
+            {
+                _currentSpeed = 0;
+                if (curWaitTime <= 0f)
+                {
+                    curWaitTime = waitTime;
+                    randomSpot = Random.Range(0, patrolSpots.Length);
+                    _currentSpeed = maxSpeed;
+                }
+                else curWaitTime -= Time.deltaTime;
+            }
+        }
+        else
+            _currentSpeed = 0f;
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        enemyPosition.MovePosition(enemyPosition.position - direction * _currentSpeed * Time.deltaTime); //movement
+    }
+    
     protected void Chase()
     {
         _currentSpeed = maxSpeed; //Увеличиваем скорость до максимальной
