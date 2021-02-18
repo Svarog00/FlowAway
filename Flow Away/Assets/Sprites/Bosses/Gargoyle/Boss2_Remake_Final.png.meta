@@ -1,0 +1,920 @@
+fileFormatVersion: 2
+guid: e62cf840d8959a24ba75988fa2cad65e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2510379098665632058
+    second: Gargoyle_Idle_1
+  - first:
+      213: 3585200809718014638
+    second: Gargoyle_Idle_2
+  - first:
+      213: 3005377498065744579
+    second: Gargoyle_Idle_3
+  - first:
+      213: -6064742577428013425
+    second: Gargoyle_Idle_4
+  - first:
+      213: -6232151712609591641
+    second: Gargoyle_Idle_5
+  - first:
+      213: -1935276828985088822
+    second: Gargoyle_Idle_6
+  - first:
+      213: 6257777636970296687
+    second: Gargoyle_Spit_1
+  - first:
+      213: -2886638597594650728
+    second: Gargoyle_Spit_2
+  - first:
+      213: 2373514813757605013
+    second: Gargoyle_Spit_3
+  - first:
+      213: 2573163574138763807
+    second: Gargoyle_Spit_4
+  - first:
+      213: 2377937512785595443
+    second: Gargoyle_TakeOff_1
+  - first:
+      213: -8839150312935622157
+    second: Gargoyle_TakeOff_2
+  - first:
+      213: -986524160464066688
+    second: Gargoyle_TakeOff_3
+  - first:
+      213: -1571305633893646382
+    second: Gargoyle_TakeOff_4
+  - first:
+      213: -3751310743732560308
+    second: Gargoyle_TakeOff_5
+  - first:
+      213: -1628479724218682208
+    second: Gargoyle_TakeOff_6
+  - first:
+      213: 7029735693998963063
+    second: Gargoyle_TakeOff_7
+  - first:
+      213: -5587793290218502560
+    second: Gargoyle_TakeOff_8
+  - first:
+      213: 3348384408236573677
+    second: Gargoyle_FlyIdle_1
+  - first:
+      213: 6389580240062713588
+    second: Gargoyle_FlyIdle_2
+  - first:
+      213: 7585426832000287151
+    second: Gargoyle_FlyIdle_3
+  - first:
+      213: 1969943303206046110
+    second: Gargoyle_FlyIdle_4
+  - first:
+      213: -8514656004424132033
+    second: Gargoyle_FlyIdle_5
+  - first:
+      213: 1069148000816385836
+    second: Gargoyle_FallingDown_1
+  - first:
+      213: 2813320035001534638
+    second: Gargoyle_FallingDown_2
+  - first:
+      213: -4910620721797447795
+    second: Gargoyle_FallingDown_3
+  - first:
+      213: 6459075508333693054
+    second: Gargoyle_FallingDown_4
+  - first:
+      213: -3644830254456286684
+    second: Gargoyle_FallingDown_5
+  - first:
+      213: -4816542388580384912
+    second: Gargoyle_FallingDown_6
+  - first:
+      213: -2114128311093856952
+    second: Gargoyle_FallingDown_7
+  - first:
+      213: 2021572617676959484
+    second: Gargoyle_FallingDown_8
+  - first:
+      213: 7176678733936207512
+    second: Gargoyle_FallingDown_9
+  - first:
+      213: -6587440993872495856
+    second: Gargoyle_FallingDown_10
+  - first:
+      213: 5882756564147437316
+    second: Gargoyle_FallingDown_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gargoyle_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 711
+        width: 185
+        height: 76
+      alignment: 9
+      pivot: {x: 0.49999616, y: 0.2828907}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ce3874a287592dd0800000000000000
+      internalID: -2510379098665632058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 711
+        width: 182
+        height: 71
+      alignment: 9
+      pivot: {x: 0.5029466, y: 0.27468228}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea26fa7242131c130800000000000000
+      internalID: 3585200809718014638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 711
+        width: 172
+        height: 69
+      alignment: 9
+      pivot: {x: 0.51563174, y: 0.21633425}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c2392c49ee35b920800000000000000
+      internalID: 3005377498065744579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 711
+        width: 172
+        height: 69
+      alignment: 9
+      pivot: {x: 0.51474744, y: 0.20624752}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8e573a12c4b5dba0800000000000000
+      internalID: -6064742577428013425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 712
+        width: 182
+        height: 71
+      alignment: 9
+      pivot: {x: 0.50293237, y: 0.26013097}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ae10976903f289a0800000000000000
+      internalID: -6232151712609591641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 711
+        width: 185
+        height: 76
+      alignment: 9
+      pivot: {x: 0.49999934, y: 0.2828369}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac4ac424af38425e0800000000000000
+      internalID: -1935276828985088822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_Spit_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 569
+        width: 185
+        height: 76
+      alignment: 9
+      pivot: {x: 0.50004095, y: 0.28276545}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f657ffe0b9718d650800000000000000
+      internalID: 6257777636970296687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_Spit_2
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 569
+        width: 180
+        height: 78
+      alignment: 9
+      pivot: {x: 0.491716, y: 0.24985602}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89760735d7990f7d0800000000000000
+      internalID: -2886638597594650728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_Spit_3
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 569
+        width: 174
+        height: 86
+      alignment: 9
+      pivot: {x: 0.49143928, y: 0.2029646}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 594462fc52b60f020800000000000000
+      internalID: 2373514813757605013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_Spit_4
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 569
+        width: 183
+        height: 80
+      alignment: 9
+      pivot: {x: 0.49451384, y: 0.2439888}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1af38133a6b5b320800000000000000
+      internalID: 2573163574138763807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_TakeOff_1
+      rect:
+        serializedVersion: 2
+        x: 876
+        y: 569
+        width: 185
+        height: 76
+      alignment: 9
+      pivot: {x: 0.50012535, y: 0.2829686}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33c49aba191200120800000000000000
+      internalID: 2377937512785595443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_TakeOff_2
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 569
+        width: 172
+        height: 77
+      alignment: 9
+      pivot: {x: 0.49710652, y: 0.25285438}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f970394f97055580800000000000000
+      internalID: -8839150312935622157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_TakeOff_3
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 427
+        width: 163
+        height: 86
+      alignment: 9
+      pivot: {x: 0.50012267, y: 0.19190447}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 087e23db0892f42f0800000000000000
+      internalID: -986524160464066688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_TakeOff_4
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 427
+        width: 164
+        height: 106
+      alignment: 9
+      pivot: {x: 0.49084657, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dff232e9d9913ae0800000000000000
+      internalID: -1571305633893646382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_TakeOff_5
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 427
+        width: 187
+        height: 117
+      alignment: 9
+      pivot: {x: 0.48929143, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4ed6bdf0caa0fbc0800000000000000
+      internalID: -3751310743732560308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_TakeOff_6
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 427
+        width: 176
+        height: 138
+      alignment: 9
+      pivot: {x: 0.49734706, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a4f402a15a7669e0800000000000000
+      internalID: -1628479724218682208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_TakeOff_7
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 427
+        width: 187
+        height: 121
+      alignment: 9
+      pivot: {x: 0.48937857, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77931b95e53ae8160800000000000000
+      internalID: 7029735693998963063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_TakeOff_8
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 427
+        width: 164
+        height: 108
+      alignment: 9
+      pivot: {x: 0.49085292, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0660732ab9b2472b0800000000000000
+      internalID: -5587793290218502560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FlyIdle_1
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 284
+        width: 164
+        height: 107
+      alignment: 9
+      pivot: {x: 0.4908011, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de3c568f0e9d77e20800000000000000
+      internalID: 3348384408236573677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FlyIdle_2
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 284
+        width: 187
+        height: 118
+      alignment: 9
+      pivot: {x: 0.48926482, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fe0bc8ff595ca850800000000000000
+      internalID: 6389580240062713588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FlyIdle_3
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 284
+        width: 176
+        height: 139
+      alignment: 9
+      pivot: {x: 0.49720174, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa1081fa389d44960800000000000000
+      internalID: 7585426832000287151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FlyIdle_4
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 284
+        width: 187
+        height: 122
+      alignment: 9
+      pivot: {x: 0.48923856, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e99814f3ff4a65b10800000000000000
+      internalID: 1969943303206046110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FlyIdle_5
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 284
+        width: 164
+        height: 109
+      alignment: 9
+      pivot: {x: 0.49098912, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3a17aff97dd5d980800000000000000
+      internalID: -8514656004424132033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_1
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 284
+        width: 164
+        height: 109
+      alignment: 9
+      pivot: {x: 0.4908142, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2fcaf0317066de00800000000000000
+      internalID: 1069148000816385836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_2
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 138
+        width: 187
+        height: 122
+      alignment: 9
+      pivot: {x: 0.48931044, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea881cd8aabea0720800000000000000
+      internalID: 2813320035001534638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_3
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 138
+        width: 177
+        height: 115
+      alignment: 9
+      pivot: {x: 0.4828986, y: 0.07}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f379a9878f9dbb0800000000000000
+      internalID: -4910620721797447795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_4
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 138
+        width: 171
+        height: 135
+      alignment: 9
+      pivot: {x: 0.49999964, y: 0.075}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e78c7a304fe33a950800000000000000
+      internalID: 6459075508333693054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_5
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 138
+        width: 119
+        height: 145
+      alignment: 9
+      pivot: {x: 0.49156535, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4225988d136fa6dc0800000000000000
+      internalID: -3644830254456286684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_6
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 148
+        width: 147
+        height: 84
+      alignment: 9
+      pivot: {x: 0.49992442, y: 0.11282403}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ffd0b7734382db0800000000000000
+      internalID: -4816542388580384912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_7
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 148
+        width: 169
+        height: 50
+      alignment: 9
+      pivot: {x: 0.49988154, y: 0.19158906}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84577af808b19a2e0800000000000000
+      internalID: -2114128311093856952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_8
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 6
+        width: 169
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5000284, y: 0.19174854}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfeaa44c5911e0c10800000000000000
+      internalID: 2021572617676959484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_9
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 1
+        width: 172
+        height: 77
+      alignment: 9
+      pivot: {x: 0.4971019, y: 0.25372267}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8962e5be84fa89360800000000000000
+      internalID: 7176678733936207512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_10
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 1
+        width: 163
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5001112, y: 0.19167703}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b326d5155b494a0800000000000000
+      internalID: -6587440993872495856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gargoyle_FallingDown_11
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 1
+        width: 164
+        height: 106
+      alignment: 9
+      pivot: {x: 0.49071074, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40ffa1a4defb3a150800000000000000
+      internalID: 5882756564147437316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

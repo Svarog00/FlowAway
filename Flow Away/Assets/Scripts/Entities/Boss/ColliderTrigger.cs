@@ -11,7 +11,7 @@ public class ColliderTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         Rigidbody2D player = collider.GetComponent<Rigidbody2D>();
-        if(collider.gameObject.tag == "Player")
+        if(player.gameObject.tag == "Player")
         {
             OnPlayerEnterTrigger?.Invoke(this, EventArgs.Empty);
         }
