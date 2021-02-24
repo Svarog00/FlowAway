@@ -1085,12 +1085,12 @@ PrefabInstance:
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.035412
+      value: 32.332706
       objectReference: {fileID: 0}
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -30.85089
+      value: -30.819569
       objectReference: {fileID: 0}
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
@@ -4475,17 +4475,16 @@ MonoBehaviour:
   healthPoints: 300
   _colliderTrigger: {fileID: 0}
   _chillTime: 2
-  damage: 1
+  damage: 20
   _animator: {fileID: 1402261968}
   playerLayer:
     serializedVersion: 2
     m_Bits: 1
   Player: {fileID: 1054369971}
-  agressionDistance: 2.49
+  agressionDistance: 3.02
   spittleRange: 0
   airAttackRadius: 0.34
-  airAttackRange: 0.56
-  maxSpeed: 1.49
+  maxSpeed: 1.89
 --- !u!50 &1499123633
 Rigidbody2D:
   serializedVersion: 4

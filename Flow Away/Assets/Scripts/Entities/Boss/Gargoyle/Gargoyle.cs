@@ -26,8 +26,6 @@ public class Gargoyle : Boss
 	private Phases _currentPhase;
 	[SerializeField] private Animator _animator;
     
-
-
 	[Header("Player relation")]
 	public LayerMask playerLayer;
 	
@@ -39,13 +37,11 @@ public class Gargoyle : Boss
 
 	public Transform Player;
 
-
 	[Header("Stats")]
 
 	public float agressionDistance;
     public float spittleRange;
 	public float airAttackRadius;
-    public float airAttackRange;
 	public float maxSpeed;
 	private float _currentSpeed;
 
@@ -56,15 +52,14 @@ public class Gargoyle : Boss
 		_currentPhase = Phases.waiting_phase;
 		_animator = GetComponentInChildren<Animator>();
 	}
+
     private void Start()
 	{
-		
 		_colliderTrigger = FindObjectOfType<ColliderTrigger>();
 		_colliderTrigger.OnPlayerEnterTrigger += ColliderTriger_OnPlayerEnterTrigger;
 		_gargoyleCenter = GetComponent<Rigidbody2D>();
 		playerDetected = false;
 	}
-
 
     private void Update()
 	{
@@ -96,8 +91,6 @@ public class Gargoyle : Boss
 					{
 						EstimateDistance();
 						Chase();
-
-
 						//Air attack function
 						//Timer interface
 						//Animation state
@@ -118,7 +111,6 @@ public class Gargoyle : Boss
 				break;
 			}
 		}
-
 
 		if(chill > 0)
         {
@@ -142,40 +134,27 @@ public class Gargoyle : Boss
 	void EstimateDistance()
 	{
 		Vector2 _headingToPlayer = (Vector2)gameObject.transform.position - _playerPosition.position; //направленный вектор к игроку / a vector to the player
-		
 		_distanceToPlayer = _headingToPlayer.magnitude; //длина вектора / lenght of the vector
 		_directionToPlayer = _headingToPlayer / _distanceToPlayer; //direction to player
 	}
 
-
-
-
 	private void Attack()
 	{
-		
 		ChangeAnimationState("Gargoyle_FallingDown");
 		PlayAnimation();
-		
 		Invoke("DealDamage", _animator.GetCurrentAnimatorStateInfo(0).length);
-		Debug.Log("After Deal ");
-
 		ChangeAnimationState("Gargoyle_FlyIdle");
-
 		Invoke("PlayAnimation", _animator.GetCurrentAnimatorStateInfo(0).length);
-		
-
 	}
 
 
 	private void DealDamage()
 	{
 		Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, airAttackRadius, playerLayer); //find the player in circle
-
-		
 		//damage them
 		foreach (Collider2D enemy in hitEnemies)
 		{
-			if (enemy.tag == "Player")
+			if (enemy.tag == "Player" && chill <= 0)
 			{
 				_playerHealth.Hurt(damage);
 				break;
@@ -184,7 +163,6 @@ public class Gargoyle : Boss
 		}
 		playerDetected = false;
 		chill = _chillTime; //Pause between attacks
-		
 	}
 
 	private void FixedUpdate()

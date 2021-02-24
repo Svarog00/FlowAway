@@ -40,9 +40,6 @@ public class Boss : MonoBehaviour, IHealth
 
         _currentState = newState;
     }
-
-   
-
     
     public int GetHealth()
     {
