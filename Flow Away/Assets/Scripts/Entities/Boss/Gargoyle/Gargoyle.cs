@@ -22,9 +22,11 @@ public class Gargoyle : Boss
 	*/
 	private enum Phases { waiting_phase, first_phase, second_phase };
 	[Header("Gargoyle base")]
+	public Animator _animator;
+	public GameObject shotPrefab;
+	public Transform firePoint;
 
 	private Phases _currentPhase;
-	[SerializeField] private Animator _animator;
     
 	[Header("Player relation")]
 	public LayerMask playerLayer;
@@ -80,7 +82,6 @@ public class Gargoyle : Boss
 								_playerHealth = _player.GetComponent<Player_Health>();
 								_playerPosition = _player.GetComponent<Rigidbody2D>();
 							}
-							//currentState = EnemyStates.Chasing;
 							playerDetected = true;
 							break;
 						}
@@ -101,6 +102,7 @@ public class Gargoyle : Boss
 
 			case Phases.second_phase:
 			{
+
 				//Chase function
 				//Animation state
 				//Air attack func
@@ -117,6 +119,13 @@ public class Gargoyle : Boss
 			chill -= Time.deltaTime;
         }
 	}
+	private void FixedUpdate()
+	{
+		if (playerDetected && chill <= 0)
+		{
+			_gargoyleCenter.MovePosition(_gargoyleCenter.position - _directionToPlayer * _currentSpeed * Time.deltaTime); //movement
+		}
+	}
 
 	private void Chase()
 	{
@@ -126,7 +135,7 @@ public class Gargoyle : Boss
 			_currentSpeed = 0f;
 			if (chill <= 0) //Если является атакующим и паузка кончилась, то атака
 			{
-				Attack();
+				SlamAttack();
 			}
 		}
 	}
@@ -138,15 +147,14 @@ public class Gargoyle : Boss
 		_directionToPlayer = _headingToPlayer / _distanceToPlayer; //direction to player
 	}
 
-	private void Attack()
+	private void SlamAttack()
 	{
-		ChangeAnimationState("Gargoyle_FallingDown");
-		PlayAnimation();
-		Invoke("DealDamage", _animator.GetCurrentAnimatorStateInfo(0).length);
+		ChangeAnimationState("Gargoyle_FallingDown"); //Change state to animate
+		PlayAnimation(); //Play certain animation
+		Invoke("DealDamage", _animator.GetCurrentAnimatorStateInfo(0).length); //Invoke certain function after animation has ended
 		ChangeAnimationState("Gargoyle_FlyIdle");
 		Invoke("PlayAnimation", _animator.GetCurrentAnimatorStateInfo(0).length);
 	}
-
 
 	private void DealDamage()
 	{
@@ -159,23 +167,24 @@ public class Gargoyle : Boss
 				_playerHealth.Hurt(damage);
 				break;
 			}
-			
 		}
 		playerDetected = false;
 		chill = _chillTime; //Pause between attacks
 	}
 
-	private void FixedUpdate()
-	{
-		if (playerDetected && chill <= 0)
-		{
-			_gargoyleCenter.MovePosition(_gargoyleCenter.position - _directionToPlayer * _currentSpeed * Time.deltaTime); //movement
 
-		}
+	private void SpittleAttack()
+    {
+		ChangeAnimationState("Gargoyle_Spite");
+		PlayAnimation();
+		//создание новго выстрела
+		GameObject shotTransform = Instantiate(shotPrefab, firePoint.position, firePoint.rotation.normalized);
+		//перемещение
+		shotTransform.GetComponent<ShotScript>().speed = new Vector2(5, 5) * -_directionToPlayer;
+		shotTransform.GetComponent<ShotScript>().shooter = gameObject;
+		FindObjectOfType<AudioManager>().Play("Shot");
+		chill = _chillTime;
 	}
-
-
-
 
 	private void NextPhase(Phases phase)
 	{
@@ -209,13 +218,9 @@ public class Gargoyle : Boss
 		NextPhase(_currentPhase);
 		ChangeAnimationState("Gargoyle_TakingOff");
 		PlayAnimation();
-		//StartCoroutine(Timer(10.5f));
-
 		ChangeAnimationState("Gargoyle_FlyIdle");
 		Invoke("PlayAnimation", _animator.GetCurrentAnimatorStateInfo(0).length + 0.2f);
 
-		
-		
 		_colliderTrigger.OnPlayerEnterTrigger -= ColliderTriger_OnPlayerEnterTrigger;
 	}
 
@@ -223,10 +228,6 @@ public class Gargoyle : Boss
 	{
 		_animator.Play(_currentState);
 	}
-
-	
-
-
 
 	void OnDrawGizmosSelected()
 	{

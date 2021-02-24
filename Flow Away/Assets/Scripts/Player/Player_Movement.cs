@@ -33,8 +33,10 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         HandleMove();
-        if (Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash")) //if timer is null
         {
+            //Update timer
+            //minus one dash
             _isPressedDash = true;
         }
     }
@@ -107,5 +109,6 @@ public class Player_Movement : MonoBehaviour
         animator.SetFloat("Dir_Horizontal", _direction.x);
         animator.SetFloat("Dir_Vertical", _direction.y);
     }
+
 
 }

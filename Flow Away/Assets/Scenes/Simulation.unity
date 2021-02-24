@@ -163,6 +163,11 @@ PrefabInstance:
       propertyPath: capsuleUI
       value: 
       objectReference: {fileID: 1542245414}
+    - target: {fileID: 3071118887357673148, guid: 43951c2b435dc0447b408e38be33dadc,
+        type: 3}
+      propertyPath: capsuleCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6449422990231913848, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
       propertyPath: m_LocalPosition.x
