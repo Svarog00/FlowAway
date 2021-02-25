@@ -227,9 +227,4 @@ public class Enemy : MonoBehaviour, IHealth
             yield return null;
         }
     }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(transform.position, agressionDistance);
-    }
 }

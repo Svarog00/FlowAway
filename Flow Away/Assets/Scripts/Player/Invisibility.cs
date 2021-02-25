@@ -11,15 +11,10 @@ public class Invisibility : MonoBehaviour
         public bool isActive;
     }
 
-    public float MaxTime 
-    {
-        get { return _maxTime; }
-        set { _maxTime = value; }
-    }
+    [SerializeField] private float time = 0f;
 
     Material material;
-    public bool CanActivate { get; set; }
-    [SerializeField] private float _maxTime = 0f;
+    private bool _canActivate;
     private bool _isActive;
     private bool _isChanging;
     private float _curTime;
@@ -27,7 +22,7 @@ public class Invisibility : MonoBehaviour
 
     private void Start()
     {
-        CanActivate = QuestValues.Instance.GetStage("Invisibility") > 0 ? true : false;
+        _canActivate = QuestValues.Instance.GetStage("Invisibility") > 0 ? true : false;
         //_canActivate = true;
         _isActive = false;
         _isChanging = false;
@@ -37,14 +32,14 @@ public class Invisibility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("First Module") && CanActivate)
+        if(Input.GetKeyDown(KeyCode.Alpha1) && _canActivate)
         {
             if (!_isActive)
             {
                 gameObject.tag = "InvisiblePlayer";
                 _isActive = true;
                 _isChanging = true;
-                _curTime = MaxTime;
+                _curTime = time;
                 OnInsibilityEnable?.Invoke(this, new OnInvisibilityEnableEventArgs { isActive = _isActive });
             }
             else
