@@ -11,12 +11,10 @@ public class BossHealth : MonoBehaviour
     private void Start()
     {
         Boss boss = FindObjectOfType<Boss>();
-        boss.OnHealthChanged += SetHealth;
-        bossHealthBar.maxValue = boss._healthPointMax;
-        bossHealthBar.value = boss._healthPointMax;
+        boss.OnHealthChanged += Boss_OnHealthChanged;
     }
 
-    public void SetHealth(object sender, Boss.OnHealthChangedEventArgs e)
+    private void Boss_OnHealthChanged(object sender, Boss.OnHealthChangedEventArgs e)
     {
         bossHealthBar.value = e.currentHealth;
     }

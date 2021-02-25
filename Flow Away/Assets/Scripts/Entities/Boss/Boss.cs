@@ -6,30 +6,28 @@ using UnityEngine.UI;
 
 public class Boss : MonoBehaviour, IHealth
 {
-    // Start is called before the first frame update
-
-
+    public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
     public class OnHealthChangedEventArgs: EventArgs
     {
         public int currentHealth;
     }
     protected int _healthPoints;
 
+    public ColliderTrigger _colliderTrigger;
 
-
-    [SerializeField] protected ColliderTrigger _colliderTrigger;
-    public int _healthPointMax;
-
-    
     protected GameObject _player;
     protected Player_Health _playerHealth;
+    [SerializeField] protected int _damage;
     [SerializeField] protected float _chillTime = 5f;
     protected float chill;
-    public int damage;
     protected string _currentState;
+    [SerializeField] private int _healthPointMax;
 
-    public event EventHandler OnBossDamaged;
-    public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
+    private void Start()
+    {
+        _healthPoints = _healthPointMax;
+        OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { currentHealth = _healthPoints });
+    }
 
     public virtual void Heal()
     {    }
@@ -37,15 +35,11 @@ public class Boss : MonoBehaviour, IHealth
     public virtual void Hurt(int damage)
     {
         _healthPoints -= damage;
-        OnBossDamaged?.Invoke(this, EventArgs.Empty);
-        OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { currentHealth = _healthPoints });
-        //Apply UI;
+        OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { currentHealth = _healthPoints }); //Apply UI;
     }
 
     protected virtual void ColliderTriger_OnPlayerEnterTrigger(object sender, EventArgs e)
     {}
-
-    
 
     protected void ChangeAnimationState(string newState)
     {

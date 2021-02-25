@@ -5,15 +5,6 @@ using UnityEngine;
 
 public class Gargoyle : Boss
 {
-
-
-	/*public Transform attackPoint;
-	public float meleeRange;*/
-
-	// public GameObject shotPrefab;
-	// public Transform firePoint;
-
-
 	/* 
 	 * Air attack should be consists of two stages: 
 	 * - chase Player
@@ -26,11 +17,11 @@ public class Gargoyle : Boss
 	public GameObject shotPrefab;
 	public Transform firePoint;
 
-	private Phases _currentPhase;
     
 	[Header("Player relation")]
 	public LayerMask playerLayer;
 	
+	private Phases _currentPhase;
 	private float _distanceToPlayer;
     private Vector2 _directionToPlayer;
 	private Rigidbody2D _playerPosition;
@@ -42,14 +33,12 @@ public class Gargoyle : Boss
 	[Header("Stats")]
 
 	public float agressionDistance;
-    public float spittleRange;
 	public float airAttackRadius;
 	public float maxSpeed;
 	private float _currentSpeed;
 
     private void Awake()
     {
-		healthPoints = 300;
 		_currentState = "Gargoyle_Idle";
 		_currentPhase = Phases.waiting_phase;
 		_animator = GetComponentInChildren<Animator>();
@@ -69,35 +58,33 @@ public class Gargoyle : Boss
 		{
 			case Phases.first_phase:
 			{
-
-					//Find Player on the scene
-					Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(_gargoyleCenter.transform.position, agressionDistance, playerLayer); //find the player in circle
-					foreach (Collider2D enemy in detectedEnemies)
+				//Find Player on the scene
+				Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(_gargoyleCenter.transform.position, agressionDistance, playerLayer); //find the player in circle
+				foreach (Collider2D enemy in detectedEnemies)
+				{
+					if (enemy.tag == "Player" && !playerDetected) 
 					{
-						if (enemy.tag == "Player" && !playerDetected) 
+						if (_player == null)
 						{
-							if (_player == null)
-							{
-								_player = enemy.gameObject;
-								_playerHealth = _player.GetComponent<Player_Health>();
-								_playerPosition = _player.GetComponent<Rigidbody2D>();
-							}
-							playerDetected = true;
-							break;
+							_player = enemy.gameObject;
+							_playerHealth = _player.GetComponent<Player_Health>();
+							_playerPosition = _player.GetComponent<Rigidbody2D>();
 						}
+						playerDetected = true;
+						break;
 					}
-
-					//Chase function
-					if (playerDetected)
-					{
-						EstimateDistance();
-						Chase();
-						//Air attack function
-						//Timer interface
-						//Animation state
-						//Health check (if hp < 50% -> nextStage funck)
-					}
-					break;
+				}
+				//Chase function
+				if (playerDetected)
+				{
+					EstimateDistance();
+					Chase();
+					//Air attack function
+					//Timer interface
+					//Animation state
+					//Health check (if hp < 50% -> nextStage funck)
+				}
+				break;
 			}
 
 			case Phases.second_phase:
@@ -164,7 +151,7 @@ public class Gargoyle : Boss
 		{
 			if (enemy.tag == "Player" && chill <= 0)
 			{
-				_playerHealth.Hurt(damage);
+				_playerHealth.Hurt(_damage);
 				break;
 			}
 		}

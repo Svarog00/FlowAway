@@ -23,12 +23,8 @@ public class BossBattle : MonoBehaviour
     private void Start()
     {
         colliderTrigger.OnPlayerEnterTrigger += ColliderTriger_OnPlayerEnterTrigger;
-        boss.OnBossDamaged += BossBattle_OnDamaged;
         //show UI
     }
-
-
-
 
     private void ColliderTriger_OnPlayerEnterTrigger(object sender, System.EventArgs e)
     {
@@ -36,25 +32,11 @@ public class BossBattle : MonoBehaviour
         colliderTrigger.OnPlayerEnterTrigger -= ColliderTriger_OnPlayerEnterTrigger;
     }
 
-
-    private void BossBattle_OnDamaged(object sender, System.EventArgs e)
-    {
-        //Gargoyle took damage
-        boss.OnBossDamaged -= BossBattle_OnDamaged;
-        Debug.Log("BossWasDamaged");
-        //Stage control
-
-
-        //Apply changes to UI
-    }
-
     private void BossBattle_OnDead(object sender, System.EventArgs e)
     {
         //
         //Player should choose kill or not
     }
-
-
 
     private void StartBattle()
     {
