@@ -7,8 +7,7 @@ public class ObjectPool : MonoBehaviour
 {
     public int id;
 
-    [SerializeField]
-    private GameObject prefab;
+    public GameObject prefab;
 
     [SerializeField]
     private Queue<GameObject> avialableObjects = new Queue<GameObject>();

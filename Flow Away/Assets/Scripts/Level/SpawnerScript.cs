@@ -36,6 +36,7 @@ public class SpawnerScript : MonoBehaviour
 				count--;
             }
         }
-		else surveillance.OnPlayerDetected -= Surveillance_OnPlayerDetected;
+		else 
+			surveillance.OnPlayerDetected -= Surveillance_OnPlayerDetected;
 	}
 }

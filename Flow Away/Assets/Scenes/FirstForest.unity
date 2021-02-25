@@ -7032,6 +7032,11 @@ PrefabInstance:
       propertyPath: PlayerHP
       value: 
       objectReference: {fileID: 2758022707878285189}
+    - target: {fileID: 5408356200644773160, guid: a8a1b090a4760dd4fbe752adf17dfa8b,
+        type: 3}
+      propertyPath: PlayerMedkits
+      value: 
+      objectReference: {fileID: 5210737501888569446}
     - target: {fileID: 5408356200644773161, guid: a8a1b090a4760dd4fbe752adf17dfa8b,
         type: 3}
       propertyPath: m_LocalPosition.x
