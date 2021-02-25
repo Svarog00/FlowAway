@@ -49,9 +49,7 @@ public class Invisibility : MonoBehaviour
                 _isActive = false;
                 OnInsibilityEnable?.Invoke(this, new OnInvisibilityEnableEventArgs { isActive = _isActive });
             }
-            
         }
-
         if(_isActive)
         {
             Disappear();

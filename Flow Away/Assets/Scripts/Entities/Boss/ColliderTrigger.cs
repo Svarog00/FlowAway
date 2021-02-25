@@ -5,7 +5,6 @@ using System;
 
 public class ColliderTrigger : MonoBehaviour
 {
-
     public event EventHandler OnPlayerEnterTrigger;
     
     private void OnTriggerEnter2D(Collider2D collider)

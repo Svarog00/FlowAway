@@ -2,43 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Gargoyle : Boss
 {
+
+
 	/*public Transform attackPoint;
 	public float meleeRange;*/
 
-	 
+	// public GameObject shotPrefab;
+	// public Transform firePoint;
 
 
 	/* 
-	 * Air attack (Phase 1) should be consists of two stages: 
+	 * Air attack should be consists of two stages: 
 	 * - chase Player
-	 * - if Gargo reach Player zone she attack Player, then use Timer for attack delay
+	 * - if Gargo reach Player zone (some units around Player = Sphere(player`s center, airAttackZone) she attack Player, then use Timer for attack delay
 	 * - repeat (while hp >= 50%)
 	*/
-
-/*
- * Air attack and Spittle (Phase 2):
- * - chase Player (speed = max * 0.3f)
- * - air attack
- * - when Gargoyle wake up, she start spiitle Player
- * - repeat (while hp > 0)
- */
-
-
 	private enum Phases { waiting_phase, first_phase, second_phase };
 	[Header("Gargoyle base")]
-
-	private Phases _currentPhase;
-	[SerializeField] private Animator _animator;
-	[SerializeField]private CapsuleCollider2D _capsuleCollider2D;
+	public Animator _animator;
 	public GameObject shotPrefab;
 	public Transform firePoint;
-	public Image phaseImage;
-	public Sprite[] phaseSprites;
 
+	private Phases _currentPhase;
+    
 	[Header("Player relation")]
 	public LayerMask playerLayer;
 	
@@ -52,51 +41,52 @@ public class Gargoyle : Boss
 
 	[Header("Stats")]
 
-	[SerializeField] private float _shotCooldown = 0;
-	[SerializeField] private float _curCooldown;
-	private float _currentSpeed;
 	public float agressionDistance;
-    //public float spittleRange;
+    public float spittleRange;
 	public float airAttackRadius;
 	public float maxSpeed;
-	
+	private float _currentSpeed;
 
-	private void Awake()
+    private void Awake()
     {
-		_healthPoints = 300;
-		_healthPointMax = _healthPoints;
+		healthPoints = 300;
 		_currentState = "Gargoyle_Idle";
 		_currentPhase = Phases.waiting_phase;
 		_animator = GetComponentInChildren<Animator>();
-		_capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-		_curCooldown = 0;
 	}
 
     private void Start()
 	{
 		_colliderTrigger = FindObjectOfType<ColliderTrigger>();
 		_colliderTrigger.OnPlayerEnterTrigger += ColliderTriger_OnPlayerEnterTrigger;
-		phaseImage.sprite = phaseSprites[0];
 		_gargoyleCenter = GetComponent<Rigidbody2D>();
 		playerDetected = false;
 	}
 
     private void Update()
 	{
-		
-		switch (_currentPhase)
+		switch(_currentPhase)
 		{
-			case Phases.waiting_phase:
-            {
-		    	break;
-            }
-
-
 			case Phases.first_phase:
 			{
 
-					//Find Player on the scene (default)
-					FindPlayer();
+					//Find Player on the scene
+					Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(_gargoyleCenter.transform.position, agressionDistance, playerLayer); //find the player in circle
+					foreach (Collider2D enemy in detectedEnemies)
+					{
+						if (enemy.tag == "Player" && !playerDetected) 
+						{
+							if (_player == null)
+							{
+								_player = enemy.gameObject;
+								_playerHealth = _player.GetComponent<Player_Health>();
+								_playerPosition = _player.GetComponent<Rigidbody2D>();
+							}
+							playerDetected = true;
+							break;
+						}
+					}
+
 					//Chase function
 					if (playerDetected)
 					{
@@ -106,28 +96,14 @@ public class Gargoyle : Boss
 						//Timer interface
 						//Animation state
 						//Health check (if hp < 50% -> nextStage funck)
-						if(_healthPoints <= 0.5 * _healthPointMax)
-                        {
-							NextPhase(_currentPhase);
-
-							//Change Gargoyle`s icon UI
-							Debug.Log("21312");
-							phaseImage.sprite = phaseSprites[1];
-							//phaseImage2.enabled = true;
-                        }
 					}
 					break;
 			}
 
 			case Phases.second_phase:
 			{
+
 				//Chase function
-				if(playerDetected)
-                {
-					//EstimateDistance();
-					//Chase();
-					//Spittle();
-				}
 				//Animation state
 				//Air attack func
 				//Timer between air & spittle
@@ -136,12 +112,6 @@ public class Gargoyle : Boss
 				//Heatlh check
 				break;
 			}
-
-
-            default:
-                {
-					break;
-                }
 		}
 
 		if(chill > 0)
@@ -149,13 +119,11 @@ public class Gargoyle : Boss
 			chill -= Time.deltaTime;
         }
 	}
-
 	private void FixedUpdate()
 	{
 		if (playerDetected && chill <= 0)
 		{
 			_gargoyleCenter.MovePosition(_gargoyleCenter.position - _directionToPlayer * _currentSpeed * Time.deltaTime); //movement
-
 		}
 	}
 
@@ -167,7 +135,7 @@ public class Gargoyle : Boss
 			_currentSpeed = 0f;
 			if (chill <= 0) //Если является атакующим и паузка кончилась, то атака
 			{
-				Attack();
+				SlamAttack();
 			}
 		}
 	}
@@ -179,19 +147,14 @@ public class Gargoyle : Boss
 		_directionToPlayer = _headingToPlayer / _distanceToPlayer; //direction to player
 	}
 
-	private void Attack()
+	private void SlamAttack()
 	{
-		ChangeAnimationState("Gargoyle_FallingDown");
-		
-		PlayAnimation();
-		Invoke("DealDamage", _animator.GetCurrentAnimatorStateInfo(0).length);
-		_capsuleCollider2D.offset = new Vector2(0f, 0.18f);
+		ChangeAnimationState("Gargoyle_FallingDown"); //Change state to animate
+		PlayAnimation(); //Play certain animation
+		Invoke("DealDamage", _animator.GetCurrentAnimatorStateInfo(0).length); //Invoke certain function after animation has ended
 		ChangeAnimationState("Gargoyle_FlyIdle");
 		Invoke("PlayAnimation", _animator.GetCurrentAnimatorStateInfo(0).length);
-		_capsuleCollider2D.offset = new Vector2(0f, 0.75f) ;
-		
 	}
-
 
 	private void DealDamage()
 	{
@@ -204,49 +167,28 @@ public class Gargoyle : Boss
 				_playerHealth.Hurt(damage);
 				break;
 			}
-			
 		}
 		playerDetected = false;
 		chill = _chillTime; //Pause between attacks
 	}
 
-	
-	private void FindPlayer()
-    {
-		Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(_gargoyleCenter.transform.position, agressionDistance, playerLayer); //find the player in circle
-		foreach (Collider2D enemy in detectedEnemies)
-		{
-			if (enemy.tag == "Player" && !playerDetected)
-			{
-				if (_player == null)
-				{
-					_player = enemy.gameObject;
-					_playerHealth = _player.GetComponent<Player_Health>();
-					_playerPosition = _player.GetComponent<Rigidbody2D>();
-				}
-				//currentState = EnemyStates.Chasing;
-				playerDetected = true;
-				break;
-			}
-		}
-	}
 
-	private void Spittle()
+	private void SpittleAttack()
     {
 		ChangeAnimationState("Gargoyle_Spite");
-		if (_curCooldown <= 0f)
-		{
-			GameObject shot = Instantiate(shotPrefab, firePoint.position, firePoint.rotation.normalized);
-			shot.GetComponent<ShotScript>().speed = new Vector2(5, 5) * - _directionToPlayer;
-			_curCooldown = _shotCooldown;
-		}
+		PlayAnimation();
+		//создание новго выстрела
+		GameObject shotTransform = Instantiate(shotPrefab, firePoint.position, firePoint.rotation.normalized);
+		//перемещение
+		shotTransform.GetComponent<ShotScript>().speed = new Vector2(5, 5) * -_directionToPlayer;
+		shotTransform.GetComponent<ShotScript>().shooter = gameObject;
+		FindObjectOfType<AudioManager>().Play("Shot");
+		chill = _chillTime;
 	}
 
-
-
-	private void NextPhase(Phases currentPhase)
+	private void NextPhase(Phases phase)
 	{
-		switch(currentPhase)
+		switch(phase)
 		{
 			case Phases.waiting_phase:
 			{
@@ -276,15 +218,8 @@ public class Gargoyle : Boss
 		NextPhase(_currentPhase);
 		ChangeAnimationState("Gargoyle_TakingOff");
 		PlayAnimation();
-		  //0.18 - def , 0.75 -fly
-		//StartCoroutine(Timer(10.5f));
-
 		ChangeAnimationState("Gargoyle_FlyIdle");
 		Invoke("PlayAnimation", _animator.GetCurrentAnimatorStateInfo(0).length + 0.2f);
-		_capsuleCollider2D.offset = new Vector2(0f, 0.75f);
-		
-
-
 
 		_colliderTrigger.OnPlayerEnterTrigger -= ColliderTriger_OnPlayerEnterTrigger;
 	}
@@ -292,9 +227,7 @@ public class Gargoyle : Boss
 	private void PlayAnimation()
 	{
 		_animator.Play(_currentState);
-		
 	}
-
 
 	void OnDrawGizmosSelected()
 	{
