@@ -11,13 +11,14 @@ public class Gargoyle : Boss
 	 * - if Gargo reach Player zone (some units around Player = Sphere(player`s center, airAttackZone) she attack Player, then use Timer for attack delay
 	 * - repeat (while hp >= 50%)
 	*/
-	private enum Phases { waiting_phase, first_phase, second_phase };
+	private enum Phases { waiting_phase, first_phase, second_phase, dying_phase };
 	[Header("Gargoyle base")]
 	public Animator _animator;
 	public GameObject shotPrefab;
 	public Transform firePoint;
+	public Sprite[] phaseSprites;
+	private CapsuleCollider2D _body;
 
-    
 	[Header("Player relation")]
 	public LayerMask playerLayer;
 	
@@ -27,7 +28,7 @@ public class Gargoyle : Boss
 	private Rigidbody2D _playerPosition;
 	private Rigidbody2D _gargoyleCenter;
 	private bool playerDetected;
-
+	private bool isShooting;
 	public Transform Player;
 
 	[Header("Stats")]
@@ -35,26 +36,31 @@ public class Gargoyle : Boss
 	public float agressionDistance;
 	public float airAttackRadius;
 	public float maxSpeed;
+	public float couldownSpittle;
 	private float _currentSpeed;
-
+	
     private void Awake()
     {
+		_healthPoints = healthPointMax;
 		_currentState = "Gargoyle_Idle";
 		_currentPhase = Phases.waiting_phase;
 		_animator = GetComponentInChildren<Animator>();
+		_body = GetComponent<CapsuleCollider2D>();
 	}
 
     private void Start()
 	{
+		isShooting = false;
 		_colliderTrigger = FindObjectOfType<ColliderTrigger>();
 		_colliderTrigger.OnPlayerEnterTrigger += ColliderTriger_OnPlayerEnterTrigger;
+		base.OnPhaseIconChange(phaseSprites[0]);
 		_gargoyleCenter = GetComponent<Rigidbody2D>();
 		playerDetected = false;
 	}
 
     private void Update()
-	{
-		switch(_currentPhase)
+	{ 	  
+		switch (_currentPhase)
 		{
 			case Phases.first_phase:
 			{
@@ -74,29 +80,57 @@ public class Gargoyle : Boss
 						break;
 					}
 				}
-				//Chase function
 				if (playerDetected)
 				{
 					EstimateDistance();
+					//Chase function
 					Chase();
-					//Air attack function
-					//Timer interface
-					//Animation state
-					//Health check (if hp < 50% -> nextStage funck)
+					if(_healthPoints <= 0.5f * healthPointMax)//если хп меньше половины -> следующая фаза и изменение фазы на интерфейсе
+                        {
+							NextPhase(_currentPhase);
+							base.OnPhaseIconChange(phaseSprites[1]);
+						}
 				}
 				break;
 			}
 
 			case Phases.second_phase:
 			{
-
-				//Chase function
-				//Animation state
-				//Air attack func
-				//Timer between air & spittle
-				//Spittle
-				//timer
-				//Heatlh check
+					//Find Player on the scene
+					Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(_gargoyleCenter.transform.position, agressionDistance, playerLayer); //find the player in circle
+					foreach (Collider2D enemy in detectedEnemies)
+					{
+						if (enemy.tag == "Player" && !playerDetected)
+						{
+							if (_player == null)
+							{
+								_player = enemy.gameObject;
+								_playerHealth = _player.GetComponent<Player_Health>();
+								_playerPosition = _player.GetComponent<Rigidbody2D>();
+							}
+							playerDetected = true;
+							break;
+						}
+					}
+					//Chase function
+					if (playerDetected)
+					{
+						
+						EstimateDistance();
+						Chase();
+						
+						if (isShooting == true)//если произошел AirAttack, то идет вызов функции, которая отвечает за плевки
+						{
+							Invoke("SpittleAttack", _animator.GetCurrentAnimatorStateInfo(0).length);
+							_body.offset = new Vector2(0f, 0.18f);//изменение положения колайдера гаргульи ( 0,75 - Air, 0.18 - Earth)
+						}
+						
+						if (_healthPoints <= 0f)//проверка здоровья
+						{
+							NextPhase(_currentPhase);
+							base.OnActivatedUI(false);
+						}
+					}
 				break;
 			}
 		}
@@ -116,13 +150,28 @@ public class Gargoyle : Boss
 
 	private void Chase()
 	{
-		_currentSpeed = maxSpeed; //Увеличиваем скорость до максимальной
+		if(_currentPhase == Phases.second_phase)
+        {
+			_currentSpeed = maxSpeed * 1.1f;
+			
+		}
+		else
+        {
+			_currentSpeed = maxSpeed; //Увеличиваем скорость до максимальной
+        }
+
 		if (airAttackRadius >= _distanceToPlayer) //Если игрок слишком близко, то остановиться для атаки
 		{
 			_currentSpeed = 0f;
 			if (chill <= 0) //Если является атакующим и паузка кончилась, то атака
 			{
+				//Air attack function
 				SlamAttack();
+				_body.offset = new Vector2(0f, 0.75f);
+				if (_currentPhase == Phases.second_phase && chill <= 0)//изменение флага, чтобы гаргулья начала плеваться ГОВНИЩЕМ(моим кодом)
+                {
+					isShooting = true;
+                }
 			}
 		}
 	}
@@ -138,9 +187,11 @@ public class Gargoyle : Boss
 	{
 		ChangeAnimationState("Gargoyle_FallingDown"); //Change state to animate
 		PlayAnimation(); //Play certain animation
+		_body.offset = new Vector2(0f, 0.18f);
 		Invoke("DealDamage", _animator.GetCurrentAnimatorStateInfo(0).length); //Invoke certain function after animation has ended
 		ChangeAnimationState("Gargoyle_FlyIdle");
 		Invoke("PlayAnimation", _animator.GetCurrentAnimatorStateInfo(0).length);
+		_body.offset = new Vector2(0f, 0.75f);
 	}
 
 	private void DealDamage()
@@ -159,18 +210,21 @@ public class Gargoyle : Boss
 		chill = _chillTime; //Pause between attacks
 	}
 
-
 	private void SpittleAttack()
     {
-		ChangeAnimationState("Gargoyle_Spite");
-		PlayAnimation();
-		//создание новго выстрела
-		GameObject shotTransform = Instantiate(shotPrefab, firePoint.position, firePoint.rotation.normalized);
-		//перемещение
-		shotTransform.GetComponent<ShotScript>().speed = new Vector2(5, 5) * -_directionToPlayer;
-		shotTransform.GetComponent<ShotScript>().shooter = gameObject;
-		FindObjectOfType<AudioManager>().Play("Shot");
-		chill = _chillTime;
+		if (chill <= 0)
+		{
+				ChangeAnimationState("Gargoyle_Spite");
+				PlayAnimation();
+				//создание новго выстрела
+				GameObject shotTransform = Instantiate(shotPrefab, firePoint.position, firePoint.rotation.normalized);
+				//перемещение
+				shotTransform.GetComponent<ShotScript>().speed = new Vector2(5, 5) * -_directionToPlayer;
+				shotTransform.GetComponent<ShotScript>().shooter = gameObject;
+				FindObjectOfType<AudioManager>().Play("Shot");
+				chill = couldownSpittle;
+				isShooting = false;
+		}
 	}
 
 	private void NextPhase(Phases phase)
@@ -180,7 +234,7 @@ public class Gargoyle : Boss
 			case Phases.waiting_phase:
 			{
 				_currentPhase = Phases.first_phase;
-				break;
+					break;
 			}
 
 			case Phases.first_phase:
@@ -191,28 +245,30 @@ public class Gargoyle : Boss
 
 			case Phases.second_phase:
 			{
-				//Die
+				_currentPhase = Phases.dying_phase;
 				break;
 			}
 
 		}
 	}
-
+	
 	protected override void ColliderTriger_OnPlayerEnterTrigger(object sender, EventArgs e)
 	{
 		//Show UI
+		base.OnActivatedUI(true);
 		Debug.Log("BEGIN BOSSFIGHT...");
 		NextPhase(_currentPhase);
 		ChangeAnimationState("Gargoyle_TakingOff");
 		PlayAnimation();
 		ChangeAnimationState("Gargoyle_FlyIdle");
-		Invoke("PlayAnimation", _animator.GetCurrentAnimatorStateInfo(0).length + 0.2f);
-
+		Invoke("PlayAnimation", _animator.GetCurrentAnimatorStateInfo(0).length + couldownSpittle);
+		_body.offset = new Vector2(0f, 0.75f);
 		_colliderTrigger.OnPlayerEnterTrigger -= ColliderTriger_OnPlayerEnterTrigger;
 	}
 
 	private void PlayAnimation()
 	{
+		
 		_animator.Play(_currentState);
 	}
 

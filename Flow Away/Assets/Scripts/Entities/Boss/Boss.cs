@@ -7,27 +7,34 @@ using UnityEngine.UI;
 public class Boss : MonoBehaviour, IHealth
 {
     public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
+    public event EventHandler<OnBossActivatedUIEventArgs> OnBossActivatedUI;
+    public event EventHandler<OnPhaseIconChangeEventArgs> OnBossPhaseIconChange;
     public class OnHealthChangedEventArgs: EventArgs
     {
         public int currentHealth;
     }
-    protected int _healthPoints;
 
-    public ColliderTrigger _colliderTrigger;
+    public class OnBossActivatedUIEventArgs : EventArgs
+    {
+        public bool setUIFalse;
+    }
 
-    protected GameObject _player;
-    protected Player_Health _playerHealth;
+    public class OnPhaseIconChangeEventArgs: EventArgs
+    {
+        public Sprite changedSprite;
+    }
+
+    [SerializeField] protected int _healthPoints;
     [SerializeField] protected int _damage;
     [SerializeField] protected float _chillTime = 5f;
+    
+    protected GameObject _player;
+    protected Player_Health _playerHealth;
     protected float chill;
     protected string _currentState;
-    [SerializeField] private int _healthPointMax;
 
-    private void Start()
-    {
-        _healthPoints = _healthPointMax;
-        OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { currentHealth = _healthPoints });
-    }
+    public ColliderTrigger _colliderTrigger;
+    public int healthPointMax;
 
     public virtual void Heal()
     {    }
@@ -38,8 +45,19 @@ public class Boss : MonoBehaviour, IHealth
         OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { currentHealth = _healthPoints }); //Apply UI;
     }
 
+    protected void OnActivatedUI(bool setUIBool)
+    {
+        OnBossActivatedUI?.Invoke(this, new OnBossActivatedUIEventArgs { setUIFalse = setUIBool }); //событие - при входе в ColliderTrigger включается UI босса
+    }
+
+    protected void OnPhaseIconChange(Sprite sprite)
+    {
+        OnBossPhaseIconChange?.Invoke(this, new OnPhaseIconChangeEventArgs { changedSprite = sprite });  //событие - при переключении фазы босса изменяется также иконка фазы в UI
+    }
+
+
     protected virtual void ColliderTriger_OnPlayerEnterTrigger(object sender, EventArgs e)
-    {}
+    {  }
 
     protected void ChangeAnimationState(string newState)
     {
