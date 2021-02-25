@@ -7,14 +7,17 @@ public class BossHealth : MonoBehaviour
 {
     public Slider bossHealthBar;
 
-    public void SetMaxHealth(int maxHealth)
+
+    private void Start()
     {
-        bossHealthBar.maxValue = maxHealth;
-        bossHealthBar.value = maxHealth;
+        Boss boss = FindObjectOfType<Boss>();
+        boss.OnHealthChanged += SetHealth;
+        bossHealthBar.maxValue = boss._healthPointMax;
+        bossHealthBar.value = boss._healthPointMax;
     }
 
-    public void SetHealth(int health)
+    public void SetHealth(object sender, Boss.OnHealthChangedEventArgs e)
     {
-        bossHealthBar.value = health;
+        bossHealthBar.value = e.currentHealth;
     }
 }
