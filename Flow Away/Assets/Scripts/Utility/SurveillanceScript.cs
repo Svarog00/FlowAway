@@ -42,7 +42,6 @@ public class SurveillanceScript : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(hit.collider.tag);
                     break;
                 }
             }
