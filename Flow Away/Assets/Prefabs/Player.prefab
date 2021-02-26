@@ -304,9 +304,10 @@ MonoBehaviour:
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 256
+  maxDashCount: 3
   movementSpeed: 1
   dashForce: 20
-  startDashTimer: 0.25
+  dashTimer: 3
   dashDistance: 2
 --- !u!114 &5597652465098631067
 MonoBehaviour:

@@ -971,6 +971,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 77.8999
       objectReference: {fileID: 0}
+    - target: {fileID: 4945198840945109588, guid: 62e5066d30a1a1e4b81a4a768b589927,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067538358632675402, guid: 62e5066d30a1a1e4b81a4a768b589927,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067538358632675402, guid: 62e5066d30a1a1e4b81a4a768b589927,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8982104991413708505, guid: 62e5066d30a1a1e4b81a4a768b589927,
         type: 3}
       propertyPath: m_IsActive
@@ -1080,6 +1095,21 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 945277196}
+    - target: {fileID: 6449422990231913845, guid: 43951c2b435dc0447b408e38be33dadc,
+        type: 3}
+      propertyPath: dashCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449422990231913845, guid: 43951c2b435dc0447b408e38be33dadc,
+        type: 3}
+      propertyPath: dashTimer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449422990231913845, guid: 43951c2b435dc0447b408e38be33dadc,
+        type: 3}
+      propertyPath: maxDashCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6449422990231913848, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
       propertyPath: m_LocalPosition.x

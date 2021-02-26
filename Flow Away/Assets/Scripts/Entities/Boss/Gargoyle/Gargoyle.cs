@@ -153,7 +153,7 @@ public class Gargoyle : Boss
 	{
 		if(_currentPhase == Phases.second_phase)
         {
-			_currentSpeed = maxSpeed * 1.1f;
+			_currentSpeed = maxSpeed * 1.2f;
 			
 		}
 		else
@@ -215,16 +215,16 @@ public class Gargoyle : Boss
     {
 		if (chill <= 0)
 		{
-				ChangeAnimationState("Gargoyle_Spite");
-				PlayAnimation();
-				//создание новго выстрела
-				GameObject shotTransform = Instantiate(shotPrefab, firePoint.position, firePoint.rotation.normalized);
-				//перемещение
-				shotTransform.GetComponent<ShotScript>().speed = new Vector2(5, 5) * -_directionToPlayer;
-				shotTransform.GetComponent<ShotScript>().shooter = gameObject;
-				FindObjectOfType<AudioManager>().Play("Shot");
-				chill = couldownSpittle;
-				isShooting = false;
+			ChangeAnimationState("Gargoyle_Spite");
+			PlayAnimation();
+			//создание новго выстрела
+			GameObject shotTransform = Instantiate(shotPrefab, firePoint.position, firePoint.rotation.normalized);
+			//перемещение
+			shotTransform.GetComponent<ShotScript>().speed = new Vector2(5, 5) * -_directionToPlayer;
+			shotTransform.GetComponent<ShotScript>().shooter = gameObject;
+			FindObjectOfType<AudioManager>().Play("Shot");
+			chill = couldownSpittle;
+			isShooting = false;
 		}
 	}
 

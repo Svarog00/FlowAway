@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2888,6 +2888,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6449422990231913845, guid: 43951c2b435dc0447b408e38be33dadc,
+        type: 3}
+      propertyPath: _dashCounter
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6449422990231913848, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4707,8 +4712,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthPoints: 0
-  _damage: 10
-  _chillTime: 2
+  _damage: 30
+  _chillTime: 0.5
   _colliderTrigger: {fileID: 0}
   healthPointMax: 300
   _animator: {fileID: 1402261968}

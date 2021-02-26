@@ -9,14 +9,18 @@ public class Player_Movement : MonoBehaviour
 
     public LayerMask ObstacleLayer;
 
+    public int maxDashCount;
+
     public float movementSpeed = 5f;
     public float dashForce;
-    public float startDashTimer;
+    public float dashTimer;
     public float dashDistance;
+
+    private int _curDashCounter;
+    private float _curDashTimer = 0f;
 
     private Vector2 _movement;
     private Vector2 _direction;
-
     private Vector3 _dashTarget;
 
     private bool _isDashing;
@@ -27,17 +31,26 @@ public class Player_Movement : MonoBehaviour
     {
         rb2 = GetComponent<Rigidbody2D>();
         ObstacleLayer = LayerMask.GetMask("Obstacles");
+        _curDashCounter = maxDashCount;
     }
 
     // Update is called once per frame
     void Update()
     {
         HandleMove();
-        if (Input.GetButtonDown("Dash")) //if timer is null
+        if (Input.GetButtonDown("Dash") && _curDashCounter > 0) //if timer is null
         {
             //Update timer
             //minus one dash
+            _curDashTimer = dashTimer;
+            _curDashCounter--;
             _isPressedDash = true;
+        }
+        if (_curDashTimer > 0f)
+        {
+            _curDashTimer -= Time.deltaTime;
+            if (_curDashTimer <= 0f)
+                _curDashCounter = maxDashCount;
         }
     }
 
@@ -74,8 +87,6 @@ public class Player_Movement : MonoBehaviour
         //Get input to move
         _movement.x = Input.GetAxisRaw("Horizontal");
         _movement.y = Input.GetAxisRaw("Vertical");
-
-
         //Animation
         animator.SetFloat("Horizontal", _movement.x);
         animator.SetFloat("Vertical", _movement.y);

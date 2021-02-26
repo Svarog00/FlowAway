@@ -23,10 +23,10 @@ public class Boss : MonoBehaviour, IHealth
     {
         public Sprite changedSprite;
     }
-
+    [Header("Boss base")]
     [SerializeField] protected int _healthPoints;
     [SerializeField] protected int _damage;
-    [SerializeField] protected float _chillTime = 5f;
+    [SerializeField] protected float _chillTime = 0f;
     
     protected GameObject _player;
     protected Player_Health _playerHealth;
