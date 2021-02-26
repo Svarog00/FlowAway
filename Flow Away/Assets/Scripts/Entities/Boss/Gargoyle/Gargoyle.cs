@@ -18,6 +18,8 @@ public class Gargoyle : Boss
 	public Transform firePoint;
 	public Sprite[] phaseSprites;
 	private CapsuleCollider2D _body;
+	private Vector2 airBodyPos;
+	private Vector2 normalBodyPos;
 
 	[Header("Player relation")]
 	public LayerMask playerLayer;
@@ -56,6 +58,7 @@ public class Gargoyle : Boss
 		base.OnPhaseIconChange(phaseSprites[0]);
 		_gargoyleCenter = GetComponent<Rigidbody2D>();
 		playerDetected = false;
+		airBodyPos = new Vector2(0f, 0.75f);
 	}
 
     private void Update()
@@ -63,76 +66,54 @@ public class Gargoyle : Boss
 		switch (_currentPhase)
 		{
 			case Phases.first_phase:
-			{
+				{ 
+					if (_healthPoints <= 0.5f * healthPointMax)//если хп меньше половины -> следующая фаза и изменение фазы на интерфейсе
+					{
+						NextPhase(_currentPhase);
+						base.OnPhaseIconChange(phaseSprites[1]);
+					}
 				//Find Player on the scene
-				Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(_gargoyleCenter.transform.position, agressionDistance, playerLayer); //find the player in circle
-				foreach (Collider2D enemy in detectedEnemies)
-				{
-					if (enemy.tag == "Player" && !playerDetected) 
-					{
-						if (_player == null)
-						{
-							_player = enemy.gameObject;
-							_playerHealth = _player.GetComponent<Player_Health>();
-							_playerPosition = _player.GetComponent<Rigidbody2D>();
-						}
-						playerDetected = true;
-						break;
-					}
-				}
-				if (playerDetected)
-				{
-					EstimateDistance();
-					//Chase function
-					Chase();
-					if(_healthPoints <= 0.5f * healthPointMax)//если хп меньше половины -> следующая фаза и изменение фазы на интерфейсе
-                        {
-							NextPhase(_currentPhase);
-							base.OnPhaseIconChange(phaseSprites[1]);
-						}
-				}
-				break;
-			}
-
-			case Phases.second_phase:
-			{
-					//Find Player on the scene
-					Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(_gargoyleCenter.transform.position, agressionDistance, playerLayer); //find the player in circle
-					foreach (Collider2D enemy in detectedEnemies)
-					{
-						if (enemy.tag == "Player" && !playerDetected)
-						{
-							if (_player == null)
-							{
-								_player = enemy.gameObject;
-								_playerHealth = _player.GetComponent<Player_Health>();
-								_playerPosition = _player.GetComponent<Rigidbody2D>();
-							}
-							playerDetected = true;
-							break;
-						}
-					}
-					//Chase function
+					FindPlayerAtScene();
 					if (playerDetected)
 					{
 						
 						EstimateDistance();
-						Chase();
-						
-						if (isShooting == true)//если произошел AirAttack, то идет вызов функции, которая отвечает за плевки
-						{
-							Invoke("SpittleAttack", _animator.GetCurrentAnimatorStateInfo(0).length);
-							_body.offset = new Vector2(0f, 0.18f);//изменение положения колайдера гаргульи ( 0,75 - Air, 0.18 - Earth)
-						}
-						
-						if (_healthPoints <= 0f)//проверка здоровья
-						{
-							NextPhase(_currentPhase);
-							base.OnActivatedUI(false);
-						}
+						//Chase function
+					    Chase();
 					}
+					break;
+			}
+
+			case Phases.second_phase:
+			{
+				if (_healthPoints <= 0f) //проверка здоровья
+				{
+					NextPhase(_currentPhase);
+					base.OnActivatedUI(false);
+				}
+				//Find Player on the scene
+				FindPlayerAtScene();
+				//Chase function
+				if (playerDetected)
+				{
+					EstimateDistance();
+					Chase();
+					if (isShooting == true)//если произошел AirAttack, то идет вызов функции, которая отвечает за плевки
+					{
+						Invoke("SpittleAttack", _animator.GetCurrentAnimatorStateInfo(0).length);
+						_body.offset = normalBodyPos;//изменение положения колайдера гаргульи ( 0,75 - Air, 0.18 - Earth)
+					}
+				}
 				break;
 			}
+
+			case Phases.dying_phase:
+            {
+				ChangeAnimationState("Gargoyle_Dying");
+				PlayAnimation();
+				Invoke("SetActive", _animator.GetCurrentAnimatorStateInfo(0).length);
+				break;
+            }
 		}
 
 		if(chill > 0)
@@ -142,11 +123,31 @@ public class Gargoyle : Boss
 	}
 	private void FixedUpdate()
 	{
-		if (playerDetected && chill <= 0)
+		if (playerDetected && chill <= 0 && _healthPoints > 0)
 		{
 			_gargoyleCenter.MovePosition(_gargoyleCenter.position - _directionToPlayer * _currentSpeed * Time.deltaTime); //movement
 		}
 	}
+
+	private void FindPlayerAtScene()
+    {
+		Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(_gargoyleCenter.transform.position, agressionDistance, playerLayer); //find the player in circle
+		foreach (Collider2D enemy in detectedEnemies)
+		{
+			if (enemy.tag == "Player" && !playerDetected)
+			{
+				if (_player == null)
+				{
+					_player = enemy.gameObject;
+					_playerHealth = _player.GetComponent<Player_Health>();
+					_playerPosition = _player.GetComponent<Rigidbody2D>();
+				}
+				playerDetected = true;
+				break;
+			}
+		}
+	}
+
 
 	private void Chase()
 	{
@@ -187,11 +188,11 @@ public class Gargoyle : Boss
 	{
 		ChangeAnimationState("Gargoyle_FallingDown"); //Change state to animate
 		PlayAnimation(); //Play certain animation
-		_body.offset = new Vector2(0f, 0.18f);
+		_body.offset = normalBodyPos;
 		Invoke("DealDamage", _animator.GetCurrentAnimatorStateInfo(0).length); //Invoke certain function after animation has ended
 		ChangeAnimationState("Gargoyle_FlyIdle");
 		Invoke("PlayAnimation", _animator.GetCurrentAnimatorStateInfo(0).length);
-		_body.offset = new Vector2(0f, 0.75f);
+		_body.offset = airBodyPos;
 	}
 
 	private void DealDamage()
@@ -226,6 +227,11 @@ public class Gargoyle : Boss
 				isShooting = false;
 		}
 	}
+
+	private void SetActive()
+    {
+		gameObject.SetActive(false);
+    }
 
 	private void NextPhase(Phases phase)
 	{
@@ -268,7 +274,6 @@ public class Gargoyle : Boss
 
 	private void PlayAnimation()
 	{
-		
 		_animator.Play(_currentState);
 	}
 
