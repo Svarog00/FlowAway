@@ -4,7 +4,7 @@ using UnityEngine;
 
 enum EnemyStates { Patroling, Chasing };
 
-public class Enemy : MonoBehaviour, IHealth
+public class Enemy : MonoBehaviour, IDamagable
 {
     [Header("Enemy base")]
     public Animator animator;
@@ -204,9 +204,6 @@ public class Enemy : MonoBehaviour, IHealth
             //return to pool
         }
     }
-
-    public void Heal() { }
-
     protected void Flip() //turn left or right depends on player position
     {
         _faceRight = !_faceRight;

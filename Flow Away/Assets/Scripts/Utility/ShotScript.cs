@@ -23,11 +23,11 @@ public class ShotScript : MonoBehaviour //Enemy shot script
 
         foreach (RaycastHit2D hit in hits)
         {
-            if(hit.collider.GetComponent<IHealth>() != null || hit.collider.gameObject == shooter)
+            if(hit.collider.GetComponent<IDamagable>() != null || hit.collider.gameObject == shooter)
             {
                 if(hit.collider.tag == "Player")
                 {
-                    hit.collider.GetComponent<IHealth>().Hurt(damage);
+                    hit.collider.GetComponent<IDamagable>().Hurt(damage);
                     Destroy(gameObject);
                 }
             }

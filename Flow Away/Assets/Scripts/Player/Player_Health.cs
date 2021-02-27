@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player_Health : MonoBehaviour, IHealth
+public class Player_Health : MonoBehaviour, IHealable, IDamagable
 {
     public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
     public class OnHealthChangedEventArgs : EventArgs

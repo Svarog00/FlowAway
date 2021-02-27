@@ -50,9 +50,9 @@ public class Player_Attack : MonoBehaviour
         //damage them
         foreach(Collider2D enemy in hitEnemies)
         {
-            if(enemy.gameObject != gameObject && enemy.GetComponent<IHealth>() != null)
+            if(enemy.gameObject != gameObject && enemy.GetComponent<IDamagable>() != null)
             {
-                enemy.GetComponent<IHealth>().Hurt(Damage);
+                enemy.GetComponent<IDamagable>().Hurt(Damage);
                 // enemy.GetComponent<Health>.Hurt();
             }
         }

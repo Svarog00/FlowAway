@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Boss : MonoBehaviour, IHealth
+public class Boss : MonoBehaviour, IDamagable
 {
     public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
     public event EventHandler<OnBossActivatedUIEventArgs> OnBossActivatedUI;
@@ -35,9 +35,6 @@ public class Boss : MonoBehaviour, IHealth
 
     public ColliderTrigger _colliderTrigger;
     public int healthPointMax;
-
-    public virtual void Heal()
-    {    }
 
     public virtual void Hurt(int damage)
     {

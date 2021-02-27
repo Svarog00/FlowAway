@@ -14,9 +14,9 @@ public class BulletScript : MonoBehaviour //Player shot script
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<IHealth>() != null && collision.tag != "Player")
+        if (collision.GetComponent<IDamagable>() != null && collision.tag != "Player")
         {
-            collision.GetComponent<IHealth>().Hurt(damage);
+            collision.GetComponent<IDamagable>().Hurt(damage);
             Destroy(gameObject);
         }
         else if (collision.tag == "Border" || collision.tag == "Player")

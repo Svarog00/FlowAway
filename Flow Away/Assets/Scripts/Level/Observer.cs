@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Observer : SurveillanceScript, IHealth
+public class Observer : SurveillanceScript, IDamagable
 {
     [Header("Children script")]
     public GameObject shotPrefab;
