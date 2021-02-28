@@ -107,10 +107,11 @@ public class Gargoyle : Boss
 
 			case Phases.dying_phase:
             {
-				ChangeAnimationState("Gargoyle_Dying");
-				PlayAnimation();
-				Invoke("SetActive", _animator.GetCurrentAnimatorStateInfo(0).length);
-				break;
+					QuestValues.Instance.SetStage("Gargoyle", 2);
+					ChangeAnimationState("Gargoyle_Dying");
+					PlayAnimation();
+					Invoke("SetActive", _animator.GetCurrentAnimatorStateInfo(0).length);
+					break;
             }
 		}
 

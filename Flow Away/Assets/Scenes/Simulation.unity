@@ -215,6 +215,11 @@ PrefabInstance:
       propertyPath: agressionDistance
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 1610013816577035868, guid: 82d207bb650d9d44f90ead2f07e3c17e,
+        type: 3}
+      propertyPath: eventSource
+      value: 
+      objectReference: {fileID: 1362206149}
     - target: {fileID: 8821206024928812939, guid: 82d207bb650d9d44f90ead2f07e3c17e,
         type: 3}
       propertyPath: m_Name
@@ -974,6 +979,11 @@ PrefabInstance:
       propertyPath: _chillTime
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1610013816577035868, guid: 82d207bb650d9d44f90ead2f07e3c17e,
+        type: 3}
+      propertyPath: eventSource
+      value: 
+      objectReference: {fileID: 1362206149}
     - target: {fileID: 8821206024928812939, guid: 82d207bb650d9d44f90ead2f07e3c17e,
         type: 3}
       propertyPath: m_Name
@@ -1890,6 +1900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b75fd9516e6ba849b45d51309859669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventManager: {fileID: 1362206149}
 --- !u!1 &777090449
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,6 +1946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 245175748}
+  eventManager: {fileID: 1362206149}
 --- !u!61 &777090452
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2100,6 +2112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 1069066511}
+  eventManager: {fileID: 1304056650}
 --- !u!61 &792672913
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2594,6 +2607,11 @@ PrefabInstance:
       propertyPath: agressionDistance
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 1610013816577035868, guid: 82d207bb650d9d44f90ead2f07e3c17e,
+        type: 3}
+      propertyPath: eventSource
+      value: 
+      objectReference: {fileID: 1362206149}
     - target: {fileID: 8821206024928812939, guid: 82d207bb650d9d44f90ead2f07e3c17e,
         type: 3}
       propertyPath: m_Name
@@ -3145,6 +3163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionToActivate: {fileID: 261686468}
   questName: SecondInvTrial
+  enemyCounter: 0
+  neededEnemyCount: 0
 --- !u!61 &1304056651
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3472,6 +3492,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionToActivate: {fileID: 1345872666}
   questName: FirstInvTrial
+  enemyCounter: 1
+  neededEnemyCount: 4
 --- !u!1 &1416690329
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,6 +3823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 603575634}
+  eventManager: {fileID: 0}
 --- !u!1 &1605631737
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,6 +4265,11 @@ PrefabInstance:
       propertyPath: agressionDistance
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 1610013816577035868, guid: 82d207bb650d9d44f90ead2f07e3c17e,
+        type: 3}
+      propertyPath: eventSource
+      value: 
+      objectReference: {fileID: 1362206149}
     - target: {fileID: 8821206024928812939, guid: 82d207bb650d9d44f90ead2f07e3c17e,
         type: 3}
       propertyPath: m_Name

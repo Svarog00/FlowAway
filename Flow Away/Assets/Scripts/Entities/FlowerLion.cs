@@ -21,7 +21,7 @@ public class FlowerLion : Enemy
 
 	protected override void Attack()
 	{
-		if(_distanceToPlayer <= meleeRange)
+		if (_distanceToPlayer <= meleeRange)
 		{
 			FindObjectOfType<AudioManager>().Play("Roar");
 			animator.SetTrigger("Attack"); //animate
@@ -57,6 +57,7 @@ public class FlowerLion : Enemy
 		hp -= damage;
 		if (hp <= 0)
 		{
+			Count();
 			FindObjectOfType<AudioManager>().Play("Meow");
 			Leave(); //Don't touch the player
 			Destroy(gameObject, 0.5f);

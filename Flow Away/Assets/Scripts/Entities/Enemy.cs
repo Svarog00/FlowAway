@@ -47,6 +47,9 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private float waitTime = 0f;
     private float curWaitTime;
 
+    [Header("Event")]
+    public EventManager eventSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -223,6 +226,12 @@ public class Enemy : MonoBehaviour, IDamagable
             }
             yield return null;
         }
+    }
+
+    protected void Count()
+    {
+        if (eventSource != null)
+				eventSource.CurrentEnemyCount++;
     }
 
     void OnDrawGizmosSelected()

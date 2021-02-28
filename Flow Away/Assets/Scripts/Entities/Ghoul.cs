@@ -38,6 +38,7 @@ public class Ghoul : Enemy
 		hp -= damage;
 		if (hp <= 0)
 		{
+			Count();
 			FindObjectOfType<AudioManager>().Play("GhoulDead");
 			Leave(); //Don't touch the player
 			Destroy(gameObject, 0.5f);
