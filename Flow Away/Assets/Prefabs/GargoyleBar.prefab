@@ -403,7 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossHealthBar: {fileID: 5062175195264382633}
   phaseIcon: {fileID: 5490568107440588}
-  visualHealthBar: {fileID: 0}
+  visualHealthBar: {fileID: 8802172698369114485}
 --- !u!1 &8802172698369114485
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6384666436836402806
 RectTransform:
   m_ObjectHideFlags: 0

@@ -1203,6 +1203,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5725522813905329887, guid: 62e5066d30a1a1e4b81a4a768b589927,
+        type: 3}
+      propertyPath: inGameMenu
+      value: 
+      objectReference: {fileID: 1678936422}
     - target: {fileID: 6067538358632675402, guid: 62e5066d30a1a1e4b81a4a768b589927,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1510,6 +1515,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30b441ae905c25244976c98f33af9c35, type: 3}
+--- !u!1 &1678936422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5725522813920192438, guid: 62e5066d30a1a1e4b81a4a768b589927,
+    type: 3}
+  m_PrefabInstance: {fileID: 1460786768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1725871814 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1090296853728680930, guid: 62e5066d30a1a1e4b81a4a768b589927,
