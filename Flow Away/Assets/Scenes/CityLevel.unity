@@ -4766,7 +4766,7 @@ MonoBehaviour:
   agressionDistance: 3.02
   airAttackRadius: 0.34
   maxSpeed: 1.89
-  cooldownSpittle: 0
+  cooldownSpittle: 0.6
 --- !u!50 &1499123633
 Rigidbody2D:
   serializedVersion: 4

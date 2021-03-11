@@ -9,7 +9,7 @@ public class DialogSystemNew : MonoBehaviour
     public Dialogue dialogue;
     public List<Answer> answersList = new List<Answer>();
     public bool showDialog;
-    public GUISkin gUISkin;
+    public GUISkin GUISkin;
 
     private int curNode;
 
@@ -41,8 +41,7 @@ public class DialogSystemNew : MonoBehaviour
 
     private void OnGUI()
     {
-        
-        GUI.skin = gUISkin;
+        GUI.skin = GUISkin;
         if(showDialog)
         {
             Time.timeScale = 0;
