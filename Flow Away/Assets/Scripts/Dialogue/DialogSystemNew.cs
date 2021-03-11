@@ -9,6 +9,7 @@ public class DialogSystemNew : MonoBehaviour
     public Dialogue dialogue;
     public List<Answer> answersList = new List<Answer>();
     public bool showDialog;
+    public GUISkin gUISkin;
 
     private int curNode;
 
@@ -40,14 +41,16 @@ public class DialogSystemNew : MonoBehaviour
 
     private void OnGUI()
     {
+        
+        GUI.skin = gUISkin;
         if(showDialog)
         {
             Time.timeScale = 0;
-            GUI.Box(new Rect(Screen.width / 2 - 300, Screen.height - 300, 600, 250), ""); //Создание бокса с ответами
-            GUI.Label(new Rect(Screen.width / 2 - 250, Screen.height - 280, 500, 90), dialogue.nodes[curNode].npcText);//Фраза НПС
+            GUI.Box(new Rect(Screen.width / 2 - 300, Screen.height - 300, 600, 300), ""); //Создание бокса с ответами
+            GUI.Label(new Rect(Screen.width / 2 - 145, Screen.height - 242, 400, 90), dialogue.nodes[curNode].npcText);//Фраза НПС
             for (int i = 0; i < answersList.Count; i++)
             {
-                if (GUI.Button(new Rect(Screen.width / 2 - 250, Screen.height - 200 + 25 * i, 500, 25), answersList[i].text))//Если нажата кнопка с текстом ответа
+                if (GUI.Button(new Rect(Screen.width / 2 - 250, Screen.height - 150 + 28 * i, 500, 25), answersList[i].text))//Если нажата кнопка с текстом ответа
                 {
                     if(answersList[i].questValue > 0)
                     {
