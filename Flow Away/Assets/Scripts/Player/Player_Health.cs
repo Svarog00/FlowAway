@@ -29,7 +29,11 @@ public class Player_Health : MonoBehaviour, IHealable, IDamagable
     public int CurrentHealth
     {
         get { return currentHealth; }
-        set { currentHealth = value; }
+        set 
+        { 
+            currentHealth = value;
+            OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { curHealth = currentHealth });
+        }
     }
     public int MaxHealth
     {

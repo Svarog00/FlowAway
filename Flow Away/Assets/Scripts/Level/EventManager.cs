@@ -35,7 +35,6 @@ public class EventManager : MonoBehaviour
             {
                 Activate();
                 OnEventStarted?.Invoke(this, EventArgs.Empty);
-                Debug.Log("Active");
             }
             if (QuestValues.Instance.GetStage(questName) == 1)
             {

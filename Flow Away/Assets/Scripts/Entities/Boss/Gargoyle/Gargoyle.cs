@@ -66,6 +66,10 @@ public class Gargoyle : Boss
 		{
 			case Phases.first_phase:
 			{ 
+				if(QuestValues.Instance.GetStage("Gargoyle") == 1)
+                    {
+						_healthPoints = (int)(healthPointMax * 0.75f);
+                    }
 				if (_healthPoints <= 0.5f * healthPointMax)//если хп меньше половины -> следующая фаза и изменение фазы на интерфейсе
 				{
 					NextPhase(_currentPhase);

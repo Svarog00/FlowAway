@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class QuestValues : MonoBehaviour
 {
-    private Dictionary<string, int> questValue = new Dictionary<string, int>(); //string - name of the quest, int - stage of the quest
+    [SerializeField] private Dictionary<string, int> questValue = new Dictionary<string, int>(); //string - name of the quest, int - stage of the quest
     public static QuestValues Instance { get; private set; }
 
     private void Awake()

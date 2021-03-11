@@ -1122,7 +1122,7 @@ PrefabInstance:
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.414768
+      value: 28.167507
       objectReference: {fileID: 0}
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
@@ -4747,11 +4747,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1172cf47d08174cb03fe82c96f7115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthPointMax: 300
   _healthPoints: 0
   _damage: 30
   _chillTime: 0.5
   _colliderTrigger: {fileID: 0}
-  healthPointMax: 300
   _animator: {fileID: 1402261968}
   shotPrefab: {fileID: 3351355328254912362, guid: 73824262519c6c042959537b64574118,
     type: 3}

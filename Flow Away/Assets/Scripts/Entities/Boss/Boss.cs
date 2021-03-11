@@ -24,6 +24,7 @@ public class Boss : MonoBehaviour, IDamagable
         public Sprite changedSprite;
     }
     [Header("Boss base")]
+    public int healthPointMax;
     [SerializeField] protected int _healthPoints;
     [SerializeField] protected int _damage;
     [SerializeField] protected float _chillTime = 0f;
@@ -34,7 +35,6 @@ public class Boss : MonoBehaviour, IDamagable
     protected string _currentState;
 
     public ColliderTrigger _colliderTrigger;
-    public int healthPointMax;
 
     public virtual void Hurt(int damage)
     {

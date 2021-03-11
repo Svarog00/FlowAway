@@ -14,7 +14,7 @@ public class Observer : SurveillanceScript, IDamagable
     private float _distanceToPlayer;
     private Vector2 _headingToPlayer;
 
-    private void Awake()
+    private void OnEnable()
     {
         _curCooldown = 0f;
     }
@@ -50,19 +50,13 @@ public class Observer : SurveillanceScript, IDamagable
             yield return null;
         }
     }
-
-    public void Heal()
-    {
-        Debug.Log("How did you healed the boss?!");
-    }
-
     public void Hurt(int damage)
     {
         _hp -= damage;
         if(_hp <= 300*0.75)
         {
             //play sound
-            QuestValues.Instance.SetStage("GargoyleTurret", 1);
+            QuestValues.Instance.SetStage("Gargoyle", 1);
             gameObject.SetActive(false);
         }
     }

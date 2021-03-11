@@ -206,6 +206,7 @@ MonoBehaviour:
   hp: 45
   patrolSpots: []
   waitTime: 0
+  eventSource: {fileID: 0}
   attackPoint: {fileID: 776170320908965466}
   meleeRange: 0.4
   playerLayer:
