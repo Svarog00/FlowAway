@@ -2955,7 +2955,8 @@ MonoBehaviour:
   tAsset: {fileID: 4900000, guid: 9a38e71c4fad17b43bb1b8a0fcb9c1cb, type: 3}
   answersList: []
   showDialog: 0
-  gUISkin: {fileID: 11400000, guid: 236c3cbb440e4364c89e597e5f2627b9, type: 2}
+  GUISkin: {fileID: 11400000, guid: 236c3cbb440e4364c89e597e5f2627b9, type: 2}
+  npcIconImage: {fileID: 2800000, guid: e0918b1c4189ecb4bbef317e36e94859, type: 3}
 --- !u!114 &833913602
 MonoBehaviour:
   m_ObjectHideFlags: 0
