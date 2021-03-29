@@ -6,10 +6,15 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
-    public Text note;
     public string nextSceneName;
     public SaveLoadSystem sls;
     private bool _readyToLeave = false;
+    private TextScript _note;
+
+    private void Start()
+    {
+        _note = FindObjectOfType<TextScript>();
+    }
 
     private void Update()
     {
@@ -23,10 +28,9 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(collision.GetComponent<Player_Movement>())
         {
-            note.CrossFadeAlpha(1, 2f, false);
-            note.text = "Press E to move";
+            _note.Appear("Press E to leave", 2f);
             _readyToLeave = true;
         }
 
@@ -35,9 +39,9 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.GetComponent<Player_Movement>())
         {
-            note.CrossFadeAlpha(0, 2f, false);
+            _note.Disappear(2f);
             _readyToLeave = false;
         }
     }
