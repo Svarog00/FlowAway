@@ -5,26 +5,36 @@ using UnityEngine.UI;
 
 public class TerminalScript : MonoBehaviour
 {
+    public Texture2D normalButton;
     public GUISkin GUISkin;
 
     private bool isEnter;
     private bool showTerminal;
     private TextScript _text;
+    private Vector2 scrollPosition;
+    private GUIContent content;
+    
 
 
     private void Start()
     {
         showTerminal = false;
         isEnter = false;
+        scrollPosition = Vector2.zero;
         _text = FindObjectOfType<TextScript>();
+        content = new GUIContent("test", normalButton);
     }
 
 
     private void Update()
     {
-        if (isEnter && Input.GetButtonDown("Interact"))
+        if (isEnter && Input.GetButtonDown("Interact") && !showTerminal)
         {
             showTerminal = true;
+        }
+        else if (isEnter && Input.GetButtonDown("Interact") && showTerminal)
+        {
+            showTerminal = false;
         }
     }
 
@@ -50,9 +60,16 @@ public class TerminalScript : MonoBehaviour
     private void OnGUI() 
     {
         if(showTerminal)
-        {
+        {   
             GUI.skin = GUISkin;
             GUI.Box(new Rect(Screen.width / 2 - 700, Screen.height - 800, 1400, 700), ""); //Создание бокса с ответами
+            scrollPosition = GUI.BeginScrollView(new Rect(Screen.width / 2 - 600, Screen.height - 700, 600, 480), scrollPosition, new Rect(0, 0, 550, 470), false, false);
+            GUI.Button(new Rect(0, 0, 350, 100), content);
+            GUI.Button(new Rect(0, 110, 350, 100), "Test2");
+            GUI.Button(new Rect(0, 220, 350, 100), "Test3");
+            GUI.Button(new Rect(0, 330, 350, 100), "Test4");
+
+            GUI.EndScrollView();
         }
     }
 }
