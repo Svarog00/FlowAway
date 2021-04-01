@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class TerminalScript : MonoBehaviour
 {
-    public Texture2D normalButton;
     public GUISkin GUISkin;
+    public TextAsset tAsset;
+    public Terminal terminal;
 
+    private List<Note> notesList = new List<Note>();
+    private string areaText = "";
     private bool isEnter;
     private bool showTerminal;
     private TextScript _text;
     private Vector2 scrollPosition;
-    private GUIContent content;
-    
-
 
     private void Start()
     {
@@ -22,7 +22,8 @@ public class TerminalScript : MonoBehaviour
         isEnter = false;
         scrollPosition = Vector2.zero;
         _text = FindObjectOfType<TextScript>();
-        content = new GUIContent("test", normalButton);
+        terminal = Terminal.Load(tAsset);
+        InitializeNotes();   
     }
 
 
@@ -57,19 +58,29 @@ public class TerminalScript : MonoBehaviour
         }
     }
 
+    private void InitializeNotes()
+    {
+        for(int i = 0; i < terminal.notes.Length; i++)
+        {
+            notesList.Add(terminal.notes[i]);
+        }
+    }
+
     private void OnGUI() 
     {
         if(showTerminal)
         {   
             GUI.skin = GUISkin;
             GUI.Box(new Rect(Screen.width / 2 - 700, Screen.height - 800, 1400, 700), ""); //Создание бокса с ответами
+            GUI.TextArea(new Rect(Screen.width / 2 - 150, Screen.height - 690, 780, 480), areaText);
             scrollPosition = GUI.BeginScrollView(new Rect(Screen.width / 2 - 600, Screen.height - 700, 400, 480), scrollPosition, new Rect(0, 0, 380, 800), false, false);
-            GUI.Button(new Rect(0, 0, 350, 100), content);
-            GUI.Button(new Rect(0, 110, 350, 100), "Test2");
-            GUI.Button(new Rect(0, 220, 350, 100), "Test3");
-            GUI.Button(new Rect(0, 330, 350, 100), "Test4");
-            GUI.Button(new Rect(0, 440, 350, 100), "Test5");
-            GUI.Button(new Rect(0, 550, 350, 100), "Test6");
+            for(int i = 0; i < notesList.Count; i++)
+            {
+                if (GUI.Button(new Rect(0, 110 * i, 350, 100), notesList[i].title))
+                {
+                    areaText = notesList[i].text;
+                }
+            }
             GUI.EndScrollView();
         }
     }

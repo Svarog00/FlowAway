@@ -1648,8 +1648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d9b132bacf0324ba8a332f694330cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalButton: {fileID: 2800000, guid: 9e6bda6fb76aea9478b631d70dead2e6, type: 3}
   GUISkin: {fileID: 11400000, guid: ed64752bd44331e4ca836c23fb4d47c3, type: 2}
+  tAsset: {fileID: 4900000, guid: 3402e543b877a254eaebc814f30e18d1, type: 3}
 --- !u!1001 &1672112123
 PrefabInstance:
   m_ObjectHideFlags: 0
