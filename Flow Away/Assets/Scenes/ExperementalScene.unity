@@ -537,12 +537,12 @@ MonoBehaviour:
   attackDistance: 2
   agressionDistance: 2
   chill: 0
-  damage: 1
+  _damage: 0
   _chillTime: 1
-  maxSpeed: 2
-  hp: 20
+  _maxSpeed: 0
+  _hp: 0
   patrolSpots: []
-  waitTime: 1
+  _waitTime: 0
   eventSource: {fileID: 0}
   meleeRange: 0.4
   playerLayer:
