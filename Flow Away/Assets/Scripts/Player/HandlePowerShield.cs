@@ -24,7 +24,7 @@ public class HandlePowerShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("SecondModule") && CanActivate)
+        if (Input.GetButtonDown("Second Module") && CanActivate)
         {
             if (!_isActve)
             {
