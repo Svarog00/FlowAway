@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class IdleNPC : MonoBehaviour
 {
     public DialogSystemNew dialog;
-    public Text note;
+    private TextScript _note;
 
     private bool _isNearby;
 
     private void Start()
     {
         _isNearby = false;
+        _note = FindObjectOfType<TextScript>();
     }
 
     private void Update()
@@ -27,8 +28,7 @@ public class IdleNPC : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            note.CrossFadeAlpha(1, 2f, false);
-            note.text = "Press E to talk.";
+            _note.Appear("Press E to talk.", 2f);
             _isNearby = true;
         }
     }
@@ -37,7 +37,7 @@ public class IdleNPC : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            note.CrossFadeAlpha(0, 2f, false);
+            _note.Disappear(2f);
             _isNearby = false;
         }
     }

@@ -16,7 +16,7 @@ public class FlowerLion : Enemy
 
 	private void OnEnable()
 	{
-		hp = 60;
+		_hp = 60;
 	}
 
 	protected override void Attack()
@@ -31,7 +31,7 @@ public class FlowerLion : Enemy
 			{
 				if (enemy.tag == "Player")
 				{
-					playerHP.Hurt(damage);
+					playerHP.Hurt(_damage);
 				}
 			}
 			chill = _chillTime; //Pause between attacks
@@ -54,8 +54,8 @@ public class FlowerLion : Enemy
 	public override void Hurt(int damage)
 	{
 		FindObjectOfType<AudioManager>().Play("EnemyHurt");
-		hp -= damage;
-		if (hp <= 0)
+		_hp -= damage;
+		if (_hp <= 0)
 		{
 			Count();
 			FindObjectOfType<AudioManager>().Play("Meow");

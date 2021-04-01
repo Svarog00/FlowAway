@@ -12,7 +12,7 @@ public class Ghoul : Enemy
 
 	private void OnEnable()
 	{
-		hp = 30;
+		_hp = 30;
 	}
 
 	protected override void Attack()
@@ -25,7 +25,7 @@ public class Ghoul : Enemy
 		{
 			if (enemy.tag == "Player")
 			{
-				playerHP.Hurt(damage);
+				playerHP.Hurt(_damage);
 			}
 		}
 		chill = _chillTime; //Pause between attacks
@@ -35,8 +35,8 @@ public class Ghoul : Enemy
 	public override void Hurt(int damage)
 	{
 		FindObjectOfType<AudioManager>().Play("EnemyHurt");
-		hp -= damage;
-		if (hp <= 0)
+		_hp -= damage;
+		if (_hp <= 0)
 		{
 			Count();
 			FindObjectOfType<AudioManager>().Play("GhoulDead");

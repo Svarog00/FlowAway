@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 0, y: 0}
-  isEnemy: 0
-  damage: 40
+  shooter: {fileID: 0}
+  damage: 20
 --- !u!212 &2823107995948496353
 SpriteRenderer:
   m_ObjectHideFlags: 0

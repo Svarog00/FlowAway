@@ -45,6 +45,7 @@ public class Player_Movement : MonoBehaviour
             _curDashTimer = dashTimer;
             _curDashCounter--;
             _isPressedDash = true;
+            FindObjectOfType<AudioManager>().Play("PlayerDashSound");
         }
         if (_curDashTimer > 0f)
         {

@@ -23,11 +23,11 @@ public class Enemy : MonoBehaviour, IDamagable
     public float agressionDistance; //Дистанция на которой происходит агр
     public float chill = 0; //pause between attacks
 
-    [SerializeField] private Rigidbody2D playerPosition;
-    private Rigidbody2D enemyPosition;
+    protected Rigidbody2D playerPosition;
+    protected Rigidbody2D enemyPosition;
 
     private bool _faceRight;
-    [SerializeField] protected int damage;
+    [SerializeField] protected int _damage;
     [SerializeField] protected float _chillTime = 1f;
 
     protected Vector2 direction;
@@ -37,15 +37,15 @@ public class Enemy : MonoBehaviour, IDamagable
     protected float _distanceToPlayer;
 
     [Header("Stats")]
-    [SerializeField] protected float maxSpeed;
-    [SerializeField] protected int hp;
+    [SerializeField] protected float _maxSpeed;
+    [SerializeField] protected int _hp;
     protected float _currentSpeed;
 
     [Header("Patrol")]
     public Transform[] patrolSpots;
-    private int randomSpot;
-    [SerializeField] private float waitTime = 0f;
-    private float curWaitTime;
+    private int _randomSpot;
+    [SerializeField] private float _waitTime = 0f;
+    private float _curWaitTime;
 
     [Header("Event")]
     public EventManager eventSource;
@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour, IDamagable
         enemyPosition = GetComponent<Rigidbody2D>();
         center = GetComponent<Transform>();
         _canAttack = false;
-        randomSpot = Random.Range(0, patrolSpots.Length);
+        _randomSpot = Random.Range(0, patrolSpots.Length);
         Invisibility playerInsibility = FindObjectOfType<Invisibility>();
         playerInsibility.OnInsibilityEnable += PlayerInsibility_OnInsibilityEnable;
     }
@@ -140,18 +140,18 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         if (patrolSpots.Length > 0)
         {
-            _currentSpeed = maxSpeed;
-            transform.position = Vector2.MoveTowards(transform.position, patrolSpots[randomSpot].position, _currentSpeed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, patrolSpots[randomSpot].position) <= 0.2f)
+            _currentSpeed = _maxSpeed;
+            transform.position = Vector2.MoveTowards(transform.position, patrolSpots[_randomSpot].position, _currentSpeed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, patrolSpots[_randomSpot].position) <= 0.2f)
             {
                 _currentSpeed = 0;
-                if (curWaitTime <= 0f)
+                if (_curWaitTime <= 0f)
                 {
-                    curWaitTime = waitTime;
-                    randomSpot = Random.Range(0, patrolSpots.Length);
-                    _currentSpeed = maxSpeed;
+                    _curWaitTime = _waitTime;
+                    _randomSpot = Random.Range(0, patrolSpots.Length);
+                    _currentSpeed = _maxSpeed;
                 }
-                else curWaitTime -= Time.deltaTime;
+                else _curWaitTime -= Time.deltaTime;
             }
         }
         else
@@ -165,7 +165,7 @@ public class Enemy : MonoBehaviour, IDamagable
     
     protected void Chase()
     {
-        _currentSpeed = maxSpeed; //Увеличиваем скорость до максимальной
+        _currentSpeed = _maxSpeed; //Увеличиваем скорость до максимальной
         if (_distanceToPlayer <= attackDistance) //Если игрок слишком близко, то остановиться для атаки
         {
             _currentSpeed = 0f;
@@ -199,8 +199,8 @@ public class Enemy : MonoBehaviour, IDamagable
 
     public virtual void Hurt(int damage) //get damage from player or another entity
     {
-        hp -= damage;
-        if(hp <= 0)
+        _hp -= damage;
+        if(_hp <= 0)
         {
             _canAttack = false;
             Destroy(gameObject, 2f);
@@ -231,7 +231,7 @@ public class Enemy : MonoBehaviour, IDamagable
     protected void Count()
     {
         if (eventSource != null)
-				eventSource.CurrentEnemyCount++;
+			eventSource.CurrentEnemyCount++;
     }
 
     void OnDrawGizmosSelected()

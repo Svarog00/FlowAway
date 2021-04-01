@@ -99,3 +99,18 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: RobotDeathSound
+    clip: {fileID: 8300000, guid: 20f07ef0a251bb94d8f709c70fd5c6cc, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: PlayerDashSound
+    clip: {fileID: 8300000, guid: 60518f75d41439e419b5799136681017, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: HurtRobotSound
+    clip: {fileID: 8300000, guid: 5fcb8cdcd491ba249975153d1ea4f2c8, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
