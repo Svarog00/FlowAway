@@ -63,12 +63,13 @@ public class TerminalScript : MonoBehaviour
         {   
             GUI.skin = GUISkin;
             GUI.Box(new Rect(Screen.width / 2 - 700, Screen.height - 800, 1400, 700), ""); //Создание бокса с ответами
-            scrollPosition = GUI.BeginScrollView(new Rect(Screen.width / 2 - 600, Screen.height - 700, 600, 480), scrollPosition, new Rect(0, 0, 550, 470), false, false);
+            scrollPosition = GUI.BeginScrollView(new Rect(Screen.width / 2 - 600, Screen.height - 700, 400, 480), scrollPosition, new Rect(0, 0, 380, 800), false, false);
             GUI.Button(new Rect(0, 0, 350, 100), content);
             GUI.Button(new Rect(0, 110, 350, 100), "Test2");
             GUI.Button(new Rect(0, 220, 350, 100), "Test3");
             GUI.Button(new Rect(0, 330, 350, 100), "Test4");
-
+            GUI.Button(new Rect(0, 440, 350, 100), "Test5");
+            GUI.Button(new Rect(0, 550, 350, 100), "Test6");
             GUI.EndScrollView();
         }
     }
