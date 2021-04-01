@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assets.Scripts.GUI.Notes
-{
-    class NoteExample
-    {
-    }
-}
+﻿<terminal>
+  <notes>
+    <note title = "First Note">
+      <text>Где-то здесь есть рыба... И не только...</text>
+    </note>
+    <note title = "Second Note">
+      <text>Показiвай рiбу...</text>
+    </note>
+    <note title = "Third Note">
+      <text>Ну шо показал?... Камера засняла нахуй...</text>
+    </note>
+  </notes>
+</terminal>
