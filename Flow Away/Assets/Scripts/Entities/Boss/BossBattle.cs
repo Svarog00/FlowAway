@@ -12,7 +12,7 @@ public class BossBattle : MonoBehaviour
 
     private Phases currentPhase;
 
-    [SerializeField] private ColliderTrigger colliderTrigger;
+    [SerializeField] private ColliderTrigger colliderTrigger = null;
 
 
 

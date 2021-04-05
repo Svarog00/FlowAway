@@ -39,7 +39,7 @@ public class BattleDrone : Enemy
                 if (enemy.CompareTag("Player"))
                 {
                     playerHP.Hurt(_damage);
-                   enemyPosition.AddForce(direction*_pushForce);
+                    playerPosition.AddForce(direction*_pushForce);
                 }
             }
             chill = _chillTime; //Pause between attacks

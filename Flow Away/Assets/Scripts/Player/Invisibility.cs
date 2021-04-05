@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class Invisibility : MonoBehaviour
+public class Invisibility : MonoBehaviour, IGadget
 {
     public event EventHandler<OnInvisibilityEnableEventArgs> OnInsibilityEnable;
     public class OnInvisibilityEnableEventArgs
@@ -17,6 +17,8 @@ public class Invisibility : MonoBehaviour
         set { _maxTime = value; }
     }
 
+    public GadgetActivator gadgetActivator;
+
     Material material;
     public bool CanActivate { get; set; }
     [SerializeField] private float _maxTime = 0f;
@@ -25,10 +27,25 @@ public class Invisibility : MonoBehaviour
     private float _curTime;
     private float fade = 1f;
 
+    public void Awake()
+    {
+        if(gadgetActivator)
+        {
+            gadgetActivator.OnGadgetActivated += GadgetActivator_OnGadgetActivated;
+        }
+    }
+
+    private void GadgetActivator_OnGadgetActivated(object sender, GadgetActivator.OnGadgetActivatedEventArgs e)
+    {
+        if(e.gadgetName == "Invisibility")
+        {
+            CanActivate = true;
+        }
+    }
+
     private void Start()
     {
         CanActivate = QuestValues.Instance.GetStage("Invisibility") > 0 ? true : false;
-        //_canActivate = true;
         _isActive = false;
         _isChanging = false;
         material = GetComponentInChildren<SpriteRenderer>().material;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class HandlePowerShield : MonoBehaviour
+public class HandlePowerShield : MonoBehaviour, IGadget
 {
     public event EventHandler<OnShieldActivatedEventArgs> OnShieldActivated;
     public class OnShieldActivatedEventArgs
@@ -11,22 +11,52 @@ public class HandlePowerShield : MonoBehaviour
         public bool isAcive;
     }
 
-
     public bool CanActivate { get; set; }
 
+    public GadgetActivator gadgetActivator;
+
     private bool _isActve;
+
+    [SerializeField] private float _maxTime = 0f;
+    [SerializeField] private float _curTime = 0f;
+
+    public void Awake()
+    {
+        if (gadgetActivator)
+        {
+            gadgetActivator.OnGadgetActivated += GadgetActivator_OnGadgetActivated;
+        }
+    }
+
+    private void GadgetActivator_OnGadgetActivated(object sender, GadgetActivator.OnGadgetActivatedEventArgs e)
+    {
+        if (e.gadgetName == "PowerShield")
+        {
+            CanActivate = true;
+        }
+    }
 
     private void Start()
     {
         CanActivate = QuestValues.Instance.GetStage("PowerShield") > 0 ? true : false;
+        PowerShield powerShield = GetComponentInChildren<PowerShield>();
+        powerShield.OnShieldDestroyed += PowerShield_OnShieldDestroyed;
     }
 
-    // Update is called once per frame
+    private void PowerShield_OnShieldDestroyed(object sender, EventArgs e)
+    {
+        _isActve = false;
+        _curTime = _maxTime;
+    }
+
     void Update()
     {
+        if (_curTime > 0f)
+            _curTime -= Time.deltaTime;
+
         if (Input.GetButtonDown("Second Module") && CanActivate)
         {
-            if (!_isActve)
+            if (!_isActve && _curTime <= 0f)
             {
                 _isActve = true;
                 OnShieldActivated?.Invoke(this, new OnShieldActivatedEventArgs { isAcive = _isActve });
