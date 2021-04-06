@@ -57,7 +57,7 @@ public class Observer : SurveillanceScript, IDamagable
         {
             //play sound
             QuestValues.Instance.SetStage("Gargoyle", 1);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 }

@@ -12,7 +12,7 @@ public class EventManager : MonoBehaviour
     public string questName;
     public int CurrentEnemyCount { get; set; }
 
-    private bool isActive;
+    [SerializeField] private bool isActive;
 
     [Header("Event Type")]
     public bool enemyCounter;
@@ -28,7 +28,7 @@ public class EventManager : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if ((collision.CompareTag("Player") || collision.CompareTag("InvisiblePlayer")) && QuestValues.Instance.GetStage(questName, true) == 0)
+        if ((collision.CompareTag("Player") || collision.CompareTag("InvisiblePlayer")) && QuestValues.Instance.GetStage(questName, true) <= 0)
         {
             QuestValues.Instance.GetStage(questName, true);
             if (!isActive)
@@ -36,6 +36,9 @@ public class EventManager : MonoBehaviour
                 Activate();
                 OnEventStarted?.Invoke(this, EventArgs.Empty);
             }
+        }
+        if(isActive)
+        {
             if (QuestValues.Instance.GetStage(questName) == 1)
             {
                 Deactivate();
@@ -49,7 +52,6 @@ public class EventManager : MonoBehaviour
                 }
             }
         }
-
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
