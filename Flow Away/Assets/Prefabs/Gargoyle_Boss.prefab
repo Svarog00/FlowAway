@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1172cf47d08174cb03fe82c96f7115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPointMax: 300
+  healthPointMax: 500
   _healthPoints: 0
   _damage: 30
   _chillTime: 0.5
@@ -107,8 +107,8 @@ MonoBehaviour:
   Player: {fileID: 0}
   agressionDistance: 3.02
   airAttackRadius: 0.34
-  maxSpeed: 1.89
-  cooldownSpittle: 0.6
+  maxSpeed: 2
+  cooldownSpittle: 0.2
 --- !u!70 &5716734019404473487
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

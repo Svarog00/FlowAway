@@ -53,7 +53,7 @@ public class Observer : SurveillanceScript, IDamagable
     public void Hurt(int damage)
     {
         _hp -= damage;
-        if(_hp <= 300*0.75)
+        if(_hp <= 500*0.75)
         {
             //play sound
             QuestValues.Instance.SetStage("Gargoyle", 1);

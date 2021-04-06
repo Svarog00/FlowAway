@@ -66,10 +66,6 @@ public class Gargoyle : Boss
 		{
 			case Phases.first_phase:
 			{ 
-				if(QuestValues.Instance.GetStage("Gargoyle") == 1)
-                    {
-						_healthPoints = (int)(healthPointMax * 0.75f);
-                    }
 				if (_healthPoints <= 0.5f * healthPointMax)//если хп меньше половины -> следующая фаза и изменение фазы на интерфейсе
 				{
 					NextPhase(_currentPhase);
@@ -150,7 +146,6 @@ public class Gargoyle : Boss
 			}
 		}
 	}
-
 
 	private void Chase()
 	{
@@ -242,7 +237,7 @@ public class Gargoyle : Boss
 			case Phases.waiting_phase:
 			{
 				_currentPhase = Phases.first_phase;
-					break;
+				break;
 			}
 
 			case Phases.first_phase:
@@ -265,6 +260,10 @@ public class Gargoyle : Boss
 		//Show UI
 		base.OnActivatedUI(true);
 		Debug.Log("BEGIN BOSSFIGHT...");
+		if (QuestValues.Instance.GetStage("Gargoyle") == 1)
+		{
+			_healthPoints = (int)(healthPointMax * 0.75f);
+		}
 		NextPhase(_currentPhase);
 		ChangeAnimationState("Gargoyle_TakingOff");
 		PlayAnimation();

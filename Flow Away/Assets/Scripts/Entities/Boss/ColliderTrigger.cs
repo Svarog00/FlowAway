@@ -7,11 +7,9 @@ public class ColliderTrigger : MonoBehaviour
 {
     public event EventHandler OnPlayerEnterTrigger;
     
-    
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Rigidbody2D player = collider.GetComponent<Rigidbody2D>();
-        if(player.gameObject.tag == "Player")
+        if(collider.CompareTag("Player"))
         {
             OnPlayerEnterTrigger?.Invoke(this, EventArgs.Empty);
         }
