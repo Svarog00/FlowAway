@@ -6,42 +6,32 @@ using UnityEngine.UI;
 
 public class IconController : MonoBehaviour
 {
-   /* public Image shieldIcon;
-    public Image invisibleIcon;
-    public Image dashIcon;
+    public string gadgetName;
+
+    private Image _image;
 
     private void Start()
     {
-        Player_Movement dash = FindObjectOfType<Player_Movement>();
-        Invisibility invisibility = FindObjectOfType<Invisibility>();
-        HandlePowerShield shield = FindObjectOfType<HandlePowerShield>();
-       // dash.OnDashReload += SpellIcon_OnSpellReload;
-        invisibility.OnInsibilityEnable += SpellIcon_OnSpellReload;
-        //shield.OnShieldReload += SpellIcon_OnSpellReload;
+        _image = GetComponent<Image>();
+        Gadget gadget = FindObjectOfType<Player_Movement>();
+        gadget.OnGadgetCooldown += Dash_OnGadgetCooldown;
+    }
+    private void Dash_OnGadgetCooldown(object sender, Gadget.OnGadgetCooldownEventArgs e)
+    {
+        if (e.name == gadgetName)
+        {
+            _image.fillAmount = 0;
+            ReturnNormalValue(e.curTime);
+        }
     }
 
-    private void SpellIcon_OnSpellReload(object sender, Invisibility.OnInvisibilityEnableEventArgs e)
+    private void ReturnNormalValue(float time)
     {
-
+        while (time > 0f)
+        {
+            _image.fillAmount += 0.01f;
+            Debug.Log(_image.fillAmount);
+            time -= Time.deltaTime;
+        }
     }
-
-    *//*private void SpellIcon_OnSpellReload(object sender, Player_Movement.OnDashReloadEventArgs e)
-    {
-
-    }*/
-
-    /*private void SpellIcon_OnSpellReload(object sender, PowerShield.OnShieldReloadEventArgs e)
-    {
-
-    }*//*
-    
-    private void MinusValue(Image image, float value)
-    {
-
-    }
-
-    *//*private void Fillvalue(Image image)
-    {
-        while (image.fillAmount != image.sprite )
-    }*/
 }
