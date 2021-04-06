@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
 public class Gadget : MonoBehaviour
 {
     public event EventHandler<OnGadgetCooldownEventArgs> OnGadgetCooldown;

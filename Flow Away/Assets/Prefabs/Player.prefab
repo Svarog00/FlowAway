@@ -388,10 +388,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   maxDashCount: 3
-  movementSpeed: 1.25
   dashForce: 20
   dashTimer: 1
   dashDistance: 2
+  movementSpeed: 1.25
 --- !u!114 &5597652465098631067
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Movement : Gadget
+public class Player_Movement : Gadget //Gadget inherited for dash cooldown event. Yes, this is a kind of a crutch
 {
     public Rigidbody2D rb2;
     public Animator animator;
@@ -12,10 +12,11 @@ public class Player_Movement : Gadget
 
     public int maxDashCount;
 
-    public float movementSpeed = 5f;
     public float dashForce;
     public float dashTimer;
     public float dashDistance;
+
+    public float movementSpeed = 5f;
 
     private int _curDashCounter;
     private float _curDashTimer = 0f;
@@ -39,6 +40,7 @@ public class Player_Movement : Gadget
     void Update()
     {
         HandleMove();
+
         if (Input.GetButtonDown("Dash") && _curDashCounter > 0) //if timer is null
         {
             //Update timer
@@ -60,7 +62,7 @@ public class Player_Movement : Gadget
     private void FixedUpdate()
     {
         rb2.MovePosition(rb2.position + _movement * movementSpeed * Time.deltaTime);
-
+        //Tranfer to Dash script
         if (_isPressedDash)
         {
             Dash(dashDistance, _direction);
