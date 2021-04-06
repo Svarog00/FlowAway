@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class HandlePowerShield : MonoBehaviour, IGadget
+public class HandlePowerShield : Gadget
 {
     public event EventHandler<OnShieldActivatedEventArgs> OnShieldActivated;
+
     public class OnShieldActivatedEventArgs
     {
         public bool isAcive;
@@ -52,7 +53,10 @@ public class HandlePowerShield : MonoBehaviour, IGadget
     void Update()
     {
         if (_curTime > 0f)
+        {
             _curTime -= Time.deltaTime;
+            base.Timer(_curTime, "PowerShield");
+        }
 
         if (Input.GetButtonDown("Second Module") && CanActivate)
         {

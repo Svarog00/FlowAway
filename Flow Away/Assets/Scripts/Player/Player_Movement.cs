@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Movement : MonoBehaviour
+public class Player_Movement : Gadget
 {
     public Rigidbody2D rb2;
     public Animator animator;
@@ -50,6 +51,7 @@ public class Player_Movement : MonoBehaviour
         if (_curDashTimer > 0f)
         {
             _curDashTimer -= Time.deltaTime;
+            base.Timer(_curDashTimer, "Dash");
             if (_curDashTimer <= 0f)
                 _curDashCounter = maxDashCount;
         }

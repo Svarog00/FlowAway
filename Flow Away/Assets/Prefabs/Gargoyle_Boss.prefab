@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPointMax: 500
   _healthPoints: 0
-  _damage: 30
+  _damage: 50
   _chillTime: 0.5
   _colliderTrigger: {fileID: 0}
   _animator: {fileID: 5716734019558750957}

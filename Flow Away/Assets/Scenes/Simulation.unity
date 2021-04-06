@@ -732,19 +732,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1851049629103387647, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
-      propertyPath: _maxTime
-      value: 5
-      objectReference: {fileID: 0}
+      propertyPath: gadgetActivator
+      value: 
+      objectReference: {fileID: 1605631740}
     - target: {fileID: 3071118887357673148, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
       propertyPath: capsuleUI
       value: 
       objectReference: {fileID: 1542245414}
-    - target: {fileID: 3071118887357673148, guid: 43951c2b435dc0447b408e38be33dadc,
-        type: 3}
-      propertyPath: capsuleCount
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6449422990231913848, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -950,18 +945,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   prefab: {fileID: 8821206024928812939, guid: 82d207bb650d9d44f90ead2f07e3c17e, type: 3}
---- !u!114 &402447860 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1090296854763320560, guid: 62e5066d30a1a1e4b81a4a768b589927,
-    type: 3}
-  m_PrefabInstance: {fileID: 1146287644}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &426706439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2241,7 +2224,7 @@ PrefabInstance:
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000010430813
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
@@ -2335,7 +2318,7 @@ PrefabInstance:
     - target: {fileID: 7959187435973705457, guid: 2cfdd832d06e9654e974612682cef3e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000010430813
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7959187435973705457, guid: 2cfdd832d06e9654e974612682cef3e5,
         type: 3}
@@ -2804,7 +2787,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54108de35bc0b1b4896bdab6ded68fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 402447860}
   nextSceneName: CityLevel
   sls: {fileID: 1932957805}
 --- !u!1 &1137028937
@@ -3163,6 +3145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionToActivate: {fileID: 261686468}
   questName: SecondInvTrial
+  isActive: 0
   enemyCounter: 0
   neededEnemyCount: 0
 --- !u!61 &1304056651
@@ -3492,6 +3475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionToActivate: {fileID: 1345872666}
   questName: FirstInvTrial
+  isActive: 0
   enemyCounter: 1
   neededEnemyCount: 4
 --- !u!1 &1416690329
@@ -3891,9 +3875,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1605631737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e765d79c4661a184cb2ca692c9e6a5d3, type: 3}
+  m_Script: {fileID: 11500000, guid: fb40a23814232d94ab7b15d1a9045443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GadgetName: Invisibility
 --- !u!1 &1724859794
 GameObject:
   m_ObjectHideFlags: 0

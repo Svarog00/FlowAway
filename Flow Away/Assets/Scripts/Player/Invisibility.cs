@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class Invisibility : MonoBehaviour, IGadget
+public class Invisibility : Gadget
 {
     public event EventHandler<OnInvisibilityEnableEventArgs> OnInsibilityEnable;
+
     public class OnInvisibilityEnableEventArgs
     {
         public bool isActive;
@@ -18,9 +19,9 @@ public class Invisibility : MonoBehaviour, IGadget
     }
 
     public GadgetActivator gadgetActivator;
+    public bool CanActivate { get; set; }
 
     Material material;
-    public bool CanActivate { get; set; }
     [SerializeField] private float _maxTime = 0f;
     private bool _isActive;
     private bool _isChanging;
@@ -72,16 +73,19 @@ public class Invisibility : MonoBehaviour, IGadget
                 OnInsibilityEnable?.Invoke(this, new OnInvisibilityEnableEventArgs { isActive = _isActive });
             }
         }
+
         if(_isActive)
         {
             Disappear();
             _curTime -= Time.deltaTime;
+            base.Timer(_curTime, "Invisibility");
             if(_curTime <= 0f)
             {
                 _isActive = false;
                 _isChanging = true;
             }
         }
+
         if(!_isActive)
         {
             Appear();

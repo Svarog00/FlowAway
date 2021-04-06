@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capsuleUI: {fileID: 0}
-  capsuleCount: 2
+  capsuleCount: 3
 --- !u!114 &1851049629103387647
 MonoBehaviour:
   m_ObjectHideFlags: 0
