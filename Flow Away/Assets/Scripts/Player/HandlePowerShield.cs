@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class HandlePowerShield : Gadget
+public class HandlePowerShield : MonoBehaviour
 {
     public event EventHandler<OnShieldActivatedEventArgs> OnShieldActivated;
 
@@ -16,6 +16,8 @@ public class HandlePowerShield : Gadget
 
     public GadgetActivator gadgetActivator;
 
+    private GadgetManager _gadgetManager;
+
     private bool _isActve;
 
     [SerializeField] private float _maxTime = 0f;
@@ -27,6 +29,7 @@ public class HandlePowerShield : Gadget
         {
             gadgetActivator.OnGadgetActivated += GadgetActivator_OnGadgetActivated;
         }
+        _gadgetManager = FindObjectOfType<GadgetManager>();
     }
 
     private void GadgetActivator_OnGadgetActivated(object sender, GadgetActivator.OnGadgetActivatedEventArgs e)
@@ -55,7 +58,7 @@ public class HandlePowerShield : Gadget
         if (_curTime > 0f)
         {
             _curTime -= Time.deltaTime;
-            base.Timer(_curTime, "PowerShield");
+            _gadgetManager.Timer(_curTime, "PowerShield");
         }
 
         if (Input.GetButtonDown("Second Module") && CanActivate)

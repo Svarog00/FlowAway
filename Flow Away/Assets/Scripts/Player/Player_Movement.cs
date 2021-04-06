@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Movement : Gadget //Gadget inherited for dash cooldown event. Yes, this is a kind of a crutch
+public class Player_Movement : MonoBehaviour //Gadget inherited for dash cooldown event. Yes, this is a kind of a crutch
 {
     public Rigidbody2D rb2;
     public Animator animator;
@@ -17,6 +17,8 @@ public class Player_Movement : Gadget //Gadget inherited for dash cooldown event
     public float dashDistance;
 
     public float movementSpeed = 5f;
+
+    private GadgetManager _gadgetManager;
 
     private int _curDashCounter;
     private float _curDashTimer = 0f;
@@ -32,6 +34,7 @@ public class Player_Movement : Gadget //Gadget inherited for dash cooldown event
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
+        _gadgetManager = FindObjectOfType<GadgetManager>();
         ObstacleLayer = LayerMask.GetMask("Obstacles");
         _curDashCounter = maxDashCount;
     }
@@ -53,7 +56,7 @@ public class Player_Movement : Gadget //Gadget inherited for dash cooldown event
         if (_curDashTimer > 0f)
         {
             _curDashTimer -= Time.deltaTime;
-            base.Timer(_curDashTimer, "Dash");
+            _gadgetManager.Timer(_curDashTimer, "Dash");
             if (_curDashTimer <= 0f)
                 _curDashCounter = maxDashCount;
         }

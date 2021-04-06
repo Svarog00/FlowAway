@@ -777,6 +777,7 @@ GameObject:
   - component: {fileID: 6990049590059069171}
   - component: {fileID: 8072470360719011289}
   - component: {fileID: 1928586503923396840}
+  - component: {fileID: 5099680094536971894}
   m_Layer: 0
   m_Name: InvisibleIcon
   m_TagString: Untagged
@@ -841,6 +842,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5099680094536971894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990710077588844997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2baf49016e7bd52488d516778a40991c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gadgetName: Invisibility
 --- !u!1 &6241539443813960043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,6 +1345,7 @@ GameObject:
   - component: {fileID: 5218778796057140056}
   - component: {fileID: 4571722196786903242}
   - component: {fileID: 116846248273042747}
+  - component: {fileID: 2461839710260121075}
   m_Layer: 0
   m_Name: ShieldIcon
   m_TagString: Untagged
@@ -1395,6 +1410,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2461839710260121075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898296914892669041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2baf49016e7bd52488d516778a40991c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gadgetName: PowerShield
 --- !u!1 &8950140125358331639
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,12 +2144,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f15d50b0f4a9db347bff6dc2a535f188, type: 3}
---- !u!224 &3692420241867642695 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5919547942294800777, guid: f15d50b0f4a9db347bff6dc2a535f188,
-    type: 3}
-  m_PrefabInstance: {fileID: 6996458397664796366}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8992876776913092703 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -7073620026534125935, guid: f15d50b0f4a9db347bff6dc2a535f188,
@@ -2134,3 +2156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad0d94e144524f468eb3d84247e4c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &3692420241867642695 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5919547942294800777, guid: f15d50b0f4a9db347bff6dc2a535f188,
+    type: 3}
+  m_PrefabInstance: {fileID: 6996458397664796366}
+  m_PrefabAsset: {fileID: 0}

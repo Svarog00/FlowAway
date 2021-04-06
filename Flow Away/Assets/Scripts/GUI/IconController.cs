@@ -6,32 +6,38 @@ using UnityEngine.UI;
 
 public class IconController : MonoBehaviour
 {
-    public string gadgetName;
+	public string gadgetName;
 
-    private Image _image;
+	private Image _image;
 
-    private void Start()
-    {
-        _image = GetComponent<Image>();
-        Gadget gadget = FindObjectOfType<Player_Movement>();
-        gadget.OnGadgetCooldown += Dash_OnGadgetCooldown;
-    }
-    private void Dash_OnGadgetCooldown(object sender, Gadget.OnGadgetCooldownEventArgs e)
-    {
-        if (e.name == gadgetName)
+	private bool _isFilling;
+
+	private void Start()
+	{
+		_image = GetComponent<Image>();
+		GadgetManager gadget = FindObjectOfType<GadgetManager>();
+		gadget.OnGadgetCooldown += OnGadgetCooldown;
+		_isFilling = false;
+	}
+
+	private void OnGadgetCooldown(object sender, GadgetManager.OnGadgetCooldownEventArgs e)
+	{
+		if (e.name == gadgetName && !_isFilling)
+		{
+			_image.fillAmount = 0;
+			_isFilling = true;
+		}
+		else if(e.name == gadgetName && _isFilling)
         {
-            _image.fillAmount = 0;
-            ReturnNormalValue(e.curTime);
+			ReturnNormalValue(e.curTime);
+			if (_image.fillAmount == 1)
+				_isFilling = false;
         }
-    }
+	}
 
-    private void ReturnNormalValue(float time)
-    {
-        while (time > 0f)
-        {
-            _image.fillAmount += 0.01f;
-            Debug.Log(_image.fillAmount);
-            time -= Time.deltaTime;
-        }
-    }
+	private void ReturnNormalValue(float time)
+	{
+		_image.fillAmount += 1-time;
+		Debug.Log(_image.fillAmount);
+	}
 }
