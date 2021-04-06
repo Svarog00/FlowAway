@@ -23,7 +23,7 @@ public class SpawnerScript : MonoBehaviour
 			curDelay -= Time.deltaTime;
         }
     }
-
+	//If player detected - call spawn of enemies
     private void Surveillance_OnPlayerDetected(object sender, System.EventArgs e)
 	{
 		if(count > 0)

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2782723741432141235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.076, y: 0.104, z: 0}
+  m_LocalPosition: {x: -0.006, y: 0.104, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4959360802208696870}
@@ -197,15 +197,15 @@ MonoBehaviour:
     m_Bits: 1
   weight: 2
   attackDistance: 2
-  agressionDistance: 2.5
+  agressionDistance: 3
   chill: 0
-  playerPosition: {fileID: 0}
-  damage: 15
-  _chillTime: 1
-  maxSpeed: 2
-  hp: 45
+  _damage: 25
+  _chillTime: 1.5
+  _maxSpeed: 3
+  _hpMax: 60
+  _hp: 0
   patrolSpots: []
-  waitTime: 0
+  _waitTime: 0
   eventSource: {fileID: 0}
   attackPoint: {fileID: 776170320908965466}
   meleeRange: 0.4

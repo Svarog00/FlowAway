@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour, IDamagable
     private Transform center;
     protected Player_Health playerHP;
     protected GameObject Player;
+    protected ObjectPool _objectPool;
 
     [SerializeField] private int weight = 0; //количество слотов, которые будут заниматься противником при атаке по игроку
 
@@ -38,6 +39,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     [Header("Stats")]
     [SerializeField] protected float _maxSpeed;
+    [SerializeField] protected int _hpMax;
     [SerializeField] protected int _hp;
     protected float _currentSpeed;
 
@@ -60,6 +62,15 @@ public class Enemy : MonoBehaviour, IDamagable
         _randomSpot = Random.Range(0, patrolSpots.Length);
         Invisibility playerInsibility = FindObjectOfType<Invisibility>();
         playerInsibility.OnInsibilityEnable += PlayerInsibility_OnInsibilityEnable;
+    }
+
+    void OnEnable()
+    {
+        _hp = _hpMax;
+        if(_objectPool == null)
+        {
+            _objectPool = GetComponentInParent<ObjectPool>();
+        }
     }
 
     // Update is called once per frame
@@ -198,15 +209,8 @@ public class Enemy : MonoBehaviour, IDamagable
     }
 
     public virtual void Hurt(int damage) //get damage from player or another entity
-    {
-        _hp -= damage;
-        if(_hp <= 0)
-        {
-            _canAttack = false;
-            Destroy(gameObject, 2f);
-            //return to pool
-        }
-    }
+    { }
+
     protected void Flip() //turn left or right depends on player position
     {
         _faceRight = !_faceRight;

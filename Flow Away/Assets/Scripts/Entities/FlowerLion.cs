@@ -14,11 +14,6 @@ public class FlowerLion : Enemy
 	public GameObject shotPrefab;
 	public Transform firePoint;
 
-	private void OnEnable()
-	{
-		_hp = 60;
-	}
-
 	protected override void Attack()
 	{
 		if (_distanceToPlayer <= meleeRange)
@@ -60,16 +55,10 @@ public class FlowerLion : Enemy
 			Count();
 			FindObjectOfType<AudioManager>().Play("Meow");
 			Leave(); //Don't touch the player
-			Destroy(gameObject, 0.5f);
-		}
-	}
 
-	void OnDrawGizmosSelected()
-	{
-		if (attackPoint == null)
-		{
-			return;
+			if (_objectPool != null)
+				_objectPool.AddToPool(this.gameObject);
+			else Destroy(gameObject, 0.5f);
 		}
-		Gizmos.DrawWireSphere(attackPoint.position, meleeRange);
 	}
 }

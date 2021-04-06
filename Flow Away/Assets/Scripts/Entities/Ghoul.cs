@@ -10,11 +10,6 @@ public class Ghoul : Enemy
 
 	public LayerMask playerLayer;
 
-	private void OnEnable()
-	{
-		_hp = 30;
-	}
-
 	protected override void Attack()
 	{
 		//Play Sound
@@ -41,7 +36,10 @@ public class Ghoul : Enemy
 			Count();
 			FindObjectOfType<AudioManager>().Play("GhoulDead");
 			Leave(); //Don't touch the player
-			Destroy(gameObject, 0.5f);
+
+			if (_objectPool != null)
+				_objectPool.AddToPool(this.gameObject);
+			else Destroy(gameObject, 0.5f);
 		}
 	}
 }

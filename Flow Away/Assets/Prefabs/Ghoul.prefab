@@ -85,15 +85,15 @@ MonoBehaviour:
     m_Bits: 1
   weight: 1
   attackDistance: 0.15
-  agressionDistance: 1
+  agressionDistance: 0.75
   chill: 0
-  playerPosition: {fileID: 0}
-  damage: 5
-  _chillTime: 1
-  maxSpeed: 2.2
-  hp: 15
+  _damage: 10
+  _chillTime: 0.7
+  _maxSpeed: 2.5
+  _hpMax: 15
+  _hp: 0
   patrolSpots: []
-  waitTime: 0
+  _waitTime: 0
   eventSource: {fileID: 0}
   attackPoint: {fileID: 6103005024368418164}
   playerLayer:

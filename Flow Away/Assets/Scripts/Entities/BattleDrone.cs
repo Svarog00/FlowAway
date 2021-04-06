@@ -39,7 +39,7 @@ public class BattleDrone : Enemy
                 if (enemy.CompareTag("Player"))
                 {
                     playerHP.Hurt(_damage);
-                    playerPosition.AddForce(direction*_pushForce);
+                    playerPosition.AddForce(-direction*_pushForce);
                 }
             }
             chill = _chillTime; //Pause between attacks
@@ -56,7 +56,9 @@ public class BattleDrone : Enemy
             Count();
             FindObjectOfType<AudioManager>().Play("RobotDeathSound");
             Leave(); //Don't touch the player
-            Destroy(gameObject, 0.5f);
+            if(_objectPool != null)
+                _objectPool.AddToPool(this.gameObject);
+            else Destroy(gameObject, 0.5f);
         }
     }
 

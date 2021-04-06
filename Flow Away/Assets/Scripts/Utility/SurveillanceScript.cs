@@ -47,7 +47,7 @@ public class SurveillanceScript : MonoBehaviour
             }
         }
     }
-
+    //Start spawn of enemies
     protected virtual void Reaction()
     {
         OnPlayerDetected?.Invoke(this, EventArgs.Empty);

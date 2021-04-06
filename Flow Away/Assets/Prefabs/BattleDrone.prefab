@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5841136700143883725}
   - component: {fileID: 5841136700143883724}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: BattleDrone
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,8 @@ MonoBehaviour:
   chill: 0
   _damage: 0
   _chillTime: 1
-  _maxSpeed: 0
+  _maxSpeed: 2
+  _hpMax: 30
   _hp: 0
   patrolSpots: []
   _waitTime: 0

@@ -25,7 +25,7 @@ public class ShotScript : MonoBehaviour //Enemy shot script
         {
             if(hit.collider.GetComponent<IDamagable>() != null || hit.collider.gameObject == shooter)
             {
-                if(hit.collider.tag == "Player")
+                if(!hit.collider.CompareTag("Enemy"))
                 {
                     hit.collider.GetComponent<IDamagable>().Hurt(damage);
                     Destroy(gameObject);
