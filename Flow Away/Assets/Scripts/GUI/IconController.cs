@@ -37,7 +37,7 @@ public class IconController : MonoBehaviour
 
 	private void ReturnNormalValue(float time)
 	{
-		_image.fillAmount += 1-time;
+		_image.fillAmount += time;
 		Debug.Log(_image.fillAmount);
 	}
 }

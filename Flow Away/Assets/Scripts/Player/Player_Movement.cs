@@ -56,7 +56,7 @@ public class Player_Movement : MonoBehaviour //Gadget inherited for dash cooldow
         if (_curDashTimer > 0f)
         {
             _curDashTimer -= Time.deltaTime;
-            _gadgetManager.Timer(_curDashTimer, "Dash");
+            _gadgetManager.Timer(_curDashTimer, dashTimer, "Dash");
             if (_curDashTimer <= 0f)
                 _curDashCounter = maxDashCount;
         }

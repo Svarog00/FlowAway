@@ -80,7 +80,7 @@ public class Invisibility : MonoBehaviour
         {
             Disappear();
             _curTime -= Time.deltaTime;
-            _gadgetManager.Timer(_curTime, "Invisibility");
+            _gadgetManager.Timer(_curTime, _maxTime, "Invisibility");
             if(_curTime <= 0f)
             {
                 _isActive = false;

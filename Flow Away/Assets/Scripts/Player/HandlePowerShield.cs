@@ -58,7 +58,7 @@ public class HandlePowerShield : MonoBehaviour
         if (_curTime > 0f)
         {
             _curTime -= Time.deltaTime;
-            _gadgetManager.Timer(_curTime, "PowerShield");
+            _gadgetManager.Timer(_curTime, _maxTime ,"PowerShield");
         }
 
         if (Input.GetButtonDown("Second Module") && CanActivate)
