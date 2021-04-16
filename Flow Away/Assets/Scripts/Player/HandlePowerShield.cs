@@ -14,9 +14,7 @@ public class HandlePowerShield : MonoBehaviour
 
     public bool CanActivate { get; set; }
 
-    public GadgetActivator gadgetActivator;
-
-    private GadgetManager _gadgetManager;
+    private GadgetManager GadgetManager;
 
     private bool _isActve;
 
@@ -25,16 +23,13 @@ public class HandlePowerShield : MonoBehaviour
 
     public void Awake()
     {
-        if (gadgetActivator)
-        {
-            gadgetActivator.OnGadgetActivated += GadgetActivator_OnGadgetActivated;
-        }
-        _gadgetManager = FindObjectOfType<GadgetManager>();
+        GadgetManager = FindObjectOfType<GadgetManager>();
+        GadgetManager.OnGadgetActivate += GadgetManager_OnGadgetActivate;
     }
 
-    private void GadgetActivator_OnGadgetActivated(object sender, GadgetActivator.OnGadgetActivatedEventArgs e)
+    private void GadgetManager_OnGadgetActivate(object sender, GadgetManager.OnGadgetActivateEventArgs e)
     {
-        if (e.gadgetName == "PowerShield")
+        if(e.name == "PowerShield")
         {
             CanActivate = true;
         }
@@ -58,7 +53,7 @@ public class HandlePowerShield : MonoBehaviour
         if (_curTime > 0f)
         {
             _curTime -= Time.deltaTime;
-            _gadgetManager.Timer(_curTime, _maxTime ,"PowerShield");
+            GadgetManager.Timer(_curTime, _maxTime ,"PowerShield");
         }
 
         if (Input.GetButtonDown("Second Module") && CanActivate)

@@ -6,16 +6,11 @@ using System;
 public class GadgetActivator : MonoBehaviour
 {
     public string GadgetName;
-
-    public event EventHandler<OnGadgetActivatedEventArgs> OnGadgetActivated;
-
-    public class OnGadgetActivatedEventArgs
-    {
-        public string gadgetName;
-    }
+    private GadgetManager _gadgetManager;
 
     private void Start()
     {
+        _gadgetManager = FindObjectOfType<GadgetManager>();
         if (QuestValues.Instance.GetStage(GadgetName) == -1)
         {
             QuestValues.Instance.Add(GadgetName);
@@ -28,7 +23,7 @@ public class GadgetActivator : MonoBehaviour
         if (collision.tag == "Player" && QuestValues.Instance.GetStage(GadgetName) == 0)
         {
             QuestValues.Instance.SetStage(GadgetName, 1);
-            OnGadgetActivated?.Invoke(this, new OnGadgetActivatedEventArgs { gadgetName = GadgetName });
+            _gadgetManager.ActivateGadget(GadgetName);
             Debug.Log($"{GadgetName} module quest given");
         }
     }

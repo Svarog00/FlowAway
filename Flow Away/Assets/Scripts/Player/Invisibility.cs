@@ -18,29 +18,27 @@ public class Invisibility : MonoBehaviour
         set { _maxTime = value; }
     }
 
-    public GadgetActivator gadgetActivator;
     public bool CanActivate { get; set; }
 
-    private GadgetManager _gadgetManager;
+    private GadgetManager GadgetManager;
     private Material material;
-    [SerializeField] private float _maxTime = 0f;
+
     private bool _isActive;
     private bool _isChanging;
+
+    [SerializeField] private float _maxTime = 0f;
     private float _curTime;
     private float fade = 1f;
 
     public void Awake()
     {
-        if(gadgetActivator)
-        {
-            gadgetActivator.OnGadgetActivated += GadgetActivator_OnGadgetActivated;
-        }
-        _gadgetManager = FindObjectOfType<GadgetManager>();
+        GadgetManager = FindObjectOfType<GadgetManager>();
+        GadgetManager.OnGadgetActivate += _gadgetManager_OnGadgetActivate;
     }
 
-    private void GadgetActivator_OnGadgetActivated(object sender, GadgetActivator.OnGadgetActivatedEventArgs e)
+    private void _gadgetManager_OnGadgetActivate(object sender, GadgetManager.OnGadgetActivateEventArgs e)
     {
-        if(e.gadgetName == "Invisibility")
+        if(e.name == "Invisibility")
         {
             CanActivate = true;
         }
@@ -80,7 +78,7 @@ public class Invisibility : MonoBehaviour
         {
             Disappear();
             _curTime -= Time.deltaTime;
-            _gadgetManager.Timer(_curTime, _maxTime, "Invisibility");
+            GadgetManager.Timer(_curTime, _maxTime, "Invisibility");
             if(_curTime <= 0f)
             {
                 _isActive = false;
