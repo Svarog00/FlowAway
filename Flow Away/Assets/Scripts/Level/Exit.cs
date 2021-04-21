@@ -33,8 +33,6 @@ public class Exit : MonoBehaviour
             _note.Appear("Press E to leave", 2f);
             _readyToLeave = true;
         }
-
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)

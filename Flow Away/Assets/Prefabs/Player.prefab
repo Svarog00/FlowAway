@@ -46,6 +46,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -129,6 +130,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -291,6 +293,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -454,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb54477e71402064fa423aa810930b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gadgetActivator: {fileID: 0}
+  gadgetName: Invisibility
   _maxTime: 5
 --- !u!114 &8643343419041964804
 MonoBehaviour:
@@ -468,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7386e47bed9dfdc43a5b5d0db5359e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gadgetActivator: {fileID: 0}
+  gadgetName: PowerShield
   _maxTime: 3
   _curTime: 0
 --- !u!50 &6449422990231913844
@@ -594,6 +597,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class HandlePowerShield : MonoBehaviour
+public class HandlePowerShield : Gadget
 {
     public event EventHandler<OnShieldActivatedEventArgs> OnShieldActivated;
 
@@ -11,33 +11,15 @@ public class HandlePowerShield : MonoBehaviour
     {
         public bool isAcive;
     }
-
-    public bool CanActivate { get; set; }
-
-    private GadgetManager GadgetManager;
-
+    [Header("Power shield")]
     private bool _isActve;
 
     [SerializeField] private float _maxTime = 0f;
     [SerializeField] private float _curTime = 0f;
 
-    public void Awake()
-    {
-        GadgetManager = FindObjectOfType<GadgetManager>();
-        GadgetManager.OnGadgetActivate += GadgetManager_OnGadgetActivate;
-    }
-
-    private void GadgetManager_OnGadgetActivate(object sender, GadgetManager.OnGadgetActivateEventArgs e)
-    {
-        if(e.name == "PowerShield")
-        {
-            CanActivate = true;
-        }
-    }
-
     private void Start()
     {
-        CanActivate = QuestValues.Instance.GetStage("PowerShield") > 0 ? true : false;
+        CanActivate = QuestValues.Instance.GetStage(gadgetName) > 0 ? true : false;
         PowerShield powerShield = GetComponentInChildren<PowerShield>();
         powerShield.OnShieldDestroyed += PowerShield_OnShieldDestroyed;
     }
@@ -53,7 +35,7 @@ public class HandlePowerShield : MonoBehaviour
         if (_curTime > 0f)
         {
             _curTime -= Time.deltaTime;
-            GadgetManager.Timer(_curTime, _maxTime ,"PowerShield");
+            GadgetManager.Timer(_curTime, _maxTime ,gadgetName);
         }
 
         if (Input.GetButtonDown("Second Module") && CanActivate)

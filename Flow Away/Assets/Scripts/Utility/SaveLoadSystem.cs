@@ -21,6 +21,7 @@ public class SaveLoadSystem : MonoBehaviour
             health = PlayerHP.CurrentHealth,
             medkitCount = PlayerMedkits.GetCapsuleCount(),
             currentScene = SceneManager.GetActiveScene().name
+            //questValues = QuestValues.Instance.QuestList
         };
 
         Debug.Log(tmp.health + " " + tmp.x + " " + tmp.y);
@@ -58,6 +59,7 @@ public class SaveLoadSystem : MonoBehaviour
                     PlayerPos.position = new Vector2(tmp.x, tmp.y);
                     PlayerHP.CurrentHealth = tmp.health;
                     PlayerMedkits.LoadCapsule(tmp.medkitCount);
+                    //QuestValues.Instance.QuestList = tmp.questValues;
                 }
             }
             catch (System.Exception Error)
@@ -78,6 +80,7 @@ public class SaveLoadSystem : MonoBehaviour
             x = PlayerPos.position.x,
             y = PlayerPos.position.y,
             medkitCount = PlayerMedkits.GetCapsuleCount()
+            //questValues = QuestValues.Instance.QuestList
         };
         if (!Directory.Exists(Application.dataPath + "/Saves")) //if directory doesn't exist
         {
@@ -101,5 +104,6 @@ public class SavedData
     public int health;
     public string currentScene;
     public int medkitCount;
+    //public Dictionary<string, int> questValues;
 }
 

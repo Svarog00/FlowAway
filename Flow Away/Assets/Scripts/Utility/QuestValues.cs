@@ -57,5 +57,11 @@ public class QuestValues : MonoBehaviour
     {
         questValue.Clear();
     }
+
+    public Dictionary<string, int> QuestList
+    {
+        get { return questValue; }
+        set { questValue = value;  }
+    }
 }
 
