@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Boss : MonoBehaviour, IDamagable
+public abstract class Boss : MonoBehaviour, IDamagable
 {
     public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
     public event EventHandler<OnBossActivatedUIEventArgs> OnBossActivatedUI;

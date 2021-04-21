@@ -4,7 +4,7 @@ using UnityEngine;
 
 enum EnemyStates { Patroling, Chasing };
 
-public class Enemy : MonoBehaviour, IDamagable
+public abstract class Enemy : MonoBehaviour, IDamagable
 {
     [Header("Enemy base")]
     public Animator animator;
