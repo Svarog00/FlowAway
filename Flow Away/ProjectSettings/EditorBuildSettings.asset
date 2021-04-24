@@ -17,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CityLevel.unity
     guid: 5ba15a7d563108a45a6cc920d1f9fb9a
-  - enabled: 0
-    path: Assets/Scenes/BossLevelTest.unity
-    guid: 1572c8418a344e74b9d948da38b00cd8
   - enabled: 1
     path: Assets/Scenes/Simulation.unity
     guid: 819855562e84674469d7e758c80519e9

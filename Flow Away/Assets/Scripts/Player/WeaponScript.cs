@@ -25,10 +25,6 @@ public class WeaponScript : MonoBehaviour
     void Update()
     {
         gameObject.transform.position = player.transform.position;
-    }
-
-    private void FixedUpdate()
-    {
         LookAtCursor();
     }
 
@@ -55,8 +51,23 @@ public class WeaponScript : MonoBehaviour
     {
         Vector3 mousePosition = Input.mousePosition; 
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);//get mouse position
-        direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y); //get heading to the mouse position
-        transform.right = direction;
+        //direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y); //get heading to the mouse position
+        //transform.right = direction;
+
+        Vector2 aimDir = (mousePosition - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        transform.eulerAngles = new Vector3(0, 0, angle);
+        
+        Vector3 localScale = Vector3.one;
+        if(angle > 90 || angle < -90)
+        {
+            localScale.y = -1f;
+        }
+        else
+        {
+            localScale.y = 1f;
+        }
+        transform.localScale = localScale;
     }
 
     private IEnumerator ReloadWeapon()

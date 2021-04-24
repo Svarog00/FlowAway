@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Movement : MonoBehaviour //Gadget inherited for dash cooldown event. Yes, this is a kind of a crutch
+public class Player_Movement : MonoBehaviour
 {
     public Rigidbody2D rb2;
     public Animator animator;
