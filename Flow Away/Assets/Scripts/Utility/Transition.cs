@@ -14,15 +14,20 @@ public class Transition : MonoBehaviour
 
     public void Awake()
     {
-        if (PlayerPrefs.GetInt("LevelMove") == 1)
+        if (PlayerPrefs.GetInt("LevelMove") == 1) //Если это переход с другой сцены, то загружаем данные из сейва, который был сделан до перехода на эту сцену
         {
             Continue(SceneManager.GetActiveScene().name);
         }
+        if(PlayerPrefs.GetInt("LoadSave") == 1)
+        {
+            Continue("CheckPoint");
+            PlayerPrefs.SetInt("LoadSave", 0);
+        }    
     }
 
     void Start()
     {
-        saveLoadSystem.SaveData("CheckPoint");
+        saveLoadSystem.SaveData("CheckPoint"); //Создание чекпоинта для продолжения игры из главного меню.
     }
 
     private void Continue(string nameSave)

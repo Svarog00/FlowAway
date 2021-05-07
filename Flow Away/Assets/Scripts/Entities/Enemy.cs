@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum EnemyStates { Patroling, Chasing };
+enum EnemyStates { Patroling, Chasing, Attacking };
 
 public abstract class Enemy : MonoBehaviour, IDamagable
 {
@@ -113,7 +113,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
     private void PlayerInsibility_OnInsibilityEnable(object sender, Invisibility.OnInvisibilityEnableEventArgs e)
     {
-        if (e.isActive)
+        if (e.isActive && currentState != EnemyStates.Patroling)
         {
             currentState = EnemyStates.Patroling;
             playerDetected = false;
@@ -205,6 +205,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         {
             _canAttack = false;
             playerHP.RestoreSlots(weight);
+            currentState = EnemyStates.Patroling;
         }
     }
 

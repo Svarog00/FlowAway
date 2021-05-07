@@ -42,7 +42,7 @@ public class FlowerLion : Enemy
 			FindObjectOfType<AudioManager>().Play("Shot");
 
 			chill = _chillTime; //Pause between attacks
-			StartCoroutine(Cooldown()) ;
+			StartCoroutine(Cooldown());
 		}
 	}
 

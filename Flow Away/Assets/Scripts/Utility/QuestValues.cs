@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class QuestValues : MonoBehaviour
 {
     [SerializeField] private Dictionary<string, int> questValue = new Dictionary<string, int>(); //string - name of the quest, int - stage of the quest

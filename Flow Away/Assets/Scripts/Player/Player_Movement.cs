@@ -65,7 +65,6 @@ public class Player_Movement : MonoBehaviour
     private void FixedUpdate()
     {
         rb2.MovePosition(rb2.position + _movement * movementSpeed * Time.deltaTime);
-        //Tranfer to Dash script
         if (_isPressedDash)
         {
             Dash(dashDistance, _direction);

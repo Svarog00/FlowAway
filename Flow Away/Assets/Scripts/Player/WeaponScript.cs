@@ -49,8 +49,8 @@ public class WeaponScript : MonoBehaviour
     //Направление в соответствии с курсором
     private void LookAtCursor()
     {
-        Vector3 mousePosition = Input.mousePosition; 
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);//get mouse position
+        Vector3 mousePosition = UtilitiesClass.GetWorldMousePosition(); 
+        //mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);//get mouse position
         //direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y); //get heading to the mouse position
         //transform.right = direction;
 
