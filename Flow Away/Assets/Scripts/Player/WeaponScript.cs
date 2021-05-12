@@ -50,10 +50,6 @@ public class WeaponScript : MonoBehaviour
     private void LookAtCursor()
     {
         Vector3 mousePosition = UtilitiesClass.GetWorldMousePosition(); 
-        //mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);//get mouse position
-        //direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y); //get heading to the mouse position
-        //transform.right = direction;
-
         Vector2 aimDir = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, angle);

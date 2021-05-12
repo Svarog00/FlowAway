@@ -16,11 +16,18 @@ public class IconController : MonoBehaviour
 	{
 		_image = GetComponent<Image>();
 		GadgetManager gadget = FindObjectOfType<GadgetManager>();
+		Player_Health player_Health = FindObjectOfType<Player_Health>();
+        player_Health.OnDeath += Player_Health_OnDeath;
 		gadget.OnGadgetCooldown += OnGadgetCooldown;
 		_isFilling = false;
 	}
 
-	private void OnGadgetCooldown(object sender, GadgetManager.OnGadgetCooldownEventArgs e)
+    private void Player_Health_OnDeath(object sender, EventArgs e)
+    {
+        
+    }
+
+    private void OnGadgetCooldown(object sender, GadgetManager.OnGadgetCooldownEventArgs e)
 	{
 		if (e.name == gadgetName && !_isFilling)
 		{

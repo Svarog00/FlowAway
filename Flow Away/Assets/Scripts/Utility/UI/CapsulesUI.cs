@@ -11,6 +11,10 @@ public class CapsulesUI : MonoBehaviour
     public Sprite fullCapsule;
     public Sprite emptyCapsule;
 
+    public void Start()
+    {
+        
+    }
 
     public void AddCapsule(int capsuleCount)
     {

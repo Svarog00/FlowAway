@@ -7337,7 +7337,7 @@ PrefabInstance:
     - target: {fileID: 7959187436487106100, guid: 2cfdd832d06e9654e974612682cef3e5,
         type: 3}
       propertyPath: m_LookaheadSmoothing
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cfdd832d06e9654e974612682cef3e5, type: 3}

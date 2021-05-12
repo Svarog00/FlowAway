@@ -205,7 +205,6 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         {
             _canAttack = false;
             playerHP.RestoreSlots(weight);
-            currentState = EnemyStates.Patroling;
         }
     }
 
