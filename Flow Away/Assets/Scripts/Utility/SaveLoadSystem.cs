@@ -20,8 +20,8 @@ public class SaveLoadSystem : MonoBehaviour
             y = PlayerPos.position.y,
             health = PlayerHP.CurrentHealth,
             medkitCount = PlayerMedkits.GetCapsuleCount(),
-            currentScene = SceneManager.GetActiveScene().name
-            //questValues = QuestValues.Instance.QuestList
+            currentScene = SceneManager.GetActiveScene().name,
+            //questValues = new Dictionary<string, int>(QuestValues.Instance.QuestList)
         };
 
         Debug.Log(tmp.health + " " + tmp.x + " " + tmp.y);
@@ -59,7 +59,7 @@ public class SaveLoadSystem : MonoBehaviour
                     PlayerPos.position = new Vector2(tmp.x, tmp.y);
                     PlayerHP.CurrentHealth = tmp.health;
                     PlayerMedkits.LoadCapsule(tmp.medkitCount);
-                    //QuestValues.Instance.QuestList = tmp.questValues;
+                    //QuestValues.Instance.QuestList = new Dictionary<string, int>(tmp.questValues);
                 }
             }
             catch (System.Exception Error)
@@ -72,28 +72,6 @@ public class SaveLoadSystem : MonoBehaviour
             }
         }
     }
-
-    public void AutoSave()
-    {
-        SavedData tmp = new SavedData
-        {
-            x = PlayerPos.position.x,
-            y = PlayerPos.position.y,
-            medkitCount = PlayerMedkits.GetCapsuleCount()
-            //questValues = QuestValues.Instance.QuestList
-        };
-        if (!Directory.Exists(Application.dataPath + "/Saves")) //if directory doesn't exist
-        {
-            Directory.CreateDirectory(Application.dataPath + "/Saves"); //then create directory
-        }
-        FileStream fs = new FileStream(Application.dataPath + "/Saves/auto.sv", FileMode.Create); //open stream to create a save file
-        BinaryFormatter formatter = new BinaryFormatter();
-        formatter.Serialize(fs, tmp); //serialize savedData in fs file
-        fs.Close(); //close file stream
-
-        Debug.Log("Position in Space saved " + tmp.x + " " + tmp.y);
-    }
-
 }
 
 

@@ -226,12 +226,12 @@ PrefabInstance:
     - target: {fileID: 7959187435973705457, guid: 2cfdd832d06e9654e974612682cef3e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.542706
+      value: 27.572704
       objectReference: {fileID: 0}
     - target: {fileID: 7959187435973705457, guid: 2cfdd832d06e9654e974612682cef3e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -37.91957
+      value: -21.309568
       objectReference: {fileID: 0}
     - target: {fileID: 7959187435973705457, guid: 2cfdd832d06e9654e974612682cef3e5,
         type: 3}
@@ -1165,12 +1165,12 @@ PrefabInstance:
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.762302
+      value: 30.161472
       objectReference: {fileID: 0}
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -37.150177
+      value: -21.864925
       objectReference: {fileID: 0}
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
@@ -2216,8 +2216,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 813029215}
-  - component: {fileID: 813029217}
   - component: {fileID: 813029216}
+  - component: {fileID: 813029217}
   m_Layer: 0
   m_Name: ColliderBossTrigger
   m_TagString: Untagged
@@ -2252,8 +2252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questName: Gargoyle
---- !u!61 &813029217
-BoxCollider2D:
+--- !u!60 &813029217
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2275,9 +2275,16 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.78, y: 0.16}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 5.761423, y: 4.3903713}
+      - {x: 0.34354985, y: 4.395081}
+      - {x: -6.2356625, y: 4.4013033}
+      - {x: -6.2163124, y: 1.936305}
+      - {x: -1.891254, y: 0.5348693}
+      - {x: 1.8811495, y: 0.39340806}
+      - {x: 1.878885, y: 1.0828581}
+      - {x: 5.750651, y: 1.0870566}
 --- !u!4 &815314091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 460678162991827080, guid: 0445d3bf449bd2e4cbeabaf02f8fa599,
@@ -2950,12 +2957,12 @@ PrefabInstance:
     - target: {fileID: 6449422990231913848, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.71
+      value: -4.68
       objectReference: {fileID: 0}
     - target: {fileID: 6449422990231913848, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.27
+      value: 8.34
       objectReference: {fileID: 0}
     - target: {fileID: 6449422990231913848, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}

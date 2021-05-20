@@ -24,11 +24,11 @@ public class DeathScreen : MonoBehaviour
 
     public void Retry()
     {
-        PlayerPrefs.SetInt("QuickLoad", 1);
-        saveLoadSystem.LoadData("CheckPoint");
-        player.SetActive(true);
+        PlayerPrefs.SetInt("LoadHandleSave", 1);
+        saveLoadSystem.LoadData("Handle_Save");
+        /*player.SetActive(true);
         PlayerPrefs.SetInt("QuickLoad", 0);
-        gameObject.SetActive(false);
+        visual.SetActive(false);*/
     }
 
     public void Quit()

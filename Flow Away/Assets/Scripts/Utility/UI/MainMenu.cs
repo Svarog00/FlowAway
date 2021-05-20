@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class MainMenu : MonoBehaviour
 {
@@ -16,6 +18,14 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         PlayerPrefs.DeleteAll();
+        if (Directory.Exists(Application.dataPath + "/Saves"))
+        {
+            var dirInfo = new DirectoryInfo(Application.dataPath + "/Saves");
+            foreach (var file in dirInfo.GetFiles())
+            {
+                file.Delete();
+            }
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //start first lvl
     }
 
