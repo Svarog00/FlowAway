@@ -1,13 +1,13 @@
 ﻿<terminal>
   <notes>
-    <note title = "First Note">
-      <text>Где-то здесь есть рыба... И не только...</text>
+    <note title = "Запись 23134">
+      <text>Текст записи 23134</text>
     </note>
-    <note title = "Second Note">
-      <text>Показiвай рiбу...</text>
+    <note title = "Запись 2">
+      <text>Текст записи 2</text>
     </note>
-    <note title = "Third Note">
-      <text>Ну шо показал?... Камера засняла нахуй...</text>
+    <note title = "Запись 3">
+      <text>Текст записи 3</text>
     </note>
   </notes>
 </terminal>

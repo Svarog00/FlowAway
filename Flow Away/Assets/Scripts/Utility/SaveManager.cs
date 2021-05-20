@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
 
-public class Transition : MonoBehaviour
+public class SaveManager : MonoBehaviour
 {
     public SaveLoadSystem saveLoadSystem;
     public Player_Health PlayerHp;
@@ -22,12 +22,30 @@ public class Transition : MonoBehaviour
         {
             Continue("CheckPoint");
             PlayerPrefs.SetInt("LoadSave", 0);
-        }    
+        }
+        if (PlayerPrefs.GetInt("LoadHandleSave") == 1)
+        {
+            Continue("Handle_Save");
+            PlayerPrefs.SetInt("LoadHandleSave", 0);
+        }
     }
 
     void Start()
     {
         saveLoadSystem.SaveData("CheckPoint"); //Создание чекпоинта для продолжения игры из главного меню.
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F5))
+        {
+            saveLoadSystem.SaveData("Handle_Save");
+        }
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            PlayerPrefs.SetInt("LoadHandleSave", 1);
+            saveLoadSystem.LoadData("Handle_Save");
+        }
     }
 
     private void Continue(string nameSave)

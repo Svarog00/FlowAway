@@ -28,9 +28,12 @@ public class EventManager : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if ((collision.CompareTag("Player") || collision.CompareTag("InvisiblePlayer")) && QuestValues.Instance.GetStage(questName, true) <= 0)
+        if(QuestValues.Instance.GetStage(questName) == -1)
         {
             QuestValues.Instance.GetStage(questName, true);
+        }
+        if (collision.gameObject.GetComponent<Player_Movement>() && QuestValues.Instance.GetStage(questName) == 0)
+        {
             if (!isActive)
             {
                 Activate();

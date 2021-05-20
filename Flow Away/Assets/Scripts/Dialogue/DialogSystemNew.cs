@@ -20,12 +20,6 @@ public class DialogSystemNew : MonoBehaviour
         UpdateAnswers();
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-       
-    }
-
     void UpdateAnswers()
     {
         answersList.Clear(); //очистка диалога перед заполнением
