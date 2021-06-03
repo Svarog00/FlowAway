@@ -226,12 +226,12 @@ PrefabInstance:
     - target: {fileID: 7959187435973705457, guid: 2cfdd832d06e9654e974612682cef3e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.572704
+      value: 27.002705
       objectReference: {fileID: 0}
     - target: {fileID: 7959187435973705457, guid: 2cfdd832d06e9654e974612682cef3e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.309568
+      value: -37.54957
       objectReference: {fileID: 0}
     - target: {fileID: 7959187435973705457, guid: 2cfdd832d06e9654e974612682cef3e5,
         type: 3}
@@ -1165,12 +1165,12 @@ PrefabInstance:
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.161472
+      value: 29.762302
       objectReference: {fileID: 0}
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.864925
+      value: -37.150177
       objectReference: {fileID: 0}
     - target: {fileID: 1251662193267089283, guid: 32e16f988360ef344b462c6125957e08,
         type: 3}
@@ -2220,7 +2220,7 @@ GameObject:
   - component: {fileID: 813029217}
   m_Layer: 0
   m_Name: ColliderBossTrigger
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2957,12 +2957,12 @@ PrefabInstance:
     - target: {fileID: 6449422990231913848, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.68
+      value: -5.25
       objectReference: {fileID: 0}
     - target: {fileID: 6449422990231913848, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.34
+      value: -7.9
       objectReference: {fileID: 0}
     - target: {fileID: 6449422990231913848, guid: 43951c2b435dc0447b408e38be33dadc,
         type: 3}
@@ -3835,6 +3835,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5243742231286645926, guid: 62e5066d30a1a1e4b81a4a768b589927,
+        type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 5716734018173823806}
     - target: {fileID: 6067538358632675402, guid: 62e5066d30a1a1e4b81a4a768b589927,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6662,3 +6667,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a3bc4c70def9af49a48a16cd61e8c2e, type: 3}
+--- !u!114 &5716734018173823806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5716734019404473485, guid: 5a3bc4c70def9af49a48a16cd61e8c2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5716734018173823805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1172cf47d08174cb03fe82c96f7115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -32,7 +32,7 @@ public class SaveManager : MonoBehaviour
 
     void Start()
     {
-        saveLoadSystem.SaveData("CheckPoint"); //Создание чекпоинта для продолжения игры из главного меню.
+        saveLoadSystem.SaveData("Handle_Save"); //Создание чекпоинта для продолжения игры из главного меню.
     }
 
     private void Update()

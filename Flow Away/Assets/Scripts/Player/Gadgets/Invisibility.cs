@@ -38,24 +38,7 @@ public class Invisibility : Gadget
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("First Module") && CanActivate)
-        {
-            if (!_isActive)
-            {
-                gameObject.tag = "InvisiblePlayer";
-                _isActive = true;
-                _isChanging = true;
-                _curTime = MaxTime;
-                OnInsibilityEnable?.Invoke(this, new OnInvisibilityEnableEventArgs { isActive = _isActive });
-            }
-            else
-            {
-                gameObject.tag = "Player";
-                _isChanging = true;
-                _isActive = false;
-                OnInsibilityEnable?.Invoke(this, new OnInvisibilityEnableEventArgs { isActive = _isActive });
-            }
-        }
+        Control();
 
         if(_isActive)
         {
@@ -73,6 +56,28 @@ public class Invisibility : Gadget
         {
             Appear();
         }    
+    }
+
+    private void Control()
+    {
+        if (Input.GetButtonDown("First Module") && CanActivate)
+        {
+            if (!_isActive)
+            {
+                gameObject.tag = "InvisiblePlayer";
+                _isActive = true;
+                _isChanging = true;
+                _curTime = MaxTime;
+                OnInsibilityEnable?.Invoke(this, new OnInvisibilityEnableEventArgs { isActive = _isActive });
+            }
+            else
+            {
+                gameObject.tag = "Player";
+                _isChanging = true;
+                _isActive = false;
+                OnInsibilityEnable?.Invoke(this, new OnInvisibilityEnableEventArgs { isActive = _isActive });
+            }
+        }
     }
 
     private void Disappear()

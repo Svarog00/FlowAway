@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour
     public void Continue()
     {
         PlayerPrefs.SetInt("LoadSave", 1);
-        saveLoadSystem.LoadData("CheckPoint");// в SaveLoadSystem.cs
+        saveLoadSystem.LoadData("Handle_Save");// в SaveLoadSystem.cs
     }
 
     public void Exit()

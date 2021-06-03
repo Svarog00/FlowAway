@@ -9,11 +9,10 @@ public class BossHealth : MonoBehaviour
     public Slider bossHealthBar;//полоса здоровья босса
     public Image phaseIcon;//иконка фазы
     public GameObject visualHealthBar;//весь визульный UI босса
-
+    public Boss boss;
 
     private void Start()
     {
-        Boss boss = FindObjectOfType<Boss>();
         Player_Health player = FindObjectOfType<Player_Health>();
         boss.OnHealthChanged += Boss_OnHealthChanged;
         boss.OnBossActivatedUI += Boss_OnActivatedUI;
