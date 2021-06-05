@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2823107995948496359}
-  - component: {fileID: 2823107995948496352}
+  - component: {fileID: 4005051564469975525}
   - component: {fileID: 2823107995948496353}
   - component: {fileID: 2368909709357108334}
+  - component: {fileID: 1427961022495634445}
   m_Layer: 0
-  m_Name: Bullet_Old
+  m_Name: Bullet 1
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2823107995948496352
+--- !u!114 &4005051564469975525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +43,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2823107995948496358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01c6881d72f58f4f84d1904e4cdd98a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c8f4f1aef9f2b04989a1e09dd87c09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0}
-  shooter: {fileID: 0}
   damage: 20
+  shooter: {fileID: 0}
 --- !u!212 &2823107995948496353
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -63,6 +63,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -119,3 +120,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1427961022495634445
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2823107995948496358}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.03

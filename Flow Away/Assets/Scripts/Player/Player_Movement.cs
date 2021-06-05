@@ -43,16 +43,6 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         HandleMove();
-
-        if (Input.GetButtonDown("Dash") && _curDashCounter > 0) //if timer is null
-        {
-            //Update timer
-            //minus one dash
-            _curDashTimer = dashTimer;
-            _curDashCounter--;
-            _isPressedDash = true;
-            FindObjectOfType<AudioManager>().Play("PlayerDashSound");
-        }
         if (_curDashTimer > 0f)
         {
             _curDashTimer -= Time.deltaTime;
@@ -65,16 +55,45 @@ public class Player_Movement : MonoBehaviour
     private void FixedUpdate()
     {
         rb2.MovePosition(rb2.position + _movement * movementSpeed * Time.deltaTime);
+        Dash();
+    }
+
+    private void HandleMove()
+    {
+        //Get input to move
+        _movement.x = Input.GetAxisRaw("Horizontal");
+        _movement.y = Input.GetAxisRaw("Vertical");
+
+        AnimateMove();
+
+        if (_movement != new Vector2(0, 0))
+        {
+            ChangeDir();
+        }
+
+        if (Input.GetButtonDown("Dash") && _curDashCounter > 0) //if timer is null
+        {
+            //Update timer
+            //minus one dash
+            _curDashTimer = dashTimer;
+            _curDashCounter--;
+            _isPressedDash = true;
+            FindObjectOfType<AudioManager>().Play("PlayerDashSound");
+        }
+    }
+
+    private void Dash()
+    {
         if (_isPressedDash)
         {
             Dash(dashDistance, _direction);
 
-            if(_isDashing)
+            if (_isDashing)
             {
                 rb2.velocity = Vector2.zero;
                 float distSqr = (_dashTarget - transform.position).sqrMagnitude; //Дистанция до точки перемещения
 
-                if(distSqr < 0.1) //если дистанция слишком мала, то не перемещать
+                if (distSqr < 0.1) //если дистанция слишком мала, то не перемещать
                 {
                     _isDashing = false;
                     _dashTarget = Vector3.zero;
@@ -86,22 +105,6 @@ public class Player_Movement : MonoBehaviour
             }
             CameraShake.Instance.ShakeCamera(1f, .1f);
             _isPressedDash = false;
-        }
-    }
-
-    private void HandleMove()
-    {
-        //Get input to move
-        _movement.x = Input.GetAxisRaw("Horizontal");
-        _movement.y = Input.GetAxisRaw("Vertical");
-        //Animation
-        animator.SetFloat("Horizontal", _movement.x);
-        animator.SetFloat("Vertical", _movement.y);
-        animator.SetFloat("Speed", _movement.sqrMagnitude);
-
-        if (_movement != new Vector2(0, 0))
-        {
-            ChangeDir();
         }
     }
 
@@ -119,6 +122,13 @@ public class Player_Movement : MonoBehaviour
         }
 
         rb2.velocity = Vector2.zero;
+    }
+
+    private void AnimateMove()
+    {
+        animator.SetFloat("Horizontal", _movement.x);
+        animator.SetFloat("Vertical", _movement.y);
+        animator.SetFloat("Speed", _movement.sqrMagnitude);
     }
 
     private void ChangeDir()

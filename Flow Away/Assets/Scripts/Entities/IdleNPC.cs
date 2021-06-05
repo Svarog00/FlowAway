@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IdleNPC : MonoBehaviour
+public class IdleNPC : MonoBehaviour, IDamagable
 {
     public DialogSystemNew dialog;
     private TextScript _note;
@@ -40,5 +40,10 @@ public class IdleNPC : MonoBehaviour
             _note.Disappear(2f);
             _isNearby = false;
         }
+    }
+
+    public void Hurt(int damage)
+    {
+        gameObject.AddComponent<Ghoul>();
     }
 }

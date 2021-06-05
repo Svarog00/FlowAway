@@ -79,7 +79,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8821206026699796184}
+  stunTime: 0
   currentState: 0
+  eventSource: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -94,7 +96,6 @@ MonoBehaviour:
   _hp: 0
   patrolSpots: []
   _waitTime: 0
-  eventSource: {fileID: 0}
   attackPoint: {fileID: 6103005024368418164}
   playerLayer:
     serializedVersion: 2
@@ -193,6 +194,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -277,6 +279,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

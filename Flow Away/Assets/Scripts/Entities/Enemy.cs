@@ -4,11 +4,19 @@ using UnityEngine;
 
 enum EnemyStates { Patroling, Chasing, Attacking };
 
+[RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : MonoBehaviour, IDamagable
 {
     [Header("Enemy base")]
     public Animator animator;
+    [SerializeField] private float stunTime;
+    private float _curStunTime = 0f;
+    private bool _canMove = true;
     [SerializeField] private EnemyStates currentState;
+
+    [Header("Spawn settings")]
+    protected ObjectPool _objectPool;
+    public EventManager eventSource;
 
     [Header("Player relation")]
     public LayerMask layerMask;
@@ -16,8 +24,6 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     private Transform center;
     protected Player_Health playerHP;
     protected GameObject Player;
-    protected ObjectPool _objectPool;
-
     [SerializeField] private int weight = 0; //количество слотов, которые будут заниматься противником при атаке по игроку
 
     public float attackDistance; //Дистанция на которой может совершить атаку
@@ -48,9 +54,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     private int _randomSpot;
     [SerializeField] private float _waitTime = 0f;
     private float _curWaitTime;
-
-    [Header("Event")]
-    public EventManager eventSource;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +66,9 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         _randomSpot = Random.Range(0, patrolSpots.Length);
         Invisibility playerInsibility = FindObjectOfType<Invisibility>();
         playerInsibility.OnInsibilityEnable += PlayerInsibility_OnInsibilityEnable;
+        
+        enemyPosition.freezeRotation = true;
+        enemyPosition.gravityScale = 0;
     }
 
     void OnEnable()
@@ -86,29 +93,14 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
         if (playerDetected)
         {
-            EstimateDistance();//Рассчет дистанции для дальнейших действий
-            if (currentState == EnemyStates.Chasing)
-            {
-                //Поворот спрайта в зависимости от положения игрока
-                if (playerPosition.position.x < gameObject.transform.position.x && _faceRight == true)
-                {
-                    Flip();
-                }
-                if (playerPosition.transform.position.x > gameObject.transform.position.x && _faceRight == false)
-                {
-                    Flip();
-                }
-                Chase(); //Go to the enemy if he is too close
-                //конец поведение врага по отношению к игроку
-
-                if (_distanceToPlayer > agressionDistance)
-                {
-                    currentState = EnemyStates.Patroling;
-                    playerDetected = false;
-                }
-            }
+            ReactOnPlayer();
         }
         animator.SetFloat("Speed", _currentSpeed); //В зависимости от скорости активировать анимации
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        Move();
     }
 
     private void PlayerInsibility_OnInsibilityEnable(object sender, Invisibility.OnInvisibilityEnableEventArgs e)
@@ -147,6 +139,31 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         }
     }
 
+    private void ReactOnPlayer()
+    {
+        EstimateDistance();//Рассчет дистанции для дальнейших действий
+        if (currentState == EnemyStates.Chasing)
+        {
+            //Поворот спрайта в зависимости от положения игрока
+            if (playerPosition.position.x < gameObject.transform.position.x && _faceRight == true)
+            {
+                Flip();
+            }
+            if (playerPosition.transform.position.x > gameObject.transform.position.x && _faceRight == false)
+            {
+                Flip();
+            }
+            Chase(); //Go to the enemy if he is too close
+                     //конец поведение врага по отношению к игроку
+
+            if (_distanceToPlayer > agressionDistance)
+            {
+                currentState = EnemyStates.Patroling;
+                playerDetected = false;
+            }
+        }
+    }
+
     private void Patrol()
     {
         if (patrolSpots.Length > 0)
@@ -169,11 +186,14 @@ public abstract class Enemy : MonoBehaviour, IDamagable
             _currentSpeed = 0f;
     }
 
-    protected virtual void FixedUpdate()
+    void Move()
     {
-        enemyPosition.MovePosition(enemyPosition.position - direction * _currentSpeed * Time.deltaTime); //movement
+        if(_canMove)
+        {
+            enemyPosition.MovePosition(enemyPosition.position - direction * _currentSpeed * Time.deltaTime); //movement
+        }
     }
-    
+
     protected void Chase()
     {
         _currentSpeed = _maxSpeed; //Увеличиваем скорость до максимальной

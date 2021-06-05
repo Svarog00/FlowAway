@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour //Player shot script
 {
     [SerializeField] private int damage = 0;
+    public GameObject shooter;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class BulletScript : MonoBehaviour //Player shot script
             collision.GetComponent<IDamagable>().Hurt(damage);
             Destroy(gameObject);
         }
-        else if (collision.tag == "Border" || collision.tag == "Player")
+        else if (collision.tag == "Border" || collision.gameObject == shooter)
         {
             //Skip these objects
         }

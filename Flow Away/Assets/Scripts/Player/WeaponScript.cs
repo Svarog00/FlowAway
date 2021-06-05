@@ -38,6 +38,7 @@ public class WeaponScript : MonoBehaviour
             GameObject shotTransform = Instantiate(shotPrefab, firePoint.position, firePoint.rotation);
             //перемещение
             shotTransform.GetComponent<Rigidbody2D>().AddForce(firePoint.right * 5, ForceMode2D.Impulse);
+            shotTransform.GetComponent<BulletScript>().shooter = player.gameObject;
             FindObjectOfType<AudioManager>().Play("Shot");
 
             _shootCooldown = shootDelay;

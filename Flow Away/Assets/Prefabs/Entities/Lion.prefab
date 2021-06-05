@@ -76,6 +76,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -191,7 +192,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4959360803501373248}
+  stunTime: 0
   currentState: 0
+  eventSource: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -206,7 +209,6 @@ MonoBehaviour:
   _hp: 0
   patrolSpots: []
   _waitTime: 0
-  eventSource: {fileID: 0}
   attackPoint: {fileID: 776170320908965466}
   meleeRange: 0.4
   playerLayer:
@@ -312,6 +314,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

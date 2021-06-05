@@ -416,7 +416,7 @@ MonoBehaviour:
   weapon: {fileID: 4638682954505386965}
   attackRange: 0.28
   attackDelay: 0.5
-  Damage: 15
+  Damage: 45
 --- !u!114 &4005601288406887065
 MonoBehaviour:
   m_ObjectHideFlags: 0
