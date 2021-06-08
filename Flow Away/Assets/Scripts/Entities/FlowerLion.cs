@@ -46,19 +46,8 @@ public class FlowerLion : Enemy
 		}
 	}
 
-	public override void Hurt(int damage)
-	{
-		FindObjectOfType<AudioManager>().Play("EnemyHurt");
-		_hp -= damage;
-		if (_hp <= 0)
-		{
-			Count();
-			FindObjectOfType<AudioManager>().Play("Meow");
-			Leave(); //Don't touch the player
-
-			if (_objectPool != null)
-				_objectPool.AddToPool(this.gameObject);
-			else Destroy(gameObject, 0.5f);
-		}
-	}
+	public override string ToString()
+    {
+		return "FlowerLion";
+    }
 }

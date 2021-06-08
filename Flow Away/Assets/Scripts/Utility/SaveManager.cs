@@ -18,21 +18,11 @@ public class SaveManager : MonoBehaviour
         {
             Continue(SceneManager.GetActiveScene().name);
         }
-        if(PlayerPrefs.GetInt("LoadSave") == 1)
+        else if (PlayerPrefs.GetInt("LoadHandleSave") == 1)
         {
-            Continue("CheckPoint");
-            PlayerPrefs.SetInt("LoadSave", 0);
-        }
-        if (PlayerPrefs.GetInt("LoadHandleSave") == 1)
-        {
-            Continue("Handle_Save");
+            saveLoadSystem.LoadHandleSave();
             PlayerPrefs.SetInt("LoadHandleSave", 0);
         }
-    }
-
-    void Start()
-    {
-        saveLoadSystem.SaveData("Handle_Save"); //Создание чекпоинта для продолжения игры из главного меню.
     }
 
     private void Update()
@@ -44,7 +34,7 @@ public class SaveManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F7))
         {
             PlayerPrefs.SetInt("LoadHandleSave", 1);
-            saveLoadSystem.LoadData("Handle_Save");
+            saveLoadSystem.LoadHandleSave();
         }
     }
 
@@ -54,6 +44,6 @@ public class SaveManager : MonoBehaviour
         saveLoadSystem.LoadData(nameSave);
         PlayerPrefs.SetInt("QuickLoad", 0);
         PlayerPrefs.SetInt("LevelMove", 0);
-        Debug.Log("Load save");
+        Debug.Log("Loaded level exit save");
     }
 }

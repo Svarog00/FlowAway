@@ -27,19 +27,8 @@ public class Ghoul : Enemy
 		StartCoroutine(Cooldown());		
 	}
 
-	public override void Hurt(int damage)
+	public override string ToString()
 	{
-		FindObjectOfType<AudioManager>().Play("EnemyHurt");
-		_hp -= damage;
-		if (_hp <= 0)
-		{
-			Count();
-			FindObjectOfType<AudioManager>().Play("GhoulDead");
-			Leave(); //Don't touch the player
-
-			if (_objectPool != null)
-				_objectPool.AddToPool(this.gameObject);
-			else Destroy(gameObject, 0.5f);
-		}
+		return "Ghoul";
 	}
 }

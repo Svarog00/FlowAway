@@ -8,7 +8,6 @@ public class Player_Attack : MonoBehaviour
 	public Transform attackPoint;
 	public LayerMask enemyLayers;
 	public Rigidbody2D rb2;
-	public WeaponScript weapon;
 
 	public float attackRange;
 	public float attackDelay = 0.5f;
@@ -20,40 +19,29 @@ public class Player_Attack : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		GetInput();
 		Cooldown();
 	}
 
-	void GetInput()
+	public void Melee()
 	{
-		if (Input.GetButtonDown("MeleeStrike") && _delay <= 0f)
-		{
-			Melee();
-		}
-
-		if (Input.GetButtonDown("GunFire"))
-		{
-			weapon.GetComponent<WeaponScript>().Attack();
-		}
-	}
-
-	void Melee()
-	{
-		FindObjectOfType<AudioManager>().Play("SwordSwing");
-		//animate melee attack
-		animator.SetTrigger("Melee_Strike");
-		//detect enemies in range of attack
-		Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-		//damage them
-		foreach(Collider2D enemy in hitEnemies)
-		{
-			if(enemy.gameObject != gameObject && enemy.GetComponent<IDamagable>() != null)
+		if(_delay <= 0f)
+        {
+			FindObjectOfType<AudioManager>().Play("SwordSwing");
+			//animate melee attack
+			animator.SetTrigger("Melee_Strike");
+			//detect enemies in range of attack
+			Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+			//damage them
+			foreach(Collider2D enemy in hitEnemies)
 			{
-				enemy.GetComponent<IDamagable>().Hurt(Damage);
-				// enemy.GetComponent<Health>.Hurt();
+				if(enemy.gameObject != gameObject && enemy.GetComponent<IDamagable>() != null)
+				{
+					enemy.GetComponent<IDamagable>().Hurt(Damage);
+					// enemy.GetComponent<Health>.Hurt();
+				}
 			}
-		}
-		_delay = attackDelay;
+			_delay = attackDelay;
+        }
 	}
 
 	void Cooldown()

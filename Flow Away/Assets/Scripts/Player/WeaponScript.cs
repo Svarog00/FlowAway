@@ -13,8 +13,6 @@ public class WeaponScript : MonoBehaviour
     [SerializeField]
     private float _shootCooldown;
 
-    private Vector2 direction;
-
     private void Start()
     {
         _shootCooldown = 0f;

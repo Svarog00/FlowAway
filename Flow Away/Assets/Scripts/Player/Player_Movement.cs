@@ -42,7 +42,7 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMove();
+        //HandleMove();
         if (_curDashTimer > 0f)
         {
             _curDashTimer -= Time.deltaTime;
@@ -58,11 +58,13 @@ public class Player_Movement : MonoBehaviour
         Dash();
     }
 
-    private void HandleMove()
+    public void HandleMove(float x, float y, bool dash)
     {
         //Get input to move
-        _movement.x = Input.GetAxisRaw("Horizontal");
-        _movement.y = Input.GetAxisRaw("Vertical");
+        /*_movement.x = Input.GetAxisRaw("Horizontal");
+        _movement.y = Input.GetAxisRaw("Vertical");*/
+        _movement.x = x;
+        _movement.y = y;
 
         AnimateMove();
 
@@ -71,7 +73,7 @@ public class Player_Movement : MonoBehaviour
             ChangeDir();
         }
 
-        if (Input.GetButtonDown("Dash") && _curDashCounter > 0) //if timer is null
+        if (dash && _curDashCounter > 0) //if timer is null
         {
             //Update timer
             //minus one dash

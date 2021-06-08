@@ -64,11 +64,6 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         center = GetComponent<Transform>();
         _canAttack = false;
         _randomSpot = Random.Range(0, patrolSpots.Length);
-        Invisibility playerInsibility = FindObjectOfType<Invisibility>();
-        playerInsibility.OnInsibilityEnable += PlayerInsibility_OnInsibilityEnable;
-        
-        enemyPosition.freezeRotation = true;
-        enemyPosition.gravityScale = 0;
     }
 
     void OnEnable()
@@ -129,6 +124,8 @@ public abstract class Enemy : MonoBehaviour, IDamagable
                 if (Player == null)
                 {
                     Player = enemy.gameObject;
+                    Invisibility playerInsibility = Player.GetComponent<Invisibility>();
+                    playerInsibility.OnInsibilityEnable += PlayerInsibility_OnInsibilityEnable;
                     playerHP = Player.GetComponent<Player_Health>();
                     playerPosition = Player.GetComponent<Rigidbody2D>();
                 }
@@ -229,7 +226,20 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     }
 
     public virtual void Hurt(int damage) //get damage from player or another entity
-    { }
+    {
+        FindObjectOfType<AudioManager>().Play("EnemyHurt");
+        _hp -= damage;
+        if (_hp <= 0)
+        {
+            Count();
+            FindObjectOfType<AudioManager>().Play(this.ToString());
+            Leave(); //Don't touch the player
+
+            if (_objectPool != null)
+                _objectPool.AddToPool(this.gameObject);
+            else Destroy(gameObject, 0.5f);
+        }
+    }
 
     protected void Flip() //turn left or right depends on player position
     {

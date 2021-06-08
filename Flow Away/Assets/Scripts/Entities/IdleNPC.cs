@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IdleNPC : MonoBehaviour, IDamagable
+public class IdleNPC : MonoBehaviour
 {
     public DialogSystemNew dialog;
     private TextScript _note;

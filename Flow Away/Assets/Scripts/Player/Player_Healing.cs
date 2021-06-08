@@ -16,11 +16,6 @@ public class Player_Healing : MonoBehaviour
         capsuleUI.AddCapsule(capsuleCount);
     }
 
-    private void Update()
-    {
-        GetInput();
-    }
-
     public int GetCapsuleCount()
     {
         return capsuleCount;
@@ -37,9 +32,9 @@ public class Player_Healing : MonoBehaviour
         capsuleUI.AddCapsule(count);
     }
   
-    private void GetInput()
+    public void HandleHeal()
     {
-        if (Input.GetButtonDown("Heal") && capsuleCount > 0 && playerHealth.CurrentHealth < playerHealth.MaxHealth)
+        if (capsuleCount > 0 && playerHealth.CurrentHealth < playerHealth.MaxHealth)
         {
             playerHealth.Heal();
             capsuleUI.RemoveCapsule(capsuleCount);

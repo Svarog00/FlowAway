@@ -7,7 +7,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class MainMenu : MonoBehaviour
 {
-
     SaveLoadSystem saveLoadSystem;
 
     private void Start()
@@ -17,22 +16,14 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        PlayerPrefs.DeleteAll();
-        if (Directory.Exists(Application.dataPath + "/Saves"))
-        {
-            var dirInfo = new DirectoryInfo(Application.dataPath + "/Saves");
-            foreach (var file in dirInfo.GetFiles())
-            {
-                file.Delete();
-            }
-        }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //start first lvl
+        saveLoadSystem.ClearSaves();
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1); //start first lvl
     }
 
     public void Continue()
     {
-        PlayerPrefs.SetInt("LoadSave", 1);
-        saveLoadSystem.LoadData("Handle_Save");// в SaveLoadSystem.cs
+        PlayerPrefs.SetInt("LoadHandleSave", 1);
+        saveLoadSystem.LoadHandleSave();
     }
 
     public void Exit()

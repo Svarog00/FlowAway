@@ -22,7 +22,7 @@ public class Exit : MonoBehaviour
         {
             sls.SaveData(SceneManager.GetActiveScene().name); //Создает файл сохранения с названием сцены, на которой игрок находится
             PlayerPrefs.SetInt("LevelMove", 1); //Устанавливается флаг перехода 
-            SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single); //Загружается следующая сцена
+            SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Single); //Загружается следующая сцена
         }
     }
 

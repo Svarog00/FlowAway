@@ -59,7 +59,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Meow
+  - name: FlowerLion
     clip: {fileID: 8300000, guid: f46b7dd9e4653ba42a1a13511bd43886, type: 3}
     volume: 1
     pitch: 1
@@ -94,7 +94,7 @@ MonoBehaviour:
     volume: 0.4
     pitch: 1
     source: {fileID: 0}
-  - name: GhoulDead
+  - name: Ghoul
     clip: {fileID: 8300000, guid: f90a8c840d019164e9cf8f2b77b95aa9, type: 3}
     volume: 1
     pitch: 1
