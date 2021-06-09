@@ -39,7 +39,6 @@ public class DialogSystemNew : MonoBehaviour
         GUI.skin = GUISkin;
         if(showDialog)
         {
-            Time.timeScale = 0;
             GUI.Box(new Rect(Screen.width / 2 - 375, Screen.height - 408, 750, 400), ""); //Создание бокса с ответами
             GUI.DrawTexture(new Rect(Screen.width / 2 - 300, Screen.height - 340, 128, 128), npcIconImage);
             GUI.Label(new Rect(Screen.width / 2 - 160, Screen.height - 335, 450, 110 ), dialogue.nodes[curNode].npcText);//Фраза НПС 

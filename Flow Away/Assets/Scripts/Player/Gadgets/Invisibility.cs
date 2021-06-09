@@ -38,8 +38,6 @@ public class Invisibility : Gadget
     // Update is called once per frame
     void Update()
     {
-        Control();
-
         if(_isActive)
         {
             Disappear();
@@ -58,9 +56,9 @@ public class Invisibility : Gadget
         }    
     }
 
-    private void Control()
+    public void HandleActivate()
     {
-        if (Input.GetButtonDown("First Module") && CanActivate)
+        if(CanActivate)
         {
             if (!_isActive)
             {

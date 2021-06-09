@@ -26,7 +26,6 @@ public class BulletScript : MonoBehaviour //Player shot script
         }
         else
         {
-            Debug.Log("Bullet hit in" + collision.tag);
             Destroy(gameObject);
         }
     }

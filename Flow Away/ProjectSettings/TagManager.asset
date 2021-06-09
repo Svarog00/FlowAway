@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Medkit
   - InvisiblePlayer
+  - Shield
   layers:
   - Default
   - TransparentFX

@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         saveLoadSystem.ClearSaves();
+        QuestValues.Instance?.Clear();
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1); //start first lvl
     }
 

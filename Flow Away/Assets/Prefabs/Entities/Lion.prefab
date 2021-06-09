@@ -153,8 +153,8 @@ GameObject:
   - component: {fileID: 4959360802208696870}
   - component: {fileID: 4959360802208696865}
   - component: {fileID: 4959360802208696864}
-  - component: {fileID: 4959360802208696871}
   - component: {fileID: 4959360802208696866}
+  - component: {fileID: 5623090035504147168}
   m_Layer: 0
   m_Name: Lion
   m_TagString: Enemy
@@ -228,22 +228,6 @@ SortingGroup:
   m_SortingLayerID: 490260223
   m_SortingLayer: 1
   m_SortingOrder: 0
---- !u!70 &4959360802208696871
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4959360802208696869}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.000000032874063, y: -0.025767613}
-  m_Size: {x: 0.41000018, y: 0.073444374}
-  m_Direction: 1
 --- !u!50 &4959360802208696866
 Rigidbody2D:
   serializedVersion: 4
@@ -265,6 +249,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &5623090035504147168
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4959360802208696869}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.009345076, y: 0.06}
+  m_Size: {x: 0.3808178, y: 0.24434224}
+  m_Direction: 1
 --- !u!1 &4959360803501373253
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 4959360803501373254}
   - component: {fileID: 4959360803501373255}
   - component: {fileID: 4959360803501373248}
-  - component: {fileID: 7484259528578160109}
+  - component: {fileID: 1922514174636812267}
   m_Layer: 0
   m_Name: Cat_Idle_0
   m_TagString: Enemy
@@ -370,7 +370,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &7484259528578160109
+--- !u!70 &1922514174636812267
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -380,9 +380,9 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009345076, y: -0.0428298}
-  m_Size: {x: 0.3808178, y: 0.24434224}
+  m_Offset: {x: -0.000000032874063, y: -0.13}
+  m_Size: {x: 0.41000018, y: 0.073444374}
   m_Direction: 1

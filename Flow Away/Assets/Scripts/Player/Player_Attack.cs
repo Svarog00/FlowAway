@@ -34,10 +34,9 @@ public class Player_Attack : MonoBehaviour
 			//damage them
 			foreach(Collider2D enemy in hitEnemies)
 			{
-				if(enemy.gameObject != gameObject && enemy.GetComponent<IDamagable>() != null)
+				if(enemy.gameObject != gameObject && enemy.GetComponent<IDamagable>() != null && !enemy.CompareTag("Shield"))
 				{
 					enemy.GetComponent<IDamagable>().Hurt(Damage);
-					// enemy.GetComponent<Health>.Hurt();
 				}
 			}
 			_delay = attackDelay;

@@ -5,6 +5,7 @@ using System;
 
 public class GadgetManager : MonoBehaviour
 {
+    //Cooldown event for gadget icons
     public event EventHandler<OnGadgetCooldownEventArgs> OnGadgetCooldown;
     public class OnGadgetCooldownEventArgs : EventArgs
     {
@@ -12,8 +13,8 @@ public class GadgetManager : MonoBehaviour
         public float curTime;
     }
 
+    //Gadget activation
     public event EventHandler<OnGadgetActivateEventArgs> OnGadgetActivate;
-
     public class OnGadgetActivateEventArgs : EventArgs
     {
         public string name;
@@ -21,7 +22,6 @@ public class GadgetManager : MonoBehaviour
 
     public void Timer(float _curTime, float _maxTime, string gadgetName)
     {
-
         OnGadgetCooldown?.Invoke(this, new OnGadgetCooldownEventArgs { curTime = 1 - _curTime/_maxTime, name = gadgetName });
     }
 

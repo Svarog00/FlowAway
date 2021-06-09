@@ -23,7 +23,8 @@ public class QuestValues : MonoBehaviour
 
     public void Add(string name)
     {
-        questValue.Add(name, 0);
+        if(!questValue.ContainsKey(name))
+            questValue.Add(name, 0);
     }
 
     public void SetStage(string name, int stage)

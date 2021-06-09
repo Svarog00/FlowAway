@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class IdleNPC : MonoBehaviour
 {
     public DialogSystemNew dialog;
+
     private TextScript _note;
+    private PlayerControl playerControl;
 
     private bool _isNearby;
 
@@ -20,6 +22,7 @@ public class IdleNPC : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact") && _isNearby)
         {
+            playerControl.CanAttack = false;
             dialog.showDialog = true;
         }
     }
@@ -30,6 +33,8 @@ public class IdleNPC : MonoBehaviour
         {
             _note.Appear("Press E to talk.", 2f);
             _isNearby = true;
+
+            if (playerControl == null) playerControl = collision.GetComponent<PlayerControl>();
         }
     }
 
@@ -37,6 +42,8 @@ public class IdleNPC : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            dialog.showDialog = false;
+            playerControl.CanAttack = true;
             _note.Disappear(2f);
             _isNearby = false;
         }
@@ -44,6 +51,6 @@ public class IdleNPC : MonoBehaviour
 
     public void Hurt(int damage)
     {
-        gameObject.AddComponent<Ghoul>();
+        
     }
 }

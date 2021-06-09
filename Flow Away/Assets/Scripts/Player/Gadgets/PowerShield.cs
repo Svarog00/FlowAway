@@ -3,48 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PowerShield : MonoBehaviour, IDamagable
+public class PowerShield : Gadget
 {
-    public event EventHandler OnShieldDestroyed;
+    [SerializeField] private PowerShieldInstance shieldInstance;
 
     private bool _isActve;
 
-    private int _curCapacity;
-    [SerializeField] private int _maxCapacity = 0;
+    [SerializeField] private float _maxTime = 0f;
+    [SerializeField] private float _curTime = 0f;
 
-    [SerializeField] private GameObject _shieldVisual = null;
     private GameObject _player;
 
-    private void Awake()
+    private void Start()
     {
-        HandlePowerShield handlePowerShield = GetComponentInParent<HandlePowerShield>();
-        handlePowerShield.OnShieldActivated += HandlePowerShield_OnShieldActivated;
+        CanActivate = QuestValues.Instance.GetStage(gadgetName) > 0 ? true : false;
+
         _isActve = false;
-        _player = GetComponentInParent<Player_Movement>().gameObject;
+        _player = gameObject;
+
+        shieldInstance.OnShieldDestroyed += ShieldInstance_OnShieldDestroyed;
     }
 
-    private void HandlePowerShield_OnShieldActivated(object sender, HandlePowerShield.OnShieldActivatedEventArgs e)
+    private void ShieldInstance_OnShieldDestroyed(object sender, EventArgs e)
     {
-        _isActve = e.isAcive;
-        _shieldVisual.SetActive(_isActve);
-        if (_isActve)
+        shieldInstance.gameObject.SetActive(false);
+        _curTime = _maxTime;
+    }
+
+    private void Update()
+    {
+        Cooldown();
+    }
+
+    public void HandleActivate()
+    {
+        if(_curTime <= 0 && CanActivate)
         {
-            _curCapacity = _maxCapacity;
-            gameObject.transform.position = _player.transform.position;
+            _isActve = true;
+            shieldInstance.gameObject.SetActive(_isActve);
+            if (_isActve)
+            {
+                shieldInstance.gameObject.transform.position = _player.transform.position;
+            }
         }
     }
 
-    public void Hurt(int damage)
+    private void Cooldown()
     {
-        if(_isActve && _curCapacity > 0)
+        if (_curTime > 0f)
         {
-            _curCapacity -= damage;
-            if(_curCapacity <= 0)
-            {
-                _isActve = !_isActve;
-                _shieldVisual.SetActive(false);
-                OnShieldDestroyed?.Invoke(this, EventArgs.Empty);
-            }
+            _curTime -= Time.deltaTime;
+            GadgetManager.Timer(_curTime, _maxTime, gadgetName);
         }
     }
 }
