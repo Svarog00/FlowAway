@@ -8,7 +8,7 @@ public class PowerShieldInstance : MonoBehaviour, IDamagable
     public event EventHandler OnShieldDestroyed;
 
     [SerializeField] private int _maxCapacity = 0;
-    private int _curCapacity;
+    [SerializeField] private int _curCapacity;
 
     void OnEnable()
     {

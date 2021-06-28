@@ -5,35 +5,35 @@ using UnityEngine;
 public class SpawnerScript : MonoBehaviour
 {
 	public SurveillanceScript surveillance;
-	public int count;
-	public float delay = 0.5f;
-	private ObjectPool objectPool;
-	private float curDelay;
+	[SerializeField] private int _count;
+	[SerializeField] private float _delay = 0.5f;
+	private ObjectPool _objectPool;
+	private float _curDelay;
 
 	private void Start()
 	{
-		objectPool = GetComponent<ObjectPool>();
+		_objectPool = GetComponent<ObjectPool>();
 		surveillance.OnPlayerDetected += Surveillance_OnPlayerDetected;
 	}
 
     private void Update()
     {
-		if(curDelay > 0f)
+		if(_curDelay > 0f)
         {
-			curDelay -= Time.deltaTime;
+			_curDelay -= Time.deltaTime;
         }
     }
 	//If player detected - call spawn of enemies
     private void Surveillance_OnPlayerDetected(object sender, System.EventArgs e)
 	{
-		if(count > 0)
+		if(_count > 0)
         {
-			if(curDelay <= 0f)
+			if(_curDelay <= 0f)
             {
+				_count--;
 				GameObject gameObject;
-				gameObject = objectPool.GetFromPool();
+				gameObject = _objectPool.GetFromPool();
 				gameObject.transform.position = transform.position;
-				count--;
             }
         }
 		else 

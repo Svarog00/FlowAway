@@ -8,11 +8,11 @@ public class GridMesh
 
     private int width;
     private int height;
-    private int cellSize;
+    private float cellSize;
 
     private TextMesh[,] debugTextMeshes;
 
-    public GridMesh(int width, int height, int cellSize)
+    public GridMesh(int width, int height, float cellSize)
     {
         this.width = width;
         this.height = height;

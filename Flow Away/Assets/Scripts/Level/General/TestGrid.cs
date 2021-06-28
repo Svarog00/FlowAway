@@ -7,18 +7,16 @@ public class TestGrid : MonoBehaviour
     private GridMesh grid;
     [SerializeField] int width;
     [SerializeField] int height;
-    [SerializeField] int cellSize;
+    [SerializeField] float cellSize;
 
-    private GameObject player;
+
+    public Transform player;
 
     // Start is called before the first frame update
     void Start()
     {
         grid = new GridMesh(width, height, cellSize);
-
-        player = FindObjectOfType<Player_Movement>().gameObject;
-
-
+        
     }
 
     private void Update()
@@ -27,5 +25,6 @@ public class TestGrid : MonoBehaviour
         {
             grid.SetValue(UtilitiesClass.GetWorldMousePosition(), Random.Range(1, 101));
         }
+        grid.SetValue(player.position, Random.Range(1, 101));
     }
 }

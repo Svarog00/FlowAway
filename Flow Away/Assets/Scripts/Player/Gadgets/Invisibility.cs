@@ -5,6 +5,17 @@ using UnityEngine;
 
 public class Invisibility : Gadget
 {
+
+    [Header("Invisibility")]
+    [SerializeField] private float _maxTime = 0f;
+    private float _curTime;
+    private float _fade = 1f;
+
+    private Material _material;
+
+    private bool _isActive;
+    private bool _isChanging;
+
     public event EventHandler<OnInvisibilityEnableEventArgs> OnInsibilityEnable;
 
     public class OnInvisibilityEnableEventArgs
@@ -17,22 +28,13 @@ public class Invisibility : Gadget
         get { return _maxTime; }
         set { _maxTime = value; }
     }
-    [Header("Invisibility")]
-    private Material material;
-
-    private bool _isActive;
-    private bool _isChanging;
-
-    [SerializeField] private float _maxTime = 0f;
-    private float _curTime;
-    private float fade = 1f;
 
     private void Start()
     {
-        CanActivate = QuestValues.Instance.GetStage(gadgetName) > 0 ? true : false;
         _isActive = false;
         _isChanging = false;
-        material = GetComponentInChildren<SpriteRenderer>().material;
+        _material = GetComponentInChildren<SpriteRenderer>().material;
+        CheckAviability();
     }
 
     // Update is called once per frame
@@ -42,7 +44,7 @@ public class Invisibility : Gadget
         {
             Disappear();
             _curTime -= Time.deltaTime;
-            GadgetManager.Timer(_curTime, _maxTime, gadgetName);
+            _gadgetManager.Timer(_curTime, _maxTime, _gadgetName);
             if(_curTime <= 0f)
             {
                 _isActive = false;
@@ -56,7 +58,7 @@ public class Invisibility : Gadget
         }    
     }
 
-    public void HandleActivate()
+    public override void HandleActivate()
     {
         if(CanActivate)
         {
@@ -82,29 +84,29 @@ public class Invisibility : Gadget
     {
         if (_isChanging == true)
         {
-            fade -= Time.deltaTime;
-            if (fade <= 0f)
+            _fade -= Time.deltaTime;
+            if (_fade <= 0f)
             {
                 _isChanging = false;
-                fade = 0f;
+                _fade = 0f;
             }
         }
-        material.SetFloat("_Fade", fade);
+        _material.SetFloat("_Fade", _fade);
     }
 
     private void Appear()
     {
         if(_isChanging)
         {
-            fade += Time.deltaTime;
-            if (fade >= 1f)
+            _fade += Time.deltaTime;
+            if (_fade >= 1f)
             {
-                fade = 1f;
+                _fade = 1f;
                 _isActive = false;
                 _isChanging = false;
                 gameObject.tag = "Player";
             }
-            material.SetFloat("_Fade", fade);
+            _material.SetFloat("_Fade", _fade);
         }
     }
 }

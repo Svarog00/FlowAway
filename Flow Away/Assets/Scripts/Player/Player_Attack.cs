@@ -7,13 +7,10 @@ public class Player_Attack : MonoBehaviour
 	public Animator animator;
 	public Transform attackPoint;
 	public LayerMask enemyLayers;
-	public Rigidbody2D rb2;
-
-	public float attackRange;
-	public float attackDelay = 0.5f;
-
-	[SerializeField]
-	private int Damage = 15;
+	
+	[SerializeField] private float _attackRange;
+	[SerializeField] private float _attackDelay = 0.5f;
+	[SerializeField] private int _damage = 15;
 	private float _delay;
 
 	// Update is called once per frame
@@ -26,20 +23,21 @@ public class Player_Attack : MonoBehaviour
 	{
 		if(_delay <= 0f)
         {
-			FindObjectOfType<AudioManager>().Play("SwordSwing");
 			//animate melee attack
 			animator.SetTrigger("Melee_Strike");
+			FindObjectOfType<AudioManager>().Play("SwordSwing");
+			
 			//detect enemies in range of attack
-			Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+			Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _attackRange, enemyLayers);
 			//damage them
 			foreach(Collider2D enemy in hitEnemies)
 			{
 				if(enemy.gameObject != gameObject && enemy.GetComponent<IDamagable>() != null && !enemy.CompareTag("Shield"))
 				{
-					enemy.GetComponent<IDamagable>().Hurt(Damage);
+					enemy.GetComponent<IDamagable>().Hurt(_damage);
 				}
 			}
-			_delay = attackDelay;
+			_delay = _attackDelay;
         }
 	}
 
@@ -57,6 +55,6 @@ public class Player_Attack : MonoBehaviour
 		{
 			return;
 		}
-		Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+		Gizmos.DrawWireSphere(attackPoint.position, _attackRange);
 	}
 }

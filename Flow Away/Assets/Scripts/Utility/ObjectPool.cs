@@ -5,13 +5,9 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public int id;
-
-    public GameObject prefab;
-
-    [SerializeField]
-    private Queue<GameObject> avialableObjects = new Queue<GameObject>();
-
+    [SerializeField] private int _id;
+    [SerializeField] private GameObject _prefab;
+    [SerializeField] private Queue<GameObject> _avialableObjects = new Queue<GameObject>();
 
     void Awake()
     {
@@ -22,25 +18,27 @@ public class ObjectPool : MonoBehaviour
     {
         for(int i = 0; i < 5; i++)
         {
-            var instanceToAdd = Instantiate(prefab);
+            var instanceToAdd = Instantiate(_prefab, transform.position, transform.rotation);
             instanceToAdd.transform.SetParent(transform);
+            instanceToAdd.GetComponent<IPoolable>().SetPool(this);
             AddToPool(instanceToAdd);
         }
-        Debug.Log($"Pool {id} has grown");
+        Debug.Log($"Pool {_id} has grown");
     }
 
     public void AddToPool(GameObject instance)
     {
+        instance.transform.SetParent(transform);
         instance.SetActive(false);
-        avialableObjects.Enqueue(instance);
+        _avialableObjects.Enqueue(instance);
     }
 
     public GameObject GetFromPool()
     {
-        if (avialableObjects.Count == 0)
+        if (_avialableObjects.Count == 0)
             GrowPool();
 
-        var instance = avialableObjects.Dequeue();
+        var instance = _avialableObjects.Dequeue();
         instance.SetActive(true);
         return instance;
     }

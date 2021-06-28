@@ -21,8 +21,8 @@ public class HotkeysSystem
 
         _hotkeyAbilities.Add(new HotkeyAbility
         {
-            gadget = _player.GetComponentInChildren<PowerShield>(),
-            acitvateAbilityAction = () => _player.GetComponentInChildren<PowerShield>().HandleActivate()
+            gadget = _player.GetComponent<PowerShield>(),
+            acitvateAbilityAction = () => _player.GetComponent<PowerShield>().HandleActivate()
         });
     }
 

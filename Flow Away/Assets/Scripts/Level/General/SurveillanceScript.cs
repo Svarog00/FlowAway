@@ -8,35 +8,40 @@ public class SurveillanceScript : MonoBehaviour
     public event EventHandler OnPlayerDetected;
 
     [Header("Base script")]
-    [SerializeField] private float range = 0f;
-    protected Vector3 playerPosition;
-    protected bool playerDetected = false;
+    [SerializeField] private float _range = 0f;
+    protected Vector3 _playerPosition;
+    protected bool _playerDetected = false;
 
     // Update is called once per frame
     protected void Update()
     {
-        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(transform.position, range);
-        foreach(Collider2D detectedObject in detectedObjects)
+        ScanArea();
+    }
+
+    void ScanArea()
+    {
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(transform.position, _range);
+        foreach (Collider2D detectedObject in detectedObjects)
         {
-            if(detectedObject.tag == "Player")
+            if (detectedObject.tag == "Player")
             {
-                playerPosition = detectedObject.transform.position;
-                playerDetected = true;
+                _playerPosition = detectedObject.transform.position;
+                _playerDetected = true;
             }
         }
 
-        if(playerDetected)
+        if (_playerDetected)
         {
-            RaycastHit2D[] objects = Physics2D.LinecastAll(transform.position, playerPosition);
-            foreach(RaycastHit2D hit in objects)
+            RaycastHit2D[] objects = Physics2D.LinecastAll(transform.position, _playerPosition);
+            foreach (RaycastHit2D hit in objects)
             {
                 if (hit.collider.tag == "Player")
                 {
                     Reaction();
-                    playerDetected = false;
+                    _playerDetected = false;
                     break;
                 }
-                else if(hit.collider.tag == "Border" || hit.collider.tag == tag)
+                else if (hit.collider.tag == "Border" || hit.collider.tag == tag)
                 {
                     continue;
                 }
@@ -47,6 +52,7 @@ public class SurveillanceScript : MonoBehaviour
             }
         }
     }
+
     //Start spawn of enemies
     protected virtual void Reaction()
     {
@@ -55,6 +61,6 @@ public class SurveillanceScript : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
 }

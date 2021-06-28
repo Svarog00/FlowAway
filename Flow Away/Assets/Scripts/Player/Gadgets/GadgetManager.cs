@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+//Class for notifying observers of state of gadgets
 public class GadgetManager : MonoBehaviour
 {
     //Cooldown event for gadget icons
@@ -27,6 +27,8 @@ public class GadgetManager : MonoBehaviour
 
     public void ActivateGadget(string gadgetName)
     {
+        QuestValues.Instance.Add(gadgetName);
+        QuestValues.Instance.SetStage(gadgetName, 1);
         OnGadgetActivate?.Invoke(this, new OnGadgetActivateEventArgs { name = gadgetName });
     }
 }

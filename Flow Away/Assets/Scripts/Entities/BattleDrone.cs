@@ -36,7 +36,7 @@ public class BattleDrone : Enemy
                                                                                                                  //damage them
             foreach (Collider2D enemy in hitEnemies)
             {
-                if (enemy.CompareTag("Player"))
+                if (enemy.tag.Contains("Player"))
                 {
                     playerHP.Hurt(_damage);
                     playerPosition.AddForce(-direction*_pushForce);

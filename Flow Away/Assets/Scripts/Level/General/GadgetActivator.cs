@@ -24,7 +24,7 @@ public class GadgetActivator : MonoBehaviour
         {
             QuestValues.Instance.SetStage(GadgetName, 1);
             _gadgetManager.ActivateGadget(GadgetName);
-            Debug.Log($"{GadgetName} module quest given");
+            Debug.Log($"{GadgetName} module quest updated");
         }
     }
 }

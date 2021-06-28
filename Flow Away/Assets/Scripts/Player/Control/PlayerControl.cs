@@ -6,19 +6,18 @@ public class PlayerControl : MonoBehaviour
 {
     public WeaponScript weapon;
 
+    private Player_Attack _playerAttack;
+    private Player_Movement _playerMovement;
+    private Player_Healing _playerHealing;
+
     public bool CanAttack { get; set; }
     public bool CanMove { get; set; }
-
-    private Player_Attack player_Attack;
-    private Player_Movement player_Movement;
-    private Player_Healing player_Healing;
-
     // Start is called before the first frame update
     void Start()
     {
-        player_Movement = GetComponent<Player_Movement>();
-        player_Healing = GetComponent<Player_Healing>();
-        player_Attack = GetComponent<Player_Attack>();
+        _playerMovement = GetComponent<Player_Movement>();
+        _playerHealing = GetComponent<Player_Healing>();
+        _playerAttack = GetComponent<Player_Attack>();
         CanAttack = true;
         CanMove = true;
     }
@@ -36,7 +35,7 @@ public class PlayerControl : MonoBehaviour
     {
         if(CanMove)
         {
-            player_Movement.HandleMove(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), Input.GetButtonDown("Dash"));
+            _playerMovement.HandleMove(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), Input.GetButtonDown("Dash"));
         }
     }
 
@@ -44,7 +43,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetButtonDown("Heal"))
         {
-            player_Healing.HandleHeal();
+            _playerHealing.HandleHeal();
         }
     }
 
@@ -52,7 +51,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetButtonDown("MeleeStrike") && CanAttack)
         {
-            player_Attack.Melee();
+            _playerAttack.Melee();
         }
     }
 

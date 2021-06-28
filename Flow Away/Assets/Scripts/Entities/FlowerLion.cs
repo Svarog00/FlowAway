@@ -24,7 +24,7 @@ public class FlowerLion : Enemy
 			//damage them
 			foreach (Collider2D enemy in hitEnemies)
 			{
-				if (enemy.tag == "Player")
+				if (enemy.tag.Contains("Player"))
 				{
 					playerHP.Hurt(_damage);
 				}

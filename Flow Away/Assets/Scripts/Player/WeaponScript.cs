@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
@@ -7,16 +7,30 @@ public class WeaponScript : MonoBehaviour
     public GameObject shotPrefab;
     public Transform firePoint;
     public Transform player;
+    public ObjectPool objectPool;
+    
+    [SerializeField] private int _damage;
+    [SerializeField] private int _shotsCount;
+    [SerializeField] private float _shootDelay = 0.75f;
+    [SerializeField] private float _reloadTime = 2f;
 
-    public float shootDelay = 1f;
+    private int _curShotsCount;
+    private float _curShootCooldown;
+    private float _curReloadTime;
+    private BulletScript _bulletInstance;
 
-    [SerializeField]
-    private float _shootCooldown;
+    [SerializeField] private Timer _cooldownTimer;
+    [SerializeField] private Timer _reloadTimer;
 
     private void Start()
     {
-        _shootCooldown = 0f;
+        _curShotsCount = _shotsCount;
+        _curReloadTime = 0f;
+        _curShootCooldown = 0f;
         gameObject.SetActive(false);
+
+        _cooldownTimer.Action = WeaponCooldowned;
+        _reloadTimer.Action = WeaponReloaded;
     }
 
     // Update is called once per frame
@@ -33,16 +47,28 @@ public class WeaponScript : MonoBehaviour
         if (CanAttack())
         {
             //создание новго выстрела
-            GameObject shotTransform = Instantiate(shotPrefab, firePoint.position, firePoint.rotation);
+            //GameObject shotTransform = Instantiate(shotPrefab, firePoint.position, firePoint.rotation);
+            GameObject shotTransform = objectPool.GetFromPool();
             //перемещение
+            shotTransform.transform.position = firePoint.position;
+            shotTransform.transform.rotation = firePoint.rotation;
+            shotTransform.transform.parent = null;
             shotTransform.GetComponent<Rigidbody2D>().AddForce(firePoint.right * 5, ForceMode2D.Impulse);
-            shotTransform.GetComponent<BulletScript>().shooter = player.gameObject;
+            _bulletInstance = shotTransform.GetComponent<BulletScript>();
+            _bulletInstance.shooter = player.gameObject;
+            _bulletInstance.Damage = _damage;
+
             FindObjectOfType<AudioManager>().Play("Shot");
+            _curShootCooldown = _shootDelay;
+            _cooldownTimer.SetTime(_shootDelay);
 
-            _shootCooldown = shootDelay;
-            StartCoroutine(ReloadWeapon());
+            _curReloadTime = _reloadTime;
+            _reloadTimer.SetTime(_reloadTime);
+
+
+            _curShotsCount--;
+            Debug.Log($"After shot {_curShotsCount}");
         }
-
     }
 
     //Направление в соответствии с курсором
@@ -65,24 +91,16 @@ public class WeaponScript : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    private IEnumerator ReloadWeapon()
+    void WeaponCooldowned()
     {
-        while(true)
-        {
-            _shootCooldown -= Time.deltaTime;
-            if (_shootCooldown <= 0) 
-            {
-                FindObjectOfType<AudioManager>().Play("WeaponReloaded");
-                gameObject.SetActive(false);
-                yield break;
-            }
-            yield return null;
-        }
-
+        _curShootCooldown = 0f;
+        gameObject.SetActive(false);
+    }
+    void WeaponReloaded()
+    {
+        FindObjectOfType<AudioManager>().Play("WeaponReloaded");
+        _curShotsCount = _shotsCount;
     }
 
-    private bool CanAttack()
-    {
-        return _shootCooldown <= 0f;
-    }
+    private bool CanAttack() => _curShootCooldown <= 0f && _curShotsCount > 0;
 }

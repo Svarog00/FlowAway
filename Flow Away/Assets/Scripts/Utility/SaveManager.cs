@@ -8,12 +8,10 @@ using UnityEngine.SceneManagement;
 public class SaveManager : MonoBehaviour
 {
     public SaveLoadSystem saveLoadSystem;
-    public Player_Health PlayerHp;
-    public Transform player;
-
 
     public void Awake()
     {
+        //Флаг LevelMove ставится в Exit.cs при переходе со сцены на сцену
         if (PlayerPrefs.GetInt("LevelMove") == 1) //Если это переход с другой сцены, то загружаем данные из сейва, который был сделан до перехода на эту сцену
         {
             Continue(SceneManager.GetActiveScene().name);

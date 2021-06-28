@@ -136,6 +136,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         }
     }
 
+    #region Reaction
     private void ReactOnPlayer()
     {
         EstimateDistance();//Рассчет дистанции для дальнейших действий
@@ -160,7 +161,9 @@ public abstract class Enemy : MonoBehaviour, IDamagable
             }
         }
     }
+    #endregion
 
+    #region Patroling
     private void Patrol()
     {
         if (patrolSpots.Length > 0)
@@ -182,6 +185,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         else
             _currentSpeed = 0f;
     }
+    #endregion
 
     void Move()
     {
@@ -191,6 +195,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         }
     }
 
+    #region Chasing
     protected void Chase()
     {
         _currentSpeed = _maxSpeed; //Увеличиваем скорость до максимальной
@@ -213,6 +218,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
             Leave();
         }
     }
+    #endregion
 
     protected virtual void Attack() { }
 

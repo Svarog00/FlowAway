@@ -32,7 +32,7 @@ public class Observer : SurveillanceScript, IDamagable
 
     Vector2 GetDirection()
     {
-        _headingToPlayer = transform.position - playerPosition; //направленный вектор к игроку / a vector to the player
+        _headingToPlayer = transform.position - _playerPosition; //направленный вектор к игроку / a vector to the player
         _distanceToPlayer = _headingToPlayer.magnitude; //длина вектора / lenght of the vector
         Vector2 direction = _headingToPlayer / _distanceToPlayer; //direction to player
         return direction;

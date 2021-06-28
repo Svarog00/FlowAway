@@ -18,7 +18,7 @@ public class Ghoul : Enemy
 		Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackDistance, playerLayer); //find the player in circle                                                                                                      //damage him
 		foreach (Collider2D enemy in hitEnemies)
 		{
-			if (enemy.tag == "Player")
+			if (enemy.tag.Contains("Player"))
 			{
 				playerHP.Hurt(_damage);
 			}

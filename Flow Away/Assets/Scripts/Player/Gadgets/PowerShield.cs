@@ -5,6 +5,7 @@ using System;
 
 public class PowerShield : Gadget
 {
+    [Header("Power Shield")]
     [SerializeField] private PowerShieldInstance shieldInstance;
 
     private bool _isActve;
@@ -16,12 +17,12 @@ public class PowerShield : Gadget
 
     private void Start()
     {
-        CanActivate = QuestValues.Instance.GetStage(gadgetName) > 0 ? true : false;
-
         _isActve = false;
         _player = gameObject;
 
         shieldInstance.OnShieldDestroyed += ShieldInstance_OnShieldDestroyed;
+
+        CheckAviability();
     }
 
     private void ShieldInstance_OnShieldDestroyed(object sender, EventArgs e)
@@ -35,7 +36,7 @@ public class PowerShield : Gadget
         Cooldown();
     }
 
-    public void HandleActivate()
+    public override void HandleActivate()
     {
         if(_curTime <= 0 && CanActivate)
         {
@@ -53,7 +54,7 @@ public class PowerShield : Gadget
         if (_curTime > 0f)
         {
             _curTime -= Time.deltaTime;
-            GadgetManager.Timer(_curTime, _maxTime, gadgetName);
+            _gadgetManager.Timer(_curTime, _maxTime, _gadgetName);
         }
     }
 }

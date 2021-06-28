@@ -6,35 +6,46 @@ using UnityEngine.UI;
 
 public class IconController : MonoBehaviour
 {
-	public string gadgetName;
-
-	private Image _image;
+	[SerializeField] private string _gadgetName;
+	[SerializeField] private GameObject _visual;
+	[SerializeField] private Image _image;
+	private bool _canActivate = false;
 
 	private bool _isFilling;
 
 	private void Start()
 	{
-		_image = GetComponent<Image>();
+		_canActivate = QuestValues.Instance.GetStage(_gadgetName) > 0;
+		_visual.SetActive(_canActivate); 
+		
 		GadgetManager gadget = FindObjectOfType<GadgetManager>();
-		Player_Health player_Health = FindObjectOfType<Player_Health>();
-        player_Health.OnDeath += Player_Health_OnDeath;
-		gadget.OnGadgetCooldown += OnGadgetCooldown;
+		if(_canActivate)
+			gadget.OnGadgetCooldown += OnGadgetCooldown;
+		else
+			gadget.OnGadgetActivate += Gadget_OnGadgetActivate;
+
 		_isFilling = false;
 	}
-
-    private void Player_Health_OnDeath(object sender, EventArgs e)
+	//Icon should appear after binded gadget activated
+    private void Gadget_OnGadgetActivate(object sender, GadgetManager.OnGadgetActivateEventArgs e)
     {
-        
+		if(_gadgetName == e.name)
+        {
+			_visual.SetActive(true);
+			GadgetManager gadget = FindObjectOfType<GadgetManager>();
+			gadget.OnGadgetCooldown += OnGadgetCooldown;
+			gadget.OnGadgetActivate -= Gadget_OnGadgetActivate;
+		}
     }
-
+	//Changing icon appearance due to timer
     private void OnGadgetCooldown(object sender, GadgetManager.OnGadgetCooldownEventArgs e)
 	{
-		if (e.name == gadgetName && !_isFilling)
+		if (e.name == _gadgetName && !_isFilling)
 		{
 			_image.fillAmount = 0;
 			_isFilling = true;
 		}
-		else if(e.name == gadgetName && _isFilling)
+		else if(e.name == _gadgetName && _isFilling)
         {
 			ReturnNormalValue(e.curTime);
 			if (_image.fillAmount == 1)

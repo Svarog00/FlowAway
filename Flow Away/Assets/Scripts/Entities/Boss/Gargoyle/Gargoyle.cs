@@ -198,7 +198,7 @@ public class Gargoyle : Boss
 		//damage them
 		foreach (Collider2D enemy in hitEnemies)
 		{
-			if (enemy.tag == "Player" && chill <= 0)
+			if (enemy.tag.Contains("Player") && chill <= 0)
 			{
 				_playerHealth.Hurt(_damage);
 				break;

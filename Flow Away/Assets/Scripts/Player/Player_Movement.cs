@@ -10,13 +10,13 @@ public class Player_Movement : MonoBehaviour
 
     public LayerMask ObstacleLayer;
 
-    public int maxDashCount;
+    [SerializeField] private int _maxDashCount;
 
-    public float dashForce;
-    public float dashTimer;
-    public float dashDistance;
+    [SerializeField] private float _dashForce;
+    [SerializeField] private float _dashTimer;
+    [SerializeField] private float _dashDistance;
 
-    public float movementSpeed = 5f;
+    [SerializeField] private float _movementSpeed = 5f;
 
     private GadgetManager _gadgetManager;
 
@@ -33,36 +33,33 @@ public class Player_Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb2 = GetComponent<Rigidbody2D>();
+        rb2 = GetComponentInParent<Rigidbody2D>();
         _gadgetManager = FindObjectOfType<GadgetManager>();
+        _gadgetManager.ActivateGadget("Dash");
         ObstacleLayer = LayerMask.GetMask("Obstacles");
-        _curDashCounter = maxDashCount;
+        _curDashCounter = _maxDashCount;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //HandleMove();
         if (_curDashTimer > 0f)
         {
             _curDashTimer -= Time.deltaTime;
-            _gadgetManager.Timer(_curDashTimer, dashTimer, "Dash");
+            _gadgetManager.Timer(_curDashTimer, _dashTimer, "Dash");
             if (_curDashTimer <= 0f)
-                _curDashCounter = maxDashCount;
+                _curDashCounter = _maxDashCount;
         }
     }
 
     private void FixedUpdate()
     {
-        rb2.MovePosition(rb2.position + _movement * movementSpeed * Time.deltaTime);
+        rb2.MovePosition(rb2.position + _movement * _movementSpeed * Time.deltaTime);
         Dash();
     }
 
     public void HandleMove(float x, float y, bool dash)
     {
-        //Get input to move
-        /*_movement.x = Input.GetAxisRaw("Horizontal");
-        _movement.y = Input.GetAxisRaw("Vertical");*/
         _movement.x = x;
         _movement.y = y;
 
@@ -77,7 +74,7 @@ public class Player_Movement : MonoBehaviour
         {
             //Update timer
             //minus one dash
-            _curDashTimer = dashTimer;
+            _curDashTimer = _dashTimer;
             _curDashCounter--;
             _isPressedDash = true;
             FindObjectOfType<AudioManager>().Play("PlayerDashSound");
@@ -88,7 +85,7 @@ public class Player_Movement : MonoBehaviour
     {
         if (_isPressedDash)
         {
-            Dash(dashDistance, _direction);
+            Dash(_dashDistance, _direction);
 
             if (_isDashing)
             {
@@ -102,10 +99,10 @@ public class Player_Movement : MonoBehaviour
                 }
                 else
                 {
-                    rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, dashForce * Time.deltaTime)); //дэш к точке
+                    rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime)); //дэш к точке
                 }
             }
-            CameraShake.Instance.ShakeCamera(1f, .1f);
+            //CameraShake.Instance.ShakeCamera(1f, .1f);
             _isPressedDash = false;
         }
     }
