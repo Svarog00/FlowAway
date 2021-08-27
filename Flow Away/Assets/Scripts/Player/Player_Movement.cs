@@ -50,6 +50,8 @@ public class Player_Movement : MonoBehaviour
             if (_curDashTimer <= 0f)
                 _curDashCounter = _maxDashCount;
         }
+        //transform.position += transform.right * _movement.x * Time.deltaTime * _movementSpeed;
+        //transform.position += transform.up * _movement.y * Time.deltaTime * _movementSpeed;
     }
 
     private void FixedUpdate()

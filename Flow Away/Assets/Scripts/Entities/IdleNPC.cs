@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IdleNPC : MonoBehaviour
+public class IdleNPC : MonoBehaviour, IDamagable
 {
     public DialogSystemNew dialog;
 
     private TextScript _note;
-    private PlayerControl playerControl;
+    private PlayerControl _playerControl;
 
     private bool _isNearby;
 
@@ -22,28 +22,28 @@ public class IdleNPC : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact") && _isNearby)
         {
-            playerControl.CanAttack = false;
+            _playerControl.CanAttack = false;
             dialog.showDialog = true;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(collision.tag.Contains("Player"))
         {
             _note.Appear("Press E to talk.", 2f);
             _isNearby = true;
 
-            if (playerControl == null) playerControl = collision.GetComponent<PlayerControl>();
+            if (_playerControl == null) _playerControl = collision.GetComponent<PlayerControl>();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag.Contains("Player"))
         {
             dialog.showDialog = false;
-            playerControl.CanAttack = true;
+            _playerControl.CanAttack = true;
             _note.Disappear(2f);
             _isNearby = false;
         }
