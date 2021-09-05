@@ -50,13 +50,13 @@ public class Player_Movement : MonoBehaviour
             if (_curDashTimer <= 0f)
                 _curDashCounter = _maxDashCount;
         }
-        //transform.position += transform.right * _movement.x * Time.deltaTime * _movementSpeed;
-        //transform.position += transform.up * _movement.y * Time.deltaTime * _movementSpeed;
+        transform.position += transform.right * _movement.x * Time.deltaTime * _movementSpeed;
+        transform.position += transform.up * _movement.y * Time.deltaTime * _movementSpeed;
     }
 
     private void FixedUpdate()
     {
-        rb2.MovePosition(rb2.position + _movement * _movementSpeed * Time.deltaTime);
+        //rb2.MovePosition(rb2.position + _movement * _movementSpeed * Time.deltaTime);
         Dash();
     }
 
@@ -101,7 +101,8 @@ public class Player_Movement : MonoBehaviour
                 }
                 else
                 {
-                    rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime)); //дэш к точке
+                    transform.position = Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime);
+                    //rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime)); //дэш к точке
                 }
             }
             //CameraShake.Instance.ShakeCamera(1f, .1f);
@@ -115,7 +116,7 @@ public class Player_Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, dashDistance, ObstacleLayer); //Выстрел лучом на дистанцию дэша по слою препятствий
         if(hit)
         {
-            _dashTarget = transform.position + (Vector3)((direction * dashDistance) * hit.fraction); //Если попал луч, то точка назначения - место попадания
+            _dashTarget = transform.position + (Vector3)(direction * dashDistance * hit.fraction); //Если попал луч, то точка назначения - место попадания
         }
         else
         {

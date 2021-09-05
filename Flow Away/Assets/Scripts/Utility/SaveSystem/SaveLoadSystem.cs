@@ -6,16 +6,6 @@ using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-[System.Serializable]
-public class SavedData
-{
-	public float x, y;
-	public int health;
-	public string currentScene;
-	public int medkitCount;
-	public List<QuestStages> questValues;
-}
-
 public class SaveLoadSystem : MonoBehaviour
 {
 	public Transform PlayerPos;
@@ -24,7 +14,7 @@ public class SaveLoadSystem : MonoBehaviour
 
 	public void SaveData(string name) //Параметр название сейва для разделения сохранений на чекпоинты и переходы между сценами
 	{
-		SavedData tmp = new SavedData
+		SavedData saveData = new SavedData
 		{
 			x = PlayerPos.position.x,
 			y = PlayerPos.position.y,
@@ -40,10 +30,10 @@ public class SaveLoadSystem : MonoBehaviour
 
 		FileStream fs = new FileStream(Application.dataPath + "/Saves/" + name + ".sv", FileMode.Create); //open stream to create a save file
 		BinaryFormatter formatter = new BinaryFormatter();
-		formatter.Serialize(fs, tmp); //serialize savedData in fs file
+		formatter.Serialize(fs, saveData); //serialize savedData in fs file
 		fs.Close(); //close file stream
 
-		Debug.Log("Saved: HP - " + tmp.health + "; position - " + tmp.x + " " + tmp.y + "; scene - " + tmp.currentScene);
+		Debug.Log("Saved: HP - " + saveData.health + "; position - " + saveData.x + " " + saveData.y + "; scene - " + saveData.currentScene);
 
 	}
 

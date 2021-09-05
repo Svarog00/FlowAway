@@ -22,11 +22,6 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private int _weight = 0; //количество слотов, которые будут заниматься противником при атаке по игроку
     [SerializeField] private float _agressionDistance; //Дистанция на которой происходит агр
 
-    /*[SerializeField] protected int _damage;
-    [SerializeField] protected float _chillTime = 1f;
-    [SerializeField] private float _attackDistance; //Дистанция на которой может совершить атаку
-    [SerializeField] private float _curChillTime = 0; //pause between attacks*/
-
     protected bool _canAttack;
     protected float _distanceToPlayer;
     protected Rigidbody2D _playerPosition;
@@ -38,7 +33,7 @@ public class EnemyBehavior : MonoBehaviour
     public Transform[] patrolSpots;
 
     private float _curWaitTime;
-    private int _randomSpot;
+    private int _randomSpot = 0;
     [SerializeField] private float _waitTime = 0f;
 
     // Start is called before the first frame update
@@ -105,8 +100,6 @@ public class EnemyBehavior : MonoBehaviour
         ScanArea();
         if (patrolSpots.Length > 0)
         {
-            //_enemyMovement.SetDirection(_direction);
-            _enemyMovement.CanMove = false;
             if (Vector2.Distance(transform.position, patrolSpots[_randomSpot].position) <= 0.6f)
             {
                 _enemyMovement.CanMove = false;
@@ -114,10 +107,18 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     _curWaitTime = _waitTime;
                     _randomSpot = Random.Range(0, patrolSpots.Length);
-                    //_enemyMovement.SetDirection(_direction);
+                    _enemyMovement.SetPoint(patrolSpots[_randomSpot].position);
                     _enemyMovement.CanMove = true;
                 }
-                else _curWaitTime -= Time.deltaTime;
+                else
+                {
+                    _curWaitTime -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                _enemyMovement.SetPoint(patrolSpots[_randomSpot].position);
+                _enemyMovement.CanMove = true;
             }
         }
         else

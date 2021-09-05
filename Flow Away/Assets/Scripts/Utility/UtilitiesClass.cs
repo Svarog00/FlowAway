@@ -110,7 +110,7 @@ public static class UtilitiesClass
         return new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
     }
 
-    public static Vector3 GetVectorFromAngle(int angle)
+    public static Vector3 GetVectorFromAngle(float angle)
     {
         // angle = 0 -> 360
         float angleRad = angle * (Mathf.PI / 180f);

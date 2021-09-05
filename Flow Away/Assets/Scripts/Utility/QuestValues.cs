@@ -5,7 +5,7 @@ using UnityEngine;
 public class QuestValues : MonoBehaviour
 {
 	public static QuestValues Instance { get; private set; }
-	[SerializeField] private List<QuestStages> quests = new List<QuestStages>();
+	[SerializeField] private List<QuestStages> _quests = new List<QuestStages>();
 
 	private void Awake()
 	{
@@ -22,15 +22,15 @@ public class QuestValues : MonoBehaviour
 
 	public void Add(string name)
 	{
-		if (!quests.Contains(new QuestStages { name = name }))
-			quests.Add(new QuestStages { name = name, stage = 0 });
+		if (!_quests.Contains(new QuestStages { name = name }))
+			_quests.Add(new QuestStages { name = name, stage = 0 });
 	}
 
 	public void SetStage(string name, int stage)
 	{
-		if (quests.Contains(new QuestStages { name = name }))
+		if (_quests.Contains(new QuestStages { name = name }))
         {
-			QuestStages quest = quests.Find(questToFind => questToFind.name.Equals(name));
+			QuestStages quest = _quests.Find(questToFind => questToFind.name.Equals(name));
 			quest.stage = stage;
         }
 		else
@@ -43,15 +43,15 @@ public class QuestValues : MonoBehaviour
 	{
 		//Если функция вызывается при первой загрузке диалога, то добавляется новый квест в список, в ином случае - возвращается -1 и в консоль выводится сообщение об ошибке.
 		//При вызове функции не из диалога НЕ ПЕРЕДАВАТЬ ВТОРОЙ АРГУМЕНТ
-		if (quests.Contains(new QuestStages { name = name }))
+		if (_quests.Contains(new QuestStages { name = name }))
 		{
-			QuestStages quest = quests.Find(questToFind => questToFind.name.Equals(name));
+			QuestStages quest = _quests.Find(questToFind => questToFind.name.Equals(name));
 			return quest == null ? -1 : quest.stage;
 		}
 		else if (isInit)
 		{
 			Add(name);
-			QuestStages quest = quests.Find(questToFind => questToFind.name.Equals(name));
+			QuestStages quest = _quests.Find(questToFind => questToFind.name.Equals(name));
 			return quest == null ? -1 : quest.stage;
 		}
 		else
@@ -63,13 +63,13 @@ public class QuestValues : MonoBehaviour
 
 	public void Clear()
 	{
-		quests.Clear();
+		_quests.Clear();
 	}
 
 	public List<QuestStages> QuestList
 	{
-		get { return quests; }
-		set { quests = value;  }
+		get { return _quests; }
+		set { _quests = value;  }
 	}
 }
 
@@ -84,7 +84,7 @@ public class QuestStages : IEquatable<QuestStages>
 		if (other == null)
 			return false;
 		else 
-			return this.name.Equals(other.name);
+			return name.Equals(other.name);
 	}
 }
 

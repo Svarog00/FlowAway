@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df4ba90c0ad35544b2d2e17258a0e9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3.7
+  _range: 0
   shotPrefab: {fileID: 3351355328254912362, guid: 73824262519c6c042959537b64574118,
     type: 3}
   firePoint: {fileID: 2743500786541023489}
@@ -147,10 +147,11 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

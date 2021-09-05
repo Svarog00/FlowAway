@@ -41,12 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5408356200644773167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b425272c7d7df05479dd0238370dd60f, type: 3}
+  m_Script: {fileID: 11500000, guid: e7278d966a1a7bb499e44fa98dfa9ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveLoadSystem: {fileID: 5408356200644773160}
-  PlayerHp: {fileID: 0}
-  player: {fileID: 0}
+  PlayerPos: {fileID: 0}
+  PlayerHP: {fileID: 0}
+  PlayerMedkits: {fileID: 0}
 --- !u!114 &5408356200644773160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,9 +56,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5408356200644773167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7682a3816f12b3458851d0db14485ad, type: 3}
+  m_Script: {fileID: 11500000, guid: d8ed438bca6d3614a909d52fa01ec9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPos: {fileID: 0}
-  PlayerHP: {fileID: 0}
-  PlayerMedkits: {fileID: 0}
+  saveLoadSystem: {fileID: 5408356200644773166}

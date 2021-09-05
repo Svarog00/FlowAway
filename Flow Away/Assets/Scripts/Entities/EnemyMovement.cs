@@ -18,8 +18,14 @@ public class EnemyMovement : MonoBehaviour
         set 
         { 
             _canMove = value;
-            if (_canMove) _currentSpeed = _maxSpeed;
-            else _currentSpeed = 0;
+            if (_canMove)
+            {
+                _currentSpeed = _maxSpeed;
+            }
+            else
+            {
+                _currentSpeed = 0;
+            }
         }
     }
 
@@ -32,22 +38,23 @@ public class EnemyMovement : MonoBehaviour
     private void Update()
     {
         _animator.SetFloat("Speed", _currentSpeed);
+        Move();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+
     }
 
     private void Move()
     {
         if (_canMove)
         {
-            //_rb2.MovePosition(_rb2.position - _direction * _maxSpeed * Time.deltaTime); //movement
             transform.position -= transform.right * _direction.x * Time.deltaTime * _maxSpeed;
             transform.position -= transform.up * _direction.y * Time.deltaTime * _maxSpeed;
         }
+
     }
 
     public void SetDirection(Vector2 direction)
@@ -61,6 +68,12 @@ public class EnemyMovement : MonoBehaviour
         {
             Flip();
         }
+    }
+
+    public void SetPoint(Vector3 point)
+    {
+        _direction = (transform.position - point) / Vector2.Distance(transform.position, point);
+        SetDirection(_direction);
     }
 
     private void Flip() //turn left or right depends on player position
