@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _currentSpeed;
     [SerializeField] private float _maxSpeed;
 
+    private Rigidbody2D _rb2;
     private Vector2 _direction;
     private bool _canMove;
     private bool _faceRight;
@@ -32,27 +33,27 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _rb2 = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         _animator.SetFloat("Speed", _currentSpeed);
-        Move();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        Move();
     }
 
     private void Move()
     {
         if (_canMove)
         {
-            transform.position -= transform.right * _direction.x * Time.deltaTime * _maxSpeed;
-            transform.position -= transform.up * _direction.y * Time.deltaTime * _maxSpeed;
+            /*transform.position -= transform.right * _direction.x * Time.deltaTime * _maxSpeed;
+            transform.position -= transform.up * _direction.y * Time.deltaTime * _maxSpeed;*/
+            _rb2.MovePosition(_rb2.position - _direction * _maxSpeed * Time.deltaTime); //movement
         }
 
     }
