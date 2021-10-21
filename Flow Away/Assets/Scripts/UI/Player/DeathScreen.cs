@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class DeathScreen : MonoBehaviour
 {
     public SaveLoadSystem saveLoadSystem;
-    public GameObject player;
     public GameObject visual;
 
     private void Start()

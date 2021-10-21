@@ -51,8 +51,6 @@ public class EnemyMovement : MonoBehaviour
     {
         if (_canMove)
         {
-            /*transform.position -= transform.right * _direction.x * Time.deltaTime * _maxSpeed;
-            transform.position -= transform.up * _direction.y * Time.deltaTime * _maxSpeed;*/
             _rb2.MovePosition(_rb2.position - _direction * _maxSpeed * Time.deltaTime); //movement
         }
 

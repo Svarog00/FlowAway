@@ -10,9 +10,9 @@ public class LionAttack : EnemyAttack
 
 	public override void Attack()
 	{
-		if(_curChillTime <= 0)
+		if(curChillTime <= 0)
         {
-			if (_distanceToPlayer <= _meleeRange)
+			if (distanceToPlayer <= _meleeRange)
 			{
 				FindObjectOfType<AudioManager>().Play("Roar");
 				_animator.SetTrigger("Attack"); //animate
@@ -25,15 +25,15 @@ public class LionAttack : EnemyAttack
 					}
 				}
 			}
-			else if (_distanceToPlayer > _meleeRange)
+			else if (distanceToPlayer > _meleeRange)
 			{
 				GameObject shotTransform = Instantiate(_shotPrefab, _firePoint.position, _firePoint.rotation.normalized);
-				shotTransform.GetComponent<ShotScript>().speed = new Vector2(5, 5) * -(_vectorToPlayer / _distanceToPlayer);
+				shotTransform.GetComponent<ShotScript>().speed = new Vector2(5, 5) * -(vectorToPlayer / distanceToPlayer);
 				shotTransform.GetComponent<ShotScript>().shooter = gameObject;
 				FindObjectOfType<AudioManager>().Play("Shot");
 			}
 
-			_curChillTime = _chillTime; //Pause between attacks
+			curChillTime = chillTime; //Pause between attacks
 			StartCoroutine(Cooldown());
 		}
 	}

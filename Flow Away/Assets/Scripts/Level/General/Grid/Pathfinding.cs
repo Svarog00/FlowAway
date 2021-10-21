@@ -12,9 +12,10 @@ public class Pathfinding
     private List<PathNode> _openList;
     private List<PathNode> _closedList;
 
-    public Pathfinding(int width, int height)
+    public Pathfinding(int width, int height, float cellSize, Vector3 origin)
     {
-        _grid = new GridMesh<PathNode>(width, height, 1f, Vector3.zero, (GridMesh<PathNode> g, int x, int y) => new PathNode(g, x, y));
+        _grid = new GridMesh<PathNode>(width, height, cellSize, origin, //Width, height, cell size and start point
+            (GridMesh<PathNode> grid, int x, int y) => new PathNode(grid, x, y)); //Constructor func for TObject in gridMesh
     }
 
     public List<Vector3> FindPath(Vector3 startPosition, Vector3 targetPosition)

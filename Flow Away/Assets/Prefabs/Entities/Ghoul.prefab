@@ -323,8 +323,8 @@ MonoBehaviour:
   _attackPoint: {fileID: 4308540266996735725}
   _animator: {fileID: 1518276107706576193}
   _damage: 10
-  _attackDistance: 0.15
-  _chillTime: 0.7
+  attackDistance: 0.24
+  chillTime: 0.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 4294967295

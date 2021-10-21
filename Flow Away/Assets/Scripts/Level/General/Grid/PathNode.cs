@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class PathNode
 {
+    private const string OBSTACLE_LAYER_MASK = "Obstacles";
+
     private int _x;
     private int _y;
     private GridMesh<PathNode> _grid;
@@ -59,7 +62,7 @@ public class PathNode
         _grid = grid;
         _x = x;
         _y = y;
-        _isWalkable = true;
+        _isWalkable = !Physics2D.OverlapCircle(_grid.GetWorldPosition(x, y) + Vector3.one * _grid.CellSize, _grid.CellSize/2, LayerMask.GetMask(OBSTACLE_LAYER_MASK));
     }
 
     public void CalculateFCost()
@@ -69,6 +72,8 @@ public class PathNode
 
     public override string ToString()
     {
-        return _x + " " + _y;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.Append(_isWalkable);
+        return stringBuilder.ToString();
     }
 }

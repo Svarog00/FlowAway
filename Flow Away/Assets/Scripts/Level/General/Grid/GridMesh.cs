@@ -20,7 +20,7 @@ public class GridMesh<TGridObject>
     private float _cellSize;
     private Vector3 _originPosition;
 
-    private TextMesh[,] debugTextMeshes;
+    private TextMesh[,] _debugTextMeshes;
 
     public int Width
     {
@@ -57,13 +57,13 @@ public class GridMesh<TGridObject>
         _showDebug = true;
         if (_showDebug)
         {
-            debugTextMeshes = new TextMesh[width, height];
+            _debugTextMeshes = new TextMesh[width, height];
             DrawMesh();
         }
 
     }
 
-    private Vector3 GetWorldPosition(int x, int y)
+    public Vector3 GetWorldPosition(int x, int y)
     {
         return new Vector3(x, y) * _cellSize + _originPosition;
     }
@@ -80,7 +80,7 @@ public class GridMesh<TGridObject>
         {
             for (int j = 0; j < _gridArray.GetLength(1); j++)
             {
-                debugTextMeshes[i,j] = UtilitiesClass.CreateWorldText(_gridArray[i, j]?.ToString(), null, GetWorldPosition(i, j) + new Vector3(_cellSize, _cellSize) * .5f, 5, Color.white, TextAnchor.MiddleCenter, TextAlignment.Center);
+                _debugTextMeshes[i,j] = UtilitiesClass.CreateWorldText(_gridArray[i, j]?.ToString(), null, GetWorldPosition(i, j) + new Vector3(_cellSize, _cellSize) * .5f, 5, Color.white, TextAnchor.MiddleCenter, TextAlignment.Center);
                 Debug.DrawLine(GetWorldPosition(i, j), GetWorldPosition(i, j + 1), Color.white, 100f);
                 Debug.DrawLine(GetWorldPosition(i, j), GetWorldPosition(i + 1, j), Color.white, 100f);
             }
@@ -89,7 +89,7 @@ public class GridMesh<TGridObject>
 
             OnValueChanged += (object sender, OnValueChangedEventArgs eventArgs) =>
             {
-                debugTextMeshes[eventArgs.x, eventArgs.y].text = _gridArray[eventArgs.x, eventArgs.y]?.ToString();
+                _debugTextMeshes[eventArgs.x, eventArgs.y].text = _gridArray[eventArgs.x, eventArgs.y]?.ToString();
             };
         }
     }
@@ -99,7 +99,7 @@ public class GridMesh<TGridObject>
         if(x >= 0 && y >= 0 && x < _width && y < _height)
         {
             _gridArray[x, y] = value;
-            debugTextMeshes[x, y].text = _gridArray[x, y]?.ToString();
+            _debugTextMeshes[x, y].text = _gridArray[x, y]?.ToString();
             OnValueChanged?.Invoke(this, new OnValueChangedEventArgs { x = x, y = y });
         }  
     }

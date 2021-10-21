@@ -7,28 +7,28 @@ public abstract class EnemyAttack : MonoBehaviour
 	[SerializeField] protected Transform _attackPoint = null;
 	[SerializeField] protected Animator _animator;
 	[SerializeField] protected int _damage;
-	[SerializeField] protected float _attackDistance;
-	[SerializeField] protected float _chillTime;
+	[SerializeField] protected float attackDistance;
+	[SerializeField] protected float chillTime;
 
-	protected float _curChillTime;
-	protected float _distanceToPlayer;
-	protected Vector2 _vectorToPlayer; 
+	protected float curChillTime;
+	protected float distanceToPlayer;
+	protected Vector2 vectorToPlayer; 
 
 	public LayerMask playerLayer;
 
 	public float AttackDistance
     {
-		get => _attackDistance;
-		private set => _attackDistance = value;
+		get => attackDistance;
+		private set => attackDistance = value;
     }
 
 	public Vector2 VectorToPlayer
     {
-		get => _vectorToPlayer;
+		get => vectorToPlayer;
 		set 
 		{ 
-			_vectorToPlayer = value;
-			_distanceToPlayer = _vectorToPlayer.magnitude;
+			vectorToPlayer = value;
+			distanceToPlayer = vectorToPlayer.magnitude;
 		}
     }
 
@@ -38,8 +38,8 @@ public abstract class EnemyAttack : MonoBehaviour
 	{
 		while (true)
 		{
-			_curChillTime -= Time.deltaTime;
-			if (_curChillTime <= 0)
+			curChillTime -= Time.deltaTime;
+			if (curChillTime <= 0)
 			{
 				yield break;
 			}

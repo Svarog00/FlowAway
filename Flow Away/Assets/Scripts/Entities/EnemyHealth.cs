@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour, IPoolable, IDamagable
 
     [SerializeField] private int _hpMax;
     [SerializeField] private int _hp;
-    protected ObjectPool _objectPool;
+    protected ObjectPool objectPool;
 
     public virtual void Hurt(int damage) //get damage from player or another entity
     {
@@ -28,19 +28,19 @@ public class EnemyHealth : MonoBehaviour, IPoolable, IDamagable
         OnZeroHealth?.Invoke(this, EventArgs.Empty);
         Count();
 
-        if (_objectPool != null)
+        if (objectPool != null)
             ReturnToPool();
         else Destroy(gameObject, 0.5f);
     }
 
     public void SetPool(ObjectPool pool)
     {
-        _objectPool = pool;
+        objectPool = pool;
     }
 
     public void ReturnToPool()
     {
-        _objectPool.AddToPool(gameObject);
+        objectPool.AddToPool(gameObject);
     }
 
     protected void Count()

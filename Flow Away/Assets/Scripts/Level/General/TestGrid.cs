@@ -15,7 +15,7 @@ public class TestGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Pathfinding pathfinding = new Pathfinding(width, height);
+        Pathfinding pathfinding = new Pathfinding(width, height, cellSize, origin);
     }
 
     private void Update()

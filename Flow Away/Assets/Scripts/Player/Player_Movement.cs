@@ -50,8 +50,6 @@ public class Player_Movement : MonoBehaviour
             if (_curDashTimer <= 0f)
                 _curDashCounter = _maxDashCount;
         }
-        /*transform.position += transform.right * _movement.x * Time.deltaTime * _movementSpeed;
-        transform.position += transform.up * _movement.y * Time.deltaTime * _movementSpeed;*/
     }
 
     private void FixedUpdate()
@@ -82,7 +80,7 @@ public class Player_Movement : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("PlayerDashSound");
         }
     }
-
+    #region dash
     private void Dash()
     {
         if (_isPressedDash)
@@ -125,7 +123,7 @@ public class Player_Movement : MonoBehaviour
 
         rb2.velocity = Vector2.zero;
     }
-
+    #endregion
     private void AnimateMove()
     {
         animator.SetFloat("Horizontal", _movement.x);
@@ -139,6 +137,4 @@ public class Player_Movement : MonoBehaviour
         animator.SetFloat("Dir_Horizontal", _direction.x);
         animator.SetFloat("Dir_Vertical", _direction.y);
     }
-
-
 }

@@ -14,20 +14,20 @@ public class EnemyBehavior : MonoBehaviour
     [Header("Player relation")]
     public LayerMask layerMask;
 
-    protected GameObject _player;
-    protected Player_Health _playerHP;
+    protected GameObject player;
+    protected Player_Health playerHP;
     private bool _playerDetected;
 
     [SerializeField] private EnemyStates _currentState;
     [SerializeField] private int _weight = 0; //количество слотов, которые будут заниматься противником при атаке по игроку
     [SerializeField] private float _agressionDistance; //Дистанция на которой происходит агр
 
-    protected bool _canAttack;
-    protected float _distanceToPlayer;
-    protected Rigidbody2D _playerPosition;
-    protected Rigidbody2D _enemyPosition;
-    protected Vector2 _direction;
-    protected Vector2 _vectorToPlayer;
+    protected bool canAttack;
+    protected float distanceToPlayer;
+    protected Rigidbody2D playerPosition;
+    protected Rigidbody2D enemyPosition;
+    protected Vector2 direction;
+    protected Vector2 vectorToPlayer;
 
     [Header("Patrol")]
     public Transform[] patrolSpots;
@@ -37,11 +37,11 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private float _waitTime = 0f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _currentState = EnemyStates.Patroling;
-        _enemyPosition = GetComponent<Rigidbody2D>();
-        _canAttack = false;
+        enemyPosition = GetComponent<Rigidbody2D>();
+        canAttack = false;
         _randomSpot = Random.Range(0, patrolSpots.Length);
     }
 
@@ -66,9 +66,9 @@ public class EnemyBehavior : MonoBehaviour
 
     private void CalculateDistance()
     {
-        _vectorToPlayer = transform.position - _player.transform.position; //направленный вектор к игроку / a vector to the player
-        _distanceToPlayer = _vectorToPlayer.magnitude; //длина вектора / lenght of the vector
-        _direction = _vectorToPlayer / _distanceToPlayer; //direction to player
+        vectorToPlayer = transform.position - player.transform.position; //направленный вектор к игроку / a vector to the player
+        distanceToPlayer = vectorToPlayer.magnitude; //длина вектора / lenght of the vector
+        direction = vectorToPlayer / distanceToPlayer; //direction to player
     }
 
     #region Patroling
@@ -79,13 +79,13 @@ public class EnemyBehavior : MonoBehaviour
         {
             if (enemy.tag == "Player" && !_playerDetected) //если произошел агр, то заполняем ссылки на игрока
             {
-                if (_player == null)
+                if (player == null)
                 {
-                    _player = enemy.gameObject;
-                    Invisibility playerInsibility = _player.GetComponent<Invisibility>();
+                    player = enemy.gameObject;
+                    Invisibility playerInsibility = player.GetComponent<Invisibility>();
                     playerInsibility.OnInsibilityEnable += PlayerInsibility_OnInsibilityEnable;
-                    _playerHP = _player.GetComponent<Player_Health>();
-                    _playerPosition = _player.GetComponent<Rigidbody2D>();
+                    playerHP = player.GetComponent<Player_Health>();
+                    playerPosition = player.GetComponent<Rigidbody2D>();
                 }
                 _currentState = EnemyStates.Chasing;
                 _enemyMovement.CanMove = true;
@@ -132,22 +132,21 @@ public class EnemyBehavior : MonoBehaviour
     private void Chase()
     {
         CalculateDistance();
-        //Увеличиваем скорость до максимальной
-        _enemyMovement.SetDirection(_direction);
+        _enemyMovement.SetDirection(direction);
         _enemyMovement.CanMove = true;
-        if (_distanceToPlayer > _agressionDistance)
+        if (distanceToPlayer > _agressionDistance)
         {
             _currentState = EnemyStates.Patroling;
             _playerDetected = false;
         }
-        else if (_distanceToPlayer <= _enemyAttack.AttackDistance) //Если игрок слишком близко, то остановиться для атаки
+        else if (distanceToPlayer <= _enemyAttack.AttackDistance) //Если игрок слишком близко, то остановиться для атаки
         {
             _enemyMovement.CanMove = false;
 
-            if (!_canAttack && _playerHP.FreeSlots > _weight) //Если игрока атакует не слишком много противников, то можно атаковать
+            if (!canAttack && playerHP.FreeSlots > _weight) //Если игрока атакует не слишком много противников, то можно атаковать
             {
-                _canAttack = true;
-                _playerHP.FreeSlots -= _weight;
+                canAttack = true;
+                playerHP.FreeSlots -= _weight;
                 _currentState = EnemyStates.Attacking;
             }
         }
@@ -157,15 +156,15 @@ public class EnemyBehavior : MonoBehaviour
     private void Engage()
     {
         CalculateDistance();
-        if (_distanceToPlayer > _enemyAttack.AttackDistance)
+        if (distanceToPlayer > _enemyAttack.AttackDistance)
         {
-            _canAttack = false;
-            _playerHP.RestoreSlots(_weight);
+            canAttack = false;
+            playerHP.RestoreSlots(_weight);
             _currentState = EnemyStates.Chasing;
         }
         else
         {
-            _enemyAttack.VectorToPlayer = _vectorToPlayer;
+            _enemyAttack.VectorToPlayer = vectorToPlayer;
             _enemyAttack.Attack();
         }
     }
@@ -179,7 +178,7 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, _agressionDistance);
     }
