@@ -106,7 +106,8 @@ MonoBehaviour:
     m_Bits: 4294967295
   _currentState: 0
   _weight: 1
-  _agressionDistance: 0.75
+  _agressionDistance: 1
+  _chaseTimeOut: 1
   patrolSpots: []
   _waitTime: 0
 --- !u!114 &1518276106237713428
