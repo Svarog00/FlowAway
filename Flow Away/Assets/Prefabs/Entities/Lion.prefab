@@ -396,6 +396,7 @@ MonoBehaviour:
   _currentState: 0
   _weight: 2
   _agressionDistance: 3
+  _chaseTimeOut: 1
   patrolSpots: []
   _waitTime: 0
 --- !u!114 &4730221804762415062
@@ -428,3 +429,4 @@ MonoBehaviour:
   _animator: {fileID: 4730221803471831735}
   _currentSpeed: 0
   _maxSpeed: 3
+  _pathVectorList: []

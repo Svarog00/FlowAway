@@ -12,38 +12,24 @@ public class GridMesh<TGridObject>
         public int y;
     }
 
+    public readonly int Width;
+    public readonly int Height;
+    public readonly float CellSize;
+
     private TGridObject[,] _gridArray;
 
     [SerializeField] private bool _showDebug;
-    private int _width;
-    private int _height;
-    private float _cellSize;
     private Vector3 _originPosition;
 
     private TextMesh[,] _debugTextMeshes;
-
-    public int Width
-    {
-        get => _width;
-    }
-
-    public int Height
-    {
-        get => _height;
-    }
-
-    public float CellSize
-    {
-        get => _cellSize;
-    }
     
     public GridMesh(int width, int height, float cellSize, Vector3 originPosition, Func<GridMesh<TGridObject>, int, int, TGridObject> createGridObject)
     {
-        _width = width;
-        _height = height;
-        _cellSize = cellSize;
-        _originPosition = originPosition;
+        Width = width;
+        Height = height;
+        CellSize = cellSize;
 
+        _originPosition = originPosition;
         _gridArray = new TGridObject[width, height];
 
         for (int i = 0; i < _gridArray.GetLength(0); i++)
@@ -54,7 +40,7 @@ public class GridMesh<TGridObject>
             }
         }
 
-        _showDebug = true;
+        _showDebug = false;
         if (_showDebug)
         {
             _debugTextMeshes = new TextMesh[width, height];
@@ -65,13 +51,13 @@ public class GridMesh<TGridObject>
 
     public Vector3 GetWorldPosition(int x, int y)
     {
-        return new Vector3(x, y) * _cellSize + _originPosition;
+        return new Vector3(x, y) * CellSize + _originPosition;
     }
 
     public void GetXY(Vector3 worldPosition, out int x, out int y)
     {
-        x = Mathf.FloorToInt((worldPosition - _originPosition).x / _cellSize);
-        y = Mathf.FloorToInt((worldPosition - _originPosition).y / _cellSize);
+        x = Mathf.FloorToInt((worldPosition - _originPosition).x / CellSize);
+        y = Mathf.FloorToInt((worldPosition - _originPosition).y / CellSize);
     }
 
     private void DrawMesh()
@@ -80,12 +66,12 @@ public class GridMesh<TGridObject>
         {
             for (int j = 0; j < _gridArray.GetLength(1); j++)
             {
-                _debugTextMeshes[i,j] = UtilitiesClass.CreateWorldText(_gridArray[i, j]?.ToString(), null, GetWorldPosition(i, j) + new Vector3(_cellSize, _cellSize) * .5f, 5, Color.white, TextAnchor.MiddleCenter, TextAlignment.Center);
+                _debugTextMeshes[i,j] = UtilitiesClass.CreateWorldText(_gridArray[i, j]?.ToString(), null, GetWorldPosition(i, j) + new Vector3(CellSize, CellSize) * .5f, 5, Color.white, TextAnchor.MiddleCenter, TextAlignment.Center);
                 Debug.DrawLine(GetWorldPosition(i, j), GetWorldPosition(i, j + 1), Color.white, 100f);
                 Debug.DrawLine(GetWorldPosition(i, j), GetWorldPosition(i + 1, j), Color.white, 100f);
             }
-            Debug.DrawLine(GetWorldPosition(0, _height), GetWorldPosition(_width, _height), Color.white, 100f);
-            Debug.DrawLine(GetWorldPosition(_width, 0), GetWorldPosition(_width, _height), Color.white, 100f);
+            Debug.DrawLine(GetWorldPosition(0, Height), GetWorldPosition(Width, Height), Color.white, 100f);
+            Debug.DrawLine(GetWorldPosition(Width, 0), GetWorldPosition(Width, Height), Color.white, 100f);
 
             OnValueChanged += (object sender, OnValueChangedEventArgs eventArgs) =>
             {
@@ -96,7 +82,7 @@ public class GridMesh<TGridObject>
 
     public void SetGridObject(TGridObject value, int x, int y)
     {
-        if(x >= 0 && y >= 0 && x < _width && y < _height)
+        if(x >= 0 && y >= 0 && x < Width && y < Height)
         {
             _gridArray[x, y] = value;
             _debugTextMeshes[x, y].text = _gridArray[x, y]?.ToString();
@@ -113,7 +99,7 @@ public class GridMesh<TGridObject>
 
     public TGridObject GetGridObject(int x, int y)
     {
-        if (x >= 0 && y >= 0 && x < _width && y < _height)
+        if (x >= 0 && y >= 0 && x < Width && y < Height)
         {
             return _gridArray[x, y];
         }

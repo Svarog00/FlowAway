@@ -7,13 +7,21 @@ public class Pathfinding
     private const int MOVE_STRAIGHT_COST = 10;
     private const int MOVE_DIAGONAL_COST = 14;
 
+    public static Pathfinding Instance
+    {
+        get;
+        private set;
+    }
+
     private GridMesh<PathNode> _grid;
 
-    private List<PathNode> _openList;
+    private PriorityQueue<PathNode> _openList;
     private List<PathNode> _closedList;
 
     public Pathfinding(int width, int height, float cellSize, Vector3 origin)
     {
+        Instance = this;
+
         _grid = new GridMesh<PathNode>(width, height, cellSize, origin, //Width, height, cell size and start point
             (GridMesh<PathNode> grid, int x, int y) => new PathNode(grid, x, y)); //Constructor func for TObject in gridMesh
     }
@@ -41,12 +49,13 @@ public class Pathfinding
         }
     }
 
+    //Algorithm itself
     private List<PathNode> FindPath(int startX, int startY, int endX, int endY)
     {
         PathNode startNode = _grid.GetGridObject(startX, startY);
         PathNode endNode = _grid.GetGridObject(endX, endY);
 
-        _openList = new List<PathNode> { startNode };
+        _openList = new PriorityQueue<PathNode>();
         _closedList = new List<PathNode>();
 
         for(int x = 0; x < _grid.Width; x++)
@@ -64,16 +73,19 @@ public class Pathfinding
         startNode.HCost = CalculateDistance(startNode, endNode);
         startNode.CalculateFCost();
 
+        _openList.Enqueue(startNode, 0);
+
         while(_openList.Count > 0)
         {
-            PathNode curNode = GetLowestFCostNode(_openList);
+            PathNode curNode = _openList.Dequeue();
+
             if(curNode == endNode)
             {
                 //Reached the goal
-                return CalculatePath(endNode);
+                Debug.Log("Found path");
+                return ReconstructPath(endNode);
             }
 
-            _openList.Remove(curNode);
             _closedList.Add(curNode);
 
             foreach(PathNode neighbour in GetNeighbourList(curNode))
@@ -97,10 +109,7 @@ public class Pathfinding
                     neighbour.HCost = CalculateDistance(neighbour, endNode);
                     neighbour.CalculateFCost();
 
-                    if(!_openList.Contains(neighbour))
-                    {
-                        _openList.Add(neighbour);
-                    }
+                    _openList.Enqueue(neighbour, neighbour.FCost);
                 }
             }
         }
@@ -157,7 +166,7 @@ public class Pathfinding
         return _grid.GetGridObject(x, y);
     }
 
-    private PathNode GetLowestFCostNode(List<PathNode> pathNodes)
+    /*private PathNode GetLowestFCostNode(List<PathNode> pathNodes)
     {
         PathNode lowestFCostPathNode = pathNodes[0];
 
@@ -170,9 +179,9 @@ public class Pathfinding
         }
 
         return lowestFCostPathNode;
-    }
+    }*/
 
-    private List<PathNode> CalculatePath(PathNode endNode)
+    private List<PathNode> ReconstructPath(PathNode endNode)
     {
         List<PathNode> path = new List<PathNode>();
         path.Add(endNode);

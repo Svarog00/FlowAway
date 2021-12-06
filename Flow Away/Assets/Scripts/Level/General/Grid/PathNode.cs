@@ -7,26 +7,14 @@ public class PathNode
 {
     private const string OBSTACLE_LAYER_MASK = "Obstacles";
 
-    private int _x;
-    private int _y;
+    public readonly int X;
+    public readonly int Y;
     private GridMesh<PathNode> _grid;
 
     private bool _isWalkable;
     private int _gCost;
     private int _hCost;
     private int _fCost;
-
-    private PathNode _prevNode;
-
-    public int X
-    {
-        get => _x;
-    }
-
-    public int Y
-    {
-        get => _y;
-    }
 
     public bool IsWalkable
     {
@@ -51,17 +39,13 @@ public class PathNode
         set => _fCost = value;
     }
 
-    public PathNode PrevNode
-    {
-        get => _prevNode;
-        set => _prevNode = value;
-    }
+    public PathNode PrevNode { get; set;  }
 
     public PathNode(GridMesh<PathNode> grid, int x, int y)
     {
         _grid = grid;
-        _x = x;
-        _y = y;
+        X = x;
+        Y = y;
         _isWalkable = !Physics2D.OverlapCircle(_grid.GetWorldPosition(x, y) + Vector3.one * _grid.CellSize, _grid.CellSize/2, LayerMask.GetMask(OBSTACLE_LAYER_MASK));
     }
 

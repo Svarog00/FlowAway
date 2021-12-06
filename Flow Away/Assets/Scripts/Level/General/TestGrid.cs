@@ -9,17 +9,9 @@ public class TestGrid : MonoBehaviour
     [SerializeField] float cellSize;
     [SerializeField] Vector3 origin;
 
-
-    public Transform player;
-
     // Start is called before the first frame update
     void Start()
     {
         Pathfinding pathfinding = new Pathfinding(width, height, cellSize, origin);
-    }
-
-    private void Update()
-    {
-        
     }
 }

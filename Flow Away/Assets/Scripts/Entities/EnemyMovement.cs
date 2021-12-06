@@ -12,6 +12,9 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 _direction;
     private bool _canMove;
     private bool _faceRight;
+    private int _currentPathIndex = 0;
+
+    [SerializeField] private List<Vector3> _pathVectorList = new List<Vector3>();
 
     public bool CanMove
     {
@@ -51,12 +54,35 @@ public class EnemyMovement : MonoBehaviour
     {
         if (_canMove)
         {
-            _rb2.MovePosition(_rb2.position - _direction * _maxSpeed * Time.deltaTime); //movement
+            if(_pathVectorList != null)
+            {
+                Vector3 targetPosition = _pathVectorList[_currentPathIndex];
+                if(Vector3.Distance(transform.position, targetPosition) > 0.5f)
+                {
+                    _direction = (targetPosition - transform.position).normalized;
+                    SetSpriteDirection(-_direction);
+                    _rb2.MovePosition(_rb2.position - _direction * _maxSpeed * Time.deltaTime); //movement
+                }
+                else
+                {
+                    _currentPathIndex++;
+                    if(_currentPathIndex >= _pathVectorList.Count)
+                    {
+                        _canMove = false;
+                    }
+                }
+            }
         }
 
     }
 
-    public void SetDirection(Vector2 direction)
+    public void SetTargetPosition(Vector3 targetPostion)
+    {
+        _currentPathIndex = 0;
+        _pathVectorList = Pathfinding.Instance.FindPath(transform.position, targetPostion);
+    }
+
+    public void SetSpriteDirection(Vector2 direction)
     {
         _direction = direction;
         if (_direction.x > 0 && _faceRight == true)
@@ -72,7 +98,7 @@ public class EnemyMovement : MonoBehaviour
     public void SetPoint(Vector3 point)
     {
         _direction = (transform.position - point) / Vector2.Distance(transform.position, point);
-        SetDirection(_direction);
+        SetSpriteDirection(_direction);
     }
 
     private void Flip() //turn left or right depends on player position

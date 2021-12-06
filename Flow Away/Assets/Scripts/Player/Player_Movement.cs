@@ -99,7 +99,6 @@ public class Player_Movement : MonoBehaviour
                 }
                 else
                 {
-                    //transform.position = Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime);
                     rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime)); //дэш к точке
                 }
             }

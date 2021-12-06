@@ -363,11 +363,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghoul
       objectReference: {fileID: 0}
-    - target: {fileID: 1518276106237713431, guid: ca5439c626f7e8843b67da64040ba983,
-        type: 3}
-      propertyPath: _chaseTimeOut
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca5439c626f7e8843b67da64040ba983, type: 3}
 --- !u!1 &362187933
@@ -413,11 +408,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c258ca1bc8bde48a2d929946556ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 5
-  height: 5
-  cellSize: 1
+  width: 14
+  height: 14
+  cellSize: 0.5
   origin: {x: 0, y: 0, z: 0}
-  player: {fileID: 0}
 --- !u!4 &422598090 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7895689775842436281, guid: 3c13073370e981e4d9776e981c5bf763,
@@ -1916,7 +1910,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 0.9668981, b: 0.6933962, a: 1}
+  m_Color: {r: 0.9292453, g: 1, b: 0.9977202, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000

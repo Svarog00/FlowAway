@@ -21,7 +21,7 @@ public class EnemyBehavior : MonoBehaviour
 	[SerializeField] private EnemyStates _currentState;
 	[SerializeField] private int _weight = 0; //количество слотов, которые будут заниматься противником при атаке по игроку
 	[SerializeField] private float _agressionDistance; //Дистанция на которой происходит агр
-	[SerializeField] private float _chaseTimeOut; //Время погони
+	[SerializeField] private float _chaseTimeOut = 0.5f; //Время погони
 
 	protected bool canAttack = false;
 	protected float distanceToPlayer;
@@ -53,19 +53,6 @@ public class EnemyBehavior : MonoBehaviour
 	{
 		//Если игрока рядом нет, то патрулирует территорию по рандомным точкам
 		//Дойдя до точки запускается таймер отдиха. Когда таймер кончается - выбирается новая рандомная точка
-	   /* if (_currentState == EnemyStates.Patroling)
-		{
-			Patrol();
-		}
-		else if (_currentState == EnemyStates.Chasing)
-		{
-			Chase();
-		}
-		else if(_currentState == EnemyStates.Attacking)
-		{
-			Engage();
-		}*/
-
 	   if(_playerDetected)
        {
 			CalculateDistance();
@@ -138,7 +125,7 @@ public class EnemyBehavior : MonoBehaviour
 					{
 						_curWaitTime = _waitTime;
 						_randomSpot = Random.Range(0, patrolSpots.Length);
-						_enemyMovement.SetPoint(patrolSpots[_randomSpot].position);
+						_enemyMovement.SetTargetPosition(patrolSpots[_randomSpot].position);
 						_enemyMovement.CanMove = true;
 					}
 					else
@@ -148,7 +135,7 @@ public class EnemyBehavior : MonoBehaviour
 				}
 				else
 				{
-					_enemyMovement.SetPoint(patrolSpots[_randomSpot].position);
+					_enemyMovement.SetTargetPosition(patrolSpots[_randomSpot].position);
 					_enemyMovement.CanMove = true;
 				}
 			}
@@ -164,12 +151,18 @@ public class EnemyBehavior : MonoBehaviour
 	IEnumerator ChaseState()
 	{
 		_currentState = EnemyStates.Chasing;
+		Vector3 oldTargetPosition = player.transform.position;
+		_enemyMovement.SetTargetPosition(oldTargetPosition);
+		float elapsedTime = 0f;
 		while (_currentState == EnemyStates.Chasing)
 		{
-			_enemyMovement.SetDirection(direction);
-			_enemyMovement.CanMove = true;
+			if(oldTargetPosition != player.transform.position)
+            {
+				oldTargetPosition = player.transform.position;
+				_enemyMovement.SetTargetPosition(oldTargetPosition);
+			}
 
-			float elapsedTime = 0f;
+			_enemyMovement.CanMove = true;
 
 			if (distanceToPlayer > _agressionDistance)
 			{
@@ -185,13 +178,17 @@ public class EnemyBehavior : MonoBehaviour
 			}
 			else if (distanceToPlayer <= _enemyAttack.AttackDistance) //Если игрок слишком близко, то остановиться для атаки
 			{
+				elapsedTime = 0f;
 				_enemyMovement.CanMove = false;
-
 				if (!canAttack && playerHP.FreeSlots > _weight) //Если игрока атакует не слишком много противников, то можно атаковать
 				{
 					StartCoroutine(EngageState());
 					yield break;
 				}
+			}
+			else
+            {
+				elapsedTime = 0f;
 			}
 
 			yield return null;
