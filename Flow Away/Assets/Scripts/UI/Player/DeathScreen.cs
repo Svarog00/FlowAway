@@ -11,12 +11,12 @@ public class DeathScreen : MonoBehaviour
 
     private void Start()
     {
-        Player_Health player = FindObjectOfType<Player_Health>();
-        player.OnDeath += Player_OnDeath;
+        PlayerHealthController playerHealthController = FindObjectOfType<PlayerHealthController>();
+        playerHealthController.OnPlayerDeath += Player_OnDeath;
         visual.SetActive(false);
     }
 
-    private void Player_OnDeath(object sender, EventArgs e)
+    public void Player_OnDeath(object sender, EventArgs e)
     {
         visual.SetActive(true);
     }
@@ -25,9 +25,6 @@ public class DeathScreen : MonoBehaviour
     {
         PlayerPrefs.SetInt("LoadHandleSave", 1);
         saveLoadSystem.LoadData("Handle_Save");
-        /*player.SetActive(true);
-        PlayerPrefs.SetInt("QuickLoad", 0);
-        visual.SetActive(false);*/
     }
 
     public void Quit()

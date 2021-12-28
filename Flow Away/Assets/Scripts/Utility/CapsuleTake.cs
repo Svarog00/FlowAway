@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CapsuleTake : MonoBehaviour
-{
-    public CapsulesUI capsulesUI;
-    
-    private Player_Healing playerHealing;
+{  
+    private PlayerHealthController _playerHealthController;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
-            if(other.GetComponent<Player_Healing>().GetCapsuleCount() < 3)
+            if(other.GetComponent<PlayerHealthController>().GetCapsuleCount() < 3)
             {
-                playerHealing = other.GetComponent<Player_Healing>();
+                _playerHealthController = other.GetComponent<PlayerHealthController>();
                 Take();
             }
         }
@@ -22,10 +20,9 @@ public class CapsuleTake : MonoBehaviour
 
     private void Take()
     {
-        FindObjectOfType<AudioManager>().Play("CapsuleTake");
+        AudioManager.Instance.Play("CapsuleTake");
 
-        playerHealing.AddCapsuleCount();
-        capsulesUI.AddCapsule(playerHealing.GetCapsuleCount());
+        _playerHealthController.AddCapsule();
         Destroy(gameObject);
     }
 

@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Scripts.Infrustructure;
+using Assets.Scripts.Services;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -7,16 +7,19 @@ public class PlayerControl : MonoBehaviour
     public WeaponScript weapon;
 
     private Player_Attack _playerAttack;
+    private IInputService _inputService;
     private Player_Movement _playerMovement;
-    private Player_Healing _playerHealing;
+    private PlayerHealthController _playerHealing;
 
     public bool CanAttack { get; set; }
     public bool CanMove { get; set; }
     // Start is called before the first frame update
     void Start()
     {
+        _inputService = Game.InputService;
+
         _playerMovement = GetComponent<Player_Movement>();
-        _playerHealing = GetComponent<Player_Healing>();
+        _playerHealing = GetComponent<PlayerHealthController>();
         _playerAttack = GetComponent<Player_Attack>();
         CanAttack = true;
         CanMove = true;
@@ -33,15 +36,15 @@ public class PlayerControl : MonoBehaviour
 
     void MovementInput()
     {
-        if(CanMove)
+        if(CanMove && _inputService.Axis.sqrMagnitude > 0)
         {
-            _playerMovement.HandleMove(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), Input.GetButtonDown("Dash"));
+            _playerMovement.HandleMove(_inputService.Axis, _inputService.IsDashButtonDown());
         }
     }
 
     void HealingInput()
     {
-        if (Input.GetButtonDown("Heal"))
+        if (_inputService.IsHealButtonDown())
         {
             _playerHealing.HandleHeal();
         }
@@ -49,7 +52,7 @@ public class PlayerControl : MonoBehaviour
 
     void MeleeAttackInput()
     {
-        if (Input.GetButtonDown("MeleeStrike") && CanAttack)
+        if (_inputService.IsMeleeAttackButtonDown() && CanAttack)
         {
             _playerAttack.Melee();
         }
@@ -57,7 +60,7 @@ public class PlayerControl : MonoBehaviour
 
     void GunAttackInput()
     {
-        if(Input.GetButtonDown("GunFire") && CanAttack)
+        if(_inputService.IsShootButtonDown() && CanAttack)
         {
             weapon.Attack();
         }

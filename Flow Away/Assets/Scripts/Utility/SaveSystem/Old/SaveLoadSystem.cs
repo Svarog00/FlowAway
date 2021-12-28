@@ -1,25 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public class SaveLoadSystem : MonoBehaviour
+public class SaveLoadSystem
 {
-	public Transform PlayerPos;
-	public Player_Health PlayerHP;
-	public Player_Healing PlayerMedkits;
+	private Transform _playerPos;
+	private PlayerHealthController _playerHealth;
+
+	public SaveLoadSystem(Transform playerPos, PlayerHealthController playerHealth)
+    {
+		_playerPos = playerPos;
+		_playerHealth = playerHealth;
+    }
 
 	public void SaveData(string name) //Параметр название сейва для разделения сохранений на чекпоинты и переходы между сценами
 	{
 		SavedData saveData = new SavedData
 		{
-			x = PlayerPos.position.x,
-			y = PlayerPos.position.y,
-			health = PlayerHP.CurrentHealth,
-			medkitCount = PlayerMedkits.GetCapsuleCount(),
+			x = _playerPos.position.x,
+			y = _playerPos.position.y,
+			health = _playerHealth.PlayerHealth,
+			medkitCount = _playerHealth.GetCapsuleCount(),
 			currentScene = SceneManager.GetActiveScene().name,
 			questValues = new List<QuestStages>(QuestValues.Instance.QuestList)
 		};
@@ -52,9 +55,9 @@ public class SaveLoadSystem : MonoBehaviour
 				}
 				else if(PlayerPrefs.GetInt("QuickLoad") == 1)//quickload from ingame menu or in case of dead or to continue from certain point
 				{
-					PlayerPos.position = new Vector2(tmp.x, tmp.y);
-					PlayerHP.CurrentHealth = tmp.health;
-					PlayerMedkits.LoadCapsule(tmp.medkitCount);
+					_playerPos.position = new Vector2(tmp.x, tmp.y);
+					_playerHealth.PlayerHealth = tmp.health;
+					_playerHealth.LoadCapsule(tmp.medkitCount);
 				}
 			}
 			catch (System.Exception Error)
@@ -83,9 +86,9 @@ public class SaveLoadSystem : MonoBehaviour
 				}
 				else //quickload from ingame menu or in case of dead or to continue from certain point
 				{
-					PlayerPos.position = new Vector2(tmp.x, tmp.y);
-					PlayerHP.CurrentHealth = tmp.health;
-					PlayerMedkits.LoadCapsule(tmp.medkitCount);
+					_playerPos.position = new Vector2(tmp.x, tmp.y);
+					_playerHealth.PlayerHealth = tmp.health;
+					_playerHealth.LoadCapsule(tmp.medkitCount);
 					QuestValues.Instance.QuestList = new List<QuestStages>(tmp.questValues);
 				}
 			}

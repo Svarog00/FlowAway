@@ -17,6 +17,12 @@ public class Pathfinding
 
     private PriorityQueue<PathNode> _openList;
     private List<PathNode> _closedList;
+    
+    public Pathfinding(GridMesh<PathNode> gridMesh)
+    {
+        Instance = this;
+        _grid = gridMesh;
+    }
 
     public Pathfinding(int width, int height, float cellSize, Vector3 origin)
     {

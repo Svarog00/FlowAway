@@ -7,16 +7,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class MainMenu : MonoBehaviour
 {
-    SaveLoadSystem saveLoadSystem;
+    private SaveManager _saveManager;
 
     private void Start()
     {
-        saveLoadSystem = gameObject.AddComponent<SaveLoadSystem>();
+        _saveManager = gameObject.AddComponent<SaveManager>();
     }
 
     public void Play()
     {
-        saveLoadSystem.ClearSaves();
+        _saveManager.ClearSaves();
         QuestValues.Instance?.Clear();
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1); //start first lvl
     }
@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
     public void Continue()
     {
         PlayerPrefs.SetInt("LoadHandleSave", 1);
-        saveLoadSystem.LoadHandleSave();
+        _saveManager.LoadLastSave();
     }
 
     public void Exit()

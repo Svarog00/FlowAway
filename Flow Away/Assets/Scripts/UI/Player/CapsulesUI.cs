@@ -13,7 +13,22 @@ public class CapsulesUI : MonoBehaviour
 
     public void Start()
     {
-        
+        FindObjectOfType<PlayerHealthController>().OnCapsulesCountChanged += CapsulesUI_OnCapsulesCountChanged;
+        AddCapsule(FindObjectOfType<PlayerHealthController>().GetCapsuleCount());
+    }
+
+    private void CapsulesUI_OnCapsulesCountChanged(object sender, PlayerHealthController.OnCapsulesCountChangedEventArgs e)
+    {
+        switch (e.OperType)
+        {
+            case PlayerHealthController.OnCapsulesCountChangedEventArgs.OperationType.Add :
+                AddCapsule(e.CapsulesCount);
+                break;
+
+            case PlayerHealthController.OnCapsulesCountChangedEventArgs.OperationType.Remove:
+                RemoveCapsule(e.CapsulesCount);
+                break;
+        }
     }
 
     public void AddCapsule(int capsuleCount)

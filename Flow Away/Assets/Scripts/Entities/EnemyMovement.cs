@@ -95,12 +95,6 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public void SetPoint(Vector3 point)
-    {
-        _direction = (transform.position - point) / Vector2.Distance(transform.position, point);
-        SetSpriteDirection(_direction);
-    }
-
     private void Flip() //turn left or right depends on player position
     {
         _faceRight = !_faceRight;

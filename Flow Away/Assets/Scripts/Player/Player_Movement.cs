@@ -58,6 +58,11 @@ public class Player_Movement : MonoBehaviour
         Dash();
     }
 
+    public void HandleMove(Vector2 vector, bool dash)
+    {
+        HandleMove(vector.x, vector.y, dash);
+    }
+
     public void HandleMove(float x, float y, bool dash)
     {
         _movement.x = x;

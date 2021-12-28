@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-//Class for notifying observers of state of gadgets
+//Class for notifying observers about state of gadgets
 public class GadgetManager : MonoBehaviour
 {
     //Cooldown event for gadget icons

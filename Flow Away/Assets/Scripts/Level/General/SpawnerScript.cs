@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ObjectPool))]
 public class SpawnerScript : MonoBehaviour
 {
-	public SurveillanceScript surveillance;
+	public SurveillanceScript Surveillance;
 	[SerializeField] private int _count;
 	[SerializeField] private float _delay = 0.5f;
 	private ObjectPool _objectPool;
@@ -13,7 +14,7 @@ public class SpawnerScript : MonoBehaviour
 	private void Start()
 	{
 		_objectPool = GetComponent<ObjectPool>();
-		surveillance.OnPlayerDetected += Surveillance_OnPlayerDetected;
+		Surveillance.OnPlayerDetected += Surveillance_OnPlayerDetected;
 	}
 
     private void Update()
@@ -37,6 +38,6 @@ public class SpawnerScript : MonoBehaviour
             }
         }
 		else 
-			surveillance.OnPlayerDetected -= Surveillance_OnPlayerDetected;
+			Surveillance.OnPlayerDetected -= Surveillance_OnPlayerDetected;
 	}
 }

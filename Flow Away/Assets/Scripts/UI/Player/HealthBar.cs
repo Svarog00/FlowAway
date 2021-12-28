@@ -9,11 +9,10 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        Player_Health player = FindObjectOfType<Player_Health>();
-        player.OnHealthChanged += Player_OnHealthChanged;
+        FindObjectOfType<PlayerHealthController>().OnHealthChanged += Player_OnHealthChanged;
     }
 
-    private void Player_OnHealthChanged(object sender, Player_Health.OnHealthChangedEventArgs e)
+    public void Player_OnHealthChanged(object sender, PlayerHealthController.OnHealthChangedEventArgs e)
     {
         healthBar.value = e.curHealth;
     }

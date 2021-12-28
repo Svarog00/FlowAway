@@ -10,6 +10,7 @@ TagManager:
   - Medkit
   - InvisiblePlayer
   - Shield
+  - InitialPoint
   layers:
   - Default
   - TransparentFX

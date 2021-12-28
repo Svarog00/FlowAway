@@ -7,20 +7,20 @@ using UnityEngine;
 public class Exit : MonoBehaviour
 {
     public string nextSceneName;
-    public SaveLoadSystem sls;
+    [SerializeField] private SaveManager _saveManager;
     private bool _readyToLeave = false;
-    private TextScript _note;
+    private UINoteTextScript _note;
 
     private void Start()
     {
-        _note = FindObjectOfType<TextScript>();
+        _note = FindObjectOfType<UINoteTextScript>();
     }
 
     private void Update()
     {
         if (Input.GetButtonDown("Interact") && _readyToLeave)
         {
-            sls.SaveData(SceneManager.GetActiveScene().name); //Создает файл сохранения с названием сцены, на которой игрок находится
+            _saveManager.SaveGame(SceneManager.GetActiveScene().name); //Создает файл сохранения с названием сцены, на которой игрок находится
             PlayerPrefs.SetInt("LevelMove", 1); //Устанавливается флаг перехода 
             SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Single); //Загружается следующая сцена
         }

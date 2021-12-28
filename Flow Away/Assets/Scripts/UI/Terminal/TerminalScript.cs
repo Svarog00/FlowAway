@@ -13,7 +13,7 @@ public class TerminalScript : MonoBehaviour
     private string areaText = "";
     private bool isEnter;
     private bool showTerminal;
-    private TextScript _text;
+    private UINoteTextScript _text;
     private Vector2 scrollPosition;
 
     private void Start()
@@ -21,7 +21,7 @@ public class TerminalScript : MonoBehaviour
         showTerminal = false;
         isEnter = false;
         scrollPosition = Vector2.zero;
-        _text = FindObjectOfType<TextScript>();
+        _text = FindObjectOfType<UINoteTextScript>();
         terminal = Terminal.Load(tAsset);
         InitializeNotes();   
     }

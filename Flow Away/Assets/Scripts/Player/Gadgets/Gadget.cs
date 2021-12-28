@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Gadget : MonoBehaviour
 {
-
     [Header("Gadget Base")]
     [SerializeField] protected string _gadgetName;
     protected GadgetManager _gadgetManager;
@@ -29,6 +28,7 @@ public abstract class Gadget : MonoBehaviour
         if (e.name == _gadgetName)
         {
             CanActivate = true;
+            _gadgetManager.OnGadgetActivate -= GadgetManager_OnGadgetActivate;
         }
     }
 }

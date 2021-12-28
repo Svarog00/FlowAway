@@ -138,7 +138,7 @@ public class Gargoyle : Boss
 				if (_player == null)
 				{
 					_player = enemy.gameObject;
-					_playerHealth = _player.GetComponent<Player_Health>();
+					_playerHealth = _player.GetComponent<PlayerHealthModel>();
 					_playerPosition = _player.GetComponent<Rigidbody2D>();
 				}
 				playerDetected = true;

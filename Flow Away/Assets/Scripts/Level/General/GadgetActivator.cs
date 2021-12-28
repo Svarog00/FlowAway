@@ -22,9 +22,14 @@ public class GadgetActivator : MonoBehaviour
     {
         if (collision.tag == "Player" && QuestValues.Instance.GetStage(GadgetName) == 0)
         {
-            QuestValues.Instance.SetStage(GadgetName, 1);
-            _gadgetManager.ActivateGadget(GadgetName);
-            Debug.Log($"{GadgetName} module quest updated");
+            Activate();
         }
+    }
+
+    private void Activate()
+    {
+        QuestValues.Instance.SetStage(GadgetName, 1);
+        _gadgetManager.ActivateGadget(GadgetName);
+        Debug.Log($"{GadgetName} module quest updated");
     }
 }

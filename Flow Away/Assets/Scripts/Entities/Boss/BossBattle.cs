@@ -8,7 +8,7 @@ public class BossBattle : MonoBehaviour
 
     public Boss boss;
 
-    public Observer obs;
+    public Turret obs;
 
     private Phases currentPhase;
 

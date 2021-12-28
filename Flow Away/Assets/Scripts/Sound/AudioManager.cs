@@ -7,13 +7,13 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] soundArray;
-    public static AudioManager instance;
+    public static AudioManager Instance;
 
     // Awake before Start
     void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
         {
             Destroy(gameObject);

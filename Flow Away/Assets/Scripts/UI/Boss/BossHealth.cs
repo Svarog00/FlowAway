@@ -13,11 +13,9 @@ public class BossHealth : MonoBehaviour
 
     private void Start()
     {
-        Player_Health player = FindObjectOfType<Player_Health>();
         boss.OnHealthChanged += Boss_OnHealthChanged;
         boss.OnBossActivatedUI += Boss_OnActivatedUI;
         boss.OnBossPhaseIconChange += Boss_OnPhaseIconChange;
-        player.OnDeath += Player_OnDeath;
         bossHealthBar.maxValue = boss.healthPointMax;//инициализация начальных значений для правильного отображения здоровья на слайдере 
         bossHealthBar.value = boss.healthPointMax;
     }

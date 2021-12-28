@@ -30,7 +30,7 @@ public abstract class Boss : MonoBehaviour, IDamagable
     [SerializeField] protected float _chillTime = 0f;
     
     protected GameObject _player;
-    protected Player_Health _playerHealth;
+    protected PlayerHealthModel _playerHealth;
     protected float chill;
     protected string _currentState;
 

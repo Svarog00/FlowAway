@@ -23,7 +23,7 @@ public class SurveillanceScript : MonoBehaviour
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(transform.position, _range);
         foreach (Collider2D detectedObject in detectedObjects)
         {
-            if (detectedObject.tag == "Player")
+            if (detectedObject.GetComponent<PlayerHealthController>())
             {
                 _playerPosition = detectedObject.transform.position;
                 _playerDetected = true;
@@ -35,7 +35,7 @@ public class SurveillanceScript : MonoBehaviour
             RaycastHit2D[] objects = Physics2D.LinecastAll(transform.position, _playerPosition);
             foreach (RaycastHit2D hit in objects)
             {
-                if (hit.collider.tag == "Player")
+                if (hit.collider.CompareTag("Player"))
                 {
                     Reaction();
                     _playerDetected = false;

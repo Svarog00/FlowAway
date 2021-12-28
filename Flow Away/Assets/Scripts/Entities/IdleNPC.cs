@@ -3,27 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IdleNPC : MonoBehaviour, IDamagable
+public class IdleNPC : AgentBehaviour
 {
-    public DialogSystemNew dialog;
+    [SerializeField] private DialogView _dialog;
 
-    private TextScript _note;
+    private UINoteTextScript _note;
     private PlayerControl _playerControl;
 
-    private bool _isNearby;
+    private bool _canStartDialogue;
 
     private void Start()
     {
-        _isNearby = false;
-        _note = FindObjectOfType<TextScript>();
+        _canStartDialogue = false;
+        _note = FindObjectOfType<UINoteTextScript>();
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Interact") && _isNearby)
+        if (Input.GetButtonDown("Interact") && _canStartDialogue)
         {
-            _playerControl.CanAttack = false;
-            dialog.showDialog = true;
+            ShowDialogue();
         }
     }
 
@@ -32,7 +31,7 @@ public class IdleNPC : MonoBehaviour, IDamagable
         if(collision.tag.Contains("Player"))
         {
             _note.Appear("Press E to talk.", 2f);
-            _isNearby = true;
+            _canStartDialogue = true;
 
             if (_playerControl == null) _playerControl = collision.GetComponent<PlayerControl>();
         }
@@ -42,15 +41,21 @@ public class IdleNPC : MonoBehaviour, IDamagable
     {
         if (collision.tag.Contains("Player"))
         {
-            dialog.showDialog = false;
-            _playerControl.CanAttack = true;
-            _note.Disappear(2f);
-            _isNearby = false;
+            CloseDialogue();
         }
     }
 
-    public void Hurt(int damage)
+    private void ShowDialogue()
     {
-        
+        _playerControl.CanAttack = false;
+        _dialog.showDialog = true;
+    }
+
+    private void CloseDialogue()
+    {
+        _dialog.showDialog = false;
+        _playerControl.CanAttack = true;
+        _note.Disappear(2f);
+        _canStartDialogue = false;
     }
 }
