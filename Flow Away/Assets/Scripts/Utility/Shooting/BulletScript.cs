@@ -17,7 +17,6 @@ public class BulletScript : MonoBehaviour, IPoolable
     // Start is called before the first frame update
     void Start()
     {
-        //Destroy(gameObject, 3);
         Invoke("ReturnToPool", 3f);
     }
 

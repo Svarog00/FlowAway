@@ -77,14 +77,13 @@ public class Player_Movement : MonoBehaviour
 
         if (dash && _curDashCounter > 0) //if timer is null
         {
-            //Update timer
-            //minus one dash
             _curDashTimer = _dashTimer;
             _curDashCounter--;
-            _isPressedDash = true;
+            _isPressedDash = dash;
             FindObjectOfType<AudioManager>().Play("PlayerDashSound");
         }
     }
+
     #region dash
     private void Dash()
     {
@@ -128,6 +127,7 @@ public class Player_Movement : MonoBehaviour
         rb2.velocity = Vector2.zero;
     }
     #endregion
+
     private void AnimateMove()
     {
         animator.SetFloat("Horizontal", _movement.x);

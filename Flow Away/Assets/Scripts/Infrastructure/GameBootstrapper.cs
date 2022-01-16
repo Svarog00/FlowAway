@@ -13,8 +13,6 @@ namespace Assets.Scripts.Infrustructure
             _game = new Game(this);
             _game.StateMachine.Enter<BootstrapState>();
 
-
-
             DontDestroyOnLoad(this);
         }
     }

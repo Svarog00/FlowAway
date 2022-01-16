@@ -33,8 +33,9 @@ public class Invisibility : Gadget
     {
         _isActive = false;
         _isChanging = false;
+
         _material = GetComponentInChildren<SpriteRenderer>().material;
-        CheckAviability();
+        CheckAvailability();
     }
 
     // Update is called once per frame
@@ -44,7 +45,7 @@ public class Invisibility : Gadget
         {
             Disappear();
             _curTime -= Time.deltaTime;
-            _gadgetManager.Timer(_curTime, _maxTime, _gadgetName);
+            GadgetManager.Timer(_curTime, _maxTime, _gadgetName);
             if(_curTime <= 0f)
             {
                 _isActive = false;
@@ -80,20 +81,6 @@ public class Invisibility : Gadget
         }
     }
 
-    private void Disappear()
-    {
-        if (_isChanging == true)
-        {
-            _fade -= Time.deltaTime;
-            if (_fade <= 0f)
-            {
-                _isChanging = false;
-                _fade = 0f;
-            }
-        }
-        _material.SetFloat("_Fade", _fade);
-    }
-
     private void Appear()
     {
         if(_isChanging)
@@ -109,4 +96,19 @@ public class Invisibility : Gadget
             _material.SetFloat("_Fade", _fade);
         }
     }
+
+    private void Disappear()
+    {
+        if (_isChanging == true)
+        {
+            _fade -= Time.deltaTime;
+            if (_fade <= 0f)
+            {
+                _isChanging = false;
+                _fade = 0f;
+            }
+        }
+        _material.SetFloat("_Fade", _fade);
+    }
+
 }

@@ -1,4 +1,5 @@
 using Assets.Scripts.BehaviourStates;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,84 +8,29 @@ enum EnemyStates { Patroling, Chasing, Attacking };
 
 public class EnemyBehavior : AgentBehaviour
 {
-	[Header("Components")]
-	[SerializeField] private EnemyHealth _enemyHealth;
-	[SerializeField] private EnemyMovement _enemyMovement;
-	[SerializeField] private EnemyAttack _enemyAttack;
-
-	[Header("States")]
-	private AIBehaviourState currentState;
-
-	[Header("Player relation")]
-	public LayerMask layerMask;
-
-	[SerializeField] private EnemyStates _currentState;
-	[SerializeField] private int _weight = 0; //количество слотов, которые будут заниматьс€ противником при атаке по игроку
-	[SerializeField] private float _agressionDistance; //ƒистанци€ на которой происходит агр
-	[SerializeField] private float _chaseTimeOut = 0.5f; //¬рем€ погони
-
-	protected GameObject player;
-	protected PlayerHealthController playerHP;
-	private bool _playerDetected;
-
-	protected bool canAttack = false;
-	protected float distanceToPlayer;
-	protected Rigidbody2D rb2;
-	protected Vector2 direction;
-	protected Vector2 vectorToPlayer;
-
-	[Header("Patrol")]
-	public Transform[] patrolSpots;
-
-	private float _curWaitTime;
-	private int _randomSpot = 0;
-	[SerializeField] private float _waitTime = 0f;
-
-	// Start is called before the first frame update
-	void Awake()
-	{
-		rb2 = GetComponent<Rigidbody2D>();
-	}
-
 	private void Start()
 	{
-		StartCoroutine(PatrolState());
+		Init();
+
+		StateMachine.States = new Dictionary<Type, IBehaviourState>
+		{
+			[typeof(PatrolState)] = new PatrolState(this, StateMachine),
+			[typeof(ChaseState)] = new ChaseState(this, StateMachine),
+			[typeof(EngageState)] = new EngageState(this, StateMachine),
+		};
+
+		StateMachine.Enter<PatrolState>();
 	}
 
-	// Update is called once per frame
-	void Update()
+	private void OnDrawGizmosSelected()
 	{
-		//≈сли игрока р€дом нет, то патрулирует территорию по рандомным точкам
-		//ƒойд€ до точки запускаетс€ таймер отдиха.  огда таймер кончаетс€ - выбираетс€ нова€ рандомна€ точка
-	   if(_playerDetected)
-       {
-			CalculateDistance();
-       }
-
-		//currentState.Handle();
+		Gizmos.DrawWireSphere(transform.position, AgressionDistance);
 	}
 
-	private void SetState(AIBehaviourState state)
-    {
-		currentState = Instantiate(state);
-
-    }
-
-	IEnumerator FSMCoroutine()
-    {
-		yield return null;
-    }
-
-	private void CalculateDistance()
-	{
-		vectorToPlayer = transform.position - player.transform.position; //направленный вектор к игроку / a vector to the player
-		distanceToPlayer = vectorToPlayer.magnitude; //длина вектора / lenght of the vector
-		direction = vectorToPlayer / distanceToPlayer; //direction to player
-	}
-
+	/*
 	private void DetectTargets()
 	{
-		Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(transform.position, _agressionDistance, layerMask); //find the player in circle
+		Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(transform.position, AgressionDistance, layerMask); //find the player in circle
 		foreach (Collider2D enemy in detectedEnemies)
 		{
 			if (enemy.tag == "Player" && !_playerDetected) //если произошел агр, то заполн€ем ссылки на игрока
@@ -100,23 +46,9 @@ public class EnemyBehavior : AgentBehaviour
 				break;
 			}
 		}
-	}
+	}*/
 
-	private void PlayerInsibility_OnInsibilityEnable(object sender, Invisibility.OnInvisibilityEnableEventArgs e)
-	{
-		if (e.isActive && _currentState != EnemyStates.Patroling)
-		{
-			_currentState = EnemyStates.Patroling;
-			_playerDetected = false;
-		}
-	}
-
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.DrawWireSphere(transform.position, _agressionDistance);
-	}
-
-	IEnumerator PatrolState()
+	/*IEnumerator PatrolState()
 	{
 		_currentState = EnemyStates.Patroling;
 
@@ -232,5 +164,5 @@ public class EnemyBehavior : AgentBehaviour
 
 			yield return null;
 		}
-	}
+	}*/
 }

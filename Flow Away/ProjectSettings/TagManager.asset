@@ -11,6 +11,7 @@ TagManager:
   - InvisiblePlayer
   - Shield
   - InitialPoint
+  - Obstacle
   layers:
   - Default
   - TransparentFX

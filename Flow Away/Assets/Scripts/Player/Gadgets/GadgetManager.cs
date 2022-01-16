@@ -20,9 +20,9 @@ public class GadgetManager : MonoBehaviour
         public string name;
     }
 
-    public void Timer(float _curTime, float _maxTime, string gadgetName)
+    public void Timer(float curTime, float maxTime, string gadgetName)
     {
-        OnGadgetCooldown?.Invoke(this, new OnGadgetCooldownEventArgs { curTime = 1 - _curTime/_maxTime, name = gadgetName });
+        OnGadgetCooldown?.Invoke(this, new OnGadgetCooldownEventArgs { curTime = 1 - curTime/maxTime, name = gadgetName });
     }
 
     public void ActivateGadget(string gadgetName)

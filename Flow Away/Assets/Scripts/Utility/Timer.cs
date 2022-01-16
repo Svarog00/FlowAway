@@ -1,32 +1,37 @@
 ﻿using System.Collections;
 using System;
 using UnityEngine;
+using Assets.Scripts.Infrustructure;
 
-class Timer : MonoBehaviour
+class Timer
 {
     private float _time;
     private Action _onTimeAction;
+    private ICoroutineRunner _coroutineRunner;
 
-    public Action Action
+    public Timer(ICoroutineRunner coroutineRunner, Action onTimeAction)
     {
-        private get => _onTimeAction;
-        set => _onTimeAction = value;
+        _coroutineRunner = coroutineRunner;
+        _onTimeAction = onTimeAction;
     }
 
-    private void Update()
+    public void StartTimer(float time)
     {
-        if(_time >= 0)
+        _coroutineRunner.StartCoroutine(CountTime(time));
+    }
+
+    private IEnumerator CountTime(float time)
+    {
+        _time = time;
+        while(_time >= 0)
         {
             _time -= Time.deltaTime;
             if (_time <= 0)
             {
                 _onTimeAction();
+                yield break;
             }
+            yield return null;
         }
-    }
-
-    public void SetTime(float time)
-    {
-        _time = time;
     }
 }

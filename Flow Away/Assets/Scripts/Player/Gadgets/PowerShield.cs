@@ -22,7 +22,7 @@ public class PowerShield : Gadget
 
         shieldInstance.OnShieldDestroyed += ShieldInstance_OnShieldDestroyed;
 
-        CheckAviability();
+        CheckAvailability();
     }
 
     private void ShieldInstance_OnShieldDestroyed(object sender, EventArgs e)
@@ -54,7 +54,7 @@ public class PowerShield : Gadget
         if (_curTime > 0f)
         {
             _curTime -= Time.deltaTime;
-            _gadgetManager.Timer(_curTime, _maxTime, _gadgetName);
+            GadgetManager.Timer(_curTime, _maxTime, _gadgetName);
         }
     }
 }

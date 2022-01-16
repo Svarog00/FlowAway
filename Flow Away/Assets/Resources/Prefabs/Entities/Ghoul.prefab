@@ -98,18 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aab96a891346dc42a46bd64aef39dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyHealth: {fileID: 1518276106237713428}
-  _enemyMovement: {fileID: 1518276106237713429}
-  _enemyAttack: {fileID: 1518276107706576201}
-  layerMask:
+  _waitTime: 1
+  _weight: 1
+  _agressionDistance: 2
+  _chaseTimeOut: 0.5
+  _layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  _currentState: 0
-  _weight: 1
-  _agressionDistance: 1
-  _chaseTimeOut: 1
-  patrolSpots: []
-  _waitTime: 0
+  _patrolSpots: []
 --- !u!114 &1518276106237713428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,8 +134,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1518276107706576193}
-  _currentSpeed: 0
+  _currentSpeed: 0.72
   _maxSpeed: 1.75
+  _pathVectorList: []
 --- !u!1 &1518276107337932938
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,22 +5,24 @@ using UnityEngine.UI;
 
 public class UINoteTextScript : MonoBehaviour
 {
-    private Text _text;
+    private const string CanvasName = "Canvas";
+    private Text _textField;
 
     private void Start()
     {
-        _text = GetComponent<Text>();
+        _textField = GetComponent<Text>();
+        transform.SetParent(GameObject.Find(CanvasName).transform);
     }
 
     public void Appear(string text, float duration)
     {
-        _text.CrossFadeAlpha(1f, duration, false);
-        _text.text = text;
+        _textField.CrossFadeAlpha(1f, duration, false);
+        _textField.text = text;
     }
 
     public void Disappear(float duration)
     {
-        _text.CrossFadeAlpha(0f, duration, false);
+        _textField.CrossFadeAlpha(0f, duration, false);
     }
 
 }
