@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Invisibility : Gadget
 {
-
     [Header("Invisibility")]
     [SerializeField] private float _maxTime = 0f;
     private float _curTime;
@@ -38,8 +37,7 @@ public class Invisibility : Gadget
         CheckAvailability();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if(_isActive)
         {

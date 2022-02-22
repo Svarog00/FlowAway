@@ -87,8 +87,6 @@ public class Pathfinding
 
             if(curNode == endNode)
             {
-                //Reached the goal
-                Debug.Log("Found path");
                 return ReconstructPath(endNode);
             }
 

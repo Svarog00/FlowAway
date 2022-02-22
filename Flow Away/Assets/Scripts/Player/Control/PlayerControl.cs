@@ -11,8 +11,20 @@ public class PlayerControl : MonoBehaviour
     private PlayerHealthController _playerHealing;
     private HotkeysSystem _hotkeysSystem;
 
+    private bool _canMove;
+
     public bool CanAttack { get; set; }
-    public bool CanMove { get; set; }
+    public bool CanMove { 
+        get => _canMove;
+        set 
+        {
+            _canMove = value;
+            if(value == false)
+            {
+                _playerMovement.StopMove();
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -20,7 +32,7 @@ public class PlayerControl : MonoBehaviour
         _hotkeysSystem = new HotkeysSystem(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
         _playerMovement = GetComponent<Player_Movement>();
         _playerHealing = GetComponent<PlayerHealthController>();
@@ -30,26 +42,33 @@ public class PlayerControl : MonoBehaviour
         CanMove = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        _hotkeysSystem.GetInput();
-
+        AbilitiesInput();
         MovementInput();
         HealingInput();
         MeleeAttackInput();
         GunAttackInput();
     }
 
-    void MovementInput()
+    private void AbilitiesInput()
     {
-        if(CanMove && _inputService.Axis.sqrMagnitude > 0)
+        _hotkeysSystem.GetInput();
+    }
+
+    private void MovementInput()
+    {
+        if(_canMove && _inputService.Axis.sqrMagnitude > 0)
         {
             _playerMovement.HandleMove(_inputService.Axis, _inputService.IsDashButtonDown());
         }
+        else
+        {
+            _playerMovement.StopMove();
+        }
     }
 
-    void HealingInput()
+    private void HealingInput()
     {
         if (_inputService.IsHealButtonDown())
         {
@@ -57,7 +76,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void MeleeAttackInput()
+    private void MeleeAttackInput()
     {
         if (_inputService.IsMeleeAttackButtonDown() && CanAttack)
         {
@@ -65,7 +84,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void GunAttackInput()
+    private void GunAttackInput()
     {
         if(_inputService.IsShootButtonDown() && CanAttack)
         {

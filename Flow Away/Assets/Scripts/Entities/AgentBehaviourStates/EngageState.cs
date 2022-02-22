@@ -7,10 +7,10 @@ namespace Assets.Scripts.BehaviourStates
         private EnemyAttack _attack;
         private PlayerHealthController _playerHealth;
 
-        private AIStateMachine _stateMachine;
+        private BehaviourStateMachine _stateMachine;
         private AgentBehaviour _agentContext;
 
-        public EngageState(AgentBehaviour agentContext, AIStateMachine stateMachine)
+        public EngageState(AgentBehaviour agentContext, BehaviourStateMachine stateMachine)
         {
             _agentContext = agentContext;
             _stateMachine = stateMachine;

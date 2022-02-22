@@ -1,25 +1,31 @@
-﻿using Assets.Scripts.Infrastructure.Factory;
-using Assets.Scripts.Infrastructure.Services;
-using System.Collections;
+﻿using Assets.Scripts.Infrastructure.Services;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TerminalScript : MonoBehaviour
 {
+    private const string _uiInformerText = "Press E to open terminal";
+
     public GUISkin GUISkin;
     public TextAsset tAsset;
     public Terminal terminal;
+    
+    [SerializeField] private UINoteTextScript _uiInformer;
 
     private List<Note> _notesList = new List<Note>();
     private string _areaText = "";
     private bool _isEnter;
     private bool _showTerminal;
-    private UINoteTextScript _uiInformer;
     private Vector2 _scrollPosition;
 
     private IInputService _inputService;
 
     private void Start()
+    {
+        InitializeTerminal();
+    }
+
+    private void InitializeTerminal()
     {
         _showTerminal = false;
         _isEnter = false;
@@ -27,11 +33,15 @@ public class TerminalScript : MonoBehaviour
         _scrollPosition = Vector2.zero;
 
         terminal = Terminal.Load(tAsset);
-        InitializeNotes();
+        for (int i = 0; i < terminal.notes.Length; i++)
+        {
+            _notesList.Add(terminal.notes[i]);
+        }
 
         _inputService = ServiceLocator.Container.Single<IInputService>();
-    }
 
+        _uiInformer = GetComponentInChildren<UINoteTextScript>();
+    }
 
     private void Update()
     {
@@ -50,7 +60,7 @@ public class TerminalScript : MonoBehaviour
         if (collision.GetComponent<Player_Movement>())
         {
             _isEnter = true;
-            _uiInformer.Appear("Press E to open terminal", 1.2f);
+            _uiInformer.Appear(_uiInformerText, 1.2f);
         }
     }
 
@@ -64,13 +74,6 @@ public class TerminalScript : MonoBehaviour
         }
     }
 
-    private void InitializeNotes()
-    {
-        for(int i = 0; i < terminal.notes.Length; i++)
-        {
-            _notesList.Add(terminal.notes[i]);
-        }
-    }
 
     private void OnGUI() 
     {

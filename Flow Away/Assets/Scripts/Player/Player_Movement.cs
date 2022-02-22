@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
+    private const string ObstaclesLayerName = "Obstacles";
+    private const string DashAbilityName = "Dash";
+    private const string DashSoundEffect = "PlayerDashSound";
+
     public Rigidbody2D rb2;
     public Animator animator;
 
@@ -35,8 +39,8 @@ public class Player_Movement : MonoBehaviour
     {
         rb2 = GetComponentInParent<Rigidbody2D>();
         _gadgetManager = FindObjectOfType<GadgetManager>();
-        _gadgetManager.ActivateGadget("Dash");
-        ObstacleLayer = LayerMask.GetMask("Obstacles");
+        _gadgetManager.ActivateGadget(DashAbilityName);
+        ObstacleLayer = LayerMask.GetMask(ObstaclesLayerName);
         _curDashCounter = _maxDashCount;
     }
 
@@ -45,10 +49,7 @@ public class Player_Movement : MonoBehaviour
     {
         if (_curDashTimer > 0f)
         {
-            _curDashTimer -= Time.deltaTime;
-            _gadgetManager.Timer(_curDashTimer, _dashTimer, "Dash");
-            if (_curDashTimer <= 0f)
-                _curDashCounter = _maxDashCount;
+            CooldownDash();
         }
     }
 
@@ -56,6 +57,11 @@ public class Player_Movement : MonoBehaviour
     {
         rb2.MovePosition(rb2.position + _movement * _movementSpeed * Time.deltaTime);
         Dash();
+    }
+
+    public void StopMove()
+    {
+        _movement = Vector2.zero;
     }
 
     public void HandleMove(Vector2 vector, bool dash)
@@ -80,7 +86,7 @@ public class Player_Movement : MonoBehaviour
             _curDashTimer = _dashTimer;
             _curDashCounter--;
             _isPressedDash = dash;
-            FindObjectOfType<AudioManager>().Play("PlayerDashSound");
+            AudioManager.Instance.Play(DashSoundEffect);
         }
     }
 
@@ -89,7 +95,7 @@ public class Player_Movement : MonoBehaviour
     {
         if (_isPressedDash)
         {
-            Dash(_dashDistance, _direction);
+            CheckDash(_dashDistance, _direction);
 
             if (_isDashing)
             {
@@ -111,13 +117,13 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
-    private void Dash(float dashDistance, Vector2 direction)
+    private void CheckDash(float dashDistance, Vector2 direction)
     {
         _isDashing = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, dashDistance, ObstacleLayer); //Выстрел лучом на дистанцию дэша по слою препятствий
         if(hit)
         {
-            _dashTarget = transform.position + (Vector3)(direction * dashDistance * hit.fraction); //Если попал луч, то точка назначения - место попадания
+            _dashTarget = transform.position + (Vector3)(dashDistance * hit.fraction * direction); //Если попал луч, то точка назначения - место попадания
         }
         else
         {
@@ -127,6 +133,17 @@ public class Player_Movement : MonoBehaviour
         rb2.velocity = Vector2.zero;
     }
     #endregion
+
+    private void CooldownDash()
+    {
+        _curDashTimer -= Time.deltaTime;
+        _gadgetManager.Timer(_curDashTimer, _dashTimer, DashAbilityName);
+
+        if (_curDashTimer <= 0f)
+        {
+            _curDashCounter = _maxDashCount;
+        }
+    }
 
     private void AnimateMove()
     {

@@ -9,14 +9,14 @@ namespace Assets.Scripts.BehaviourStates
         private EnemyMovement _movement;
 		private EnemyAttack _enemyAttack;
 
-        private AIStateMachine _stateMachine;
+        private BehaviourStateMachine _stateMachine;
 		private AgentBehaviour _agentContext;
 
         private Vector3 _oldTargetPosition;
         
 		private float _elapsedTime = 0f;
 
-        public ChaseState(AgentBehaviour agentContext, AIStateMachine stateMachine)
+        public ChaseState(AgentBehaviour agentContext, BehaviourStateMachine stateMachine)
         {
 			_agentContext = agentContext;
 			_stateMachine = stateMachine;

@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private const string SpeedAnimatorTag = "Speed";
+
     [SerializeField] private Animator _animator;
     [SerializeField] private float _currentSpeed;
     [SerializeField] private float _maxSpeed;
 
     private Rigidbody2D _rb2;
+
     private Vector2 _direction;
     private bool _canMove;
     private bool _faceRight;
+
+    private Pathfinding _pathfinding;
     private int _currentPathIndex = 0;
 
     [SerializeField] private List<Vector3> _pathVectorList = new List<Vector3>();
@@ -37,11 +42,12 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         _rb2 = GetComponent<Rigidbody2D>();
+        _pathfinding = Pathfinding.Instance;
     }
 
     private void Update()
     {
-        _animator.SetFloat("Speed", _currentSpeed);
+        _animator.SetFloat(SpeedAnimatorTag, _currentSpeed);
     }
 
     // Update is called once per frame
@@ -79,7 +85,7 @@ public class EnemyMovement : MonoBehaviour
     public void SetTargetPosition(Vector3 targetPostion)
     {
         _currentPathIndex = 0;
-        _pathVectorList = Pathfinding.Instance.FindPath(transform.position, targetPostion);
+        _pathVectorList = _pathfinding.FindPath(transform.position, targetPostion);
     }
 
     public void SetSpriteDirection(Vector2 direction)

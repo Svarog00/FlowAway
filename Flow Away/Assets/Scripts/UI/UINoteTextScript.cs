@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 public class UINoteTextScript : MonoBehaviour
 {
-    private const string CanvasName = "Canvas";
     private Text _textField;
+    private Canvas _canvas;
 
     private void Start()
     {
+        //TODO: Extract to external script
+        _canvas = GetComponentInParent<Canvas>();
+        _canvas.worldCamera = Camera.main;
+        //-----------------------------------
+
         _textField = GetComponent<Text>();
-        transform.SetParent(GameObject.Find(CanvasName).transform);
     }
 
     public void Appear(string text, float duration)

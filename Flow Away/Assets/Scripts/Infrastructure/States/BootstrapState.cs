@@ -19,7 +19,7 @@ namespace Assets.Scripts.Infrastructure
             _sceneLoader = sceneLoader;
 
             _services = services;
-             RegisterServices();
+            RegisterServices();
         }
 
         public void Enter()
@@ -39,15 +39,9 @@ namespace Assets.Scripts.Infrastructure
 
         private void RegisterServices()
         {
-            _services.RegisterSingle<IInputService>(RegisterInputService());
+            _services.RegisterSingle<IInputService>(new InputService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IGameFactory>(new GameFactory(ServiceLocator.Container.Single<IAssetProvider>()));
-        }
-
-
-        private static IInputService RegisterInputService()
-        {
-            return new InputService();
         }
     }
 }

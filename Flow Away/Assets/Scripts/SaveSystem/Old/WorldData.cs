@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 [System.Serializable]
-public class SavedData
+public class WorldData
 {
 	public float x, y;
 	public int health;

@@ -4,28 +4,23 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public class SaveLoadSystem
+public class SaveLoadService
 {
 	private Transform _playerPos;
 	private PlayerHealthController _playerHealth;
 
-	public SaveLoadSystem(Transform playerPos, PlayerHealthController playerHealth)
+    public SaveLoadService()
+    {
+    }
+
+	public SaveLoadService(Transform playerPos, PlayerHealthController playerHealth)
     {
 		_playerPos = playerPos;
 		_playerHealth = playerHealth;
     }
 
-	public void SaveData(string name) //Параметр название сейва для разделения сохранений на чекпоинты и переходы между сценами
+    public void SaveData(string name, WorldData worldData) //Параметр название сейва для разделения сохранений на чекпоинты и переходы между сценами
 	{
-		SavedData saveData = new SavedData
-		{
-			x = _playerPos.position.x,
-			y = _playerPos.position.y,
-			health = _playerHealth.PlayerHealth,
-			medkitCount = _playerHealth.GetCapsuleCount(),
-			currentScene = SceneManager.GetActiveScene().name,
-			questValues = new List<QuestStages>(QuestValues.Instance.QuestList)
-		};
 		if (!Directory.Exists(Application.dataPath + "/Saves")) //if directory doesn't exist 
 		{
 			Directory.CreateDirectory(Application.dataPath + "/Saves"); //then create directory
@@ -33,10 +28,10 @@ public class SaveLoadSystem
 
 		FileStream fs = new FileStream(Application.dataPath + "/Saves/" + name + ".sv", FileMode.Create); //open stream to create a save file
 		BinaryFormatter formatter = new BinaryFormatter();
-		formatter.Serialize(fs, saveData); //serialize savedData in fs file
+		formatter.Serialize(fs, worldData); //serialize savedData in fs file
 		fs.Close(); //close file stream
 
-		Debug.Log("Saved: HP - " + saveData.health + "; position - " + saveData.x + " " + saveData.y + "; scene - " + saveData.currentScene);
+		Debug.Log("Saved: HP - " + worldData.health + "; position - " + worldData.x + " " + worldData.y + "; scene - " + worldData.currentScene);
 
 	}
 
@@ -48,7 +43,7 @@ public class SaveLoadSystem
 			BinaryFormatter formatter = new BinaryFormatter();
 			try
 			{
-				SavedData tmp = (SavedData)formatter.Deserialize(fs);
+				WorldData tmp = (WorldData)formatter.Deserialize(fs);
 				if (PlayerPrefs.GetInt("QuickLoad") == 0) //load from main menu
 				{
 					SceneManager.LoadSceneAsync(tmp.currentScene, LoadSceneMode.Single);
@@ -79,7 +74,7 @@ public class SaveLoadSystem
 			BinaryFormatter formatter = new BinaryFormatter();
 			try
 			{
-				SavedData tmp = (SavedData)formatter.Deserialize(fs);
+				WorldData tmp = (WorldData)formatter.Deserialize(fs);
 				if(tmp.currentScene != SceneManager.GetActiveScene().name)
                 {
 					SceneManager.LoadSceneAsync(tmp.currentScene, LoadSceneMode.Single);

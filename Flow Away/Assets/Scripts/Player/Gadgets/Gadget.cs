@@ -7,7 +7,7 @@ public abstract class Gadget : MonoBehaviour
     protected GadgetManager GadgetManager;
 
     public bool CanActivate { get; set; }
-    // Start is called before the first frame update
+
     public void Awake()
     {
         GadgetManager = FindObjectOfType<GadgetManager>();

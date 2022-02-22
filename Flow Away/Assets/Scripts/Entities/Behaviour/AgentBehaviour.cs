@@ -6,23 +6,6 @@ using UnityEngine;
 
 public abstract class AgentBehaviour : MonoBehaviour
 {
-    protected AIStateMachine StateMachine;
-
-    [SerializeField] private float _waitTime = 1f;
-    [SerializeField] private int _weight = 0; //количество слотов, которые будут заниматься противником при атаке по игроку
-	[SerializeField] private float _agressionDistance; //Дистанция на которой происходит агр
-	[SerializeField] private float _chaseTimeOut = 0.5f; //Время погони
-
-    [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private Transform[] _patrolSpots;
-
-    private GameObject _player;
-
-    private bool _enemyDetected;
-
-    private float _distanceToPlayer;
-    private Vector2 _direction;
-    private Vector2 _vectorToPlayer;
 
     public float AgressionDistance 
     { 
@@ -58,9 +41,27 @@ public abstract class AgentBehaviour : MonoBehaviour
     public float WaitTime { get => _waitTime; }
     public LayerMask LayerMask { get => _layerMask; }
 
+    protected BehaviourStateMachine StateMachine;
+
+    [SerializeField] private float _waitTime = 1f;
+    [SerializeField] private int _weight = 0; //количество слотов, которые будут заниматься противником при атаке по игроку
+	[SerializeField] private float _agressionDistance; //Дистанция на которой происходит агр
+	[SerializeField] private float _chaseTimeOut = 0.5f; //Время погони
+
+    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private Transform[] _patrolSpots;
+
+    private GameObject _player;
+
+    private bool _enemyDetected;
+
+    private float _distanceToPlayer;
+    private Vector2 _direction;
+    private Vector2 _vectorToPlayer;
+
     protected void Init()
     {
-        StateMachine = new AIStateMachine();
+        StateMachine = new BehaviourStateMachine();
     }
 
     private void Update()

@@ -15,10 +15,10 @@ namespace Assets.Scripts.BehaviourStates
         private int _randomSpot = 0;
         private float _curWaitTime;
 
-        private AIStateMachine _stateMachine;
+        private BehaviourStateMachine _stateMachine;
         private AgentBehaviour _agentContext;
 
-        public PatrolState(AgentBehaviour agentContext, AIStateMachine stateMachine)
+        public PatrolState(AgentBehaviour agentContext, BehaviourStateMachine stateMachine)
         {
 			_stateMachine = stateMachine;
 			_agentContext = agentContext;

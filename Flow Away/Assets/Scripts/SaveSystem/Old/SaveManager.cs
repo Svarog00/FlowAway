@@ -1,20 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
+    private const string HandleSaveName = "Handle_Save";
+
     private Transform _playerPos;
     private PlayerHealthController _playerHealthController;
 
-    private SaveLoadSystem _saveLoadSystem;
+    private SaveLoadService _saveLoadSystem;
 
     public void Awake()
     {
-        PlayerControl player = FindObjectOfType<PlayerControl>();
-        _playerHealthController = player.GetComponent<PlayerHealthController>();
-        _playerPos = player.transform;
-
-        _saveLoadSystem = new SaveLoadSystem(_playerPos, _playerHealthController);
+        _saveLoadSystem = new SaveLoadService();
 
         //Флаг LevelMove ставится в Exit.cs при переходе со сцены на сцену
         if (PlayerPrefs.GetInt("LevelMove") == 1) //Если это переход с другой сцены, то загружаем данные из сейва, который был сделан до перехода на эту сцену
@@ -32,7 +31,7 @@ public class SaveManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F5))
         {
-            _saveLoadSystem.SaveData("Handle_Save");
+            SaveGame(HandleSaveName);
         }
         if (Input.GetKeyDown(KeyCode.F7))
         {
@@ -62,6 +61,16 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame(string name)
     {
-        _saveLoadSystem.SaveData(name);
+        WorldData worldData = new WorldData
+        {
+            x = _playerPos.position.x,
+            y = _playerPos.position.y,
+            health = _playerHealthController.PlayerHealth,
+            medkitCount = _playerHealthController.GetCapsuleCount(),
+            currentScene = SceneManager.GetActiveScene().name,
+            questValues = new List<QuestStages>(QuestValues.Instance.QuestList)
+        };
+
+        _saveLoadSystem.SaveData(name, worldData);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.BehaviourStates
 {
-    public class AIStateMachine
+    public class BehaviourStateMachine
     {
         private IBehaviourState _currentState;
         private Dictionary<Type, IBehaviourState> _states;
@@ -18,11 +18,6 @@ namespace Assets.Scripts.BehaviourStates
         { 
             get => _states; 
             set => _states = value; 
-        }
-
-        public AIStateMachine()
-        {
-
         }
 
         public void Work()
