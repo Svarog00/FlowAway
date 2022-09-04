@@ -4,6 +4,8 @@ using UnityEngine;
 //Player shot script
 public class BulletScript : MonoBehaviour, IPoolable 
 {
+    private const string ReturnToPoolMethodName = "ReturnToPool";
+
     public GameObject shooter;
     private ObjectPool _objectPool;
     private int _damage = 0;
@@ -17,7 +19,7 @@ public class BulletScript : MonoBehaviour, IPoolable
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("ReturnToPool", 3f);
+        Invoke(ReturnToPoolMethodName, 3f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

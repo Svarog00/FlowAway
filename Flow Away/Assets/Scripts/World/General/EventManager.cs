@@ -32,7 +32,7 @@ public class EventManager : MonoBehaviour
         {
             QuestValues.Instance.GetStage(QuestName, true);
         }
-        if (collision.gameObject.GetComponent<Player_Movement>() && QuestValues.Instance.GetStage(QuestName) == 0)
+        if (collision.gameObject.GetComponent<PlayerMovement>() && QuestValues.Instance.GetStage(QuestName) == 0)
         {
             if (!isActive)
             {
@@ -58,7 +58,7 @@ public class EventManager : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<Player_Movement>() && QuestValues.Instance.GetStage(QuestName, true) == 0)
+        if (collision.GetComponent<PlayerMovement>() && QuestValues.Instance.GetStage(QuestName, true) == 0)
         {
             if (isActive)
             {

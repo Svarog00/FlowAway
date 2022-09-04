@@ -337,7 +337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -603, y: -147}
+  m_AnchoredPosition: {x: -581, y: -198}
   m_SizeDelta: {x: 58.424774, y: 58.424744}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3923170313966394621
@@ -774,7 +774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -512.1002, y: 165.33684}
+  m_AnchoredPosition: {x: -484.70026, y: 210.73694}
   m_SizeDelta: {x: 78.7536, y: 28.497803}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5483674512238786200
@@ -1224,7 +1224,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -540, y: -147}
+  m_AnchoredPosition: {x: -518, y: -198}
   m_SizeDelta: {x: 58.424774, y: 58.424744}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1427084490395883183
@@ -1276,7 +1276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -477, y: -147}
+  m_AnchoredPosition: {x: -455, y: -198}
   m_SizeDelta: {x: 58.424774, y: 58.424744}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1272735610580183531
@@ -1309,6 +1309,26 @@ PrefabInstance:
     - target: {fileID: 6312373326933010733, guid: 53d13704c2cbdf048a5438b39c808278,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312373327339770574, guid: 53d13704c2cbdf048a5438b39c808278,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312373327339770574, guid: 53d13704c2cbdf048a5438b39c808278,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312373327339770574, guid: 53d13704c2cbdf048a5438b39c808278,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312373327339770574, guid: 53d13704c2cbdf048a5438b39c808278,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6312373327668380534, guid: 53d13704c2cbdf048a5438b39c808278,
@@ -1363,16 +1383,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6312373327668380537, guid: 53d13704c2cbdf048a5438b39c808278,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6312373327668380537, guid: 53d13704c2cbdf048a5438b39c808278,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6312373327668380537, guid: 53d13704c2cbdf048a5438b39c808278,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1404,12 +1414,12 @@ PrefabInstance:
     - target: {fileID: 6312373327668380537, guid: 53d13704c2cbdf048a5438b39c808278,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -590.00006
+      value: -490.3
       objectReference: {fileID: 0}
     - target: {fileID: 6312373327668380537, guid: 53d13704c2cbdf048a5438b39c808278,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 220.33684
+      value: 238.9
       objectReference: {fileID: 0}
     - target: {fileID: 6312373327668380537, guid: 53d13704c2cbdf048a5438b39c808278,
         type: 3}
@@ -1424,6 +1434,11 @@ PrefabInstance:
     - target: {fileID: 6312373327668380537, guid: 53d13704c2cbdf048a5438b39c808278,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312373327668380539, guid: 53d13704c2cbdf048a5438b39c808278,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

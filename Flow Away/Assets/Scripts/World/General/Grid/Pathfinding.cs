@@ -170,21 +170,6 @@ public class Pathfinding
         return _grid.GetGridObject(x, y);
     }
 
-    /*private PathNode GetLowestFCostNode(List<PathNode> pathNodes)
-    {
-        PathNode lowestFCostPathNode = pathNodes[0];
-
-        for(int i = 0; i < pathNodes.Count; i++)
-        {
-            if(pathNodes[i].FCost < lowestFCostPathNode.FCost)
-            {
-                lowestFCostPathNode = pathNodes[i];
-            }
-        }
-
-        return lowestFCostPathNode;
-    }*/
-
     private List<PathNode> ReconstructPath(PathNode endNode)
     {
         List<PathNode> path = new List<PathNode>();
@@ -195,7 +180,6 @@ public class Pathfinding
             path.Add(curNode.PrevNode);
             curNode = curNode.PrevNode;
         }
-        path.Reverse();
 
         return path;
     }

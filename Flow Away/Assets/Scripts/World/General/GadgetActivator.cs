@@ -11,7 +11,6 @@ public class GadgetActivator : MonoBehaviour
 
     private void Start()
     {
-        _gadgetManager = FindObjectOfType<GadgetManager>();
         if (QuestValues.Instance.GetStage(GadgetName) == -1)
         {
             QuestValues.Instance.Add(GadgetName);
@@ -23,6 +22,10 @@ public class GadgetActivator : MonoBehaviour
     {
         if (collision.tag == PlayerTag && QuestValues.Instance.GetStage(GadgetName) == 0)
         {
+            if(_gadgetManager == null)
+            {
+                _gadgetManager = collision.gameObject.GetComponent<GadgetManager>();
+            }
             Activate();
         }
     }

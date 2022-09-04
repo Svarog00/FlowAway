@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 8345902685782219940}
   - component: {fileID: 604610727334192616}
   - component: {fileID: 903913100809121321}
+  - component: {fileID: 7801533390959690499}
   - component: {fileID: 3738640356688177711}
   - component: {fileID: 3216371267449459898}
   - component: {fileID: 4205134613988851743}
@@ -122,10 +123,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _maxDashCount: 3
-  _dashForce: 15
-  _dashTimer: 1.5
-  _dashDistance: 3
-  _movementSpeed: 1.5
+  _dashForce: 5
+  _dashTimer: 1
+  _dashDistance: 5
+  _movementSpeed: 1.4
 --- !u!114 &2867806497870399680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +144,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  _attackRange: 0.28
+  _attackRange: 0.21
   _attackDelay: 0.5
   _damage: 15
 --- !u!114 &4682736227477488103
@@ -172,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gadgetName: Invisibility
+  GadgetManager: {fileID: 7801533390959690499}
   _maxTime: 5
 --- !u!114 &604610727334192616
 MonoBehaviour:
@@ -186,9 +188,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gadgetName: PowerShield
+  GadgetManager: {fileID: 7801533390959690499}
   shieldInstance: {fileID: 2968197574415895217}
   _maxTime: 3
-  _curTime: 0
 --- !u!114 &903913100809121321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +204,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gadgetName: Hook
+  GadgetManager: {fileID: 7801533390959690499}
+  _cooldownTime: 0
   _hookInstance: {fileID: 1636478842213199693}
+--- !u!114 &7801533390959690499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3738640356688177698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8894cdb237ac6e24586f16f3fd903c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &3738640356688177711
 Rigidbody2D:
   serializedVersion: 4

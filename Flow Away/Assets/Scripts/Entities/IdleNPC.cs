@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class IdleNPC : AgentBehaviour
 {
     [SerializeField] private DialogView _dialog;
+    [SerializeField] private UINoteTextScript _note;
 
-    private UINoteTextScript _note;
     private PlayerControl _playerControl;
 
     private bool _canStartDialogue;
@@ -15,7 +15,7 @@ public class IdleNPC : AgentBehaviour
     private void Start()
     {
         _canStartDialogue = false;
-        _note = FindObjectOfType<UINoteTextScript>();
+        _note = GetComponentInChildren<UINoteTextScript>();
     }
 
     private void Update()
@@ -33,7 +33,8 @@ public class IdleNPC : AgentBehaviour
             _note.Appear("Press E to talk.", 2f);
             _canStartDialogue = true;
 
-            if (_playerControl == null) _playerControl = collision.GetComponent<PlayerControl>();
+            if (_playerControl == null) 
+                _playerControl = collision.GetComponent<PlayerControl>();
         }
     }
 
@@ -41,6 +42,7 @@ public class IdleNPC : AgentBehaviour
     {
         if (collision.tag.Contains("Player"))
         {
+            _note.Disappear(2f);
             CloseDialogue();
         }
     }
@@ -49,13 +51,13 @@ public class IdleNPC : AgentBehaviour
     {
         _playerControl.CanAttack = false;
         _dialog.showDialog = true;
+        _note.Disappear(2f);
     }
 
     private void CloseDialogue()
     {
         _dialog.showDialog = false;
         _playerControl.CanAttack = true;
-        _note.Disappear(2f);
         _canStartDialogue = false;
     }
 }

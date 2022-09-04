@@ -8,15 +8,18 @@ public class SaveLoadService
 {
 	private Transform _playerPos;
 	private PlayerHealthController _playerHealth;
-
+	private QuestValues _questValues;
+			
     public SaveLoadService()
     {
+
     }
 
 	public SaveLoadService(Transform playerPos, PlayerHealthController playerHealth)
     {
 		_playerPos = playerPos;
 		_playerHealth = playerHealth;
+		_questValues = QuestValues.Instance;
     }
 
     public void SaveData(string name, WorldData worldData) //Параметр название сейва для разделения сохранений на чекпоинты и переходы между сценами
@@ -84,7 +87,7 @@ public class SaveLoadService
 					_playerPos.position = new Vector2(tmp.x, tmp.y);
 					_playerHealth.PlayerHealth = tmp.health;
 					_playerHealth.LoadCapsule(tmp.medkitCount);
-					QuestValues.Instance.QuestList = new List<QuestStages>(tmp.questValues);
+					_questValues.QuestList = new List<QuestStages>(tmp.questValues);
 				}
 			}
 			catch (System.Exception Error)

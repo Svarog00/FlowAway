@@ -25,11 +25,6 @@ namespace Assets.Scripts.Player.Gadgets.Hook
 
         private Action _onCollideAction;
 
-        private IHookState _currentState;
-
-        private IHookState _pullTargetState;
-        private IHookState _getToObstacleState;
-
         private Transform _collidedWith;
         private bool _hasCollided;
 
@@ -42,8 +37,6 @@ namespace Assets.Scripts.Player.Gadgets.Hook
 
         private void Start()
         {
-
-
             _playerControl = _caster.parent.gameObject.GetComponent<PlayerControl>();
             _onCollideAction = Pull;
         }
@@ -78,7 +71,6 @@ namespace Assets.Scripts.Player.Gadgets.Hook
             if (_hasCollided)
             {
                 _onCollideAction();
-                _currentState.Work();
             }
             else
             {
@@ -121,7 +113,7 @@ namespace Assets.Scripts.Player.Gadgets.Hook
 
         private void Reach()
         {
-            _direction = GetDirectionToCollisionPoint();
+            _direction = GetDirectionToPoint(_collisionPoint);
             _caster.parent.Translate(_speed * Time.deltaTime * _direction);
             transform.position = _collisionPoint;
             StopCast();
@@ -130,7 +122,7 @@ namespace Assets.Scripts.Player.Gadgets.Hook
 
         private void Pull()
         {
-            _direction = GetDirectionToCaster();
+            _direction = -GetDirectionToPoint(transform.position);
 
             if (_collidedWith)
             {
@@ -174,15 +166,9 @@ namespace Assets.Scripts.Player.Gadgets.Hook
             return aimDir;
         }
 
-        private Vector2 GetDirectionToCaster()
+        private Vector3 GetDirectionToPoint(Vector3 point)
         {
-            Vector3 aimDir = (_caster.position - transform.position).normalized;
-            return aimDir;
-        }
-
-        private Vector3 GetDirectionToCollisionPoint()
-        {
-            Vector3 aimDir = (_collisionPoint - _caster.position).normalized;
+            Vector3 aimDir = (point - _caster.position).normalized;
             return aimDir;
         }
     }

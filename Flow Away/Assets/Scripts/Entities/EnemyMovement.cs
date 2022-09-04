@@ -63,7 +63,7 @@ public class EnemyMovement : MonoBehaviour
             if(_pathVectorList != null)
             {
                 Vector3 targetPosition = _pathVectorList[_currentPathIndex];
-                if(Vector3.Distance(transform.position, targetPosition) > 0.5f)
+                if(Vector3.Distance(transform.position, targetPosition) > 0.1f)
                 {
                     _direction = (targetPosition - transform.position).normalized;
                     SetSpriteDirection(-_direction);

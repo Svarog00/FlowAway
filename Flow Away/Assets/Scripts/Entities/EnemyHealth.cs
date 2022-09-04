@@ -9,10 +9,15 @@ public class EnemyHealth : MonoBehaviour, IPoolable, IDamagable
     public event EventHandler OnZeroHealth;
 
     [SerializeField] private int _hpMax;
-    [SerializeField] private int _hp;
+    private int _hp;
     protected ObjectPool objectPool;
 
-    public virtual void Hurt(int damage) //get damage from player or another entity
+    private void Start()
+    {
+        _hp = _hpMax;
+    }
+
+    public void Hurt(int damage) //get damage from player or another entity
     {
         FindObjectOfType<AudioManager>().Play("EnemyHurt");
         _hp -= damage;
@@ -24,13 +29,19 @@ public class EnemyHealth : MonoBehaviour, IPoolable, IDamagable
 
     private void Death()
     {
-        FindObjectOfType<AudioManager>().Play(this.ToString());
+        FindObjectOfType<AudioManager>().Play(ToString());
         OnZeroHealth?.Invoke(this, EventArgs.Empty);
         Count();
 
         if (objectPool != null)
+        {
             ReturnToPool();
-        else Destroy(gameObject, 0.5f);
+        }
+        else
+        {
+            Destroy(gameObject, 0.5f);
+
+        }
     }
 
     public void SetPool(ObjectPool pool)

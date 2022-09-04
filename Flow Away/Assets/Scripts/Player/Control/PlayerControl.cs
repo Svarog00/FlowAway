@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public GunScript weapon;
+    [SerializeField] private GunScript weapon;
 
-    private Player_Attack _playerAttack;
+    private PlayerAttack _playerAttack;
     private IInputService _inputService;
-    private Player_Movement _playerMovement;
+    private PlayerMovement _playerMovement;
     private PlayerHealthController _playerHealing;
     private HotkeysSystem _hotkeysSystem;
 
@@ -34,9 +34,9 @@ public class PlayerControl : MonoBehaviour
 
     private void Start()
     {
-        _playerMovement = GetComponent<Player_Movement>();
+        _playerMovement = GetComponent<PlayerMovement>();
         _playerHealing = GetComponent<PlayerHealthController>();
-        _playerAttack = GetComponent<Player_Attack>();
+        _playerAttack = GetComponent<PlayerAttack>();
 
         CanAttack = true;
         CanMove = true;

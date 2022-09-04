@@ -5,17 +5,17 @@ using System.Xml.Serialization;
 using System.IO;
 
 [XmlRoot("terminal")]
-public class Terminal
+public class TerminalModel
 {
     [XmlArray("notes")]
     [XmlArrayItem("note")]
     public Note[] notes;
 
-    public static Terminal Load(TextAsset _xml)
+    public TerminalModel Load(TextAsset _xml)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(Terminal));
+        XmlSerializer serializer = new XmlSerializer(typeof(TerminalModel));
         StringReader reader = new StringReader(_xml.text);
-        Terminal terminal = serializer.Deserialize(reader) as Terminal;
+        TerminalModel terminal = serializer.Deserialize(reader) as TerminalModel;
         return terminal;
     }
 }

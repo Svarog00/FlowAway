@@ -44,7 +44,7 @@ public class GridMesh<TGridObject>
 		if (showDebug)
 		{
 			_debugTextMeshes = new TextMesh[width, height];
-			DrawMesh();
+			DrawDebugMesh();
 		}
 
 	}
@@ -60,7 +60,7 @@ public class GridMesh<TGridObject>
 		y = Mathf.FloorToInt((worldPosition - _originPosition).y / CellSize);
 	}
 
-	private void DrawMesh()
+	private void DrawDebugMesh()
 	{
 		for (int i = 0; i < _gridArray.GetLength(0); i++)
 		{

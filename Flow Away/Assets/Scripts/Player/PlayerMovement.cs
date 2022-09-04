@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Movement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private const string ObstaclesLayerName = "Obstacles";
     private const string DashAbilityName = "Dash";
@@ -27,7 +27,7 @@ public class Player_Movement : MonoBehaviour
     private int _curDashCounter;
     private float _curDashTimer = 0f;
 
-    private Vector2 _movement;
+    //private Vector2 _movement;
     private Vector2 _direction;
     private Vector3 _dashTarget;
 
@@ -55,13 +55,13 @@ public class Player_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb2.MovePosition(rb2.position + _movement * _movementSpeed * Time.deltaTime);
+        rb2.MovePosition(rb2.position + _direction * _movementSpeed * Time.deltaTime);
         Dash();
     }
 
     public void StopMove()
     {
-        _movement = Vector2.zero;
+        _direction = Vector2.zero;
     }
 
     public void HandleMove(Vector2 vector, bool dash)
@@ -71,17 +71,17 @@ public class Player_Movement : MonoBehaviour
 
     public void HandleMove(float x, float y, bool dash)
     {
-        _movement.x = x;
-        _movement.y = y;
+        _direction.x = x;
+        _direction.y = y;
 
         AnimateMove();
 
-        if (_movement != new Vector2(0, 0))
+        if (_direction != new Vector2(0, 0))
         {
-            ChangeDir();
+            ChangeAnimationDir();
         }
 
-        if (dash && _curDashCounter > 0) //if timer is null
+        if (dash && _curDashCounter > 0)
         {
             _curDashTimer = _dashTimer;
             _curDashCounter--;
@@ -112,7 +112,6 @@ public class Player_Movement : MonoBehaviour
                     rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime)); //дэш к точке
                 }
             }
-            //CameraShake.Instance.ShakeCamera(1f, .1f);
             _isPressedDash = false;
         }
     }
@@ -147,14 +146,14 @@ public class Player_Movement : MonoBehaviour
 
     private void AnimateMove()
     {
-        animator.SetFloat("Horizontal", _movement.x);
-        animator.SetFloat("Vertical", _movement.y);
-        animator.SetFloat("Speed", _movement.sqrMagnitude);
+        animator.SetFloat("Horizontal", _direction.x);
+        animator.SetFloat("Vertical", _direction.y);
+        animator.SetFloat("Speed", _direction.sqrMagnitude);
     }
 
-    private void ChangeDir()
+    private void ChangeAnimationDir()
     {
-        _direction = _movement;
+        //_direction = _movement;
         animator.SetFloat("Dir_Horizontal", _direction.x);
         animator.SetFloat("Dir_Vertical", _direction.y);
     }

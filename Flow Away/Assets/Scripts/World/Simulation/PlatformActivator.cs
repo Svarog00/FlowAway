@@ -20,7 +20,7 @@ public class PlatformActivator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<Player_Movement>())
+        if(collision.GetComponent<PlayerMovement>())
             if (!platform.activeSelf)
                 platform.SetActive(true);
     }

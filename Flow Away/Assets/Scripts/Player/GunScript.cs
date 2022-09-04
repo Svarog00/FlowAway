@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System;
+﻿using Assets.Scripts.Infrustructure;
 using UnityEngine;
-using Assets.Scripts.Infrustructure;
 
 public class GunScript : MonoBehaviour, ICoroutineRunner
 {
@@ -23,7 +21,7 @@ public class GunScript : MonoBehaviour, ICoroutineRunner
     [SerializeField] private Timer _cooldownTimer;
     [SerializeField] private Timer _reloadTimer;
 
-    private SpriteRenderer sprite;
+    private SpriteRenderer _sprite;
 
     private void Start()
     {
@@ -31,8 +29,8 @@ public class GunScript : MonoBehaviour, ICoroutineRunner
         _curShootCooldown = 0f;
         //gameObject.SetActive(false);
 
-        sprite = GetComponent<SpriteRenderer>();
-        sprite.enabled = false;
+        _sprite = GetComponent<SpriteRenderer>();
+        _sprite.enabled = false;
 
         _cooldownTimer = new Timer(this, WeaponCooldowned);
         _reloadTimer = new Timer(this, WeaponReloaded);
@@ -48,12 +46,11 @@ public class GunScript : MonoBehaviour, ICoroutineRunner
     public void Attack()
     {
         //gameObject.SetActive(true);
-        sprite.enabled = true;
+        _sprite.enabled = true;
         LookAtCursor();
         if (CanAttack())
         {
             //создание новго выстрела
-            //GameObject shotTransform = Instantiate(shotPrefab, firePoint.position, firePoint.rotation);
             GameObject shotTransform = objectPool.GetFromPool();
             //перемещение
             shotTransform.transform.position = firePoint.position;
@@ -67,13 +64,13 @@ public class GunScript : MonoBehaviour, ICoroutineRunner
 
             AudioManager.Instance.Play("Shot");
             _curShootCooldown = _shootDelay;
+
             _cooldownTimer.StartTimer(_shootDelay);
 
             _reloadTimer.StartTimer(_reloadTime);
             
 
             _curShotsCount--;
-            Debug.Log($"After shot {_curShotsCount}");
         }
     }
 
@@ -83,7 +80,7 @@ public class GunScript : MonoBehaviour, ICoroutineRunner
         Vector3 mousePosition = UtilitiesClass.GetWorldMousePosition(); 
         Vector2 aimDir = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        transform.eulerAngles = new Vector3(0, 0, angle);
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         
         Vector3 localScale = Vector3.one;
         if(angle > 90 || angle < -90)
@@ -101,7 +98,7 @@ public class GunScript : MonoBehaviour, ICoroutineRunner
     {
         _curShootCooldown = 0f;
         //gameObject.SetActive(false);
-        sprite.enabled = false;
+        _sprite.enabled = false;
     }
 
     void WeaponReloaded()

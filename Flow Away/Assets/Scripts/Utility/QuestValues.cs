@@ -2,15 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class QuestStages : IEquatable<QuestStages>
+{
+	public string name;
+	public int stage = 0;
+
+	public bool Equals(QuestStages other)
+	{
+		if (other == null)
+			return false;
+		else 
+			return name.Equals(other.name);
+	}
+}
+
 public class QuestValues : MonoBehaviour
 {
 	public static QuestValues Instance { get; private set; }
 	[SerializeField] private List<QuestStages> _quests = new List<QuestStages>();
 
+	public List<QuestStages> QuestList
+	{
+		get => _quests;
+		set => _quests = value;
+	}
+
 	private void Awake()
 	{
 		if (Instance == null)
+        {
 			Instance = this; //Должен существовать только один глобальный экземпляр, в котором хранятся все значения для квестов.
+        }
 		else
 		{
 			Destroy(gameObject);
@@ -23,7 +46,9 @@ public class QuestValues : MonoBehaviour
 	public void Add(string name)
 	{
 		if (!_quests.Contains(new QuestStages { name = name }))
+        {
 			_quests.Add(new QuestStages { name = name, stage = 0 });
+        }
 	}
 
 	public void SetStage(string name, int stage)
@@ -65,26 +90,6 @@ public class QuestValues : MonoBehaviour
 	{
 		_quests.Clear();
 	}
-
-	public List<QuestStages> QuestList
-	{
-		get { return _quests; }
-		set { _quests = value;  }
-	}
 }
 
-[System.Serializable]
-public class QuestStages : IEquatable<QuestStages>
-{
-	public string name;
-	public int stage = 0;
-
-	public bool Equals(QuestStages other)
-	{
-		if (other == null)
-			return false;
-		else 
-			return name.Equals(other.name);
-	}
-}
 

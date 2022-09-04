@@ -8,14 +8,16 @@ public class TerminalScript : MonoBehaviour
 
     public GUISkin GUISkin;
     public TextAsset tAsset;
-    public Terminal terminal;
     
     [SerializeField] private UINoteTextScript _uiInformer;
 
+    private TerminalModel _model;
     private List<Note> _notesList = new List<Note>();
+
     private string _areaText = "";
     private bool _isEnter;
     private bool _showTerminal;
+
     private Vector2 _scrollPosition;
 
     private IInputService _inputService;
@@ -32,10 +34,12 @@ public class TerminalScript : MonoBehaviour
 
         _scrollPosition = Vector2.zero;
 
-        terminal = Terminal.Load(tAsset);
-        for (int i = 0; i < terminal.notes.Length; i++)
+        _model = new TerminalModel();
+        _model = _model.Load(tAsset);
+
+        for (int i = 0; i < _model.notes.Length; i++)
         {
-            _notesList.Add(terminal.notes[i]);
+            _notesList.Add(_model.notes[i]);
         }
 
         _inputService = ServiceLocator.Container.Single<IInputService>();
@@ -45,19 +49,15 @@ public class TerminalScript : MonoBehaviour
 
     private void Update()
     {
-        if (_isEnter && _inputService.IsInteractButtonDown() && !_showTerminal)
+        if(_inputService.IsInteractButtonDown() && _isEnter)
         {
-            _showTerminal = true;
-        }
-        else if (_isEnter && _inputService.IsInteractButtonDown() && _showTerminal)
-        {
-            _showTerminal = false;
+            _showTerminal = !_showTerminal;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Player_Movement>())
+        if (collision.GetComponent<PlayerControl>())
         {
             _isEnter = true;
             _uiInformer.Appear(_uiInformerText, 1.2f);
@@ -66,7 +66,7 @@ public class TerminalScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<Player_Movement>())
+        if (collision.GetComponent<PlayerControl>())
         {
             _isEnter = false;
             _showTerminal = false;
@@ -86,7 +86,7 @@ public class TerminalScript : MonoBehaviour
     private void ShowTerminal()
     {
         GUI.skin = GUISkin;
-        GUI.Box(new Rect(Screen.width / 2 - 700, Screen.height - 800, 1400, 700), ""); //Создание бокса с ответами
+        GUI.Box(new Rect(Screen.width / 2 - 700, Screen.height - 800, Screen.width - 700, Screen.height - 250), ""); //Создание бокса с ответами
         GUI.TextArea(new Rect(Screen.width / 2 - 150, Screen.height - 690, 780, 480), _areaText);
         _scrollPosition = GUI.BeginScrollView(new Rect(Screen.width / 2 - 600, Screen.height - 700, 400, 480), _scrollPosition, new Rect(0, 0, 380, 800), false, false);
         for (int i = 0; i < _notesList.Count; i++)

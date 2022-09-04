@@ -6,15 +6,12 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
-    public string nextSceneName;
-    [SerializeField] private SaveManager _saveManager;
-    private bool _readyToLeave = false;
-    private UINoteTextScript _note;
+    public string NextSceneName;
 
-    private void Start()
-    {
-        _note = FindObjectOfType<UINoteTextScript>();
-    }
+    [SerializeField] private UINoteTextScript _note;
+    [SerializeField] private SaveManager _saveManager;
+
+    private bool _readyToLeave = false;
 
     private void Update()
     {
@@ -22,13 +19,13 @@ public class Exit : MonoBehaviour
         {
             _saveManager.SaveGame(SceneManager.GetActiveScene().name); //Создает файл сохранения с названием сцены, на которой игрок находится
             PlayerPrefs.SetInt("LevelMove", 1); //Устанавливается флаг перехода 
-            SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Single); //Загружается следующая сцена
+            SceneManager.LoadSceneAsync(NextSceneName, LoadSceneMode.Single); //Загружается следующая сцена
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<Player_Movement>())
+        if(collision.GetComponent<PlayerControl>())
         {
             _note.Appear("Press E to leave", 2f);
             _readyToLeave = true;
@@ -37,7 +34,7 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<Player_Movement>())
+        if (collision.GetComponent<PlayerControl>())
         {
             _note.Disappear(2f);
             _readyToLeave = false;
