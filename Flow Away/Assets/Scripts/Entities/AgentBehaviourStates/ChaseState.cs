@@ -29,6 +29,7 @@ namespace Assets.Scripts.BehaviourStates
 		{
 			_oldTargetPosition = _agentContext.Player.transform.position;
 			_movement.SetTargetPosition(_oldTargetPosition);
+			_movement.CanMove = true;
 
 			_playerHP = _agentContext.Player.GetComponent<PlayerHealthController>();
 		}
@@ -41,13 +42,11 @@ namespace Assets.Scripts.BehaviourStates
 				_movement.SetTargetPosition(_oldTargetPosition);
 			}
 
-			_movement.CanMove = true;
-
-			if (_agentContext.DistanceToPlayer > _agentContext.AgressionDistance)
+			if (_agentContext.DistanceToPlayer > _agentContext.AgressionDistance) //Если игрок вне дистанции агрессии, то продолжать какое-то время преследовать
 			{
 				_elapsedTime += Time.deltaTime;
 
-				if (_elapsedTime >= _agentContext.ChaseTimeOut)
+				if (_elapsedTime >= _agentContext.ChaseTimeOut) //Если цель уже слишком далеко, то возврат в патрулю
 				{
 					_stateMachine.Enter<PatrolState>();
 				}
@@ -55,7 +54,6 @@ namespace Assets.Scripts.BehaviourStates
 			else if (_agentContext.DistanceToPlayer <= _enemyAttack.AttackDistance) //Если игрок слишком близко, то остановиться для атаки
 			{
 				_elapsedTime = 0f;
-				_movement.CanMove = false;
 				if (_playerHP.GetFreeSlots() > _agentContext.Weight) //Если игрока атакует не слишком много противников, то можно атаковать
 				{
 					_stateMachine.Enter<EngageState>();
@@ -69,7 +67,7 @@ namespace Assets.Scripts.BehaviourStates
 
         public void Exit()
         {
-            
+            _movement.CanMove = false;
         }
     }
 }

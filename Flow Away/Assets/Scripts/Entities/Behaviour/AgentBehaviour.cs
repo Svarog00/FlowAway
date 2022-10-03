@@ -6,21 +6,9 @@ using UnityEngine;
 
 public abstract class AgentBehaviour : MonoBehaviour
 {
-
-    public float AgressionDistance 
-    { 
-        get => _agressionDistance; 
-    }
-
-    public float ChaseTimeOut 
-    { 
-        get => _chaseTimeOut; 
-    }
-
-    public int Weight 
-    { 
-        get => _weight; 
-    }
+    public float AgressionDistance => _agressionDistance;
+    public float ChaseTimeOut => _chaseTimeOut;
+    public int Weight => _weight;
 
     public GameObject Player 
     { 
@@ -33,20 +21,24 @@ public abstract class AgentBehaviour : MonoBehaviour
         }
     }
 
-    public float DistanceToPlayer { get => _distanceToPlayer; }
-    public Vector2 Direction { get => _direction; }
-    public Vector2 VectorToPlayer { get => _vectorToPlayer; }
     public bool EnemyDetected { get => _enemyDetected; set => _enemyDetected = value; }
-    public Transform[] PatrolSpots { get => _patrolSpots; }
-    public float WaitTime { get => _waitTime; }
-    public LayerMask LayerMask { get => _layerMask; }
+    
+    public Vector2 Direction => _direction;
+    public Vector2 VectorToPlayer => _vectorToPlayer;
+    
+    public Transform[] PatrolSpots => _patrolSpots;
+    
+    public float DistanceToPlayer => _distanceToPlayer;
+    public float WaitTime => _waitTime;
+    
+    public LayerMask LayerMask => _layerMask;
 
     protected BehaviourStateMachine StateMachine;
 
     [SerializeField] private float _waitTime = 1f;
     [SerializeField] private int _weight = 0; //количество слотов, которые будут заниматься противником при атаке по игроку
-	[SerializeField] private float _agressionDistance; //Дистанция на которой происходит агр
-	[SerializeField] private float _chaseTimeOut = 0.5f; //Время погони
+	[SerializeField] private float _agressionDistance;
+	[SerializeField] private float _chaseTimeOut = 0.5f;
 
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private Transform[] _patrolSpots;

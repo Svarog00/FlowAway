@@ -88,26 +88,47 @@ namespace Assets.Scripts.Player.Gadgets.Hook
             if (!_hasCollided &&
                 (collision.CompareTag(HookableObjTag) || collision.CompareTag(ObstacleTag)))
             {
-                if (collision.CompareTag(HookableObjTag))
+                HandleHookHit(collision);
+            }
+        }
+
+        private void HandleHookHit(Collider2D collision)
+        {
+            if (collision.CompareTag(HookableObjTag))
+            {
+                _onCollideAction = Pull;
+            }
+            else if (collision.CompareTag(ObstacleTag))
+            {
+                //Check hook hit
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, _direction, _range, ObstacleLayer); //Выстрел лучом на дистанцию дэша по слою препятствий
+                if (hit) //Get hit point to pull player to
                 {
-                    _onCollideAction = Pull;
-
-                }
-                else if (collision.CompareTag(ObstacleTag))
-                {
-                    //Check hook hit
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position, _direction, _range, ObstacleLayer); //Выстрел лучом на дистанцию дэша по слою препятствий
-                    if (hit) //Get hit point to pull player to
-                    {
-                        _collisionPoint = transform.position + _range * hit.fraction * _direction; //Если попал луч, то точка назначения - место попадания
-                    }
-
-                    _playerControl.CanMove = false;
-                    _onCollideAction = Reach;
-
+                    _collisionPoint = transform.position + _range * hit.fraction * _direction; //Если попал луч, то точка назначения - место попадания
                 }
 
-                Collision(collision.transform);
+                _playerControl.CanMove = false;
+                _onCollideAction = Reach;
+
+            }
+
+            Collision(collision.transform);
+        }
+
+        private void Collision(Transform collision)
+        {
+            _speed = _returnSpeed;
+
+            _hasCollided = true;
+            if (collision)
+            {
+                transform.position = collision.position;
+                _collidedWith = collision;
+            }
+            else
+            {
+                _onCollideAction = Pull;
+                _collidedWith = null;
             }
         }
 
@@ -142,22 +163,6 @@ namespace Assets.Scripts.Player.Gadgets.Hook
             }
         }
 
-        private void Collision(Transform collision)
-        {
-            _speed = _returnSpeed;
-
-            _hasCollided = true;
-            if (collision)
-            {
-                transform.position = collision.position;
-                _collidedWith = collision;
-            }
-            else
-            {
-                _onCollideAction = Pull;
-                _collidedWith = null;
-            }
-        }
 
         private Vector2 GetDirectionToMouse()
         {

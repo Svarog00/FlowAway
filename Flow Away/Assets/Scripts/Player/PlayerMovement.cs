@@ -131,8 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb2.velocity = Vector2.zero;
     }
-    #endregion
-
+    
     private void CooldownDash()
     {
         _curDashTimer -= Time.deltaTime;
@@ -143,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
             _curDashCounter = _maxDashCount;
         }
     }
+	#endregion
 
     private void AnimateMove()
     {
