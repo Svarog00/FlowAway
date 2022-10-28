@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CapsuleTake : MonoBehaviour
 {  
-    private PlayerHealthController _playerHealthController;
+    private HealingCapsulesController _healingCapsulesController;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
-            if(other.GetComponent<PlayerHealthController>().GetCapsuleCount() < 3)
+            if(other.GetComponent<HealingCapsulesController>().CapsulesCount < 3)
             {
-                _playerHealthController = other.GetComponent<PlayerHealthController>();
+                _healingCapsulesController = other.GetComponent<HealingCapsulesController>();
                 Take();
             }
         }
@@ -22,7 +22,7 @@ public class CapsuleTake : MonoBehaviour
     {
         AudioManager.Instance.Play("CapsuleTake");
 
-        _playerHealthController.AddCapsule();
+        _healingCapsulesController.AddCapsule();
         Destroy(gameObject);
     }
 

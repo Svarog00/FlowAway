@@ -63,19 +63,19 @@ public class EnemyMovement : MonoBehaviour
             if(_pathVectorList != null)
             {
                 Vector3 targetPosition = _pathVectorList[_currentPathIndex];
-                if(Vector3.Distance(transform.position, targetPosition) > 0.1f)
+                if(Vector3.Distance(transform.position, targetPosition) <= 0.5f)
+                {
+                    _currentPathIndex++;
+                    if (_currentPathIndex >= _pathVectorList.Count)
+                    {
+                        _canMove = false;
+                    }
+                }
+                else
                 {
                     _direction = (targetPosition - transform.position).normalized;
                     SetSpriteDirection(-_direction);
                     _rb2.MovePosition(_rb2.position - _direction * _maxSpeed * Time.deltaTime); //movement
-                }
-                else
-                {
-                    _currentPathIndex++;
-                    if(_currentPathIndex >= _pathVectorList.Count)
-                    {
-                        _canMove = false;
-                    }
                 }
             }
         }

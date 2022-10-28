@@ -13,19 +13,19 @@ public class CapsulesUI : MonoBehaviour
 
     public void Start()
     {
-        FindObjectOfType<PlayerHealthController>().OnCapsulesCountChanged += CapsulesUI_OnCapsulesCountChanged;
-        AddCapsule(FindObjectOfType<PlayerHealthController>().GetCapsuleCount());
+        FindObjectOfType<HealingCapsulesController>().OnCapsulesCountChanged += CapsulesUI_OnCapsulesCountChanged;
+        AddCapsule(FindObjectOfType<HealingCapsulesController>().CapsulesCount);
     }
 
-    private void CapsulesUI_OnCapsulesCountChanged(object sender, PlayerHealthController.OnCapsulesCountChangedEventArgs e)
+    private void CapsulesUI_OnCapsulesCountChanged(object sender, HealingCapsulesController.OnCapsulesCountChangedEventArgs e)
     {
         switch (e.OperType)
         {
-            case PlayerHealthController.OnCapsulesCountChangedEventArgs.OperationType.Add :
+            case HealingCapsulesController.OnCapsulesCountChangedEventArgs.OperationType.Add :
                 AddCapsule(e.CapsulesCount);
                 break;
 
-            case PlayerHealthController.OnCapsulesCountChangedEventArgs.OperationType.Remove:
+            case HealingCapsulesController.OnCapsulesCountChangedEventArgs.OperationType.Remove:
                 RemoveCapsule(e.CapsulesCount);
                 break;
         }

@@ -35,9 +35,7 @@ public class Turret : SurveillanceScript, IDamagable
 
     Vector2 GetDirection()
     {
-        _headingToPlayer = transform.position - _playerPosition; //направленный вектор к игроку / a vector to the player
-        _distanceToPlayer = _headingToPlayer.magnitude; //длина вектора / lenght of the vector
-        Vector2 direction = _headingToPlayer / _distanceToPlayer; //direction to player
+        Vector2 direction = (transform.position - _playerPosition).normalized; //direction to player
         return direction;
     }
 

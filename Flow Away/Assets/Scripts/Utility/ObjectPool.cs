@@ -23,7 +23,6 @@ public class ObjectPool : MonoBehaviour
             instanceToAdd.GetComponent<IPoolable>().SetPool(this);
             AddToPool(instanceToAdd);
         }
-        Debug.Log($"Pool {_id} has grown");
     }
 
     public void AddToPool(GameObject instance)

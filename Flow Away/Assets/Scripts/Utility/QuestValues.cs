@@ -60,7 +60,7 @@ public class QuestValues : MonoBehaviour
         }
 		else
 		{
-			Debug.Log($"Can not set stage of quest named as {name}");
+			//Debug.Log($"Can not set stage of quest named as {name}");
 		}
 	}
 
@@ -81,7 +81,7 @@ public class QuestValues : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log($"Can not get stage of quest named as {name}");
+			//Debug.Log($"Can not get stage of quest named as {name}");
 			return -1;
 		}
 	}

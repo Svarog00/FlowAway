@@ -13,37 +13,22 @@ public class PlayerHealthController : MonoBehaviour, IDamagable
         public int curHealth;
     }
 
-    public event EventHandler<OnCapsulesCountChangedEventArgs> OnCapsulesCountChanged;
-    public class OnCapsulesCountChangedEventArgs : EventArgs
-    {
-        public enum OperationType { Add, Remove }
-
-        public OperationType OperType;
-        public int CapsulesCount;
-    }
-    
-    public int PlayerHealth
+    public int MaxHealth => _playerHealth.MaxHealth;
+    public int CurrentHealth
     {
         get => _playerHealth.CurrentHealth;
-        set => _playerHealth.SetHealth(value);
+        set => _playerHealth.CurrentHealth = value;
     }
 
     private PlayerHealthModel _playerHealth;
-    private HealingCapsulesModel _capsulesModel;
-    
-    [SerializeField] private int _initCapsuleCount;
 
     private void Start()
     {
         _playerHealth = new PlayerHealthModel();
-        _capsulesModel = new HealingCapsulesModel(_initCapsuleCount);
 
         _playerHealth.OnDeath += _playerHealth_OnDeath;
 
-        OnCapsulesCountChanged?.Invoke(this, new OnCapsulesCountChangedEventArgs { 
-            OperType = OnCapsulesCountChangedEventArgs.OperationType.Add, 
-            CapsulesCount = _initCapsuleCount 
-        });
+        OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { curHealth = _playerHealth.CurrentHealth });
     }
 
     private void _playerHealth_OnDeath(object sender, System.EventArgs e)
@@ -52,44 +37,10 @@ public class PlayerHealthController : MonoBehaviour, IDamagable
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
     }
 
-    public int GetCapsuleCount() => _capsulesModel.Count;
-
-    public void AddCapsule() 
+    public void Heal()
     {
-        _capsulesModel.Count++;
-
-        OnCapsulesCountChanged?.Invoke(this, new OnCapsulesCountChangedEventArgs
-        {
-            OperType = OnCapsulesCountChangedEventArgs.OperationType.Add,
-            CapsulesCount = _capsulesModel.Count
-        });
-    }
-
-    public void LoadCapsule(int count)
-    {
-        _capsulesModel.Count = count;
-        OnCapsulesCountChanged?.Invoke(this, new OnCapsulesCountChangedEventArgs { 
-            OperType = OnCapsulesCountChangedEventArgs.OperationType.Add, 
-            CapsulesCount = count 
-        });
-    }
-
-    public void HandleHeal()
-    {
-        if (_capsulesModel.Count > 0 && _playerHealth.CurrentHealth < _playerHealth.MaxHealth)
-        {
-            AudioManager.Instance.Play("Heal");
-
-            _playerHealth.Heal();
-            OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { curHealth = _playerHealth.CurrentHealth });
-
-            OnCapsulesCountChanged?.Invoke(this, new OnCapsulesCountChangedEventArgs {
-                OperType = OnCapsulesCountChangedEventArgs.OperationType.Remove,
-                CapsulesCount = _capsulesModel.Count
-            });
-
-            _capsulesModel.Count--;
-        }
+        _playerHealth.Heal();
+        OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { curHealth = _playerHealth.CurrentHealth });
     }
 
     public void Hurt(int damage)

@@ -6,8 +6,10 @@ using UnityEngine;
 public class SpawnerScript : MonoBehaviour
 {
 	public SurveillanceScript Surveillance;
+
 	[SerializeField] private int _count;
 	[SerializeField] private float _delay = 0.5f;
+
 	private ObjectPool _objectPool;
 	private float _curDelay;
 

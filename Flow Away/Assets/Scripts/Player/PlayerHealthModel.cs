@@ -11,30 +11,20 @@ public class PlayerHealthModel
 
     private int _freeSlots;
 
-    public int FreeSlots
-    {
-        get => _freeSlots;
-    }
+    public int FreeSlots => _freeSlots;
 
     public int CurrentHealth
     {
-        get => _currentHealth; 
+        get => _currentHealth;
+        set => _currentHealth = value;
     }
 
-    public int MaxHealth
-    {
-        get { return _maxHealth; }
-    }
+    public int MaxHealth => _maxHealth;
 
     public PlayerHealthModel()
     {
         _currentHealth = _maxHealth;
         _freeSlots = _slots;
-    }
-
-    public void SetHealth(int health)
-    {
-        _currentHealth = health;
     }
 
     public void RestoreSlots(int lostSlots)

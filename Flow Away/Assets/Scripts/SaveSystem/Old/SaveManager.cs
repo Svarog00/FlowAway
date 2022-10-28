@@ -8,6 +8,7 @@ public class SaveManager : MonoBehaviour
 
     private Transform _playerPos;
     private PlayerHealthController _playerHealthController;
+    private HealingCapsulesController _healingCapsulesController;
 
     private SaveLoadService _saveLoadSystem;
 
@@ -65,8 +66,8 @@ public class SaveManager : MonoBehaviour
         {
             x = _playerPos.position.x,
             y = _playerPos.position.y,
-            health = _playerHealthController.PlayerHealth,
-            medkitCount = _playerHealthController.GetCapsuleCount(),
+            health = _playerHealthController.CurrentHealth,
+            medkitCount = _healingCapsulesController.CapsulesCount,
             currentScene = SceneManager.GetActiveScene().name,
             questValues = new List<QuestStages>(QuestValues.Instance.QuestList)
         };

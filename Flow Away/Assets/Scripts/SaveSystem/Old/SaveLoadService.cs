@@ -8,6 +8,7 @@ public class SaveLoadService
 {
 	private Transform _playerPos;
 	private PlayerHealthController _playerHealth;
+	private HealingCapsulesController _healingCapsules;
 	private QuestValues _questValues;
 			
     public SaveLoadService()
@@ -15,10 +16,11 @@ public class SaveLoadService
 
     }
 
-	public SaveLoadService(Transform playerPos, PlayerHealthController playerHealth)
+	public SaveLoadService(Transform playerPos, PlayerHealthController playerHealth, HealingCapsulesController capsulesController)
     {
 		_playerPos = playerPos;
 		_playerHealth = playerHealth;
+		_healingCapsules = capsulesController;
 		_questValues = QuestValues.Instance;
     }
 
@@ -54,8 +56,8 @@ public class SaveLoadService
 				else if(PlayerPrefs.GetInt("QuickLoad") == 1)//quickload from ingame menu or in case of dead or to continue from certain point
 				{
 					_playerPos.position = new Vector2(tmp.x, tmp.y);
-					_playerHealth.PlayerHealth = tmp.health;
-					_playerHealth.LoadCapsule(tmp.medkitCount);
+					_playerHealth.CurrentHealth = tmp.health;
+                    _healingCapsules.LoadCapsule(tmp.medkitCount);
 				}
 			}
 			catch (System.Exception Error)
@@ -85,8 +87,8 @@ public class SaveLoadService
 				else //quickload from ingame menu or in case of dead or to continue from certain point
 				{
 					_playerPos.position = new Vector2(tmp.x, tmp.y);
-					_playerHealth.PlayerHealth = tmp.health;
-					_playerHealth.LoadCapsule(tmp.medkitCount);
+					_playerHealth.CurrentHealth = tmp.health;
+                    _healingCapsules.LoadCapsule(tmp.medkitCount);
 					_questValues.QuestList = new List<QuestStages>(tmp.questValues);
 				}
 			}

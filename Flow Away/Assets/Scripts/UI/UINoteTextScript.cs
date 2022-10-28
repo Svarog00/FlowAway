@@ -10,10 +10,8 @@ public class UINoteTextScript : MonoBehaviour
 
     private void Start()
     {
-        //TODO: Extract to external script
         _canvas = GetComponentInParent<Canvas>();
         _canvas.worldCamera = Camera.main;
-        //-----------------------------------
 
         _textField = GetComponent<Text>();
     }

@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4730221803471831734}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   _chaseTimeOut: 1
   _layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   _patrolSpots: []
 --- !u!114 &4730221804762415062
 MonoBehaviour:
@@ -409,7 +409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventSource: {fileID: 0}
   _hpMax: 60
-  _hp: 0
 --- !u!114 &4730221804762415056
 MonoBehaviour:
   m_ObjectHideFlags: 0

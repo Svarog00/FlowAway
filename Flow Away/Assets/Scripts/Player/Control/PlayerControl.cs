@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
     private PlayerAttack _playerAttack;
     private IInputService _inputService;
     private PlayerMovement _playerMovement;
-    private PlayerHealthController _playerHealing;
+    private HealingCapsulesController _playerHealing;
     private HotkeysSystem _hotkeysSystem;
 
     private bool _canMove;
@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour
     private void Start()
     {
         _playerMovement = GetComponent<PlayerMovement>();
-        _playerHealing = GetComponent<PlayerHealthController>();
+        _playerHealing = GetComponent<HealingCapsulesController>();
         _playerAttack = GetComponent<PlayerAttack>();
 
         CanAttack = true;

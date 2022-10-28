@@ -14,7 +14,7 @@ public class GadgetActivator : MonoBehaviour
         if (QuestValues.Instance.GetStage(GadgetName) == -1)
         {
             QuestValues.Instance.Add(GadgetName);
-            Debug.Log($"{GadgetName} module quest given");
+            //Debug.Log($"{GadgetName} module quest given");
         }
     }
 
@@ -34,6 +34,6 @@ public class GadgetActivator : MonoBehaviour
     {
         QuestValues.Instance.SetStage(GadgetName, 1);
         _gadgetManager.ActivateGadget(GadgetName);
-        Debug.Log($"{GadgetName} module quest updated");
+        //Debug.Log($"{GadgetName} module quest updated");
     }
 }

@@ -8,7 +8,7 @@ namespace Assets.Scripts.Infrastructure
     class BootstrapState : IState
     {
         private const string Initial = "Initial";
-        private const string StartSceneName = "ExperimentalScene";
+        private const string StartSceneName = "FirstForest";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
