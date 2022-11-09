@@ -31,7 +31,7 @@ namespace Assets.Scripts.BehaviourStates
             _currentState.Enter();
         }
 
-        public TState ChangeState<TState>() where TState : class, IBehaviourState
+        private TState ChangeState<TState>() where TState : class, IBehaviourState
         {
             _currentState?.Exit();
             return _states[typeof(TState)] as TState;
