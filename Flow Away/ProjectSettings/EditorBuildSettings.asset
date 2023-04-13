@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ExperimentalScene.unity
     guid: 548bac7bcdf9bb9468c55081ac489f56
+  - enabled: 1
+    path: Assets/Scenes/PlayerLayer.unity
+    guid: 3e1df4abc5a1b4840a1063d609e5e373
   m_configObjects: {}

@@ -105,7 +105,7 @@ TextureImporter:
       213: -1885070269781420638
     second: Gargoyle_33
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -122,9 +122,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -134,8 +137,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -156,10 +159,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -175,6 +183,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 8192
     resizeAlgorithm: 1
     textureFormat: -1
@@ -912,9 +932,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Gargoyle_23: -1538670633855868673
+      Gargoyle_11: -1989519276846035562
+      Gargoyle_12: -4929890291370364465
+      Gargoyle_31: -3633086276521768246
+      Gargoyle_3: 7493443944892835596
+      Gargoyle_5: -8225802307506752626
+      Gargoyle_6: -3034535711539413467
+      Gargoyle_2: -3429365276680859652
+      Gargoyle_19: 7420473712262487743
+      Gargoyle_13: 3788561047127113071
+      Gargoyle_9: 6829856611327395819
+      Gargoyle_16: 2061737145775846815
+      Gargoyle_32: 6245527644921175272
+      Gargoyle_26: -942702346883838533
+      Gargoyle_7: 1201746981329326901
+      Gargoyle_14: -1498068650570687410
+      Gargoyle_4: -2823174517247324964
+      Gargoyle_27: 2789816147209740001
+      Gargoyle_1: 7247373218571658861
+      Gargoyle_29: -4401967018993824200
+      Gargoyle_17: -837928777535565748
+      Gargoyle_15: -7690170945158435301
+      Gargoyle_0: -2990900167212558872
+      Gargoyle_21: 4585692332047323411
+      Gargoyle_24: -7805402528824183790
+      Gargoyle_20: 6899292035217859438
+      Gargoyle_28: -3671993491973871279
+      Gargoyle_18: -3291183063753084728
+      Gargoyle_22: 162189522378029475
+      Gargoyle_8: 4002570143577623552
+      Gargoyle_10: 210148211759728268
+      Gargoyle_25: -729753415955951362
+      Gargoyle_30: 5601752155161685814
+      Gargoyle_33: -1885070269781420638
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

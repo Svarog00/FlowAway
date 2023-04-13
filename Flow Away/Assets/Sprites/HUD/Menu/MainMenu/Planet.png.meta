@@ -150,7 +150,7 @@ TextureImporter:
       213: -5362993769903550619
     second: Planet_48
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -167,9 +167,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -179,8 +182,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -201,10 +204,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -220,6 +228,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -768,9 +788,34 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Planet_29: 3176364570416799151
+      Planet_48: -5362993769903550619
+      Planet_18: -1168814522093079087
+      Planet_46: -9140262199606502682
+      Planet_28: 3214852501726945925
+      Planet_30: -5198972205185708449
+      Planet_39: 594008179630465144
+      Planet_33: 4340961019786933501
+      Planet_37: 6066807860706159226
+      Planet_34: 2154804751164536441
+      Planet_23: 2109374072882261304
+      Planet_42: -529334787916647186
+      Planet_32: -6868385728742401407
+      Planet_27: 6309220029195320031
+      Planet_20: 2213660888497317621
+      Planet_40: -6505889811855965987
+      Planet_31: 6906455671442817066
+      Planet_35: -5259616312635348820
+      Planet_43: -7946774036469878396
+      Planet_24: -2734722447411775792
+      Planet_44: -6227614125547467947
+      Planet_22: 2080865371039611854
+      Planet_25: -3076210664091458589
+      Planet_36: -9221062815820597801
+      Planet_26: -4638710375248679426
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

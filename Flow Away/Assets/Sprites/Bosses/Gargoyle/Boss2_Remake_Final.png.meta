@@ -105,7 +105,7 @@ TextureImporter:
       213: 5882756564147437316
     second: Gargoyle_FallingDown_11
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -122,9 +122,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -134,8 +137,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -156,10 +159,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -175,6 +183,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -912,9 +932,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Gargoyle_TakeOff_7: 7029735693998963063
+      Gargoyle_FallingDown_1: 1069148000816385836
+      Gargoyle_FallingDown_11: 5882756564147437316
+      Gargoyle_TakeOff_2: -8839150312935622157
+      Gargoyle_Idle_3: 3005377498065744579
+      Gargoyle_TakeOff_1: 2377937512785595443
+      Gargoyle_FlyIdle_2: 6389580240062713588
+      Gargoyle_FallingDown_6: -4816542388580384912
+      Gargoyle_Spit_2: -2886638597594650728
+      Gargoyle_Spit_1: 6257777636970296687
+      Gargoyle_FallingDown_5: -3644830254456286684
+      Gargoyle_Spit_4: 2573163574138763807
+      Gargoyle_FlyIdle_4: 1969943303206046110
+      Gargoyle_Idle_5: -6232151712609591641
+      Gargoyle_FallingDown_2: 2813320035001534638
+      Gargoyle_FallingDown_3: -4910620721797447795
+      Gargoyle_Idle_2: 3585200809718014638
+      Gargoyle_Idle_4: -6064742577428013425
+      Gargoyle_Spit_3: 2373514813757605013
+      Gargoyle_TakeOff_4: -1571305633893646382
+      Gargoyle_TakeOff_3: -986524160464066688
+      Gargoyle_FallingDown_8: 2021572617676959484
+      Gargoyle_FallingDown_4: 6459075508333693054
+      Gargoyle_TakeOff_6: -1628479724218682208
+      Gargoyle_Idle_6: -1935276828985088822
+      Gargoyle_FlyIdle_3: 7585426832000287151
+      Gargoyle_TakeOff_5: -3751310743732560308
+      Gargoyle_FallingDown_9: 7176678733936207512
+      Gargoyle_FallingDown_10: -6587440993872495856
+      Gargoyle_Idle_1: -2510379098665632058
+      Gargoyle_TakeOff_8: -5587793290218502560
+      Gargoyle_FlyIdle_1: 3348384408236573677
+      Gargoyle_FallingDown_7: -2114128311093856952
+      Gargoyle_FlyIdle_5: -8514656004424132033
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
