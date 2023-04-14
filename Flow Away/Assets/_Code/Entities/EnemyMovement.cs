@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private const string SpeedAnimatorTag = "Speed";
-    private const float Accuracy = 0.5f;
+    private const float Accuracy = 0.3f;
 
     [SerializeField] private Animator _animator;
     [SerializeField] private float _currentSpeed;

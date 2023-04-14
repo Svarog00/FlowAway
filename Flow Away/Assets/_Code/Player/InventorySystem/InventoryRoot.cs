@@ -33,7 +33,7 @@ namespace InventorySystem
             var item = _itemDatabase.GetItem(itemId);
             _inventoryModel.DeleteItem(item);
 
-            var itemObject = Instantiate(_itemInstance);
+            var itemObject = Instantiate(_itemInstance, gameObject.transform.position, Quaternion.identity);
             itemObject.GetComponent<ItemInstance>().SetItem(item);
         }
     }

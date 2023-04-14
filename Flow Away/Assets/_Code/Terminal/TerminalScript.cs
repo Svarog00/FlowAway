@@ -49,7 +49,12 @@ public class TerminalScript : MonoBehaviour
 
     private void Update()
     {
-        if(_inputService.IsInteractButtonDown() && _isEnter)
+        if(!_isEnter)
+        {
+            return;
+        }
+
+        if(_inputService.IsInteractButtonDown())
         {
             _showTerminal = !_showTerminal;
         }

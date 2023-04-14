@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiNoteText: {fileID: 1004877985011277214}
   _bindedItemId: 0
+  _spriteRenderer: {fileID: 1951295066664161301}
 --- !u!212 &1951295066664161301
 SpriteRenderer:
   m_ObjectHideFlags: 0

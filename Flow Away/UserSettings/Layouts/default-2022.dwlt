@@ -99,7 +99,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 86
+  controlID: 38
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -119,8 +119,8 @@ MonoBehaviour:
     y: 0
     width: 535
     height: 648
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -146,8 +146,8 @@ MonoBehaviour:
     y: 0
     width: 216
     height: 651
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 50
+  controlID: 39
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -473,7 +473,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Code/Player/InventorySystem
+    - Assets/Resources/Prefabs/Entities
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -489,7 +489,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 127}
     m_SelectedIDs: 44680000
     m_LastClickedID: 26692
-    m_ExpandedIDs: 00000000dc630000de630000e0630000e2630000e4630000e6630000e8630000ea630000ec630000ee630000f0630000f2630000f4630000f6630000f8630000fa630000fc630000fe63000000640000026400000464000006640000086400000a6400000c6400000e64000010640000126400001464000016640000186400001a6400001c6400001e64000020640000226400002464000026640000
+    m_ExpandedIDs: 00000000e0630000e2630000e4630000e6630000e8630000ea630000ec630000ee630000f0630000f2630000f4630000f6630000f8630000fa630000fc630000fe63000000640000026400000464000006640000086400000a6400000c6400000e64000010640000126400001464000016640000186400001a6400001c6400001e64000020640000226400002464000026640000286400002a6400002c6400002e6400003064000032640000346400003664000038640000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -514,24 +514,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 616}
+    scrollPos: {x: 0, y: 1825.0562}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000dc630000e0630000e2630000e4630000e6630000e8630000ea630000ec630000ee630000f0630000f2630000f4630000f6630000f8630000fa630000fc630000fe63000000640000026400000464000006640000086400000a6400000c6400000e64000010640000126400001464000016640000186400001a6400001c6400001e640000206400002264000024640000266400008e660000906600009a6600009c6600009e660000a6660000aa660000ac660000
+    m_ExpandedIDs: ffffffff00000000e0630000e2630000e4630000e6630000e8630000ea630000ec630000ee630000f0630000f2630000f4630000f6630000f8630000fa630000fc630000fe63000000640000026400000464000006640000086400000a6400000c6400000e64000010640000126400001464000016640000186400001a6400001c6400001e64000020640000226400002464000026640000286400002a6400002c6400002e64000030640000326400003464000036640000386400004266000010810000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Villager_3
+      m_OriginalName: Villager_3
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 25952
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 2}
     m_SearchString: 
@@ -661,7 +661,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 987bfdffe084fdffe093fdff3496fdff1699fdff2499fdff64a7fdff0212feff0812feff4613feff3814feff7231feffa237feff446dfeff14a3feff86a6feff36acfeffd0b3feff06b6feffbeb6feff70b7feffa2b9feff4abafeff0abcfeffaebcfeff38bffeff38c1feffd6c1fefffac4feffd0c7feff72c8feffc8cefeffdacefeffe0cefeff1ed0feffc0d0feffe8d0feff72ddfeff3cdefeffd8defeffe2defeffacdffeffb4e0fefff20cffff040dffff160dffff320dffff380dffff440dffff4a0dffff600dffff6a0dffff6e0dffff7a0dffff1a0effff3c13ffffa217ffffc417ffff841effff8e1effffb61effffc21fffff62c2ffffdac7ffff34d4ffff42dcffffeee2ffff1af6ffffb8f8ffffbaf8fffff6faffff687d0000ae8000002282000072880000b28a00003e8b00000c8d0000ea8d00007e940000b49f00000ea1000040a10000e6a20000b0a30000
+      m_ExpandedIDs: 8a93faffb6f3faffe4f3faffeaf3faff62f5faff54f6faffc609fbffc61afbff2ea1fbff34a1fbff44a1fbff48a1fbffc0a2fbffc0a3fbffd4a3fbff7c95fdff8495fdff8895fdff0097fdff1498fdffe6ebfeff20f1feff04fefeffd640ffff264dffff624fffff4254ffffa4e4ffff50e5ffff56e5fffffae9ffff66eaffffbaebffff2aedffff08eeffff1ceeffff2cefffffacf1ffffe4fafffff4ffffff446e0000ce6f0000dc6f0000e26f0000f26f00002e9000005090000098d00000a8dd0000cadd0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -828,7 +828,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: -620}
+      snapOffset: {x: 0, y: -580}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 2
       id: Scene View/Camera
@@ -1018,16 +1018,16 @@ MonoBehaviour:
       layout: 0
       size: {x: 0, y: 0}
       sizeOverriden: 0
-    - dockPosition: 1
-      containerId: overlay-container--right
+    - dockPosition: 0
+      containerId: overlay-toolbar__bottom
       floating: 0
-      collapsed: 0
+      collapsed: 1
       displayed: 1
       snapOffset: {x: -216, y: -300}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: AINavigationOverlay
-      index: 8
+      index: 0
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
@@ -1040,7 +1040,7 @@ MonoBehaviour:
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: APV Overlay
-      index: 9
+      index: 8
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
@@ -1053,7 +1053,7 @@ MonoBehaviour:
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Cinemachine Tool Settings
-      index: 10
+      index: 9
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
@@ -1066,7 +1066,7 @@ MonoBehaviour:
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/TrailRenderer
-      index: 11
+      index: 10
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
@@ -1081,9 +1081,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 364.2188, y: 304.5, z: 0}
+    m_Target: {x: 583.5, y: 225.04274, z: 0}
     speed: 2
-    m_Value: {x: 364.2188, y: 304.5, z: 0}
+    m_Value: {x: 583.5, y: 225.04274, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1133,9 +1133,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 328.09964
+    m_Target: 457.28384
     speed: 2
-    m_Value: 328.09964
+    m_Value: 457.28384
   m_Ortho:
     m_Target: 1
     speed: 2

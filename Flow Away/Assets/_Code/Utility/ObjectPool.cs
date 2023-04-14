@@ -20,13 +20,14 @@ public class ObjectPool : MonoBehaviour
         {
             var instanceToAdd = Instantiate(_prefab, transform.position, transform.rotation);
             instanceToAdd.transform.SetParent(transform);
-            instanceToAdd.GetComponent<IPoolable>().SetPool(this);
+
             AddToPool(instanceToAdd);
         }
     }
 
     public void AddToPool(GameObject instance)
     {
+        instance.GetComponent<IPoolable>().SetPool(this);
         instance.transform.SetParent(transform);
         instance.SetActive(false);
         _avialableObjects.Enqueue(instance);

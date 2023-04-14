@@ -10,10 +10,12 @@ public class UI_Inventory : MonoBehaviour
     [SerializeField] private GameObject _inventoryGridView;
     [SerializeField] private GameObject _itemDescriptionView;
     [SerializeField] private GameObject _itemButtonPrefab;
+    [SerializeField] private GameObject _dropButton;
 
     private InventoryRoot _inventoryRoot;
     private IInputService _inputService;
 
+    private int _selectedItemId;
     private bool _isOpen = false;
 
     // Start is called before the first frame update
@@ -45,11 +47,15 @@ public class UI_Inventory : MonoBehaviour
     public void SelectItem(Item item)
     {
         _itemDescriptionView.GetComponent<TMP_Text>().text = item.Description;
+        _selectedItemId = item.Id;
+        _dropButton.SetActive(true);
     }
 
     private void OpenInventoryUI()
     {
         _inventoryWindow.SetActive(_isOpen);
+        _selectedItemId = 0;
+        _dropButton.SetActive(false);
         UpdateGrid();
     }
 
@@ -66,5 +72,15 @@ public class UI_Inventory : MonoBehaviour
             itemButtonPrefab.GetComponent<Image>().sprite = item.Image;
             itemButtonPrefab.GetComponent<Button>().onClick.AddListener(() => SelectItem(item));
         }
+    }
+
+    public void DropItem()
+    {
+        _inventoryRoot.DropItem(_selectedItemId);
+        _selectedItemId = 0;
+
+        _itemDescriptionView.GetComponent<TMP_Text>().text = string.Empty;
+        _dropButton.SetActive(false);
+        UpdateGrid();
     }
 }

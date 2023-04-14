@@ -180,7 +180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6776356989987300332}
   - component: {fileID: 6776356989987300334}
-  - component: {fileID: 6776356989987300333}
   - component: {fileID: 6776356989987300329}
   - component: {fileID: 6776356989987300328}
   - component: {fileID: 6776356989987300335}
@@ -228,25 +227,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _patrolSpots: []
-  _dialog: {fileID: 6776356989987300333}
   _note: {fileID: 1998244643674930246}
---- !u!114 &6776356989987300333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6776356989987299859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 167abca90d1758744b5a411472c58cf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tAsset: {fileID: 4900000, guid: 9a38e71c4fad17b43bb1b8a0fcb9c1cb, type: 3}
-  answersList: []
-  showDialog: 0
-  GUISkin: {fileID: 11400000, guid: 236c3cbb440e4364c89e597e5f2627b9, type: 2}
-  npcIconImage: {fileID: 2800000, guid: e0918b1c4189ecb4bbef317e36e94859, type: 3}
+  _textAsset: {fileID: 4900000, guid: 9a38e71c4fad17b43bb1b8a0fcb9c1cb, type: 3}
 --- !u!210 &6776356989987300329
 SortingGroup:
   m_ObjectHideFlags: 0

@@ -1022,6 +1022,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lion
       objectReference: {fileID: 0}
+    - target: {fileID: 4730221804762415058, guid: 7ef5a26bdafddad4a9f7573d3d895ada,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2138,6 +2143,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemExample
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178276839638369074, guid: 3bcd8751446701d4ebf9ef542d797654,
+        type: 3}
+      propertyPath: _bindedItemId
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4178276839638369074, guid: 3bcd8751446701d4ebf9ef542d797654,
         type: 3}
