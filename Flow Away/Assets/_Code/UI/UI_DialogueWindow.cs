@@ -12,7 +12,7 @@ public class UI_DialogueWindow : MonoBehaviour
     [SerializeField] private GameObject _answerButtonPrefab;
     [SerializeField] private GameObject _window;
 
-    private InventoryModel _playerInventory;
+    private InventoryRoot _playerInventory;
 
     private Dialogue _dialogue;
     private int _curNode;
@@ -24,7 +24,7 @@ public class UI_DialogueWindow : MonoBehaviour
         _window.SetActive(false);
     }
 
-    public void SetPlayerInventory(InventoryModel playerInventory)
+    public void SetPlayerInventory(InventoryRoot playerInventory)
     {
         _playerInventory = playerInventory;
     }
@@ -76,7 +76,7 @@ public class UI_DialogueWindow : MonoBehaviour
         {
             if (_dialogue.nodes[_curNode].answers[i].questName == null
                 || _dialogue.nodes[_curNode].answers[i].neededQuestValue == QuestValues.Instance.GetStage(_dialogue.nodes[_curNode].answers[i].questName, true)
-                && (_playerInventory.PickItem(_dialogue.nodes[_curNode].answers[i].neededItemId) || _dialogue.nodes[_curNode].answers[i].neededItemId == 0))
+                && (_dialogue.nodes[_curNode].answers[i].neededItemId == 0 || _playerInventory.PickItem(_dialogue.nodes[_curNode].answers[i].neededItemId)))
             //Если за этой фразой не закреплено квеста или какой-то квест находится на нужной стадии или есть требуемый предмет
             //То добавить его в лист ответов игрока
             {
@@ -99,6 +99,10 @@ public class UI_DialogueWindow : MonoBehaviour
         if (_answers[answerIndex].endDialog == "true") //Если закончить диалог - закрыть окно
         {
             _window.SetActive(false);
+        }
+        if (_answers[answerIndex].takenItemId > 0)
+        {
+            _playerInventory.DeleteItem(_answers[answerIndex].takenItemId);
         }
         _curNode = _answers[answerIndex].nextNode;
         UpdateWindow(); //Обновить список ответов

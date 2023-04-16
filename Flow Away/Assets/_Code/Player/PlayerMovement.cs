@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -27,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     private int _curDashCounter;
     private float _curDashTimer = 0f;
 
-    //private Vector2 _movement;
     private Vector2 _direction;
     private Vector3 _dashTarget;
 
@@ -153,7 +149,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void ChangeAnimationDir()
     {
-        //_direction = _movement;
         animator.SetFloat("Dir_Horizontal", _direction.x);
         animator.SetFloat("Dir_Vertical", _direction.y);
     }

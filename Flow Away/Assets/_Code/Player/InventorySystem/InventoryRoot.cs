@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 namespace InventorySystem
 {
@@ -26,6 +27,19 @@ namespace InventorySystem
         public void SetInventory(InventoryModel inventory)
         {
             _inventoryModel = inventory;
+        }
+
+        public void DeleteItem(int itemId)
+        {
+            var item = _itemDatabase.GetItem(itemId);
+            _inventoryModel.DeleteItem(item);
+        }
+
+        public bool PickItem(int itemId)
+        {
+            var item = _itemDatabase.GetItem(itemId);
+
+            return _inventoryModel.PickItem(item);
         }
 
         public void DropItem(int itemId)

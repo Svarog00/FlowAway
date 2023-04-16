@@ -47,7 +47,7 @@ public class IdleNPC : AgentBehaviour
         {
             _playerControl = collision.GetComponent<PlayerControl>();
             _playerInventory = collision.GetComponent<InventoryRoot>();
-            _dialogueWindow.SetPlayerInventory(_playerInventory.InventoryModel);
+            _dialogueWindow.SetPlayerInventory(_playerInventory);
         }
     }
 

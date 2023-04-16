@@ -31,14 +31,9 @@ namespace InventorySystem
             _items.Add(item);
         }
 
-        public bool PickItem(int id)
+        public bool PickItem(Item item)
         {
-            if(_items.Count == 0)
-                return false;
-
-            return _items.Contains(_items
-                .Where((Item item) => item.Id == id)
-                .First());
+            return _items.Contains(item);
         }
 
         public void DeleteItem(Item item)
