@@ -37,7 +37,7 @@ public class PowerShield : Gadget
 
     public override void HandleActivate()
     {
-        if(_curTime <= 0 && CanActivate)
+        if(_curTime <= 0 && IsUnlocked)
         {
             _isActive = true;
             shieldInstance.gameObject.SetActive(_isActive);

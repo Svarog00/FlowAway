@@ -30,8 +30,10 @@ namespace Assets.Scripts.Infrastructure
         {
             GameObject hero = _gameFactory.CreateHero();
             _gameFactory.CreateHud();
+
             CameraFollow(hero);
-            var inventoryUI = GameObject.FindObjectOfType<UI_Inventory>();
+
+            var inventoryUI = Object.FindObjectOfType<UI_Inventory>();
             inventoryUI.SetInventory(hero.GetComponent<InventoryRoot>());
 
             _stateMachine.Enter<LoadLevelState, string>(StartSceneName);

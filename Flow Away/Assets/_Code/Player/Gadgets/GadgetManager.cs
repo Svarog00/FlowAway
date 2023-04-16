@@ -27,7 +27,7 @@ public class GadgetManager : MonoBehaviour
 
     public void ActivateGadget(string gadgetName)
     {
-        if(QuestValues.Instance.GetStage(gadgetName) != -1)
+        if(QuestValues.Instance.GetStage(gadgetName) > 0)
         {
             return;
         }

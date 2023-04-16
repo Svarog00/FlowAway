@@ -8,17 +8,9 @@ public class GadgetActivator : MonoBehaviour
     
     private GadgetManager _gadgetManager;
 
-    private void Start()
-    {
-        if (QuestValues.Instance.GetStage(GadgetName) == -1)
-        {
-            QuestValues.Instance.Add(GadgetName);
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == PlayerTag && QuestValues.Instance.GetStage(GadgetName) == 0)
+       if (collision.tag == PlayerTag)
         {
             if(_gadgetManager == null)
             {
@@ -30,7 +22,6 @@ public class GadgetActivator : MonoBehaviour
 
     private void Activate()
     {
-        QuestValues.Instance.SetStage(GadgetName, 1);
         _gadgetManager.ActivateGadget(GadgetName);
     }
 }

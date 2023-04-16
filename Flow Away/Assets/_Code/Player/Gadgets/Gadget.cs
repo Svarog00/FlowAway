@@ -6,11 +6,9 @@ public abstract class Gadget : MonoBehaviour
     [SerializeField] protected string _gadgetName;
     [SerializeField] protected GadgetManager GadgetManager;
 
-    public bool CanActivate 
-    { 
-        get => QuestValues.Instance.GetStage(_gadgetName) > 0; 
-        private set => CanActivate = value;
-    }
+    public bool IsUnlocked => _isUnlocked;
+
+    private bool _isUnlocked;
 
     public void Awake()
     {
@@ -23,7 +21,7 @@ public abstract class Gadget : MonoBehaviour
     {
         if (e.name == _gadgetName)
         {
-            CanActivate = true;
+            _isUnlocked = true;
             GadgetManager.OnGadgetActivate -= GadgetManager_OnGadgetActivate;
         }
     }

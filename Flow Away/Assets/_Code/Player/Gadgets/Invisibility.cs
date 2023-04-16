@@ -10,6 +10,9 @@ public class Invisibility : Gadget
     private float _curTime;
     private float _fade = 1f;
 
+    [SerializeField] private float _cooldownTime;
+    private float _cooldownCurTime;
+
     private Material _material;
 
     private bool _isActive;
@@ -42,23 +45,30 @@ public class Invisibility : Gadget
         {
             Disappear();
             _curTime -= Time.deltaTime;
-            GadgetManager.Timer(_curTime, _maxTime, _gadgetName);
+            
             if(_curTime <= 0f)
             {
                 _isActive = false;
                 _isChanging = true;
+                _cooldownCurTime = _cooldownTime;
             }
         }
 
         if(!_isActive)
         {
             Appear();
-        }    
+        }
+
+        if(!_isActive && _cooldownCurTime > 0f)
+        {
+            _cooldownCurTime -= Time.deltaTime;
+            GadgetManager.Timer(_cooldownCurTime, _cooldownTime, _gadgetName);
+        }
     }
 
     public override void HandleActivate()
     {
-        if(!CanActivate)
+        if(!IsUnlocked || _cooldownCurTime > 0f)
         {
             return;
         }

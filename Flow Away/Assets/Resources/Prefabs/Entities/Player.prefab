@@ -193,6 +193,7 @@ MonoBehaviour:
   _gadgetName: Invisibility
   GadgetManager: {fileID: 7801533390959690499}
   _maxTime: 5
+  _cooldownTime: 6
 --- !u!114 &604610727334192616
 MonoBehaviour:
   m_ObjectHideFlags: 0

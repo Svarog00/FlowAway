@@ -12,7 +12,7 @@ public class IconController : MonoBehaviour
 
 	private bool _canActivate = false;
 
-	private bool _isFilling;
+	private bool _isFilling = false;
 
 	private void Start()
 	{
@@ -21,18 +21,20 @@ public class IconController : MonoBehaviour
 		
 		GadgetManager gadget = FindObjectOfType<GadgetManager>();
 		if(_canActivate)
-			gadget.OnGadgetCooldown += OnGadgetCooldown;
+		{
+            gadget.OnGadgetCooldown += OnGadgetCooldown;
+		}
 		else
-			gadget.OnGadgetActivate += Gadget_OnGadgetActivate;
-
-		_isFilling = false;
+		{
+            gadget.OnGadgetActivate += Gadget_OnGadgetActivate;
+		}
 	}
 	//Icon should appear after binded gadget activated
     private void Gadget_OnGadgetActivate(object sender, GadgetManager.OnGadgetActivateEventArgs e)
     {
 		if(_gadgetName == e.name)
         {
-			_visual.SetActive(true);
+            _visual.SetActive(true);
 			GadgetManager gadget = FindObjectOfType<GadgetManager>();
 			gadget.OnGadgetCooldown += OnGadgetCooldown;
 			gadget.OnGadgetActivate -= Gadget_OnGadgetActivate;

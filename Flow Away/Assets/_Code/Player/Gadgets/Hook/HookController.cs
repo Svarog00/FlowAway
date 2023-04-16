@@ -15,7 +15,7 @@ public class HookController : Gadget
 
     public override void HandleActivate()
     {
-        if(!CanActivate)
+        if(!IsUnlocked)
         {
             return;
         }
