@@ -27,7 +27,7 @@ public class IdleNPC : AgentBehaviour
 
     private void Update()
     {
-        if (_inputService.IsInteractButtonDown() && _canStartDialogue)
+        if (_canStartDialogue && _inputService.IsInteractButtonDown())
         {
             ShowDialogue();
         }

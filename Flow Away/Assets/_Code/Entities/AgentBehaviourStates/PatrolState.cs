@@ -13,7 +13,7 @@ namespace Assets.Scripts.BehaviourStates
 
         private EnemyMovement _movement;
 
-        private int _randomSpot = 0;
+        private int _randomSpot = -1;
         private float _curWaitTime;
 
         private BehaviourStateMachine _stateMachine;
@@ -32,6 +32,8 @@ namespace Assets.Scripts.BehaviourStates
         public void Enter()
         {
 			_agentContext.EnemyDetected = false;
+
+            SetRandomPatrolSpot();
         }
 
         public void Handle()
@@ -43,34 +45,40 @@ namespace Assets.Scripts.BehaviourStates
 				_stateMachine.Enter<ChaseState>();
 			}
 
-			if (_patrolSpots.Length <= 0)
-			{
-				_movement.CanMove = false;
-				return;
-			}
+            if (_randomSpot == -1)
+            {
+                _movement.CanMove = false;
+                return;
+            }
 
-            _randomSpot = Random.Range(0, _patrolSpots.Length);
-            if (Vector2.Distance(_agentContext.transform.position, _patrolSpots[_randomSpot].position) <= 0.6f)
+            if (Vector2.Distance(_agentContext.transform.position, _patrolSpots[_randomSpot].position) <= 0.4f)
             {
                 _movement.CanMove = false;
                 if (_curWaitTime <= 0f)
                 {
                     _curWaitTime = _waitTime;
-                    _randomSpot = Random.Range(0, _patrolSpots.Length);
-                    _movement.SetTargetPosition(_patrolSpots[_randomSpot].position);
-                    _movement.CanMove = true;
+                    SetRandomPatrolSpot();
                     return;
                 }
-               
+
                 _curWaitTime -= Time.deltaTime;
                 return;
             }
-
-            _movement.SetTargetPosition(_patrolSpots[_randomSpot].position);
-            _movement.CanMove = true;
         }
 
-		private void DetectTargets()
+        private void SetRandomPatrolSpot()
+        {
+            if(_patrolSpots.Length <= 0)
+            {
+                _randomSpot = -1;
+                return;
+            }
+            _randomSpot = Random.Range(0, _patrolSpots.Length);
+            _movement.CanMove = true;
+            _movement.SetTargetPosition(_patrolSpots[_randomSpot].position);
+        }
+
+        private void DetectTargets()
 		{
             //find the player in circle
 			Collider2D[] detectedEnemies = 

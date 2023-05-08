@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
     private const string SpeedAnimatorTag = "Speed";
-    private const float Accuracy = 0.3f;
+    private const float Accuracy = 0.6f;
 
     [SerializeField] private Animator _animator;
     [SerializeField] private float _currentSpeed;
@@ -13,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D _rb2;
 
+    private Vector3 _targetPosition;
     private Vector2 _direction;
     private bool _canMove;
     private bool _faceRight;
@@ -69,20 +69,21 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        Vector3 targetPosition = _pathVectorList[_currentPathIndex];
-        if (Vector3.Distance(transform.position, targetPosition) <= Accuracy)
+        _rb2.MovePosition(_rb2.position - _direction * _maxSpeed * Time.deltaTime); //movement
+
+        if (Vector3.Distance(transform.position, _targetPosition) <= Accuracy)
         {
             _currentPathIndex++;
             if (_currentPathIndex >= _pathVectorList.Count)
             {
                 _canMove = false;
+                _currentSpeed = 0;
+                return;
             }
-        }
-        else
-        {
-            _direction = (targetPosition - transform.position).normalized;
+
+            _targetPosition = _pathVectorList[_currentPathIndex];
+            _direction = (_targetPosition - transform.position).normalized;
             SetSpriteDirection(-_direction);
-            _rb2.MovePosition(_rb2.position - _direction * _maxSpeed * Time.deltaTime); //movement
         }
     }
 
@@ -90,6 +91,7 @@ public class EnemyMovement : MonoBehaviour
     {
         _currentPathIndex = 0;
         _pathVectorList = _pathfinding.FindPath(transform.position, targetPostion);
+        _targetPosition = _pathVectorList[_currentPathIndex];
     }
 
     public void SetSpriteDirection(Vector2 direction)

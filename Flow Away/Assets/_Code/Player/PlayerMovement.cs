@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb2.MovePosition(rb2.position + _direction * _movementSpeed * Time.deltaTime);
+        rb2.MovePosition(rb2.position + _movementSpeed * Time.deltaTime * _direction);
         Dash();
     }
 

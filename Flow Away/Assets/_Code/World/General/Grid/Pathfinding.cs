@@ -20,8 +20,8 @@ public class Pathfinding
     
     public Pathfinding(GridMesh<PathNode> gridMesh)
     {
-        Instance = this;
         _grid = gridMesh;
+        Instance = this;
     }
 
     public Pathfinding(int width, int height, float cellSize, Vector3 origin)
@@ -45,7 +45,8 @@ public class Pathfinding
             List<Vector3> path = new List<Vector3>();
             foreach(PathNode pathNode in pathNodes)
             {
-                path.Add(new Vector3(pathNode.X, pathNode.Y) * _grid.CellSize + new Vector3(1, 1, 0) * _grid.CellSize * .5f);
+                //path.Add(new Vector3(pathNode.X, pathNode.Y) * _grid.CellSize + new Vector3(1, 1, 0) * _grid.CellSize * .5f);
+                path.Add(_grid.GetWorldPosition(pathNode.X, pathNode.Y));
             }
             path.Reverse();
             return path;
@@ -173,8 +174,10 @@ public class Pathfinding
 
     private List<PathNode> ReconstructPath(PathNode endNode)
     {
-        List<PathNode> path = new List<PathNode>();
-        path.Add(endNode);
+        List<PathNode> path = new List<PathNode>
+        {
+            endNode
+        };
         PathNode curNode = endNode;
         while(curNode.PrevNode != null)
         {

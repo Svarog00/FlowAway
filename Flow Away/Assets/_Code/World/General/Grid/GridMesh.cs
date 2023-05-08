@@ -103,7 +103,7 @@ public class GridMesh<TGridObject>
 		{
 			return _gridArray[x, y];
 		}
-		else return default(TGridObject);
+		else return default;
 	}
 
 	public TGridObject GetGridObject(Vector3 worldPosition)

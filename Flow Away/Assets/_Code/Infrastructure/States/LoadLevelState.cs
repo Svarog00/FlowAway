@@ -27,25 +27,11 @@ namespace Assets.Scripts.Infrastructure
 
         private void OnLoaded()
         {
-            /*GameObject hero = _gameFactory.CreateHero(GameObject.FindGameObjectWithTag(InitialPointTag));
-
-            _gameFactory.CreateHud();
-
-            CameraFollow(hero);*/
-
             GameObject hero = Object.FindObjectOfType<PlayerControl>().gameObject;
             hero.transform.position = GameObject.FindGameObjectWithTag(InitialPointTag).transform.position;
 
             _stateMachine.Enter<GameLoopState>();
         }
-
-        private void CameraFollow(GameObject hero)
-        {
-            Camera.main.
-                GetComponent<CameraFollow>().
-                Follow(hero);
-        }
-
 
         public void Exit()
         {

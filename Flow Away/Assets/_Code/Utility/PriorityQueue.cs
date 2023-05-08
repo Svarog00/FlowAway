@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 public class PriorityQueue<T>
 {
-	private List<Tuple<T, double>> _elements = new List<Tuple<T, double>>();
+	public int Count => _elements.Count;
 
-	public int Count
-	{
-		get => _elements.Count;
-	}
+	private List<Tuple<T, double>> _elements = new List<Tuple<T, double>>();
 
 	public void Enqueue(T item, double priority)
 	{
@@ -21,7 +18,7 @@ public class PriorityQueue<T>
 
 		//Get new element as high as it should be
 		//Если цена у родителя больше, чем у потомка, то меняем их местами
-		while (i > 0 && _elements[parent].Item2 > _elements[i].Item2)
+		while (i > 0 && _elements[parent].Item2 < _elements[i].Item2)
 		{
 			Tuple<T, double> temp = _elements[i];
 			_elements[i] = _elements[parent];
@@ -63,7 +60,7 @@ public class PriorityQueue<T>
 
 			if (rightChild < Count && _elements[rightChild].Item2 < _elements[smallestChild].Item2)
 			{
-					smallestChild = rightChild;
+				smallestChild = rightChild;
 			}
 
 			if (smallestChild == i)

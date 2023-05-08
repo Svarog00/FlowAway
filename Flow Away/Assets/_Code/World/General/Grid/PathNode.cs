@@ -35,6 +35,6 @@ public class PathNode
 
     public override string ToString()
     {
-        return $"{IsWalkable}, {_grid.GetWorldPosition(X, Y) + new Vector3(_grid.CellSize / 2f, _grid.CellSize / 2f):f2}";
+        return $"{_grid.GetWorldPosition(X, Y) + new Vector3(_grid.CellSize / 2f, _grid.CellSize / 2f):f2}";
     }
 }

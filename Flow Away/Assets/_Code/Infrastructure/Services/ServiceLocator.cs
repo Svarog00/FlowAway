@@ -3,7 +3,7 @@
     public class ServiceLocator
     {
         private static ServiceLocator _instance;
-        public static ServiceLocator Container => _instance ?? (_instance = new ServiceLocator());
+        public static ServiceLocator Container => _instance ??= new ServiceLocator();
 
         public void RegisterSingle<TService>(TService implementation) where TService : IService
         {

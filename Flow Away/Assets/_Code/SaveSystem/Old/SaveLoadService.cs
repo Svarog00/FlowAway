@@ -3,25 +3,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Assets.Scripts.Infrastructure;
 
-public class SaveLoadService
-{
-	private Transform _playerPos;
-	private PlayerHealthController _playerHealth;
-	private HealingCapsulesController _healingCapsules;
-	private QuestValues _questValues;
-			
+public class SaveLoadService : ISaveLoadService
+{		
     public SaveLoadService()
     {
 
-    }
-
-	public SaveLoadService(Transform playerPos, PlayerHealthController playerHealth, HealingCapsulesController capsulesController)
-    {
-		_playerPos = playerPos;
-		_playerHealth = playerHealth;
-		_healingCapsules = capsulesController;
-		_questValues = QuestValues.Instance;
     }
 
     public void SaveData(string name, WorldData worldData) //Параметр название сейва для разделения сохранений на чекпоинты и переходы между сценами
@@ -40,7 +28,7 @@ public class SaveLoadService
 
 	}
 
-	public void LoadData(string name) //LevelMove = player move berween scenes //Handle_Save = player died
+	public WorldData LoadData(string name) //LevelMove = player move berween scenes //Handle_Save = player died
 	{
 		if (File.Exists(Application.dataPath + "/Saves/" + name + ".sv"))
 		{
@@ -49,29 +37,22 @@ public class SaveLoadService
 			try
 			{
 				WorldData tmp = (WorldData)formatter.Deserialize(fs);
-				if (PlayerPrefs.GetInt("QuickLoad") == 0) //load from main menu
-				{
-					SceneManager.LoadSceneAsync(tmp.currentScene, LoadSceneMode.Single);
-				}
-				else if(PlayerPrefs.GetInt("QuickLoad") == 1)//quickload from ingame menu or in case of dead or to continue from certain point
-				{
-					_playerPos.position = new Vector2(tmp.x, tmp.y);
-					_playerHealth.CurrentHealth = tmp.health;
-                    _healingCapsules.LoadCapsule(tmp.medkitCount);
-				}
+				return tmp;
 			}
 			catch (System.Exception Error)
 			{
 				Debug.Log(Error.Message);
+				return null;
 			}
 			finally
 			{
 				fs.Close();
 			}
 		}
+		return null;
 	}
 
-	public void LoadHandleSave()
+	public WorldData LoadHandleSave()
 	{
 		if (File.Exists(Application.dataPath + "/Saves/Handle_Save.sv"))
 		{
@@ -80,28 +61,20 @@ public class SaveLoadService
 			try
 			{
 				WorldData tmp = (WorldData)formatter.Deserialize(fs);
-				if(tmp.currentScene != SceneManager.GetActiveScene().name)
-                {
-					SceneManager.LoadSceneAsync(tmp.currentScene, LoadSceneMode.Single);
-				}
-				else //quickload from ingame menu or in case of dead or to continue from certain point
-				{
-					_playerPos.position = new Vector2(tmp.x, tmp.y);
-					_playerHealth.CurrentHealth = tmp.health;
-                    _healingCapsules.LoadCapsule(tmp.medkitCount);
-					_questValues.QuestList = new List<QuestStage>(tmp.questValues);
-				}
-			}
+                return tmp;
+            }
 			catch (System.Exception Error)
 			{
 				Debug.Log(Error.Message);
-			}
+                return null;
+            }
 			finally
 			{
 				fs.Close();
 			}
 		}
-	}
+        return null;
+    }
 
 	public void ClearSaves()
     {

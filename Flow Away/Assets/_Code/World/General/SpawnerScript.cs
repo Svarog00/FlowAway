@@ -19,14 +19,6 @@ public class SpawnerScript : MonoBehaviour
 		_spawnTrigger.OnPlayerDetected += Surveillance_OnPlayerDetected;
 	}
 
-    private void Update()
-    {
-		if(_curDelay > 0f)
-        {
-			_curDelay -= Time.deltaTime;
-        }
-    }
-
 	//If player detected - call spawn of enemies
     private void Surveillance_OnPlayerDetected(object sender, System.EventArgs e)
 	{
@@ -43,6 +35,21 @@ public class SpawnerScript : MonoBehaviour
             gameObject = _objectPool.GetFromPool();
             gameObject.transform.position = transform.position;
             _curDelay = _delay;
+            StartCoroutine(Delay());
+        }
+    }
+
+    private IEnumerator Delay()
+    {
+        while (true)
+        {
+            _curDelay -= Time.deltaTime;
+            if(_curDelay <= 0f)
+            {
+                yield break;
+            }
+
+            yield return null;
         }
     }
 }

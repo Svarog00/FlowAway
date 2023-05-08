@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IconController : MonoBehaviour
+public class UI_AbilityIcon : MonoBehaviour
 {
 	[SerializeField] private string _gadgetName;
 	[SerializeField] private GameObject _visual;

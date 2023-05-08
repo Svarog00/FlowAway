@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace InventorySystem
 {
@@ -49,6 +49,25 @@ namespace InventorySystem
 
             var itemObject = Instantiate(_itemInstance, gameObject.transform.position, Quaternion.identity);
             itemObject.GetComponent<ItemInstance>().SetItem(item);
+        }
+
+        public List<int> GetItemsIds()
+        {
+            var list = new List<int>();
+            foreach(var item in _inventoryModel.Items)
+            {
+                list.Add(item.Id);
+            }
+
+            return list;
+        }
+
+        public void LoadItems(List<int> items)
+        {
+            foreach(int id in items)
+            {
+                AddItem(id);
+            }
         }
     }
 }

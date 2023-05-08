@@ -8,7 +8,6 @@ namespace Assets.Scripts.Infrastructure
     class BootstrapState : IState
     {
         private const string Initial = "Initial";
-        private const string StartSceneName = "ExperimentalScene";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -44,6 +43,7 @@ namespace Assets.Scripts.Infrastructure
             _services.RegisterSingle<IInputService>(new InputService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IGameFactory>(new GameFactory(ServiceLocator.Container.Single<IAssetProvider>()));
+            _services.RegisterSingle<ISaveLoadService>(new SaveLoadService());
         }
     }
 }

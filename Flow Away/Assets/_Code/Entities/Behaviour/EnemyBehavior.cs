@@ -1,6 +1,5 @@
 using Assets.Scripts.BehaviourStates;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,11 +17,14 @@ public class EnemyBehavior : AgentBehaviour
 			[typeof(ChaseState)] = new ChaseState(this, StateMachine),
 			[typeof(EngageState)] = new EngageState(this, StateMachine),
 		};
-
-		StateMachine.Enter<PatrolState>();
 	}
 
-	private void OnDrawGizmosSelected()
+    private void Start()
+    {
+        StateMachine.Enter<PatrolState>();
+    }
+
+    private void OnDrawGizmosSelected()
 	{
 		Gizmos.DrawWireSphere(transform.position, AgressionDistance);
 	}

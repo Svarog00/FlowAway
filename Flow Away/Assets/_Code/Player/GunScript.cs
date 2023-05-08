@@ -18,8 +18,8 @@ public class GunScript : MonoBehaviour, ICoroutineRunner
     private float _curShootCooldown;
     private BulletScript _bulletInstance;
 
-    [SerializeField] private Timer _cooldownTimer;
-    [SerializeField] private Timer _reloadTimer;
+    private Timer _cooldownTimer;
+    private Timer _reloadTimer;
 
     private SpriteRenderer _sprite;
 

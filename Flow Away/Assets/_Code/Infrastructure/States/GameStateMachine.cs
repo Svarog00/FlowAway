@@ -17,7 +17,7 @@ namespace Assets.Scripts.Infrastructure
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, services.Single<IGameFactory>()),
-                [typeof(LoadPlayerSceneState)] = new LoadPlayerSceneState(this, sceneLoader, services.Single<IGameFactory>()),
+                [typeof(LoadPlayerSceneState)] = new LoadPlayerSceneState(this, sceneLoader, services.Single<IGameFactory>(), services.Single<ISaveLoadService>()),
                 [typeof(GameLoopState)] = new GameLoopState(this),
             };
         }

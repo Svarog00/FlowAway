@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class CapsuleAnimaiton : MonoBehaviour
 {
-    public Animator animator;
-    public float spawnTime = 1f;
-    public PlayerControl player;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Transform _initialPoint;
 
+    private PlayerControl _player;
+
+    private void Awake()
+    {
+        _player = FindObjectOfType<PlayerControl>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -15,30 +20,20 @@ public class CapsuleAnimaiton : MonoBehaviour
         QuestValues.Instance.Add("SpawnedPlayer");
         if (QuestValues.Instance.GetStage("SpawnedPlayer") == 0)
         {
-            player.CanMove = false;
-            player.CanAttack = false;
-            player.gameObject.SetActive(false);
-            StartCoroutine(SpawnTimer());
+            _player.gameObject.transform.position = _initialPoint.position;
+            _player.CanMove = false;
+            _player.CanAttack = false;
+            _player.gameObject.SetActive(false);
         }
-        else animator.Play("Opened");
+        else _animator.Play("Opened");
     }
-
-    IEnumerator SpawnTimer()
+    
+    public void SpawnPlayer()
     {
-        animator.SetTrigger("Open");
-        while (true)
-        {
-            spawnTime -= Time.deltaTime;
-            if (spawnTime <= 0)
-            {
-                player.gameObject.SetActive(true);
-                QuestValues.Instance.SetStage("SpawnedPlayer", 1);
-                player.CanMove = true;
-                player.CanAttack = true;
-                animator.SetTrigger("Open");
-                yield break;
-            }
-            yield return null;
-        }
+        _player.gameObject.SetActive(true);
+        QuestValues.Instance.SetStage("SpawnedPlayer", 1);
+        _player.CanMove = true;
+        _player.CanAttack = true;
+        _animator.SetTrigger("Open");
     }
 }

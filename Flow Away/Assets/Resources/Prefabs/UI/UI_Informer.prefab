@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1311953450867757808}
   - component: {fileID: 356959304963906420}
   m_Layer: 0
-  m_Name: UIInformer
+  m_Name: UI_Informer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
