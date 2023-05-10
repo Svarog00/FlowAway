@@ -33,6 +33,8 @@ public abstract class EnemyAttack : MonoBehaviour
 
 	public virtual void Attack() { }
 
+	public virtual void DealMeleeDamage() { }
+
 	protected IEnumerator Cooldown()
 	{
 		while (true)

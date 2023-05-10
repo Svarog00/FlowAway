@@ -7,6 +7,8 @@ public class Turret : SurveillanceScript, IDamagable
 {
     public event EventHandler OnTurretDestroyedEventHandler;
 
+    private const string GargoyleQuestName = "GargoyleFirstMeet";
+
     [Header("Children script")]
     public GameObject shotPrefab;
     public Transform firePoint;
@@ -14,8 +16,14 @@ public class Turret : SurveillanceScript, IDamagable
     [SerializeField] private float _shotCooldown = 0;
     [SerializeField] private float _curCooldown;
     [SerializeField] private float _hp;
-    private float _distanceToPlayer;
-    private Vector2 _headingToPlayer;
+
+    private void Awake()
+    {
+        if (QuestValues.Instance.GetStage(GargoyleQuestName) == -1)
+        {
+            QuestValues.Instance.Add(GargoyleQuestName);
+        }
+    }
 
     private void OnEnable()
     {
@@ -30,6 +38,7 @@ public class Turret : SurveillanceScript, IDamagable
             shot.GetComponent<ShotScript>().speed = new Vector2(5, 5) * -GetDirection();
             _curCooldown = _shotCooldown;
         }
+
         StartCoroutine(Cooldown());
     }
 
@@ -51,13 +60,14 @@ public class Turret : SurveillanceScript, IDamagable
             yield return null;
         }
     }
+
     public void Hurt(int damage)
     {
         _hp -= damage;
         if(_hp <= 0)
         {
             //play sound
-            QuestValues.Instance.SetStage("Gargoyle", 1);
+            QuestValues.Instance.SetStage("GargoyleFirstMeet", 1);
             gameObject.SetActive(false);
             OnTurretDestroyedEventHandler?.Invoke(this, EventArgs.Empty);
         }

@@ -315,7 +315,7 @@ MonoBehaviour:
   _shotPrefab: {fileID: 2365427862816028582, guid: 0d0a26e0d3301f54ebcf86a148dafc60,
     type: 3}
   _firePoint: {fileID: 3648924020461134480}
-  _meleeRange: 0.4
+  _meleeRange: 0.55
 --- !u!1 &4730221804762415058
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +476,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 4730221803471831735}
-  _currentSpeed: 0
   _maxSpeed: 3
   _pathVectorList: []

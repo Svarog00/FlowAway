@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour
 {
+    private const string MainMenuSceneName = "MainMenu";
+
     private bool isPaused = false;
-    public GameObject inGameMenu;
+
+    [SerializeField] private GameObject _visual;
 
     private void Update()
     {
@@ -18,14 +21,14 @@ public class InGameMenu : MonoBehaviour
                     {
                         Time.timeScale = 0;
                         isPaused = true;
-                        inGameMenu.SetActive(isPaused);
+                        _visual.SetActive(isPaused);
                         break;
                     }
                 case true:
                     {
                         Time.timeScale = 1;
                         isPaused = false;
-                        inGameMenu.SetActive(isPaused);
+                        _visual.SetActive(isPaused);
                         break;
                     }
             }
@@ -36,7 +39,7 @@ public class InGameMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         isPaused = false; 
-        inGameMenu.SetActive(false);
+        _visual.SetActive(false);
     }
 
     public void Options()
@@ -48,7 +51,7 @@ public class InGameMenu : MonoBehaviour
     {
         //saving
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(MainMenuSceneName);
 
     }
 

@@ -4,11 +4,11 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private const string SpeedAnimatorTag = "Speed";
-    private const float Accuracy = 0.6f;
+    private const float Accuracy = 0.3f;
 
     [SerializeField] private Animator _animator;
-    [SerializeField] private float _currentSpeed;
     [SerializeField] private float _maxSpeed;
+    private float _currentSpeed;
 
     private Rigidbody2D _rb2;
 
@@ -21,23 +21,6 @@ public class EnemyMovement : MonoBehaviour
     private int _currentPathIndex = 0;
 
     [SerializeField] private List<Vector3> _pathVectorList = new List<Vector3>();
-
-    public bool CanMove
-    {
-        get => _canMove;
-        set 
-        { 
-            _canMove = value;
-            if (_canMove)
-            {
-                _currentSpeed = _maxSpeed;
-            }
-            else
-            {
-                _currentSpeed = 0;
-            }
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -69,15 +52,15 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        _rb2.MovePosition(_rb2.position - _direction * _maxSpeed * Time.deltaTime); //movement
-
+        _rb2.MovePosition(_rb2.position + _direction * _maxSpeed * Time.deltaTime); //movement
         if (Vector3.Distance(transform.position, _targetPosition) <= Accuracy)
         {
             _currentPathIndex++;
             if (_currentPathIndex >= _pathVectorList.Count)
             {
-                _canMove = false;
+                StartMove(false);
                 _currentSpeed = 0;
+
                 return;
             }
 
@@ -91,17 +74,32 @@ public class EnemyMovement : MonoBehaviour
     {
         _currentPathIndex = 0;
         _pathVectorList = _pathfinding.FindPath(transform.position, targetPostion);
+        StartMove(true);
+
         _targetPosition = _pathVectorList[_currentPathIndex];
+        _direction = (_targetPosition - transform.position).normalized;
+    }
+
+    public void StartMove(bool canMove)
+    {
+        _canMove = canMove;
+        if (_canMove)
+        {
+            _currentSpeed = _maxSpeed;
+        }
+        else
+        {
+            _currentSpeed = 0;
+        }
     }
 
     public void SetSpriteDirection(Vector2 direction)
     {
-        _direction = direction;
-        if (_direction.x > 0 && _faceRight == true)
+        if (direction.x > 0 && _faceRight == true)
         {
             Flip();
         }
-        if (_direction.x < 0 && _faceRight == false)
+        if (direction.x < 0 && _faceRight == false)
         {
             Flip();
         }

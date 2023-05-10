@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private GunScript weapon;
+    [SerializeField] private PlayerAttack _playerAttack;
 
-    private PlayerAttack _playerAttack;
     private IInputService _inputService;
     private PlayerMovement _playerMovement;
     private HealingCapsulesController _playerHealing;
@@ -14,12 +14,13 @@ public class PlayerControl : MonoBehaviour
     private bool _canMove;
 
     public bool CanAttack { get; set; }
+
     public bool CanMove { 
         get => _canMove;
         set 
         {
             _canMove = value;
-            if(value == false)
+            if(!_canMove)
             {
                 _playerMovement.StopMove();
             }
@@ -36,7 +37,6 @@ public class PlayerControl : MonoBehaviour
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _playerHealing = GetComponent<HealingCapsulesController>();
-        _playerAttack = GetComponent<PlayerAttack>();
 
         CanAttack = true;
         CanMove = true;

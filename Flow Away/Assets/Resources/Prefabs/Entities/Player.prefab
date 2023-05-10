@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 3738640356688177699}
   - component: {fileID: 8828253859314348236}
   - component: {fileID: 3738640356688177710}
-  - component: {fileID: 2867806497870399680}
   - component: {fileID: 4682736227477488103}
   - component: {fileID: 8896063257471224471}
   - component: {fileID: 8345902685782219940}
@@ -109,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 3043672488751371406}
+  _playerAttack: {fileID: 3914814176600492980}
 --- !u!114 &3738640356688177710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,28 +129,8 @@ MonoBehaviour:
   _maxDashCount: 3
   _dashForce: 5
   _dashTimer: 1
-  _dashDistance: 5
+  _dashDistance: 7
   _movementSpeed: 1.4
---- !u!114 &2867806497870399680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3738640356688177698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9699d437aacf0a14bbbce1b9a148508b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 6981341210359713459}
-  attackPoint: {fileID: 3961893507505810545}
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  _attackRange: 0.21
-  _attackDelay: 0.5
-  _damage: 15
 --- !u!114 &4682736227477488103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8894cdb237ac6e24586f16f3fd903c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gadgets: []
 --- !u!114 &3932898773274750514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +616,7 @@ GameObject:
   - component: {fileID: 5913570947476382024}
   - component: {fileID: 1273221377510485290}
   - component: {fileID: 6981341210359713459}
+  - component: {fileID: 3914814176600492980}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -732,6 +714,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3914814176600492980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8065832011377494148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9699d437aacf0a14bbbce1b9a148508b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 6981341210359713459}
+  attackPoint: {fileID: 3961893507505810545}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _attackRange: 0.21
+  _attackDelay: 0.5
+  _damage: 15
 --- !u!1 &8636342984771715093
 GameObject:
   m_ObjectHideFlags: 0

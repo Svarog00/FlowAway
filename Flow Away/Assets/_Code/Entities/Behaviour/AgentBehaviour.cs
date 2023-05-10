@@ -12,9 +12,12 @@ public abstract class AgentBehaviour : MonoBehaviour
         get => _player;
         set
         {
-            _player = value;
-            Invisibility playerInsibility = _player.GetComponent<Invisibility>();
-            playerInsibility.OnInsibilityEnable += PlayerInsibility_OnInsibilityEnable;
+            if(_player == null)
+            {
+                _player = value;
+                Invisibility playerInsibility = _player.GetComponent<Invisibility>();
+                playerInsibility.OnInsibilityEnable += PlayerInsibility_OnInsibilityEnable;
+            }
         }
     }
     

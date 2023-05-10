@@ -116,6 +116,7 @@ public class Invisibility : Gadget
             if (_fade <= 0f)
             {
                 _isChanging = false;
+                _curTime = _maxTime;
                 _fade = 0f;
             }
         }

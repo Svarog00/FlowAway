@@ -30,7 +30,7 @@ namespace Assets.Scripts.Player.Gadgets.Hook
 
         private Vector3 _collisionPoint;
         private Vector3 _direction;
-        private float _distance;
+        private float _distanceToCaster;
 
         private PlayerControl _playerControl;
 
@@ -65,7 +65,7 @@ namespace Assets.Scripts.Player.Gadgets.Hook
             _line.SetPosition(0, _caster.position);
             _line.SetPosition(1, transform.position);
 
-            _distance = Vector2.Distance(transform.position, _caster.position);
+            _distanceToCaster = Vector2.Distance(transform.position, _caster.position);
 
             if (_hasCollided)
             {
@@ -73,7 +73,7 @@ namespace Assets.Scripts.Player.Gadgets.Hook
             }
             else
             {
-                if (_distance > _range)
+                if (_distanceToCaster > _range)
                 {
                     Collision(null);
                 }
@@ -133,7 +133,7 @@ namespace Assets.Scripts.Player.Gadgets.Hook
 
         private void Reach()
         {
-            _direction = GetDirectionToPoint(_collisionPoint);
+            _direction = GetDirectionToHitPoint(_collisionPoint);
             _caster.parent.Translate(_speed * Time.deltaTime * _direction);
             transform.position = _collisionPoint;
             StopCast();
@@ -142,7 +142,7 @@ namespace Assets.Scripts.Player.Gadgets.Hook
 
         private void Pull()
         {
-            _direction = -GetDirectionToPoint(transform.position);
+            _direction = -GetDirectionToHitPoint(transform.position);
 
             if (_collidedWith)
             {
@@ -154,7 +154,7 @@ namespace Assets.Scripts.Player.Gadgets.Hook
 
         private void StopCast()
         {
-            if (_distance <= _stopRange)
+            if (_distanceToCaster <= _stopRange)
             {
                 _playerControl.CanMove = true;
                 gameObject.SetActive(false);
@@ -170,7 +170,7 @@ namespace Assets.Scripts.Player.Gadgets.Hook
             return aimDir;
         }
 
-        private Vector3 GetDirectionToPoint(Vector3 point)
+        private Vector3 GetDirectionToHitPoint(Vector3 point)
         {
             Vector3 aimDir = (point - _caster.position).normalized;
             return aimDir;

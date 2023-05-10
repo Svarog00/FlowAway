@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
-    [SerializeField] private SaveLoadService _saveLoadSystem;
+    [SerializeField] private SaveManager _saveLoadSystem;
     [SerializeField] private GameObject _visual;
 
     private void Start()
     {
         var playerHealthController = FindObjectOfType<PlayerHealthController>();
         playerHealthController.OnPlayerDeath += Player_OnDeath;
+        _saveLoadSystem = FindObjectOfType<SaveManager>();
+
         _visual.SetActive(false);
     }
 
@@ -23,8 +23,8 @@ public class DeathScreen : MonoBehaviour
 
     public void Retry()
     {
-        PlayerPrefs.SetInt("LoadHandleSave", 1);
-        _saveLoadSystem.LoadData("Handle_Save");
+        _saveLoadSystem.LoadLastSave();
+        _visual.SetActive(false);
     }
 
     public void Quit()

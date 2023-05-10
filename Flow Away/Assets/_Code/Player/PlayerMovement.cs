@@ -91,7 +91,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_isPressedDash)
         {
-            CheckDash(_dashDistance, _direction);
+            var direction = (UtilitiesClass.GetWorldMousePosition() - transform.position).normalized;
+            CheckDash(_dashDistance, direction);
 
             if (_isDashing)
             {

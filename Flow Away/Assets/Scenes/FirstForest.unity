@@ -1281,11 +1281,6 @@ PrefabInstance:
       propertyPath: _origin.y
       value: 20.5676
       objectReference: {fileID: 0}
-    - target: {fileID: 8770576728536955065, guid: aacd511c840bbc743b009519c7d38fe9,
-        type: 3}
-      propertyPath: _showMesh
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8770576728536955067, guid: aacd511c840bbc743b009519c7d38fe9,
         type: 3}
       propertyPath: m_Name
@@ -2166,7 +2161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491778056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.1, y: 36.57, z: 0}
+  m_LocalPosition: {x: -23.397, y: 36.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2617,7 +2612,7 @@ PrefabInstance:
     - target: {fileID: 1518276106237713426, guid: ca5439c626f7e8843b67da64040ba983,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1518276106237713431, guid: ca5439c626f7e8843b67da64040ba983,
         type: 3}
@@ -2627,6 +2622,11 @@ PrefabInstance:
     - target: {fileID: 1518276106237713431, guid: ca5439c626f7e8843b67da64040ba983,
         type: 3}
       propertyPath: patrolSpots.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518276106237713431, guid: ca5439c626f7e8843b67da64040ba983,
+        type: 3}
+      propertyPath: _patrolSpots.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1518276106237713431, guid: ca5439c626f7e8843b67da64040ba983,
@@ -2644,6 +2644,21 @@ PrefabInstance:
       propertyPath: patrolSpots.Array.data[2]
       value: 
       objectReference: {fileID: 1138212273}
+    - target: {fileID: 1518276106237713431, guid: ca5439c626f7e8843b67da64040ba983,
+        type: 3}
+      propertyPath: _patrolSpots.Array.data[0]
+      value: 
+      objectReference: {fileID: 91492913}
+    - target: {fileID: 1518276106237713431, guid: ca5439c626f7e8843b67da64040ba983,
+        type: 3}
+      propertyPath: _patrolSpots.Array.data[1]
+      value: 
+      objectReference: {fileID: 78917049}
+    - target: {fileID: 1518276106237713431, guid: ca5439c626f7e8843b67da64040ba983,
+        type: 3}
+      propertyPath: _patrolSpots.Array.data[2]
+      value: 
+      objectReference: {fileID: 1828818929}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3171,7 +3186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798902583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.19, y: 38.43, z: 0}
+  m_LocalPosition: {x: -24.19, y: 38.356, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4057,7 +4072,7 @@ PrefabInstance:
     - target: {fileID: 4730221804762415058, guid: 7ef5a26bdafddad4a9f7573d3d895ada,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4730221804762415060, guid: 7ef5a26bdafddad4a9f7573d3d895ada,
         type: 3}
@@ -4067,6 +4082,11 @@ PrefabInstance:
     - target: {fileID: 4730221804762415060, guid: 7ef5a26bdafddad4a9f7573d3d895ada,
         type: 3}
       propertyPath: patrolSpots.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730221804762415060, guid: 7ef5a26bdafddad4a9f7573d3d895ada,
+        type: 3}
+      propertyPath: _patrolSpots.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4730221804762415060, guid: 7ef5a26bdafddad4a9f7573d3d895ada,
@@ -4084,6 +4104,21 @@ PrefabInstance:
       propertyPath: patrolSpots.Array.data[2]
       value: 
       objectReference: {fileID: 798902584}
+    - target: {fileID: 4730221804762415060, guid: 7ef5a26bdafddad4a9f7573d3d895ada,
+        type: 3}
+      propertyPath: _patrolSpots.Array.data[0]
+      value: 
+      objectReference: {fileID: 491070502}
+    - target: {fileID: 4730221804762415060, guid: 7ef5a26bdafddad4a9f7573d3d895ada,
+        type: 3}
+      propertyPath: _patrolSpots.Array.data[1]
+      value: 
+      objectReference: {fileID: 1505338187}
+    - target: {fileID: 4730221804762415060, guid: 7ef5a26bdafddad4a9f7573d3d895ada,
+        type: 3}
+      propertyPath: _patrolSpots.Array.data[2]
+      value: 
+      objectReference: {fileID: 1138212273}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4696,7 +4731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472537043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.83, y: 37.17, z: 0}
+  m_LocalPosition: {x: -26.904, y: 37.059, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5712,6 +5747,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ghoul
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518276106237713429, guid: ca5439c626f7e8843b67da64040ba983,
+        type: 3}
+      propertyPath: _currentSpeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1518276106237713431, guid: ca5439c626f7e8843b67da64040ba983,
         type: 3}

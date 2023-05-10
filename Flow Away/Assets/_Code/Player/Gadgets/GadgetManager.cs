@@ -20,6 +20,8 @@ public class GadgetManager : MonoBehaviour
         public string name;
     }
 
+    [SerializeField] private List<Gadget> _gadgets;
+
     public void Timer(float curTime, float maxTime, string gadgetName)
     {
         OnGadgetCooldown?.Invoke(this, new OnGadgetCooldownEventArgs { curTime = 1 - curTime/maxTime, name = gadgetName });
@@ -31,7 +33,7 @@ public class GadgetManager : MonoBehaviour
         {
             return;
         }
-
+        
         QuestValues.Instance.Add(gadgetName);
         QuestValues.Instance.SetStage(gadgetName, 1);
         OnGadgetActivate?.Invoke(this, new OnGadgetActivateEventArgs { name = gadgetName });

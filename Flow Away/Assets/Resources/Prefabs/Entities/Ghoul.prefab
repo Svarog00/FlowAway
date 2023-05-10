@@ -160,7 +160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1518276107706576193}
-  _currentSpeed: 0.72
   _maxSpeed: 1.75
   _pathVectorList: []
 --- !u!1 &1518276107337932938
@@ -354,8 +353,8 @@ MonoBehaviour:
   _attackPoint: {fileID: 4308540266996735725}
   _animator: {fileID: 1518276107706576193}
   Damage: 5
-  attackDistance: 0.24
-  chillTime: 0.5
+  attackDistance: 0.35
+  chillTime: 0.8
 --- !u!95 &1518276107706576193
 Animator:
   serializedVersion: 5

@@ -19,14 +19,7 @@ public class LionAttack : EnemyAttack
         {
             AudioManager.Instance.Play("Roar");
             _animator.SetTrigger("Attack"); //animate
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _meleeRange, playerLayer);
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                if (enemy.tag.Contains("Player"))
-                {
-                    enemy.GetComponent<IDamagable>().Hurt(Damage);
-                }
-            }
+
         }
         else if (distanceToPlayer > _meleeRange)
         {
@@ -38,5 +31,17 @@ public class LionAttack : EnemyAttack
 
         curChillTime = chillTime; //Pause between attacks
         StartCoroutine(Cooldown());
+    }
+
+    public override void DealMeleeDamage()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _meleeRange, playerLayer);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            if (enemy.tag.Contains("Player"))
+            {
+                enemy.GetComponent<IDamagable>().Hurt(Damage);
+            }
+        }
     }
 }

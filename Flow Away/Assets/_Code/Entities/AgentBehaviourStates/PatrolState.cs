@@ -6,8 +6,9 @@ namespace Assets.Scripts.BehaviourStates
     public class PatrolState : IBehaviourState
 	{
 		private const string PlayerTag = "Player";
+        private const float MovementAccuracy = 0.5f;
 
-		private readonly float _waitTime;
+        private readonly float _waitTime;
 
 		private readonly Transform[] _patrolSpots;
 
@@ -47,13 +48,13 @@ namespace Assets.Scripts.BehaviourStates
 
             if (_randomSpot == -1)
             {
-                _movement.CanMove = false;
+                _movement.StartMove(false);
                 return;
             }
 
-            if (Vector2.Distance(_agentContext.transform.position, _patrolSpots[_randomSpot].position) <= 0.4f)
+            if (Vector2.Distance(_agentContext.transform.position, _patrolSpots[_randomSpot].position) <= MovementAccuracy)
             {
-                _movement.CanMove = false;
+                _movement.StartMove(false);
                 if (_curWaitTime <= 0f)
                 {
                     _curWaitTime = _waitTime;
@@ -74,7 +75,6 @@ namespace Assets.Scripts.BehaviourStates
                 return;
             }
             _randomSpot = Random.Range(0, _patrolSpots.Length);
-            _movement.CanMove = true;
             _movement.SetTargetPosition(_patrolSpots[_randomSpot].position);
         }
 

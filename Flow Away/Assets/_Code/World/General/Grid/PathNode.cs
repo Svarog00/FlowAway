@@ -8,7 +8,7 @@ public class PathNode
     public readonly int X;
     public readonly int Y;
 
-    public bool IsWalkable;
+    public readonly bool IsWalkable;
     public int GCost;
     public int HCost;
     public int FCost;
@@ -35,6 +35,7 @@ public class PathNode
 
     public override string ToString()
     {
-        return $"{_grid.GetWorldPosition(X, Y) + new Vector3(_grid.CellSize / 2f, _grid.CellSize / 2f):f2}";
+        //return $"{_grid.GetWorldPosition(X, Y) + new Vector3(_grid.CellSize / 2f, _grid.CellSize / 2f):f2}";
+        return $"{IsWalkable}";
     }
 }

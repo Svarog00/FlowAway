@@ -65,7 +65,6 @@ public class QuestValues : MonoBehaviour
 		}
 		else
 		{
-			//Debug.Log($"Can not get stage of quest named as {name}");
 			return -1;
 		}
 	}

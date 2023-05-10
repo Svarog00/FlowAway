@@ -31,8 +31,7 @@ public class SpawnerScript : MonoBehaviour
         if (_curDelay <= 0f)
         {
             _entitiesToSpawnCount--;
-            GameObject gameObject;
-            gameObject = _objectPool.GetFromPool();
+            GameObject gameObject = _objectPool.GetFromPool();
             gameObject.transform.position = transform.position;
             _curDelay = _delay;
             StartCoroutine(Delay());

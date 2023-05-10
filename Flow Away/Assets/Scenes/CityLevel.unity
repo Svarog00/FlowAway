@@ -5392,7 +5392,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1530360560236798368, guid: 743ff3d2d6f60b043aa1e8b82720d481,
         type: 3}
+      propertyPath: QuestName
+      value: GargoyleFirstMeet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530360560236798368, guid: 743ff3d2d6f60b043aa1e8b82720d481,
+        type: 3}
+      propertyPath: _questName
+      value: GargoyleFirstMeet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530360560236798368, guid: 743ff3d2d6f60b043aa1e8b82720d481,
+        type: 3}
       propertyPath: ActionToActivate
+      value: 
+      objectReference: {fileID: 2743500785487077546}
+    - target: {fileID: 1530360560236798368, guid: 743ff3d2d6f60b043aa1e8b82720d481,
+        type: 3}
+      propertyPath: _actionToActivate
       value: 
       objectReference: {fileID: 2743500785487077546}
     m_RemovedComponents: []

@@ -18,7 +18,15 @@ public class PlayerHealthController : MonoBehaviour, IDamagable, IHealable
     public int CurrentHealth
     {
         get => _playerHealth.CurrentHealth;
-        set => _playerHealth.CurrentHealth = value;
+        set
+        {
+            _playerHealth.CurrentHealth = value;
+            if (_playerHealth.CurrentHealth > 0)
+            {
+                gameObject.SetActive(true);
+                OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { CurHealth = _playerHealth.CurrentHealth });
+            }
+        }
     }
 
     public int FreeSlots => _freeEnemySlots;
@@ -39,12 +47,6 @@ public class PlayerHealthController : MonoBehaviour, IDamagable, IHealable
     private void Start()
     {
         OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { CurHealth = _playerHealth.CurrentHealth });
-    }
-
-    private void _playerHealth_OnDeath(object sender, EventArgs e)
-    {
-        gameObject.SetActive(false);
-        OnPlayerDeath?.Invoke(this, EventArgs.Empty);
     }
 
     public void Heal()
@@ -68,5 +70,11 @@ public class PlayerHealthController : MonoBehaviour, IDamagable, IHealable
     public void DecreaseSlots(int weight)
     {
         _freeEnemySlots -= weight;
+    }
+
+    private void _playerHealth_OnDeath(object sender, EventArgs e)
+    {
+        gameObject.SetActive(false);
+        OnPlayerDeath?.Invoke(this, EventArgs.Empty);
     }
 }

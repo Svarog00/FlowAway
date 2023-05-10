@@ -29,19 +29,12 @@ namespace Assets.Scripts.BehaviourStates
 		{
 			_oldTargetPosition = _agentContext.Player.transform.position;
 			_movement.SetTargetPosition(_oldTargetPosition);
-			_movement.CanMove = true;
 
 			_playerHP = _agentContext.Player.GetComponent<PlayerHealthController>();
 		}
 
 		public void Handle()
 		{
-			if (_oldTargetPosition != _agentContext.Player.transform.position)
-			{
-				_oldTargetPosition = _agentContext.Player.transform.position;
-				_movement.SetTargetPosition(_oldTargetPosition);
-			}
-
             //Если игрок вне дистанции агрессии, то продолжать какое-то время преследовать
             if (Vector2.Distance(_agentContext.transform.position, _agentContext.Player.transform.position) > _agentContext.AgressionDistance) 
 			{
@@ -53,10 +46,10 @@ namespace Assets.Scripts.BehaviourStates
 					_stateMachine.Enter<PatrolState>();
 					_elapsedTime = 0;
 				}
-			}
-			else if (Vector2.Distance(_agentContext.transform.position, _agentContext.Player.transform.position) <= _enemyAttack.AttackDistance) //Если игрок слишком близко, то остановиться для атаки
-			{
-				_elapsedTime = 0f;
+            }//Если игрок слишком близко, то остановиться для атаки
+            else if (Vector2.Distance(_agentContext.transform.position, _agentContext.Player.transform.position) <= _enemyAttack.AttackDistance)
+            {
+                _elapsedTime = 0f;
                 //Если игрока атакует не слишком много противников, то можно атаковать
                 if (_playerHP.FreeSlots > _agentContext.Weight) 
 				{
@@ -65,13 +58,19 @@ namespace Assets.Scripts.BehaviourStates
 			}
 			else
 			{
-				_elapsedTime = 0f;
+                if (Vector3.Distance(_oldTargetPosition, _agentContext.Player.transform.position) >= 0.15f)
+                {
+                    _oldTargetPosition = _agentContext.Player.transform.position;
+                    _movement.SetTargetPosition(_oldTargetPosition);
+                }
+
+                _elapsedTime = 0f;
 			}
-		}
+        }
 
         public void Exit()
         {
-            _movement.CanMove = false;
+            _movement.StartMove(false);
         }
     }
 }

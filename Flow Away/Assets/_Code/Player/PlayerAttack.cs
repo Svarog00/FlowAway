@@ -25,23 +25,27 @@ public class PlayerAttack : MonoBehaviour
         {
 			//animate melee attack
 			animator.SetTrigger("Melee_Strike");
-			FindObjectOfType<AudioManager>().Play("SwordSwing");
-			
-			//detect enemies in range of attack
-			Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _attackRange, enemyLayers);
-			//damage them
-			foreach(Collider2D enemy in hitEnemies)
-			{
-				if(enemy.gameObject != gameObject && enemy.GetComponent<IDamagable>() != null && !enemy.CompareTag("Shield"))
-				{
-					enemy.GetComponent<IDamagable>().Hurt(_damage);
-				}
-			}
-			_delay = _attackDelay;
         }
 	}
 
-	void Cooldown()
+	private void DealMeleeDamage()
+	{
+        FindObjectOfType<AudioManager>().Play("SwordSwing");
+        //detect enemies in range of attack
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _attackRange, enemyLayers);
+		//damage them
+		IDamagable tmpDamagable;
+		foreach (Collider2D enemy in hitEnemies)
+        {
+            if (!enemy.gameObject.tag.Contains("Player") && enemy.TryGetComponent(out tmpDamagable) && !enemy.CompareTag("Shield"))
+            {
+                tmpDamagable.Hurt(_damage);
+            }
+        }
+        _delay = _attackDelay;
+    }
+
+	private void Cooldown()
     {
 		if (_delay > 0f)
 		{

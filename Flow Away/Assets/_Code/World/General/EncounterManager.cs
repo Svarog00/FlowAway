@@ -8,80 +8,91 @@ public class EncounterManager : MonoBehaviour
     public event EventHandler OnEventFinished;
     public event EventHandler OnEventStarted;
 
-    public GameObject ActionToActivate;
     public int CurrentEnemyCount { get; set; }
-    [SerializeField] private string QuestName;
 
-    [SerializeField] private bool isActive;
+    [SerializeField] private GameObject _actionToActivate;
+
+    [Header("QuestSpecifics")]
+    [SerializeField] private string _questName;
+    [SerializeField] private int _neededQuestValue;
+
+    [SerializeField] private bool _isActive;
 
     [Header("Event Type")]
-    [SerializeField] private bool _enemyCounter;
+    [SerializeField] private bool _countEnemyDeaths;
 
     [Header("Event Parameters")]
     [SerializeField] private int _neededEnemyCount;
 
     private void Start()
     {
-        isActive = false;
-        ActionToActivate.SetActive(isActive);
+        _isActive = false;
+        _actionToActivate?.SetActive(_isActive);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Update()
     {
-        if(QuestValues.Instance.GetStage(QuestName) == -1)
-        {
-            QuestValues.Instance.GetStage(QuestName, true);
-        }
-
-        if (collision.gameObject.GetComponent<PlayerMovement>() && QuestValues.Instance.GetStage(QuestName) == 0)
-        {
-            if (!isActive)
-            {
-                Activate();
-                OnEventStarted?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
-        if(!isActive)
+        if (!_isActive)
         {
             return;
         }
 
-        if (QuestValues.Instance.GetStage(QuestName) == 1)
-        {
-            Deactivate();
-            OnEventFinished?.Invoke(this, EventArgs.Empty);
-        }
+        HandleActiveEncounter();
+    }
 
-        if (_enemyCounter)
+    private void HandleActiveEncounter()
+    {
+        if (_countEnemyDeaths)
         {
             if (CurrentEnemyCount == _neededEnemyCount)
             {
                 OnEventFinished?.Invoke(this, EventArgs.Empty);
             }
         }
+
+        if (QuestValues.Instance.GetStage(_questName) == 1)
+        {
+            Deactivate();
+            OnEventFinished?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<PlayerMovement>() && QuestValues.Instance.GetStage(_questName) == _neededQuestValue)
+        {
+            if (!_isActive)
+            {
+                Activate();
+                OnEventStarted?.Invoke(this, EventArgs.Empty);
+            }
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerMovement>() && QuestValues.Instance.GetStage(QuestName, true) == 0)
+        if (collision.GetComponent<PlayerMovement>() && QuestValues.Instance.GetStage(_questName) == 0)
         {
-            if (isActive)
+            if (_isActive)
             {
                 Deactivate();
-                Debug.Log("Active");
             }
         }
     }
 
     void Activate()
     {
-        isActive = true;
-        ActionToActivate.SetActive(isActive);
+        if (QuestValues.Instance.GetStage(_questName) == -1)
+        {
+            QuestValues.Instance.Add(_questName);
+        }
+
+        _isActive = true;
+        _actionToActivate.SetActive(_isActive);
     }
 
     void Deactivate()
     {
-        isActive = false;
-        ActionToActivate.SetActive(isActive);
+        _isActive = false;
+        _actionToActivate.SetActive(_isActive);
     }
 }
