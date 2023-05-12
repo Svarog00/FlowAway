@@ -12,7 +12,7 @@ public abstract class AgentBehaviour : MonoBehaviour
         get => _player;
         set
         {
-            if(_player == null)
+            if(_player == null && value != null)
             {
                 _player = value;
                 Invisibility playerInsibility = _player.GetComponent<Invisibility>();
@@ -26,6 +26,7 @@ public abstract class AgentBehaviour : MonoBehaviour
     public float AgressionDistance => _agressionDistance;
     public float ChaseTimeOut => _chaseTimeOut;
     public float WaitTime => _waitTime;
+    public float FleeDistance => _fleeDistance;
     
     public LayerMask PlayerLayerMask => _layerMask;
 
@@ -36,9 +37,12 @@ public abstract class AgentBehaviour : MonoBehaviour
     [SerializeField] private float _waitTime = 1f;
 	[SerializeField] private float _agressionDistance;
 	[SerializeField] private float _chaseTimeOut = 0.5f;
+    [SerializeField] private float _fleeDistance;
 
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private Transform[] _patrolSpots;
+
+    [SerializeField] private EnemyHealth _enemyHealth;
 
     private GameObject _player;
 

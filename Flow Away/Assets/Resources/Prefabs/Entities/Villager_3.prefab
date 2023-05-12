@@ -238,12 +238,14 @@ MonoBehaviour:
   _waitTime: 1
   _agressionDistance: 0
   _chaseTimeOut: 0.5
+  _fleeDistance: 0
   _layerMask:
     serializedVersion: 2
     m_Bits: 0
   _patrolSpots: []
+  _enemyHealth: {fileID: 5524460126829107110}
   _note: {fileID: 1998244643674930246}
-  _textAsset: {fileID: 4900000, guid: 9a38e71c4fad17b43bb1b8a0fcb9c1cb, type: 3}
+  _textAsset: {fileID: 0}
 --- !u!210 &6776356989987300329
 SortingGroup:
   m_ObjectHideFlags: 0

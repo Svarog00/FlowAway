@@ -22,7 +22,7 @@ namespace Assets.Scripts.BehaviourStates
 
         public void Work()
         {
-            _currentState.Handle();
+            _currentState?.Handle();
         }
 
         public void Enter<TState>() where TState : class, IBehaviourState

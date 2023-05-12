@@ -6,7 +6,7 @@ using UnityEngine;
 using Assets.Scripts.Infrastructure.Services;
 using Assets.Scripts.Infrustructure;
 
-public class Exit : MonoBehaviour, ICoroutineRunner
+public class LevelExitManager : MonoBehaviour, ICoroutineRunner
 {
     public string NextSceneName;
 
@@ -39,15 +39,14 @@ public class Exit : MonoBehaviour, ICoroutineRunner
     private void MoveToNextScene()
     {
         _saveManager.SaveGame(SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name); //Создает файл сохранения с названием сцены, на которой игрок находится
-        PlayerPrefs.SetInt("LevelMove", 1); //Устанавливается флаг перехода 
-                                            //Необходимо отгрузить текущую сцену, загрузить следующую и перенести персонажа на место перехода
+        //Необходимо отгрузить текущую сцену, загрузить следующую и перенести персонажа на место перехода
         _prevSceneName = SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name;
         _sceneLoader.Load(NextSceneName, OnLoaded, LoadSceneMode.Additive);
     }
 
     private void OnLoaded()
     {
-        var exits = FindObjectsOfType<Exit>();
+        var exits = FindObjectsOfType<LevelExitManager>();
         foreach(var exit in exits)
         {
             if(exit.NextSceneName == _prevSceneName)

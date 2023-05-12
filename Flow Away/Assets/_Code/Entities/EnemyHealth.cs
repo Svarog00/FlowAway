@@ -1,35 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IPoolable, IDamagable
 {
+    private const string HurtSoundName = "EnemyHurt";
+
     public EncounterManager eventSource;
     public event EventHandler OnZeroHealth;
 
+    public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
+
     [SerializeField] private int _hpMax;
-    private int _hp;
+    private int _currentHealth;
     protected ObjectPool objectPool;
 
     private void Start()
     {
-        _hp = _hpMax;
+        _currentHealth = _hpMax;
     }
 
     public void Hurt(int damage) //get damage from player or another entity
     {
-        FindObjectOfType<AudioManager>().Play("EnemyHurt");
-        _hp -= damage;
-        if (_hp <= 0)
+        FindObjectOfType<AudioManager>().Play(HurtSoundName);
+        _currentHealth -= damage;
+        if (_currentHealth <= 0)
         {
             Death();
         }
+        OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs { CurHealth = _currentHealth });
     }
 
     private void Death()
     {
-        FindObjectOfType<AudioManager>().Play(ToString());
         OnZeroHealth?.Invoke(this, EventArgs.Empty);
         Count();
 
@@ -51,7 +53,7 @@ public class EnemyHealth : MonoBehaviour, IPoolable, IDamagable
 
     public void ReturnToPool()
     {
-        objectPool.AddToPool(gameObject);
+        objectPool?.AddToPool(gameObject);
     }
 
     protected void Count()

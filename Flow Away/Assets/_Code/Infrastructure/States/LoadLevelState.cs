@@ -27,8 +27,8 @@ namespace Assets.Scripts.Infrastructure
 
         private void OnLoaded()
         {
-            GameObject hero = Object.FindObjectOfType<PlayerControl>().gameObject;
-            hero.transform.position = GameObject.FindGameObjectWithTag(InitialPointTag).transform.position;
+            /*GameObject hero = Object.FindObjectOfType<PlayerControl>().gameObject;
+            hero.transform.position = GameObject.FindGameObjectWithTag(InitialPointTag).transform.position;*/
 
             _stateMachine.Enter<GameLoopState>();
         }

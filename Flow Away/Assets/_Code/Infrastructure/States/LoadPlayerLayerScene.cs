@@ -10,6 +10,7 @@ namespace Assets.Scripts.Infrastructure
     {
         private const string PlayerSceneName = "PlayerLayer";
         private const string NewGameStartLevelName = "Graveyard";
+        private const string StartNewGamePlayerPrefsKey = "StartNewGame";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -42,13 +43,13 @@ namespace Assets.Scripts.Infrastructure
             var saveManager = Object.FindAnyObjectByType<SaveManager>();
             saveManager.SetPlayer(hero);
 
-            if (PlayerPrefs.GetInt("StartNewGame") == 1)
+            if (PlayerPrefs.GetInt(StartNewGamePlayerPrefsKey) == 1)
             {
                 _stateMachine.Enter<LoadLevelState, string>(NewGameStartLevelName);
                 return;
             }
 
-            WorldData data = _saveLoadService.LoadData("Handle_Save");
+            WorldData data = _saveLoadService.LoadHandleSave();
             if(data == null)
             {
                 return;

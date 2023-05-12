@@ -2,12 +2,12 @@ using InventorySystem;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class UI_DialogueWindow : MonoBehaviour
 {
     [SerializeField] private TMP_Text _npcText;
+
     [SerializeField] private GameObject _answersView;
     [SerializeField] private GameObject _answerButtonPrefab;
     [SerializeField] private GameObject _window;
@@ -29,7 +29,7 @@ public class UI_DialogueWindow : MonoBehaviour
         _playerInventory = playerInventory;
     }
 
-    public void ShowWindow(UnityEngine.TextAsset textAsset)
+    public void ShowWindow(TextAsset textAsset)
     {
         _dialogue = Dialogue.Load(textAsset);
         UpdateWindow();
@@ -38,7 +38,7 @@ public class UI_DialogueWindow : MonoBehaviour
 
     public void CloseWindow()
     {
-        _window?.SetActive(false);
+        _window.SetActive(false);
     }
 
     private void UpdateWindow()
@@ -77,7 +77,8 @@ public class UI_DialogueWindow : MonoBehaviour
             if (_dialogue.nodes[_curNode].answers[i].questName == null
                 || _dialogue.nodes[_curNode].answers[i].neededQuestValue == QuestValues.Instance.GetStage(_dialogue.nodes[_curNode].answers[i].questName, true)
                 && (_dialogue.nodes[_curNode].answers[i].neededItemId == 0 || _playerInventory.PickItem(_dialogue.nodes[_curNode].answers[i].neededItemId)))
-            //Если за этой фразой не закреплено квеста или какой-то квест находится на нужной стадии или есть требуемый предмет
+            //Если за этой фразой не закреплено квеста или какой-то квест находится на нужной стадии
+            //и есть требуемый предмет или предмет не закреплен за фразой
             //То добавить его в лист ответов игрока
             {
                 _answers.Add(_dialogue.nodes[_curNode].answers[i]);

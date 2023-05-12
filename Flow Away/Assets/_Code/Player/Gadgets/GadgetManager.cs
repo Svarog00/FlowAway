@@ -27,6 +27,14 @@ public class GadgetManager : MonoBehaviour
         OnGadgetCooldown?.Invoke(this, new OnGadgetCooldownEventArgs { curTime = 1 - curTime/maxTime, name = gadgetName });
     }
 
+    public void SetGadgetStates(List<int> questValues)
+    {
+        foreach(var value in questValues)
+        {
+
+        }
+    }
+
     public void ActivateGadget(string gadgetName)
     {
         if(QuestValues.Instance.GetStage(gadgetName) > 0)

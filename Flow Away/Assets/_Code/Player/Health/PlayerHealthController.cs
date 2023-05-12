@@ -9,10 +9,6 @@ public class PlayerHealthController : MonoBehaviour, IDamagable, IHealable
     public event EventHandler OnPlayerDeath;
 
     public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
-    public class OnHealthChangedEventArgs : EventArgs
-    {
-        public int CurHealth;
-    }
 
     public int MaxHealth => _playerHealth.MaxHealth;
     public int CurrentHealth

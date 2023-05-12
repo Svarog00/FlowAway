@@ -2,8 +2,9 @@
 using InventorySystem;
 using UnityEngine;
 
-public class IdleNPC : AgentBehaviour
+public class NeutralEntityBehaviour : AgentBehaviour
 {
+    private const string PlayerTag = "Player";
     [SerializeField] private UINoteTextScript _note;
     [SerializeField] private TextAsset _textAsset;
 
@@ -15,6 +16,11 @@ public class IdleNPC : AgentBehaviour
 
     private bool _canStartDialogue;
 
+    private void Awake()
+    {
+        Init();
+    }
+
     private void Start()
     {
         _canStartDialogue = false;
@@ -22,12 +28,19 @@ public class IdleNPC : AgentBehaviour
         _inputService = ServiceLocator.Container.Single<IInputService>();
         _note = GetComponentInChildren<UINoteTextScript>();
 
-        _dialogueWindow = FindAnyObjectByType<UI_DialogueWindow>();
+        _dialogueWindow = FindObjectOfType<UI_DialogueWindow>();
     }
 
     private void Update()
     {
-        if (_canStartDialogue && _inputService.IsInteractButtonDown())
+        StateMachine.Work();
+
+        if(!_canStartDialogue)
+        {
+            return;
+        }
+
+        if (_inputService.IsInteractButtonDown())
         {
             ShowDialogue();
         }
@@ -35,7 +48,7 @@ public class IdleNPC : AgentBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!collision.tag.Contains("Player"))
+        if(!collision.tag.Contains(PlayerTag))
         {
             return;
         }
@@ -53,7 +66,7 @@ public class IdleNPC : AgentBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag.Contains("Player"))
+        if (collision.tag.Contains(PlayerTag))
         {
             _note.Disappear(2f);
             CloseDialogue();

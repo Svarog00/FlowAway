@@ -12,7 +12,7 @@ public class HealthBar : MonoBehaviour
         FindObjectOfType<PlayerHealthController>().OnHealthChanged += Player_OnHealthChanged;
     }
 
-    public void Player_OnHealthChanged(object sender, PlayerHealthController.OnHealthChangedEventArgs e)
+    public void Player_OnHealthChanged(object sender, OnHealthChangedEventArgs e)
     {
         healthBar.value = e.CurHealth;
     }

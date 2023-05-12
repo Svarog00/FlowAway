@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Xml.Serialization;
 using System.IO;
+using System.Collections.Generic;
 
 [XmlRoot("terminal")]
 public class TerminalModel
 {
     [XmlArray("notes")]
     [XmlArrayItem("note")]
-    public Note[] notes;
+    public List<Note> Notes;
 
     public TerminalModel Load(TextAsset _xml)
     {
@@ -24,8 +23,8 @@ public class TerminalModel
 public class Note
 {
     [XmlAttribute("title")]
-    public string title;
+    public string Title;
     [XmlElement("text")]
-    public string text;
+    public string Text;
 }
 
