@@ -105,8 +105,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    //rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime)); //дэш к точке
-                    rb2.AddForce(Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime)); //дэш к точке
+                    rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime)); //дэш к точке
                 }
             }
             _isPressedDash = false;

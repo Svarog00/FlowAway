@@ -446,6 +446,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1090296853728680930}
     m_Modifications:
+    - target: {fileID: 4450432232280651987, guid: 9caf5e95c51380d4d90dca5c7cbf3e4f,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450432232280651987, guid: 9caf5e95c51380d4d90dca5c7cbf3e4f,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450432232280651987, guid: 9caf5e95c51380d4d90dca5c7cbf3e4f,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450432232280651987, guid: 9caf5e95c51380d4d90dca5c7cbf3e4f,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450432232280651987, guid: 9caf5e95c51380d4d90dca5c7cbf3e4f,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7733145053407305706, guid: 9caf5e95c51380d4d90dca5c7cbf3e4f,
         type: 3}
       propertyPath: m_Name
@@ -615,9 +640,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _noteText: {fileID: 2818307953228232816}
   _notesListView: {fileID: 57120845211904148}
+  _window: {fileID: 2036633161087412175}
   _noteButtonPrefab: {fileID: 3755127867861361904, guid: 56c17459c72b9654a9432e240f71d522,
     type: 3}
-  _window: {fileID: 2036633161087412175}
 --- !u!1001 &3607001601779506384
 PrefabInstance:
   m_ObjectHideFlags: 0

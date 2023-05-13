@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73fe62266eda03946ba0901b21485d20, type: 3}
-  m_Name: ItemsDatabase
+  m_Script: {fileID: 11500000, guid: c8169da56f425744994aa3f884a688c3, type: 3}
+  m_Name: UsableItem
   m_EditorClassIdentifier: 
-  _items:
-  - {fileID: 11400000, guid: cffb89c87f1a4fb4490a6c3a397420c3, type: 2}
-  - {fileID: 11400000, guid: 75933a0e806ee2345883400d27b82e93, type: 2}
+  Id: 2
+  Name: Random
+  Description: Random desription
+  IsUsable: 1
+  Image: {fileID: 5976774279813793934, guid: ed2dc859dada6d6478395921ca2903ea, type: 3}

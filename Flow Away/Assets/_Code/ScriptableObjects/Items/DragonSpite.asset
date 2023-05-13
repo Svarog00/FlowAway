@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73fe62266eda03946ba0901b21485d20, type: 3}
-  m_Name: ItemsDatabase
+  m_Script: {fileID: 11500000, guid: d0e3b34a59e209848b305cc620d5903f, type: 3}
+  m_Name: DragonSpite
   m_EditorClassIdentifier: 
-  _items:
-  - {fileID: 11400000, guid: cffb89c87f1a4fb4490a6c3a397420c3, type: 2}
-  - {fileID: 11400000, guid: 75933a0e806ee2345883400d27b82e93, type: 2}
+  Id: 1
+  Name: DragonSpite
+  Description: This is dragon spite indeed
+  Image: {fileID: 21300000, guid: e6863ed34d1b42e4fb839ad8b271e899, type: 3}

@@ -16,6 +16,7 @@ namespace Assets.Scripts.BehaviourStates
 
         private int _randomSpot = -1;
         private float _curWaitTime;
+        private bool _isEnemyDetected;
 
         private BehaviourStateMachine _stateMachine;
         private AgentBehaviour _agentContext;
@@ -32,7 +33,7 @@ namespace Assets.Scripts.BehaviourStates
 
         public void Enter()
         {
-			_agentContext.EnemyDetected = false;
+            _isEnemyDetected = false;
 
             SetRandomPatrolSpot();
         }
@@ -41,7 +42,7 @@ namespace Assets.Scripts.BehaviourStates
         {
 			DetectTargets();
 
-			if (_agentContext.EnemyDetected)
+			if (_isEnemyDetected)
 			{
 				_stateMachine.Enter<ChaseState>();
 			}
@@ -86,13 +87,13 @@ namespace Assets.Scripts.BehaviourStates
 			foreach (Collider2D enemy in detectedEnemies)
 			{
                 //если произошел агр, то заполняем ссылки на игрока
-                if (enemy.tag == PlayerTag && !_agentContext.EnemyDetected) 
+                if (enemy.tag == PlayerTag && !_isEnemyDetected) 
 				{
 					if (_agentContext.Player == null)
 					{
 						_agentContext.Player = enemy.gameObject;
 					}
-					_agentContext.EnemyDetected = true;
+                    _isEnemyDetected = true;
 					break;
 				}
 			}

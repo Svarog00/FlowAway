@@ -9,8 +9,10 @@ public class UI_Inventory : MonoBehaviour
     [SerializeField] private GameObject _inventoryWindow;
     [SerializeField] private GameObject _inventoryGridView;
     [SerializeField] private GameObject _itemDescriptionView;
-    [SerializeField] private GameObject _itemButtonPrefab;
+    [SerializeField] private GameObject _itemGridInstancePrefab;
+
     [SerializeField] private GameObject _dropButton;
+    [SerializeField] private GameObject _useButton;
 
     private InventoryRoot _inventoryRoot;
     private IInputService _inputService;
@@ -48,14 +50,27 @@ public class UI_Inventory : MonoBehaviour
     {
         _itemDescriptionView.GetComponent<TMP_Text>().text = item.Description;
         _selectedItemId = item.Id;
+
         _dropButton.SetActive(true);
+        _useButton.SetActive(item.IsUsable);
+        _useButton.GetComponent<Button>().onClick.AddListener(() => UseItem(item));
+    }
+
+    public void DropItem()
+    {
+        _inventoryRoot.DropItem(_selectedItemId);
+        _selectedItemId = 0;
+
+        ResetDescriptionWindow();
+        UpdateGrid();
     }
 
     private void OpenInventoryUI()
     {
         _inventoryWindow.SetActive(_isOpen);
         _selectedItemId = 0;
-        _dropButton.SetActive(false);
+
+        ResetDescriptionWindow();
         UpdateGrid();
     }
 
@@ -68,19 +83,25 @@ public class UI_Inventory : MonoBehaviour
 
         foreach (var item in _inventoryRoot.InventoryModel.Items)
         {
-            GameObject itemButtonPrefab = Instantiate(_itemButtonPrefab, _inventoryGridView.transform);
+            GameObject itemButtonPrefab = Instantiate(_itemGridInstancePrefab, _inventoryGridView.transform);
             itemButtonPrefab.GetComponent<Image>().sprite = item.Image;
             itemButtonPrefab.GetComponent<Button>().onClick.AddListener(() => SelectItem(item));
         }
     }
 
-    public void DropItem()
+    private void UseItem(Item item)
     {
-        _inventoryRoot.DropItem(_selectedItemId);
-        _selectedItemId = 0;
+        item.Use(_inventoryRoot.gameObject);
+        _inventoryRoot.DeleteItem(item.Id);
 
+        ResetDescriptionWindow();
+        UpdateGrid();
+    }
+
+    private void ResetDescriptionWindow()
+    {
         _itemDescriptionView.GetComponent<TMP_Text>().text = string.Empty;
         _dropButton.SetActive(false);
-        UpdateGrid();
+        _useButton.SetActive(false);
     }
 }

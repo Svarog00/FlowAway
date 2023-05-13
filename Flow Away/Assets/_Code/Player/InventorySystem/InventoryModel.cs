@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace InventorySystem
 {
-    [Serializable]
-    public class Item
-    {
-        public int Id;
-        public string Name;
-        public string Description;
-
-        public Sprite Image;
-    }
-
     public class InventoryModel
     {
         public IEnumerable<Item> Items => _items;
@@ -28,6 +16,11 @@ namespace InventorySystem
 
         public void AddItem(Item item)
         {
+            if(item == null)
+            {
+                return;
+            }
+
             _items.Add(item);
         }
 
@@ -38,6 +31,11 @@ namespace InventorySystem
 
         public void DeleteItem(Item item)
         {
+            if(item == null)
+            {
+                return;
+            }
+
             _items.Remove(item);
         }
     }

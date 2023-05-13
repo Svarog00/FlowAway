@@ -3,8 +3,6 @@ using UnityEngine;
 
 public abstract class AgentBehaviour : MonoBehaviour
 {
-    public bool EnemyDetected { get; set; }
-
     public int Weight => _weight;
 
     public GameObject Player 
