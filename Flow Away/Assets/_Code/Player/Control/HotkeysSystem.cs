@@ -18,32 +18,26 @@ public class HotkeysSystem
 
     private IInputService _inputService;
     private GameObject _player;
+    private GadgetManager _gadgetManager;
+
     private List<HotkeyAbility> _hotkeyAbilities;
 
     public HotkeysSystem(GameObject player)
     {
         _inputService = ServiceLocator.Container.Single<IInputService>();
         _player = player;
-        _hotkeyAbilities = new List<HotkeyAbility>
+        _gadgetManager = _player.GetComponent<GadgetManager>();
+        _hotkeyAbilities = new List<HotkeyAbility>();
+
+        for(int i = 0; i < _gadgetManager.Gadgets.Count; i++)
         {
-            new HotkeyAbility
+            int index = i;
+            _hotkeyAbilities.Add(new HotkeyAbility
             {
-                gadget = _player.GetComponent<Invisibility>(),
-                acitvateAbilityAction = () => _player.GetComponent<Invisibility>().HandleActivate()
-            },
-
-            new HotkeyAbility
-            {
-                gadget = _player.GetComponent<PowerShield>(),
-                acitvateAbilityAction = () => _player.GetComponent<PowerShield>().HandleActivate()
-            },
-
-            new HotkeyAbility
-            {
-                gadget = _player.GetComponent<HookController>(),
-                acitvateAbilityAction = () => _player.GetComponent<HookController>().HandleActivate()
-            }
-        };
+                gadget = _gadgetManager.Gadgets[index],
+                acitvateAbilityAction = () => _gadgetManager.Gadgets[index].HandleActivate(),
+            });
+        }
     }
 
     public void GetInput()

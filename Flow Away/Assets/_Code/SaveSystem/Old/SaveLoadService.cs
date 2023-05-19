@@ -24,7 +24,7 @@ public class SaveLoadService : ISaveLoadService
 		formatter.Serialize(fs, worldData); //serialize savedData in fs file
 		fs.Close(); //close file stream
 
-		Debug.Log("Saved: HP - " + worldData.health + "; position - " + worldData.x + " " + worldData.y + "; scene - " + worldData.currentScene);
+		Debug.Log("Saved: HP - " + worldData.Health + "; position - " + worldData.x + " " + worldData.y + "; scene - " + worldData.CurrentScene);
 
 	}
 

@@ -53,7 +53,7 @@ public class PowerShield : Gadget
         if (_curTime > 0f)
         {
             _curTime -= Time.deltaTime;
-            GadgetManager.Timer(_curTime, _maxTime, _gadgetName);
+            GadgetManager.CooldownTimer(_curTime, _maxTime, _gadgetName);
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_AbilityIcon : MonoBehaviour
@@ -20,43 +17,46 @@ public class UI_AbilityIcon : MonoBehaviour
 		_visual.SetActive(_canActivate); 
 		
 		GadgetManager gadget = FindObjectOfType<GadgetManager>();
+        gadget.OnGadgetActivate += Gadget_OnGadgetActivate;
+
 		if(_canActivate)
 		{
             gadget.OnGadgetCooldown += OnGadgetCooldown;
 		}
-		else
-		{
-            gadget.OnGadgetActivate += Gadget_OnGadgetActivate;
-		}
 	}
+
 	//Icon should appear after binded gadget activated
     private void Gadget_OnGadgetActivate(object sender, GadgetManager.OnGadgetActivateEventArgs e)
     {
-		if(_gadgetName == e.name)
+		if(_gadgetName == e.Name)
         {
-            _visual.SetActive(true);
+            _visual.SetActive(e.IsActive);
 			GadgetManager gadget = FindObjectOfType<GadgetManager>();
 			gadget.OnGadgetCooldown += OnGadgetCooldown;
-			gadget.OnGadgetActivate -= Gadget_OnGadgetActivate;
 		}
     }
 	//Changing icon appearance due to timer
     private void OnGadgetCooldown(object sender, GadgetManager.OnGadgetCooldownEventArgs e)
 	{
-		if (e.name == _gadgetName && !_isFilling)
+		if(e.name != _gadgetName)
+		{
+			return;
+		}
+
+		if (!_isFilling)
 		{
 			_image.fillAmount = 0;
 			_isFilling = true;
 		}
-		else if(e.name == _gadgetName && _isFilling)
+		else
         {
-			ReturnNormalValue(e.curTime);
+			ChangeIconVisibility(e.curTime);
 			if (_image.fillAmount == 1)
 				_isFilling = false;
         }
 	}
 
-	private void ReturnNormalValue(float time)
+	private void ChangeIconVisibility(float time)
 	{
 		_image.fillAmount = time;
 	}

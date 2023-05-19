@@ -62,7 +62,7 @@ public class Invisibility : Gadget
         if(!_isActive && _cooldownCurTime > 0f)
         {
             _cooldownCurTime -= Time.deltaTime;
-            GadgetManager.Timer(_cooldownCurTime, _cooldownTime, _gadgetName);
+            GadgetManager.CooldownTimer(_cooldownCurTime, _cooldownTime, _gadgetName);
         }
     }
 

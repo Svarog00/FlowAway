@@ -4,11 +4,12 @@
 public class WorldData
 {
 	public float x, y;
-	public int health;
-	public string currentScene;
-	public int medkitCount;
-	public List<QuestStage> questValues;
-	public List<int> items;
+	public int Health;
+	public string CurrentScene;
+	public int MedkitCount;
+	public List<QuestStage> QuestValues;
+	public List<int> Items;
+	public List<bool> AbilityStatuses;
 }
 
 

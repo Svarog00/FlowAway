@@ -29,39 +29,43 @@ public class QuestValues : MonoBehaviour
 
 	public void Add(string name)
 	{
-		if (!_quests.Contains(new QuestStage { name = name }))
+		if (_quests.Contains(new QuestStage { QuestName = name }))
         {
-			_quests.Add(new QuestStage { name = name, stage = 0 });
+			return;
         }
+
+		_quests.Add(new QuestStage { QuestName = name, Stage = 0 });
 	}
 
 	public void SetStage(string name, int stage)
 	{
-		if (_quests.Contains(new QuestStage { name = name }))
+		if (!_quests.Contains(new QuestStage { QuestName = name }))
         {
-			QuestStage quest = _quests.Find(questToFind => questToFind.name.Equals(name));
-			quest.stage = stage;
-        }
-		else
-		{
-			//Debug.Log($"Can not set stage of quest named as {name}");
+#if UNITY_EDITOR
+            Debug.Log($"Can not set stage of quest named as {name}");
+#endif
+
+			return;
 		}
+
+        QuestStage quest = _quests.Find(questToFind => questToFind.QuestName.Equals(name));
+        quest.Stage = stage;
 	}
 
 	public int GetStage(string name, bool isInit = false)
 	{
 		//Если функция вызывается при первой загрузке диалога, то добавляется новый квест в список, в ином случае - возвращается -1 и в консоль выводится сообщение об ошибке.
 		//При вызове функции не из диалога НЕ ПЕРЕДАВАТЬ ВТОРОЙ АРГУМЕНТ
-		if (_quests.Contains(new QuestStage { name = name }))
+		if (_quests.Contains(new QuestStage { QuestName = name }))
 		{
-			QuestStage quest = _quests.Find(questToFind => questToFind.name.Equals(name));
-			return quest == null ? -1 : quest.stage;
+			QuestStage quest = _quests.Find(questToFind => questToFind.QuestName.Equals(name));
+			return quest == null ? -1 : quest.Stage;
 		}
 		else if (isInit)
 		{
 			Add(name);
-			QuestStage quest = _quests.Find(questToFind => questToFind.name.Equals(name));
-			return quest == null ? -1 : quest.stage;
+			QuestStage quest = _quests.Find(questToFind => questToFind.QuestName.Equals(name));
+			return quest == null ? -1 : quest.Stage;
 		}
 		else
 		{

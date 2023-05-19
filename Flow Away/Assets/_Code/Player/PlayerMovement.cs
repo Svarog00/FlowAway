@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
     private void CooldownDash()
     {
         _curDashTimer -= Time.deltaTime;
-        _gadgetManager.Timer(_curDashTimer, _dashTimer, DashAbilityName);
+        _gadgetManager.CooldownTimer(_curDashTimer, _dashTimer, DashAbilityName);
 
         if (_curDashTimer <= 0f)
         {

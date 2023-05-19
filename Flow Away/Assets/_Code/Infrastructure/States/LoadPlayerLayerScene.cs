@@ -55,16 +55,17 @@ namespace Assets.Scripts.Infrastructure
                 return;
             }
             LoadPlayerData(data, hero);
-            _stateMachine.Enter<LoadLevelState, string>(data.currentScene);
+            _stateMachine.Enter<LoadLevelState, string>(data.CurrentScene);
         }
 
         private void LoadPlayerData(WorldData data, GameObject hero)
         {
             hero.transform.position = new Vector2(data.x, data.y);
-            QuestValues.Instance.QuestList = new List<QuestStage>(data.questValues);
-            hero.GetComponent<PlayerHealthController>().CurrentHealth = data.health;
-            hero.GetComponent<HealingCapsulesController>().LoadCapsule(data.medkitCount);
-            hero.GetComponent<InventoryRoot>().LoadItems(data.items);
+            QuestValues.Instance.QuestList = new List<QuestStage>(data.QuestValues);
+            hero.GetComponent<PlayerHealthController>().CurrentHealth = data.Health;
+            hero.GetComponent<HealingCapsulesController>().LoadCapsule(data.MedkitCount);
+            hero.GetComponent<InventoryRoot>().LoadItems(data.Items);
+            hero.GetComponent<GadgetManager>().SetGadgetStatus(data.AbilityStatuses);
         }
 
         public void Exit()

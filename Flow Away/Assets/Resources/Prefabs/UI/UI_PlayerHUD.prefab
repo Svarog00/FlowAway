@@ -1665,6 +1665,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 6394063871112577956, guid: d8c99d2641bf77a4d94ff38f1f49ccde,
+        type: 3}
+      propertyPath: _gadgetName
+      value: PowerShield
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

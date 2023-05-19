@@ -3,15 +3,15 @@
 [System.Serializable]
 public class QuestStage : IEquatable<QuestStage>
 {
-	public string name;
-	public int stage = 0;
+	public string QuestName;
+	public int Stage = 0;
 
 	public bool Equals(QuestStage other)
 	{
 		if (other == null)
 			return false;
 		else 
-			return name.Equals(other.name);
+			return QuestName.Equals(other.QuestName);
 	}
 }
 
