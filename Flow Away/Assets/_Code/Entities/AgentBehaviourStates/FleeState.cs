@@ -2,6 +2,7 @@
 
 namespace Assets.Scripts.BehaviourStates
 {
+
     public class FleeState : IBehaviourState
     {
         private BehaviourStateMachine _stateMachine;

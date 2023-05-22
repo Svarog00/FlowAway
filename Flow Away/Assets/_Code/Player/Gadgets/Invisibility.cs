@@ -7,7 +7,7 @@ public class Invisibility : Gadget
 {
     [Header("Invisibility")]
     [SerializeField] private float _maxTime = 0f;
-    private float _curTime;
+    private float _curActiveTime;
     private float _fade = 1f;
 
     [SerializeField] private float _cooldownTime;
@@ -27,8 +27,8 @@ public class Invisibility : Gadget
 
     public float MaxTime 
     {
-        get { return _maxTime; }
-        set { _maxTime = value; }
+        get => _maxTime;
+        set => _maxTime = value;
     }
 
     private void Start()
@@ -43,26 +43,16 @@ public class Invisibility : Gadget
     {
         if(_isActive)
         {
-            Disappear();
-            _curTime -= Time.deltaTime;
+            _curActiveTime -= Time.deltaTime;
             
-            if(_curTime <= 0f)
+            if(_curActiveTime <= 0f)
             {
                 _isActive = false;
                 _isChanging = true;
                 _cooldownCurTime = _cooldownTime;
+                StartCoroutine(Appear());
+                StartCoroutine(CooldownAbility());
             }
-        }
-
-        if(!_isActive)
-        {
-            Appear();
-        }
-
-        if(!_isActive && _cooldownCurTime > 0f)
-        {
-            _cooldownCurTime -= Time.deltaTime;
-            GadgetManager.CooldownTimer(_cooldownCurTime, _cooldownTime, _gadgetName);
         }
     }
 
@@ -75,52 +65,70 @@ public class Invisibility : Gadget
 
         if (!_isActive)
         {
-            gameObject.tag = "InvisiblePlayer";
-            _isActive = true;
             _isChanging = true;
-            _curTime = MaxTime;
+            _curActiveTime = _maxTime;
+            StartCoroutine(Disappear());
+
             OnInsibilityEnable?.Invoke(this, new OnInvisibilityEnableEventArgs { isActive = _isActive });
         }
         else
         {
-            gameObject.tag = "Player";
             _isChanging = true;
-            _isActive = false;
+            StartCoroutine(Appear());
+
             OnInsibilityEnable?.Invoke(this, new OnInvisibilityEnableEventArgs { isActive = _isActive });
         }
     }
 
-    private void Appear()
+    private IEnumerator CooldownAbility()
     {
-        if(!_isChanging)
+        while(_cooldownCurTime > 0f)
         {
-            return;
-        }
+            _cooldownCurTime -= Time.deltaTime;
+            GadgetManager.CooldownTimer(_cooldownCurTime, _cooldownTime, _gadgetName);
 
-        _fade += Time.deltaTime;
-        if (_fade >= 1f)
-        {
-            _fade = 1f;
-            _isActive = false;
-            _isChanging = false;
-            gameObject.tag = "Player";
+            yield return null;
         }
-        _material.SetFloat("_Fade", _fade);
     }
 
-    private void Disappear()
+    private IEnumerator Appear()
     {
-        if (_isChanging == true)
+        while(_isChanging)
+        {
+            _fade += Time.deltaTime;
+            if (_fade >= 1f)
+            {
+                _fade = 1f;
+                _isActive = false;
+                _isChanging = false;
+                gameObject.tag = "Player";
+
+                yield break;
+            }
+            _material.SetFloat("_Fade", _fade);
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator Disappear()
+    {
+        while (_isChanging)
         {
             _fade -= Time.deltaTime;
             if (_fade <= 0f)
             {
-                _isChanging = false;
-                _curTime = _maxTime;
                 _fade = 0f;
+                _isActive = true;
+                _isChanging = false;
+                gameObject.tag = "InvisiblePlayer";
+
+                yield break;
             }
+            _material.SetFloat("_Fade", _fade);
+
+            yield return null;
         }
-        _material.SetFloat("_Fade", _fade);
     }
 
 }

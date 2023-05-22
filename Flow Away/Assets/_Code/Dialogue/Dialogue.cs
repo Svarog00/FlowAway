@@ -52,4 +52,6 @@ public class Answer
     public int neededItemId;
     [XmlAttribute("takenitem")]
     public int takenItemId;
+    [XmlAttribute("givenitem")]
+    public int givenItemId;
 }

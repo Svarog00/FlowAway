@@ -17,6 +17,7 @@ public class FinalDestination : MonoBehaviour
         _surveillanceScript = FindObjectOfType<SurveillanceScript>();
         _surveillanceScript.OnPlayerDetected += SurveillanceScript_OnPlayerDetected;
         _eventManager.OnEventFinished += EventManager_OnEventFinished;
+
         _text = FindObjectOfType<Text>();
 
         var player = FindObjectOfType<PlayerHealthController>();

@@ -21,16 +21,25 @@ public class LevelExitManager : MonoBehaviour, ICoroutineRunner
 
     private string _prevSceneName;
 
+    private void Awake()
+    {
+        _sceneLoader = new SceneLoader(this);
+    }
+
     private void Start()
     {
         _saveManager = FindObjectOfType<SaveManager>();
         _inputService = ServiceLocator.Container.Single<IInputService>();
-        _sceneLoader = new SceneLoader(this);
     }
 
     private void Update()
     {
-        if (_readyToLeave && _inputService.IsInteractButtonDown())
+        if(!_readyToLeave)
+        {
+            return;
+        }
+
+        if (_inputService.IsInteractButtonDown())
         {
             MoveToNextScene();
         }
@@ -38,14 +47,15 @@ public class LevelExitManager : MonoBehaviour, ICoroutineRunner
 
     private void MoveToNextScene()
     {
-        _saveManager.SaveGame(SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name); //Создает файл сохранения с названием сцены, на которой игрок находится
-        //Необходимо отгрузить текущую сцену, загрузить следующую и перенести персонажа на место перехода
+        _saveManager.SaveGame(SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name); 
+        //Создает файл сохранения с названием сцены, на которой игрок находится
         _prevSceneName = SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name;
         _sceneLoader.Load(NextSceneName, OnLoaded, LoadSceneMode.Additive);
     }
 
     private void OnLoaded()
     {
+        //Необходимо отгрузить текущую сцену, загрузить следующую и перенести персонажа на место перехода
         var exits = FindObjectsOfType<LevelExitManager>();
         foreach(var exit in exits)
         {

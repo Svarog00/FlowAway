@@ -105,6 +105,11 @@ public class UI_DialogueWindow : MonoBehaviour
         {
             _playerInventory.DeleteItem(_answers[answerIndex].takenItemId);
         }
+        if (_answers[answerIndex].givenItemId > 0)
+        {
+            _playerInventory.AddItem(_answers[answerIndex].givenItemId);
+        }
+
         _curNode = _answers[answerIndex].nextNode;
         UpdateWindow(); //Обновить список ответов
     }

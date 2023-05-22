@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Assets.Scripts.BehaviourStates
 {
@@ -9,10 +8,7 @@ namespace Assets.Scripts.BehaviourStates
         private IBehaviourState _currentState;
         private Dictionary<Type, IBehaviourState> _states;
 
-        public IBehaviourState CurrentState 
-        { 
-            get => _currentState; 
-        }
+        public IBehaviourState CurrentState => _currentState;
 
         public Dictionary<Type, IBehaviourState> States 
         { 
