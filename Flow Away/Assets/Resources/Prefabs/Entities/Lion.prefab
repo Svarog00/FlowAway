@@ -307,15 +307,15 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  _attackPoint: {fileID: 1131438420648010669}
-  _animator: {fileID: 4730221803471831735}
+  AttackPoint: {fileID: 1131438420648010669}
+  Animator: {fileID: 4730221803471831735}
   Damage: 10
-  attackDistance: 2
-  chillTime: 1
+  AttackDistance: 2
+  ChillTime: 1
   _shotPrefab: {fileID: 2365427862816028582, guid: 0d0a26e0d3301f54ebcf86a148dafc60,
     type: 3}
   _firePoint: {fileID: 3648924020461134480}
-  _meleeRange: 0.55
+  _meleeRange: 0.5
 --- !u!1 &4730221804762415058
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,10 +445,12 @@ MonoBehaviour:
   _waitTime: 1
   _agressionDistance: 3
   _chaseTimeOut: 1
+  _fleeDistance: 0
   _layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   _patrolSpots: []
+  _enemyHealth: {fileID: 4730221804762415062}
 --- !u!114 &4730221804762415062
 MonoBehaviour:
   m_ObjectHideFlags: 0

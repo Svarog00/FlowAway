@@ -54,6 +54,10 @@ public class HotkeysSystem
         {
             _hotkeyAbilities[2].acitvateAbilityAction();
         }
+        else if (_inputService.IsDashButtonDown())
+        {
+            _hotkeyAbilities[3].acitvateAbilityAction();
+        }
     }
 }
 

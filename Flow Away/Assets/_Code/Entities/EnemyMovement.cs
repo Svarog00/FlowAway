@@ -29,11 +29,6 @@ public class EnemyMovement : MonoBehaviour
         _pathfinding = Pathfinding.Instance;
     }
 
-    private void Update()
-    {
-        _animator.SetFloat(SpeedAnimatorTag, _currentSpeed);
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -52,7 +47,9 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
+        _animator.SetFloat(SpeedAnimatorTag, _currentSpeed);
         _rb2.MovePosition(_rb2.position + _direction * _maxSpeed * Time.deltaTime); //movement
+
         if (Vector3.Distance(transform.position, _targetPosition) <= Accuracy)
         {
             _currentPathIndex++;

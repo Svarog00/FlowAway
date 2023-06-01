@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Player.Health;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+using CustomEventArguments;
 
 public class PlayerHealthController : MonoBehaviour, IDamagable, IHealable
 {

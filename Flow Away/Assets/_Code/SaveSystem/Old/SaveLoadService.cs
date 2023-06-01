@@ -6,7 +6,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Assets.Scripts.Infrastructure;
 
 public class SaveLoadService : ISaveLoadService
-{		
+{
+	private readonly string SaveDirectoryPath = Application.dataPath + "/Saves";
+	private readonly string HandleSaveDirectoryPath = Application.dataPath + "/Saves/Handle_Save.sv";
+
     public SaveLoadService()
     {
 
@@ -14,9 +17,9 @@ public class SaveLoadService : ISaveLoadService
 
     public void SaveData(string name, WorldData worldData) //Параметр название сейва для разделения сохранений на чекпоинты и переходы между сценами
 	{
-		if (!Directory.Exists(Application.dataPath + "/Saves")) //if directory doesn't exist 
+		if (!Directory.Exists(SaveDirectoryPath)) //if directory doesn't exist 
 		{
-			Directory.CreateDirectory(Application.dataPath + "/Saves"); //then create directory
+			Directory.CreateDirectory(SaveDirectoryPath); //then create directory
 		}
 
 		FileStream fs = new FileStream(Application.dataPath + "/Saves/" + name + ".sv", FileMode.Create); //open stream to create a save file
@@ -54,26 +57,29 @@ public class SaveLoadService : ISaveLoadService
 
 	public WorldData LoadHandleSave()
 	{
-		if (File.Exists(Application.dataPath + "/Saves/Handle_Save.sv"))
+		if (!File.Exists(HandleSaveDirectoryPath))
 		{
-			FileStream fs = new FileStream(Application.dataPath + "/Saves/Handle_Save.sv", FileMode.Open);
-			BinaryFormatter formatter = new BinaryFormatter();
-			try
-			{
-				WorldData tmp = (WorldData)formatter.Deserialize(fs);
+			return null;
+		}
+
+		using (FileStream fs = new FileStream(HandleSaveDirectoryPath, FileMode.Open))
+		{
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                WorldData tmp = (WorldData)formatter.Deserialize(fs);
                 return tmp;
             }
-			catch (System.Exception Error)
-			{
-				Debug.Log(Error.Message);
+            catch (System.Exception Error)
+            {
+                Debug.Log(Error.Message);
                 return null;
             }
-			finally
-			{
-				fs.Close();
-			}
-		}
-        return null;
+            finally
+            {
+                fs.Close();
+            }
+        }
     }
 
 	public void ClearSaves()

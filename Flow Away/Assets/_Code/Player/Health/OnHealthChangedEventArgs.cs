@@ -1,6 +1,10 @@
 ﻿using System;
 
-public class OnHealthChangedEventArgs : EventArgs
+namespace CustomEventArguments
 {
-    public int CurHealth;
+    public class OnHealthChangedEventArgs : EventArgs
+    {
+        public int CurHealth;
+    }
 }
+

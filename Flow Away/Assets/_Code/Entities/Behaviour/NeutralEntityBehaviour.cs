@@ -1,10 +1,15 @@
-﻿using Assets.Scripts.Infrastructure.Services;
+﻿using Assets.Scripts.BehaviourStates;
+using Assets.Scripts.Infrastructure.Services;
 using InventorySystem;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NeutralEntityBehaviour : AgentBehaviour
 {
     private const string PlayerTag = "Player";
+
+    [Header("Neutral Entity Behaviour")]
     [SerializeField] private UINoteTextScript _note;
     [SerializeField] private TextAsset _textAsset;
 
@@ -18,7 +23,15 @@ public class NeutralEntityBehaviour : AgentBehaviour
 
     private void Awake()
     {
-        Init();
+        Initialize();
+
+        StateMachine.States = new Dictionary<Type, IBehaviourState>
+        {
+            [typeof(IdleState)] = new IdleState(this, StateMachine),
+            [typeof(PatrolState)] = new PatrolState(this, StateMachine),
+            [typeof(ChaseState)] = new ChaseState(this, StateMachine),
+            [typeof(EngageState)] = new EngageState(this, StateMachine),
+        };
     }
 
     private void Start()
@@ -29,6 +42,8 @@ public class NeutralEntityBehaviour : AgentBehaviour
         _note = GetComponentInChildren<UINoteTextScript>();
 
         _dialogueWindow = FindObjectOfType<UI_DialogueWindow>();
+
+        StateMachine.Enter<IdleState>();
     }
 
     private void Update()

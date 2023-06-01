@@ -129,10 +129,12 @@ MonoBehaviour:
   _waitTime: 1
   _agressionDistance: 2
   _chaseTimeOut: 2
+  _fleeDistance: 0
   _layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   _patrolSpots: []
+  _enemyHealth: {fileID: 1518276106237713428}
 --- !u!114 &1518276106237713428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,11 +352,11 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  _attackPoint: {fileID: 4308540266996735725}
-  _animator: {fileID: 1518276107706576193}
+  AttackPoint: {fileID: 4308540266996735725}
+  Animator: {fileID: 1518276107706576193}
   Damage: 5
-  attackDistance: 0.35
-  chillTime: 0.8
+  AttackDistance: 0.25
+  ChillTime: 0.55
 --- !u!95 &1518276107706576193
 Animator:
   serializedVersion: 5

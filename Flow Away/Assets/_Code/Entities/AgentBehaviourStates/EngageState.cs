@@ -26,7 +26,7 @@ namespace Assets.Scripts.BehaviourStates
 
         public void Handle()
         {
-            if (Vector2.Distance(_agentContext.transform.position, _agentContext.Player.transform.position) > _attack.AttackDistance)
+            if (Vector2.Distance(_agentContext.transform.position, _agentContext.Player.transform.position) > _attack.AttackDistanceProperty)
             {
                 _stateMachine.Enter<ChaseState>();
                 return;

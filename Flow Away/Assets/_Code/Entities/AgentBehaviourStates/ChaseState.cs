@@ -47,7 +47,7 @@ namespace Assets.Scripts.BehaviourStates
 					_elapsedTime = 0;
 				}
             }//Если игрок слишком близко, то остановиться для атаки
-            else if (Vector2.Distance(_agentContext.transform.position, _agentContext.Player.transform.position) <= _enemyAttack.AttackDistance)
+            else if (Vector2.Distance(_agentContext.transform.position, _agentContext.Player.transform.position) <= _enemyAttack.AttackDistanceProperty)
             {
                 _elapsedTime = 0f;
                 //Если игрока атакует не слишком много противников, то можно атаковать

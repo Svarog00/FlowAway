@@ -3,13 +3,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum EnemyStates { Patroling, Chasing, Attacking };
-
 public class EnemyBehavior : AgentBehaviour
 {
 	private void Awake()
 	{
-		Init();
+		Initialize();
 
 		StateMachine.States = new Dictionary<Type, IBehaviourState>
 		{

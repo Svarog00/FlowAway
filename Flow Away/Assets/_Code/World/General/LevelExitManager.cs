@@ -8,6 +8,8 @@ using Assets.Scripts.Infrustructure;
 
 public class LevelExitManager : MonoBehaviour, ICoroutineRunner
 {
+    private const string PlayerTag = "Player";
+
     public string NextSceneName;
 
     [SerializeField] private UINoteTextScript _note;
@@ -55,7 +57,7 @@ public class LevelExitManager : MonoBehaviour, ICoroutineRunner
 
     private void OnLoaded()
     {
-        //Необходимо отгрузить текущую сцену, загрузить следующую и перенести персонажа на место перехода
+        //Необходимо загрузить следующую и перенести персонажа на место перехода, отгрузить текущую сцену, 
         var exits = FindObjectsOfType<LevelExitManager>();
         foreach(var exit in exits)
         {
@@ -70,7 +72,7 @@ public class LevelExitManager : MonoBehaviour, ICoroutineRunner
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<PlayerControl>())
+        if(collision.tag.Contains(PlayerTag))
         {
             _note.Appear("Press E to leave", 2f);
             _player = collision.gameObject;
@@ -80,7 +82,7 @@ public class LevelExitManager : MonoBehaviour, ICoroutineRunner
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerControl>())
+        if (collision.tag.Contains(PlayerTag))
         {
             _note.Disappear(2f);
             _readyToLeave = false;

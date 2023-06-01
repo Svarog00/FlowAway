@@ -1,13 +1,15 @@
 using System;
 using UnityEngine;
 
+using CustomEventArguments;
+
 public class EnemyHealth : MonoBehaviour, IPoolable, IDamagable
 {
     private const string HurtSoundName = "EnemyHurt";
 
     public EncounterManager eventSource;
-    public event EventHandler OnZeroHealth;
 
+    public event EventHandler OnZeroHealth;
     public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
 
     [SerializeField] private int _hpMax;

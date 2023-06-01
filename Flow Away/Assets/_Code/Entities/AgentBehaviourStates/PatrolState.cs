@@ -83,7 +83,8 @@ namespace Assets.Scripts.BehaviourStates
 		{
             //find the player in circle
 			Collider2D[] detectedEnemies = 
-                Physics2D.OverlapCircleAll(_agentContext.transform.position, _agentContext.AgressionDistance, _agentContext.PlayerLayerMask); 
+                Physics2D.OverlapCircleAll(_agentContext.transform.position, _agentContext.AgressionDistance, _agentContext.PlayerLayerMask);
+            
 			foreach (Collider2D enemy in detectedEnemies)
 			{
                 //если произошел агр, то заполняем ссылки на игрока

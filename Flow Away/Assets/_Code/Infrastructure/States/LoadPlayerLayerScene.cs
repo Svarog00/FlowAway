@@ -65,7 +65,7 @@ namespace Assets.Scripts.Infrastructure
             hero.GetComponent<PlayerHealthController>().CurrentHealth = data.Health;
             hero.GetComponent<HealingCapsulesController>().LoadCapsule(data.MedkitCount);
             hero.GetComponent<InventoryRoot>().LoadItems(data.Items);
-            hero.GetComponent<GadgetManager>().SetGadgetStatus(data.AbilityStatuses);
+            hero.GetComponent<GadgetManager>().SetGadgetsStatus(data.AbilityStatuses);
         }
 
         public void Exit()

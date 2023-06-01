@@ -37,7 +37,7 @@ public class RobotAttack : EnemyAttack
 				}
 			}
 
-			curChillTime = chillTime; //Pause between attacks
+			curChillTime = ChillTime; //Pause between attacks
 			StartCoroutine(Cooldown());
 		}
 	}

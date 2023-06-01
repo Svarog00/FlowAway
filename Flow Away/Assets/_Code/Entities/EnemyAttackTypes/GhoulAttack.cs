@@ -8,9 +8,9 @@ public class GhoulAttack : EnemyAttack
         {
 			//Play Sound
 			AudioManager.Instance.Play("ZombieRoar");
-			_animator.SetTrigger("Attack"); //animate
+			Animator.SetTrigger("Attack"); //animate
 
-            curChillTime = chillTime; //Pause between attacks
+            curChillTime = ChillTime; //Pause between attacks
             StartCoroutine(Cooldown());
         }
         
@@ -18,7 +18,7 @@ public class GhoulAttack : EnemyAttack
 
 	public override void DealMeleeDamage()
 	{
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, attackDistance, playerLayer); //find the player in circle                                                                                                      //damage him
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackDistance, playerLayer); //find the player in circle                                                                                                      //damage him
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.tag.Contains("Player"))

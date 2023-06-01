@@ -60,7 +60,7 @@ public class PlayerControl : MonoBehaviour
     {
         if(_canMove && _inputService.Axis.sqrMagnitude > 0)
         {
-            _playerMovement.HandleMove(_inputService.Axis, _inputService.IsDashButtonDown());
+            _playerMovement.HandleMove(_inputService.Axis);
         }
         else
         {

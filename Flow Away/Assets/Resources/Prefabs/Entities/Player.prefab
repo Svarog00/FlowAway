@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 3738640356688177710}
   - component: {fileID: 4682736227477488103}
   - component: {fileID: 8896063257471224471}
+  - component: {fileID: 501157574004351884}
   - component: {fileID: 8345902685782219940}
   - component: {fileID: 604610727334192616}
   - component: {fileID: 903913100809121321}
@@ -158,6 +159,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initCapsuleCount: 2
   _playerHealth: {fileID: 4682736227477488103}
+--- !u!114 &501157574004351884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3738640356688177698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8603d1b5803a3e444ba6d071a02de79c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gadgetName: Dash
+  GadgetManager: {fileID: 7801533390959690499}
+  ObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _playerMovement: {fileID: 3738640356688177710}
+  _maxDashCount: 3
+  _dashForce: 5
+  _dashTimer: 1
+  _dashDistance: 7
 --- !u!114 &8345902685782219940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +245,7 @@ MonoBehaviour:
   - {fileID: 8345902685782219940}
   - {fileID: 604610727334192616}
   - {fileID: 903913100809121321}
+  - {fileID: 501157574004351884}
 --- !u!114 &3932898773274750514
 MonoBehaviour:
   m_ObjectHideFlags: 0

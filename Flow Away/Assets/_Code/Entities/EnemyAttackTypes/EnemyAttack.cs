@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EnemyAttack : MonoBehaviour
@@ -7,19 +6,19 @@ public abstract class EnemyAttack : MonoBehaviour
     [SerializeField] protected LayerMask playerLayer;
 
 	[Header("External objects")]
-	[SerializeField] protected Transform _attackPoint = null;
-	[SerializeField] protected Animator _animator;
+	[SerializeField] protected Transform AttackPoint = null;
+	[SerializeField] protected Animator Animator;
 
 	[Header("Attack characteristics")]
 	[SerializeField] protected int Damage;
-	[SerializeField] protected float attackDistance;
-	[SerializeField] protected float chillTime;
+	[SerializeField] protected float AttackDistance;
+	[SerializeField] protected float ChillTime;
 
 	protected float curChillTime;
 	protected float distanceToPlayer;
 	protected Vector2 vectorToPlayer;
 
-	public float AttackDistance => attackDistance;
+	public float AttackDistanceProperty => AttackDistance;
 
 	public Vector2 VectorToPlayer
     {

@@ -94,7 +94,7 @@ public class SaveManager : MonoBehaviour, ICoroutineRunner
         _healingCapsulesController.LoadCapsule(data.MedkitCount);
         _questValues.QuestList = new List<QuestStage>(data.QuestValues);
         _inventory.LoadItems(data.Items);
-        _gadgetManager.SetGadgetStatus(data.AbilityStatuses);
+        _gadgetManager.SetGadgetsStatus(data.AbilityStatuses);
 
         var prevSceneName = SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name;
         print(prevSceneName);

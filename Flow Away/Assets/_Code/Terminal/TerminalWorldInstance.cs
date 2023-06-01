@@ -12,7 +12,7 @@ public class TerminalWorldInstance : MonoBehaviour
 
     private TerminalModel _model;
 
-    private bool _isEnter;
+    private bool _isPlayerNearby;
     private bool _isActive;
 
     private IInputService _inputService;
@@ -29,7 +29,7 @@ public class TerminalWorldInstance : MonoBehaviour
 
     private void InitializeTerminal()
     {
-        _isEnter = false;
+        _isPlayerNearby = false;
         _isActive = false;
 
         _model = new TerminalModel();
@@ -42,7 +42,7 @@ public class TerminalWorldInstance : MonoBehaviour
 
     private void Update()
     {
-        if(!_isEnter)
+        if(!_isPlayerNearby)
         {
             return;
         }
@@ -65,7 +65,7 @@ public class TerminalWorldInstance : MonoBehaviour
     {
         if (collision.GetComponent<PlayerControl>())
         {
-            _isEnter = true;
+            _isPlayerNearby = true;
             _uiInformer.Appear(_uiInformerText, 1.2f);
         }
     }
@@ -74,7 +74,7 @@ public class TerminalWorldInstance : MonoBehaviour
     {
         if (collision.GetComponent<PlayerControl>())
         {
-            _isEnter = false;
+            _isPlayerNearby = false;
             _terminalUiWindow.CloseWindow();
             _uiInformer.Disappear(1.2f);
         }

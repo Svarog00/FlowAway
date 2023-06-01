@@ -38,7 +38,9 @@ public class UI_AbilityIcon : MonoBehaviour
 	//Changing icon appearance due to timer
     private void OnGadgetCooldown(object sender, GadgetManager.OnGadgetCooldownEventArgs e)
 	{
-		if(e.name != _gadgetName)
+        //_visual.SetActive(true);
+
+        if (e.name != _gadgetName)
 		{
 			return;
 		}
