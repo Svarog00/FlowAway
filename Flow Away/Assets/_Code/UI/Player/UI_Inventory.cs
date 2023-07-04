@@ -48,6 +48,8 @@ public class UI_Inventory : MonoBehaviour
 
     public void SelectItem(Item item)
     {
+        _useButton.GetComponent<Button>().onClick.RemoveAllListeners();
+
         _itemDescriptionView.GetComponent<TMP_Text>().text = item.Description;
         _selectedItemId = item.Id;
 

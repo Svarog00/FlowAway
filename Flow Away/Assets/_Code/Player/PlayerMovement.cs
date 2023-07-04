@@ -11,12 +11,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 Direction => _direction;
 
-    [SerializeField] private int _maxDashCount;
-
-    [SerializeField] private float _dashForce;
-    [SerializeField] private float _dashTimer;
-    [SerializeField] private float _dashDistance;
-
     [SerializeField] private float _movementSpeed = 5f;
 
     private GadgetManager _gadgetManager;
@@ -33,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb2.MovePosition(rb2.position + _movementSpeed * Time.deltaTime * _direction);
+        rb2.MovePosition(rb2.position + _movementSpeed * _direction);
     }
 
     public void StopMove()

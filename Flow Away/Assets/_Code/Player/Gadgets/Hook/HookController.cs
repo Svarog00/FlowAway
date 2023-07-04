@@ -1,13 +1,10 @@
-﻿using Assets.Scripts.Infrastructure.Factory;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HookController : Gadget
 {
     [SerializeField] private float _cooldownTime;
     [SerializeField] private GameObject _hookInstance;
 
-    private float _currentCooldownTime;
-    
     private void Start()
     {
         _hookInstance.SetActive(false);
@@ -16,11 +13,6 @@ public class HookController : Gadget
     public override void HandleActivate()
     {
         if(!IsUnlocked)
-        {
-            return;
-        }
-
-        if(_currentCooldownTime > 0)
         {
             return;
         }

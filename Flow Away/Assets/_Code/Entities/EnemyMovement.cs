@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         _animator.SetFloat(SpeedAnimatorTag, _currentSpeed);
-        _rb2.MovePosition(_rb2.position + _direction * _maxSpeed * Time.deltaTime); //movement
+        _rb2.MovePosition(_rb2.position + _direction * _maxSpeed); //movement
 
         if (Vector3.Distance(transform.position, _targetPosition) <= Accuracy)
         {

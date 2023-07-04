@@ -8,15 +8,12 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-#if UNITY_EDITOR
         PlayerPrefs.DeleteAll();
-#endif
     }
 
     public void Play()
     {
         PlayerPrefs.SetInt("StartNewGame", 1);
-        QuestValues.Instance?.Clear();
         SceneManager.LoadSceneAsync(InitialSceneName); //start first lvl
     }
 

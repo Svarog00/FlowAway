@@ -43,6 +43,8 @@ namespace Assets.Scripts.Infrastructure
             var saveManager = Object.FindAnyObjectByType<SaveManager>();
             saveManager.SetPlayer(hero);
 
+            QuestValues.Instance.Clear();
+            
             if (PlayerPrefs.GetInt(StartNewGamePlayerPrefsKey) == 1)
             {
                 _stateMachine.Enter<LoadLevelState, string>(NewGameStartLevelName);

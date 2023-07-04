@@ -26,10 +26,5 @@ namespace Assets.Scripts.Infrastructure.Factory
         {
             _assets.Instantiate(AssetPaths.UIPath);
         }
-
-        public GameObject CreateHookInstance(Transform casterPosition)
-        {
-            return _assets.Instantiate(AssetPaths.HookInstancePath, casterPosition.position);
-        }
     }
 }

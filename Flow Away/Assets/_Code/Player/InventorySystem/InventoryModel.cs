@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace InventorySystem
 {
@@ -37,6 +36,16 @@ namespace InventorySystem
             }
 
             _items.Remove(item);
+        }
+
+        public void ClearInventory()
+        {
+            if(_items.Count == 0)
+            {
+                return;
+            }
+
+            _items.Clear();
         }
     }
 }

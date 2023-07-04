@@ -46,6 +46,7 @@ public class DashAbility : Gadget
             return;
         }
 
+        StopCoroutine(CooldownDash());
         StartCoroutine(CooldownDash());
 
         _curDashCounter--;
@@ -74,7 +75,7 @@ public class DashAbility : Gadget
             }
             else
             {
-                _rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce * Time.deltaTime)); //дэш к точке
+                _rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce)); //дэш к точке
             }
         }
         _isPressedDash = false;

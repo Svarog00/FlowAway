@@ -4,13 +4,15 @@ namespace Assets.Scripts.BehaviourStates
 {
     public class ChaseState : IBehaviourState
 	{
+        private const float PlayerPositionDifference = 0.1f;
+
         private PlayerHealthController _playerHP;
 
         private EnemyMovement _movement;
 		private EnemyAttack _enemyAttack;
 
-        private BehaviourStateMachine _stateMachine;
 		private AgentBehaviour _agentContext;
+        private BehaviourStateMachine _stateMachine;
 
         private Vector3 _oldTargetPosition;
         
@@ -56,9 +58,9 @@ namespace Assets.Scripts.BehaviourStates
 					_stateMachine.Enter<EngageState>();
 				}
 			}
-			else
+			else //Change pathbuilding target if player moved to much
 			{
-                if (Vector3.Distance(_oldTargetPosition, _agentContext.Player.transform.position) >= 0.15f)
+                if (Vector3.Distance(_oldTargetPosition, _agentContext.Player.transform.position) >= PlayerPositionDifference)
                 {
                     _oldTargetPosition = _agentContext.Player.transform.position;
                     _movement.SetTargetPosition(_oldTargetPosition);

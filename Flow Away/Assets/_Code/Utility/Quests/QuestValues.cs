@@ -41,10 +41,6 @@ public class QuestValues : MonoBehaviour
 	{
 		if (!_quests.Contains(new QuestStage { QuestName = name }))
         {
-#if UNITY_EDITOR
-            Debug.Log($"Can not set stage of quest named as {name}");
-#endif
-
 			return;
 		}
 

@@ -8,6 +8,5 @@ namespace Assets.Scripts.Infrastructure.Factory
         GameObject CreateHero();
         GameObject CreateHero(GameObject position);
         void CreateHud();
-        GameObject CreateHookInstance(Transform casterPosition);
     }
 }

@@ -31,6 +31,8 @@ public abstract class AgentBehaviour : MonoBehaviour
     protected BehaviourStateMachine StateMachine;
 
     [Header("Agent Behaviour Base")]
+
+    [Tooltip("Количество слотов, которые будут заниматься противником при атаке по игроку")]
     [SerializeField] private int _weight = 0; //количество слотов, которые будут заниматься противником при атаке по игроку
 
     [SerializeField] private float _waitTime = 1f;

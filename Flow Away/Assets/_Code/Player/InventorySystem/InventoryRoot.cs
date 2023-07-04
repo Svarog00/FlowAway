@@ -13,7 +13,7 @@ namespace InventorySystem
         
         private InventoryModel _inventoryModel;
 
-        void Start()
+        void Awake()
         {
             _inventoryModel = new InventoryModel();
         }
@@ -64,6 +64,8 @@ namespace InventorySystem
 
         public void LoadItems(List<int> items)
         {
+            _inventoryModel.ClearInventory();
+
             foreach(int id in items)
             {
                 AddItem(id);
