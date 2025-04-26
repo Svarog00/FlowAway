@@ -66,16 +66,16 @@ public class DashAbility : Gadget
         if (_isDashing)
         {
             _rb2.velocity = Vector2.zero;
-            float distSqr = (_dashTarget - transform.position).sqrMagnitude; //Дистанция до точки перемещения
+            float distSqr = (_dashTarget - transform.position).sqrMagnitude; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-            if (distSqr < 0.1) //если дистанция слишком мала, то не перемещать
+            if (distSqr < 0.1) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             {
                 _isDashing = false;
                 _dashTarget = Vector3.zero;
             }
             else
             {
-                _rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce)); //дэш к точке
+                _rb2.MovePosition(Vector3.Lerp(transform.position, _dashTarget, _dashForce)); //пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
             }
         }
         _isPressedDash = false;
@@ -84,14 +84,14 @@ public class DashAbility : Gadget
     private void CheckDash(float dashDistance, Vector2 direction)
     {
         _isDashing = true;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, dashDistance, ObstacleLayer); //Выстрел лучом на дистанцию дэша по слою препятствий
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, dashDistance, ObstacleLayer); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (hit)
         {
-            _dashTarget = transform.position + (Vector3)(dashDistance * hit.fraction * direction); //Если попал луч, то точка назначения - место попадания
+            _dashTarget = transform.position + (Vector3)(dashDistance * hit.fraction * direction); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
         else
         {
-            _dashTarget = transform.position + (Vector3)(direction * dashDistance); //если луч ничего не достал, то перемещение на полную дистанцию
+            _dashTarget = transform.position + (Vector3)(direction * dashDistance); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
 
         _rb2.velocity = Vector2.zero;

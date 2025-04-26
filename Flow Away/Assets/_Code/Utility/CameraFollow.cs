@@ -1,12 +1,12 @@
-using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    [SerializeField] private CinemachineCamera _camera;
+
     public void Follow(GameObject hero)
     {
-        GetComponentInChildren<CinemachineVirtualCamera>().Follow = hero.transform;
+        _camera.Target.TrackingTarget = hero.transform;
     }
 }

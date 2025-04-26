@@ -1,19 +1,19 @@
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 
 public class CameraBorderApplier : MonoBehaviour
 {
     [SerializeField] private Collider2D _confiner;
 
-    private CinemachineConfiner _cinemachineVirtualCamera;
+    private CinemachineConfiner2D _cinemachineVirtualCamera;
 
     private void Awake()
     {
-        _cinemachineVirtualCamera = FindObjectOfType<CinemachineConfiner>();
+        _cinemachineVirtualCamera = FindFirstObjectByType<CinemachineConfiner2D>();
     }
 
     private void Start()
     {
-        _cinemachineVirtualCamera.m_BoundingShape2D = _confiner;
+        _cinemachineVirtualCamera.BoundingShape2D = _confiner;
     }
 }

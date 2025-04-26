@@ -37,7 +37,7 @@ namespace Assets.Scripts.Infrastructure
 
             CameraFollow(hero);
 
-            var inventoryUI = Object.FindObjectOfType<UI_Inventory>();
+            var inventoryUI = Object.FindFirstObjectByType<UI_Inventory>();
             inventoryUI.SetInventory(hero.GetComponent<InventoryRoot>());
 
             var saveManager = Object.FindAnyObjectByType<SaveManager>();
